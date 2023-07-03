@@ -25,12 +25,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Ocelot" Version="18.0.0" />
-		<PackageReference Include="Hx.Sdk.Cache" Version="6.0.0" />
-		<PackageReference Include="Hx.Sdk.Core" Version="6.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\shared\Hx.Core\Hx.Core.csproj" />
 	</ItemGroup>
 
 </Project>
