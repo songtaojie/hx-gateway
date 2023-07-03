@@ -1,0 +1,8 @@
+warn: 2023-01-25 11:46:36.2741552 +08:00 星期三 L Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3] #7
+      Failed to determine the https port for redirect.
+warn: 2023-01-25 11:47:05.2410620 +08:00 星期三 L Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3] #6
+      Failed to determine the https port for redirect.
+warn: 2023-01-25 14:10:07.2111811 +08:00 星期三 L Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3] #6
+      Failed to determine the https port for redirect.
+warn: 2023-01-25 14:13:40.2405258 +08:00 星期三 L Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3] #6
+      Failed to determine the https port for redirect.

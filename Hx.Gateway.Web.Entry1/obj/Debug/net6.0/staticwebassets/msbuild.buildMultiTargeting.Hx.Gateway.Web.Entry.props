@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Hx.Gateway.Web.Entry.props" />
+</Project>

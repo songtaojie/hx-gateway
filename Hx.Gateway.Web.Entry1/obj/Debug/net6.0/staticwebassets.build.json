@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "zvzxZoTaTTb+E91Q11gx+6he7rSW6Xh8MlR4wwWUQTs=",
+  "Source": "Hx.Gateway.Web.Entry",
+  "BasePath": "_content/Hx.Gateway.Web.Entry",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

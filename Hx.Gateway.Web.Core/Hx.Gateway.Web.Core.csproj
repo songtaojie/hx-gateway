@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>Hx.Gateway.Web.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Hx.Gateway.Web.Core.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IGeekFan.AspNetCore.Knife4jUI" Version="0.0.13" />
+    <PackageReference Include="Ocelot" Version="18.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hx.Gateway.Application\Hx.Gateway.Application.csproj" />
+  </ItemGroup>
+
+</Project>

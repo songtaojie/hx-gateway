@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Hx.Gateway.Web.Entry.props" />
+</Project>

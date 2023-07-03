@@ -1,0 +1,877 @@
+info: 2023-02-06 21:39:58.4974584 +08:00 星期一 L System.Logging.LoggingMonitor[0] #30
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.System.SystemService.LoginAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                  SystemService
+      ┣ 操作名称：                    LoginAsync
+      ┣ 路由信息：                    [area]: ; [controller]: system; [action]: login
+      ┣ 请求方式：                    POST
+      ┣ 请求地址：                    http://localhost:5050/api/system/login
+      ┣ 来源地址：                    http://localhost:3000/
+      ┣ 请求端源：                    client
+      ┣ 浏览器标识：                  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：              0.0.0.1
+      ┣ 服务端 IP 地址：              0.0.0.1
+      ┣ 执行耗时：                    331ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                      
+      ┣ 响应端：                      
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                    Microsoft Windows 10.0.18363
+      ┣ 系统架构：                    X64
+      ┣ 基础框架：                    Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                   .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                    Development
+      ┣ 启动程序集：                  Hx.Gateway.Web.Entry
+      ┣ 进程名称：                    Hx.Gateway.Web.Entry
+      ┣ 托管程序：                    Kestrel
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                application/json
+      ┣ 
+      ┣ request (LoginInput)：        {"account":"admin","password":"123456"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                    System.Threading.Tasks.Task_Hx.Gateway.Application.Services.System.Dtos.LoginOutput
+      ┣ 最终类型：                    Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                  {"code":200,"type":"success","errors":null,"data":{"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5IiwiZSI6ImlWNVVSSUhhcV9ndTJsajF0OE
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:40:10.3745922 +08:00 星期一 L System.Logging.LoggingMonitor[0] #24
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                DictService
+      ┣ 操作名称：                  GetAllSelectAsync
+      ┣ 路由信息：                  [area]: ; [controller]: dict; [action]: getAllSelect
+      ┣ 请求方式：                  GET
+      ┣ 请求地址：                  http://localhost:5050/api/dict/getAllSelect
+      ┣ 来源地址：                  http://localhost:3000/
+      ┣ 请求端源：                  client
+      ┣ 浏览器标识：                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：            0.0.0.1
+      ┣ 服务端 IP 地址：            0.0.0.1
+      ┣ 执行耗时：                  41ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                    
+      ┣ 响应端：                    
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                  Microsoft Windows 10.0.18363
+      ┣ 系统架构：                  X64
+      ┣ 基础框架：                  Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                 .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                  Development
+      ┣ 启动程序集：                Hx.Gateway.Web.Entry
+      ┣ 进程名称：                  Hx.Gateway.Web.Entry
+      ┣ 托管程序：                  Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：        252885263000000
+      ┣ fullName (string)：         系统管理员
+      ┣ openId (JSON_NULL)：        
+      ┣ iat (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：             1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：              Admin.NET
+      ┣ aud (string)：              Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                  System.Threading.Tasks.Task_Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput
+      ┣ 最终类型：                  Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                {"code":200,"type":"success","errors":null,"data":{"consulSettingKey":null,"consulDC":null},"extras":null,"timestamp":"1675690810364"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:40:10.4487887 +08:00 星期一 L System.Logging.LoggingMonitor[0] #32
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        93ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690810437"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:40:22.3589754 +08:00 星期一 L System.Logging.LoggingMonitor[0] #24
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?enabled=1&page=1&pageSize=10&searchKey=
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        11ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690822355"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:40:26.2771143 +08:00 星期一 L System.Logging.LoggingMonitor[0] #24
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?enabled=0&page=1&pageSize=10&searchKey=
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        7ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690826273"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:08.2848874 +08:00 星期一 L System.Logging.LoggingMonitor[0] #24
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                DictService
+      ┣ 操作名称：                  GetAllSelectAsync
+      ┣ 路由信息：                  [area]: ; [controller]: dict; [action]: getAllSelect
+      ┣ 请求方式：                  GET
+      ┣ 请求地址：                  http://localhost:5050/api/dict/getAllSelect
+      ┣ 来源地址：                  http://localhost:3000/
+      ┣ 请求端源：                  client
+      ┣ 浏览器标识：                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：            0.0.0.1
+      ┣ 服务端 IP 地址：            0.0.0.1
+      ┣ 执行耗时：                  0ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                    
+      ┣ 响应端：                    
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                  Microsoft Windows 10.0.18363
+      ┣ 系统架构：                  X64
+      ┣ 基础框架：                  Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                 .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                  Development
+      ┣ 启动程序集：                Hx.Gateway.Web.Entry
+      ┣ 进程名称：                  Hx.Gateway.Web.Entry
+      ┣ 托管程序：                  Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：        252885263000000
+      ┣ fullName (string)：         系统管理员
+      ┣ openId (JSON_NULL)：        
+      ┣ iat (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：             1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：              Admin.NET
+      ┣ aud (string)：              Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                  System.Threading.Tasks.Task_Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput
+      ┣ 最终类型：                  Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                {"code":200,"type":"success","errors":null,"data":{"consulSettingKey":null,"consulDC":null},"extras":null,"timestamp":"1675690868281"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:08.2951692 +08:00 星期一 L System.Logging.LoggingMonitor[0] #3
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        10ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690868292"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:33.7164444 +08:00 星期一 L System.Logging.LoggingMonitor[0] #37
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                DictService
+      ┣ 操作名称：                  GetAllSelectAsync
+      ┣ 路由信息：                  [area]: ; [controller]: dict; [action]: getAllSelect
+      ┣ 请求方式：                  GET
+      ┣ 请求地址：                  http://localhost:5050/api/dict/getAllSelect
+      ┣ 来源地址：                  http://localhost:3000/
+      ┣ 请求端源：                  client
+      ┣ 浏览器标识：                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：            0.0.0.1
+      ┣ 服务端 IP 地址：            0.0.0.1
+      ┣ 执行耗时：                  0ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                    
+      ┣ 响应端：                    
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                  Microsoft Windows 10.0.18363
+      ┣ 系统架构：                  X64
+      ┣ 基础框架：                  Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                 .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                  Development
+      ┣ 启动程序集：                Hx.Gateway.Web.Entry
+      ┣ 进程名称：                  Hx.Gateway.Web.Entry
+      ┣ 托管程序：                  Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：        252885263000000
+      ┣ fullName (string)：         系统管理员
+      ┣ openId (JSON_NULL)：        
+      ┣ iat (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：             1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：              Admin.NET
+      ┣ aud (string)：              Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                  System.Threading.Tasks.Task_Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput
+      ┣ 最终类型：                  Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                {"code":200,"type":"success","errors":null,"data":{"consulSettingKey":null,"consulDC":null},"extras":null,"timestamp":"1675690893714"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:33.7256391 +08:00 星期一 L System.Logging.LoggingMonitor[0] #39
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        8ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690893722"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:40.6021800 +08:00 星期一 L System.Logging.LoggingMonitor[0] #41
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10&searchKey=&status=2
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        15ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":2,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":0,"totalPages":0,"items":[],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690900598"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:43.7203998 +08:00 星期一 L System.Logging.LoggingMonitor[0] #37
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10&searchKey=&status=1
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        7ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":1,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690903717"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:41:48.1289596 +08:00 星期一 L System.Logging.LoggingMonitor[0] #41
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10&searchKey=&status=
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        11ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690908125"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:42:05.5904178 +08:00 星期一 L System.Logging.LoggingMonitor[0] #41
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.UpdateProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                          ProjectService
+      ┣ 操作名称：                            UpdateProjectAsync
+      ┣ 路由信息：                            [area]: ; [controller]: project; [action]: updateProject
+      ┣ 请求方式：                            PUT
+      ┣ 请求地址：                            http://localhost:5050/api/project/UpdateProject
+      ┣ 来源地址：                            http://localhost:3000/
+      ┣ 请求端源：                            client
+      ┣ 浏览器标识：                          Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                      0.0.0.1
+      ┣ 服务端 IP 地址：                      0.0.0.1
+      ┣ 执行耗时：                            138ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                              
+      ┣ 响应端：                              
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                            Microsoft Windows 10.0.18363
+      ┣ 系统架构：                            X64
+      ┣ 基础框架：                            Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                           .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                            Development
+      ┣ 启动程序集：                          Hx.Gateway.Web.Entry
+      ┣ 进程名称：                            Hx.Gateway.Web.Entry
+      ┣ 托管程序：                            Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                           Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：                  252885263000000
+      ┣ fullName (string)：                   系统管理员
+      ┣ openId (JSON_NULL)：                  
+      ┣ iat (integer)：                       1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                       1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                       1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                        Admin.NET
+      ┣ aud (string)：                        Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                        application/json
+      ┣ 
+      ┣ request (UpdateProjectInput)：        {"id":"383023383576901","name":"测试项目2","sortIndex":1}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                            System.Threading.Tasks.Task_System.String
+      ┣ 最终类型：                            Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                          {"code":200,"type":"success","errors":null,"data":"编辑项目成功","extras":null,"timestamp":"1675690925587"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 21:42:05.6182196 +08:00 星期一 L System.Logging.LoggingMonitor[0] #37
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        5ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目2","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675690925615"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 22:24:27.2900002 +08:00 星期一 L System.Logging.LoggingMonitor[0] #23
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                DictService
+      ┣ 操作名称：                  GetAllSelectAsync
+      ┣ 路由信息：                  [area]: ; [controller]: dict; [action]: getAllSelect
+      ┣ 请求方式：                  GET
+      ┣ 请求地址：                  http://localhost:5050/api/dict/getAllSelect
+      ┣ 来源地址：                  http://localhost:3000/
+      ┣ 请求端源：                  client
+      ┣ 浏览器标识：                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：            0.0.0.1
+      ┣ 服务端 IP 地址：            0.0.0.1
+      ┣ 执行耗时：                  0ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                    
+      ┣ 响应端：                    
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                  Microsoft Windows 10.0.18363
+      ┣ 系统架构：                  X64
+      ┣ 基础框架：                  Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                 .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                  Development
+      ┣ 启动程序集：                Hx.Gateway.Web.Entry
+      ┣ 进程名称：                  Hx.Gateway.Web.Entry
+      ┣ 托管程序：                  Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：        252885263000000
+      ┣ fullName (string)：         系统管理员
+      ┣ openId (JSON_NULL)：        
+      ┣ iat (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：             1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：              Admin.NET
+      ┣ aud (string)：              Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                  System.Threading.Tasks.Task_Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput
+      ┣ 最终类型：                  Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                {"code":200,"type":"success","errors":null,"data":{"consulSettingKey":null,"consulDC":null},"extras":null,"timestamp":"1675693467283"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 22:24:27.3185361 +08:00 星期一 L System.Logging.LoggingMonitor[0] #52
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        18ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目2","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675693467313"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 22:25:16.6379313 +08:00 星期一 L System.Logging.LoggingMonitor[0] #52
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                DictService
+      ┣ 操作名称：                  GetAllSelectAsync
+      ┣ 路由信息：                  [area]: ; [controller]: dict; [action]: getAllSelect
+      ┣ 请求方式：                  GET
+      ┣ 请求地址：                  http://localhost:5050/api/dict/getAllSelect
+      ┣ 来源地址：                  http://localhost:3000/
+      ┣ 请求端源：                  client
+      ┣ 浏览器标识：                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：            0.0.0.1
+      ┣ 服务端 IP 地址：            0.0.0.1
+      ┣ 执行耗时：                  0ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                    
+      ┣ 响应端：                    
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                  Microsoft Windows 10.0.18363
+      ┣ 系统架构：                  X64
+      ┣ 基础框架：                  Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                 .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                  Development
+      ┣ 启动程序集：                Hx.Gateway.Web.Entry
+      ┣ 进程名称：                  Hx.Gateway.Web.Entry
+      ┣ 托管程序：                  Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：        252885263000000
+      ┣ fullName (string)：         系统管理员
+      ┣ openId (JSON_NULL)：        
+      ┣ iat (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：             1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：              Admin.NET
+      ┣ aud (string)：              Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                  System.Threading.Tasks.Task_Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput
+      ┣ 最终类型：                  Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                {"code":200,"type":"success","errors":null,"data":{"consulSettingKey":null,"consulDC":null},"extras":null,"timestamp":"1675693516633"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 22:25:16.6485361 +08:00 星期一 L System.Logging.LoggingMonitor[0] #47
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.ProjectService.GetPageProjectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                      ProjectService
+      ┣ 操作名称：                        GetPageProjectAsync
+      ┣ 路由信息：                        [area]: ; [controller]: project; [action]: getPageProject
+      ┣ 请求方式：                        GET
+      ┣ 请求地址：                        http://localhost:5050/api/project/getPageProject?page=1&pageSize=10
+      ┣ 来源地址：                        http://localhost:3000/
+      ┣ 请求端源：                        client
+      ┣ 浏览器标识：                      Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：                  0.0.0.1
+      ┣ 服务端 IP 地址：                  0.0.0.1
+      ┣ 执行耗时：                        15ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                          
+      ┣ 响应端：                          
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                        Microsoft Windows 10.0.18363
+      ┣ 系统架构：                        X64
+      ┣ 基础框架：                        Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                       .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                        Development
+      ┣ 启动程序集：                      Hx.Gateway.Web.Entry
+      ┣ 进程名称：                        Hx.Gateway.Web.Entry
+      ┣ 托管程序：                        Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                       Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：              252885263000000
+      ┣ fullName (string)：               系统管理员
+      ┣ openId (JSON_NULL)：              
+      ┣ iat (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：                   1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：                   1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：                    Admin.NET
+      ┣ aud (string)：                    Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  参数列表 ━━━━━━━━━━━━━━━
+      ┣ Content-Type：                    
+      ┣ 
+      ┣ input (PageProjectInput)：        {"status":null,"page":1,"pageSize":10,"field":null,"order":null,"descStr":"descend"}
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                        System.Threading.Tasks.Task_Hx.Core.SqlSugarPagedList_Hx.Gateway.Application.Entities.TgProject
+      ┣ 最终类型：                        Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                      {"code":200,"type":"success","errors":null,"data":{"page":1,"pageSize":10,"total":1,"totalPages":1,"items":[{"name":"测试项目2","sortIndex":1,"status":1,"routes":null,"createTime":"2023-02-06T09:46:10.274485Z","updateTime":"2023-02-06T09:57:54.5715238Z","createUserId":"252885263000000","updateUserId":null,"isDelete":false,"id":"383023383576901"}],"hasPrevPage":false,"hasNextPage":false},"extras":null,"timestamp":"1675693516645"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+info: 2023-02-06 22:26:42.1980541 +08:00 星期一 L System.Logging.LoggingMonitor[0] #62
+      ┏━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━
+      ┣ Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync (Hx.Gateway.Application)
+      ┣ 
+      ┣ 控制器名称：                DictService
+      ┣ 操作名称：                  GetAllSelectAsync
+      ┣ 路由信息：                  [area]: ; [controller]: dict; [action]: getAllSelect
+      ┣ 请求方式：                  GET
+      ┣ 请求地址：                  http://localhost:5050/api/dict/getAllSelect
+      ┣ 来源地址：                  http://localhost:3000/
+      ┣ 请求端源：                  client
+      ┣ 浏览器标识：                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+      ┣ 客户端 IP 地址：            0.0.0.1
+      ┣ 服务端 IP 地址：            0.0.0.1
+      ┣ 执行耗时：                  0ms
+      ┣ ━━━━━━━━━━━━━━━  Cookies ━━━━━━━━━━━━━━━
+      ┣ 请求端：                    
+      ┣ 响应端：                    
+      ┣ ━━━━━━━━━━━━━━━  系统信息 ━━━━━━━━━━━━━━━
+      ┣ 系统名称：                  Microsoft Windows 10.0.18363
+      ┣ 系统架构：                  X64
+      ┣ 基础框架：                  Furion.Pure v4.8.4.16
+      ┣ .NET 架构：                 .NET 6.0.11
+      ┣ ━━━━━━━━━━━━━━━  启动信息 ━━━━━━━━━━━━━━━
+      ┣ 运行环境：                  Development
+      ┣ 启动程序集：                Hx.Gateway.Web.Entry
+      ┣ 进程名称：                  Hx.Gateway.Web.Entry
+      ┣ 托管程序：                  Kestrel
+      ┣ ━━━━━━━━━━━━━━━  授权信息 ━━━━━━━━━━━━━━━
+      ┣ JWT Token：                 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1Mjg4NTI2MzAwMDAwMCwiZnVsbE5hbWUiOiLns7vnu5_nrqHnkIblkZgiLCJvcGVuSWQiOm51bGwsImlhdCI6MTY3NTY5MDc5OCwibmJmIjoxNjc1NjkwNzk4LCJleHAiOjE2NzYyOTU1OTgsImlzcyI6IkFkbWluLk5FVCIsImF1ZCI6IkFkbWluLk5FVCJ9.iV5URIHaq_gu2lj1t8JoXo-l9AQHOd7FtvMcxwJjcjo
+      ┣ 
+      ┣ userId (integer64)：        252885263000000
+      ┣ fullName (string)：         系统管理员
+      ┣ openId (JSON_NULL)：        
+      ┣ iat (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ nbf (integer)：             1675690798 (2023-02-06 21:39:58:0000(+08:00) 星期一 L)
+      ┣ exp (integer)：             1676295598 (2023-02-13 21:39:58:0000(+08:00) 星期一 L)
+      ┣ iss (string)：              Admin.NET
+      ┣ aud (string)：              Admin.NET
+      ┣ ━━━━━━━━━━━━━━━  返回信息 ━━━━━━━━━━━━━━━
+      ┣ 原始类型：                  System.Threading.Tasks.Task_Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput
+      ┣ 最终类型：                  Hx.Core.HxUnifyResult_System.Object
+      ┣ 最终返回值：                {"code":200,"type":"success","errors":null,"data":{"consulSettingKey":null,"consulDC":null},"extras":null,"timestamp":"1675693602195"}
+      ┗━━━━━━━━━━━  Logging Monitor ━━━━━━━━━━━

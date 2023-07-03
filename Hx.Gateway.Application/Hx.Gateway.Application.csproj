@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>Hx.Gateway.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Common\Services\**" />
+	  <Compile Remove="Services\GlobalConfiguration\Dtos\Response\**" />
+	  <Compile Remove="Services\Projects\Dto\Response\**" />
+	  <EmbeddedResource Remove="Common\Services\**" />
+	  <EmbeddedResource Remove="Services\GlobalConfiguration\Dtos\Response\**" />
+	  <EmbeddedResource Remove="Services\Projects\Dto\Response\**" />
+	  <None Remove="Common\Services\**" />
+	  <None Remove="Services\GlobalConfiguration\Dtos\Response\**" />
+	  <None Remove="Services\Projects\Dto\Response\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Hx.Gateway.Application.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ocelot" Version="18.0.0" />
+		<PackageReference Include="Hx.Sdk.Cache" Version="6.0.0" />
+		<PackageReference Include="Hx.Sdk.Core" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\shared\Hx.Core\Hx.Core.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,2503 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hx.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Hx.Core.ConstAttribute">
+            <summary>
+            常量特性
+            </summary>
+        </member>
+        <member name="T:Hx.Core.IgnoreUpdateAttribute">
+            <summary>
+            忽略更新种子数据特性
+            </summary>
+        </member>
+        <member name="T:Hx.Core.SystemTableAttribute">
+            <summary>
+            系统表特性
+            </summary>
+        </member>
+        <member name="M:Hx.Core.CacheSetup.AddCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            缓存注册（新生命Redis组件）
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Hx.Core.CSRedisSetup.AddCSRedisSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            CSRedis初始化
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:Hx.Core.SqlSugarCache">
+            <summary>
+            SqlSugar二级缓存
+            </summary>
+        </member>
+        <member name="T:Hx.Core.CacheConst">
+            <summary>
+            缓存相关常量
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyUser">
+            <summary>
+            用户缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyMenu">
+            <summary>
+            菜单缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyPermission">
+            <summary>
+            权限缓存（按钮集合）
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyOrgIdList">
+            <summary>
+            机构Id集合缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyMaxDataScopeType">
+            <summary>
+            最大角色数据范围缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyVerCode">
+            <summary>
+            验证码缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyAll">
+            <summary>
+            所有缓存关键字集合
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyTimer">
+            <summary>
+            定时任务缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyOnlineUser">
+            <summary>
+            在线用户缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyConst">
+            <summary>
+            常量下拉框
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.SwaggerLogin">
+            <summary>
+            swagger登录缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheConst.KeyTenant">
+            <summary>
+            租户缓存
+            </summary>
+        </member>
+        <member name="T:Hx.Core.ClaimConst">
+            <summary>
+            Claim相关常量
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.RealName">
+            <summary>
+            真实姓名
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.AccountType">
+            <summary>
+            账号类型
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.TenantId">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.OrgId">
+            <summary>
+            组织机构Id
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.OrgName">
+            <summary>
+            组织机构名称
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.OpenId">
+            <summary>
+            微信OpenId
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ClaimConst.RunMode">
+            <summary>
+            运行模式（账号和三方授权）
+            </summary>
+        </member>
+        <member name="T:Hx.Core.CommonConst">
+            <summary>
+            通用常量
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysDemoEnv">
+            <summary>
+            演示环境开关
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysPassword">
+            <summary>
+            默认密码
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysSecondVer">
+            <summary>
+            登录二次验证
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysCaptcha">
+            <summary>
+            开启图形验证码
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysWartermark">
+            <summary>
+            开启水印
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysOpLog">
+            <summary>
+            开启操作日志
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysTokenExpire">
+            <summary>
+            Token过期时间
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysSingleLogin">
+            <summary>
+            单用户登录
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysAdminRole">
+            <summary>
+            系统管理员角色编码
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CommonConst.SysSensitiveDetection">
+            <summary>
+            开启全局脱敏处理（默认不开启）
+            </summary>
+        </member>
+        <member name="T:Hx.Core.SqlSugarConst">
+            <summary>
+            SqlSugar相关常量
+            </summary>
+        </member>
+        <member name="F:Hx.Core.SqlSugarConst.ConfigId">
+            <summary>
+            默认数据库标识（默认租户）
+            </summary>
+        </member>
+        <member name="F:Hx.Core.SqlSugarConst.PrimaryKey">
+            <summary>
+            默认表主键
+            </summary>
+        </member>
+        <member name="T:Hx.Core.DateTimeConverter">
+            <summary>
+            时间格式化
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeConverter.#ctor">
+            <summary>
+            时间格式化
+            使用内置的时间格式化
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeConverter.#ctor(System.String)">
+            <summary>
+            时间格式化
+            </summary>
+            <param name="format">格式化字符串</param>
+        </member>
+        <member name="P:Hx.Core.DateTimeConverter.DateTimeFormat">
+            <summary>
+            获取或设置DateTime格式
+            <para>默认为: yyyy-MM-dd HH:mm:ss</para>
+            </summary>           
+        </member>
+        <member name="M:Hx.Core.DateTimeConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateTime,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:Hx.Core.DateTimeNullConverter">
+            <summary>
+            可空的时间格式化
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeNullConverter.#ctor">
+            <summary>
+            时间格式化
+            使用内置的时间格式化
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeNullConverter.#ctor(System.String)">
+            <summary>
+            时间格式化
+            </summary>
+            <param name="format">格式化字符串</param>
+        </member>
+        <member name="P:Hx.Core.DateTimeNullConverter.DateTimeFormat">
+            <summary>
+             获取或设置DateTime格式
+             <para>默认为: yyyy-MM-dd HH:mm:ss</para>
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeNullConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            
+            </summary>
+            <param name="reader"></param>
+            <param name="typeToConvert"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeNullConverter.Write(System.Text.Json.Utf8JsonWriter,System.Nullable{System.DateTime},System.Text.Json.JsonSerializerOptions)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="T:Hx.Core.LongJsonConverter">
+            <summary>
+            序列化时long转string（防止js精度溢出）
+            </summary>
+        </member>
+        <member name="T:Hx.Core.BaseIdInput`1">
+            <summary>
+            主键Id输入参数
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BaseIdInput`1.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Hx.Core.BaseIdInput">
+            <summary>
+            主键Id输入参数
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BaseIdInput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="T:Hx.Core.BasePageInput">
+            <summary>
+            全局分页查询输入参数
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BasePageInput.Page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BasePageInput.PageSize">
+            <summary>
+            页码容量
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BasePageInput.Field">
+            <summary>
+            排序字段
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BasePageInput.Order">
+            <summary>
+            排序方向
+            </summary>
+        </member>
+        <member name="P:Hx.Core.BasePageInput.DescStr">
+            <summary>
+            降序排序
+            </summary>
+        </member>
+        <member name="T:Hx.Core.ListTenantCacheOutput">
+            <summary>
+            租户
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.Id">
+            <summary>
+            租户id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.OrgId">
+            <summary>
+            机构Id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.TenantType">
+            <summary>
+            租户类型
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.Connection">
+            <summary>
+            数据库连接
+            </summary>
+        </member>
+        <member name="P:Hx.Core.ListTenantCacheOutput.ConfigId">
+            <summary>
+            数据库标识
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EntityBaseId">
+            <summary>
+            框架实体基类Id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBaseId.Id">
+            <summary>
+            雪花Id
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EntityBase">
+            <summary>
+            框架实体基类
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBase.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBase.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBase.CreateUserId">
+            <summary>
+            创建者Id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBase.UpdateUserId">
+            <summary>
+            修改者Id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBase.IsDelete">
+            <summary>
+            软删除
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EntityBaseData">
+            <summary>
+            业务数据实体基类(数据权限)
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityBaseData.CreateOrgId">
+            <summary>
+            创建者部门Id
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EntityTenant">
+            <summary>
+            租户基类实体
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityTenant.TenantId">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EntityTenantId">
+            <summary>
+            租户基类实体Id
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EntityTenantId.TenantId">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="T:Hx.Core.AccountTypeEnum">
+            <summary>
+            账号类型枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.AccountTypeEnum.None">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="F:Hx.Core.AccountTypeEnum.User">
+            <summary>
+            普通账号
+            </summary>
+        </member>
+        <member name="F:Hx.Core.AccountTypeEnum.Admin">
+            <summary>
+            系统管理员
+            </summary>
+        </member>
+        <member name="F:Hx.Core.AccountTypeEnum.SuperAdmin">
+            <summary>
+            超级管理员
+            </summary>
+        </member>
+        <member name="T:Hx.Core.CacheTypeEnum">
+            <summary>
+            缓存类型枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheTypeEnum.Memory">
+            <summary>
+            内存缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Core.CacheTypeEnum.Redis">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="T:Hx.Core.Enumeration">
+            <summary>
+            枚举基类
+            </summary>
+        </member>
+        <member name="T:Hx.Core.ErrorCodeEnum">
+            <summary>
+            系统错误码
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D0009">
+            <summary>
+            验证码错误
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1000">
+            <summary>
+            用户名或密码不正确
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1001">
+            <summary>
+            非法操作！禁止删除自己
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1002">
+            <summary>
+            记录不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1003">
+            <summary>
+            账号已存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1004">
+            <summary>
+            旧密码不匹配
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1005">
+            <summary>
+            测试数据禁止更改admin密码
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1006">
+            <summary>
+            数据已存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1007">
+            <summary>
+            数据不存在或含有关联引用，禁止删除
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1008">
+            <summary>
+            禁止为管理员分配角色
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1009">
+            <summary>
+            重复数据或记录含有不存在数据
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1010">
+            <summary>
+            禁止为超级管理员角色分配权限
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1011">
+            <summary>
+            非法数据
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1012">
+            <summary>
+            Id不能为空
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1013">
+            <summary>
+            所属机构不在自己的数据范围内
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1014">
+            <summary>
+            禁止删除超级管理员
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1015">
+            <summary>
+            禁止修改超级管理员状态
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1016">
+            <summary>
+            没有权限
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1017">
+            <summary>
+            账号已冻结
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1018">
+            <summary>
+            禁止删除管理员
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1019">
+            <summary>
+            禁止删除系统管理员角色
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1020">
+            <summary>
+            禁止修改系统管理员角色
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1021">
+            <summary>
+            禁止为系统管理员角色分配权限
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1022">
+            <summary>
+            禁止为超级管理员分配角色
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1023">
+            <summary>
+            禁止删除默认租户
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1024">
+            <summary>
+            已将其他地方登录账号下线
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2000">
+            <summary>
+            父机构不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2001">
+            <summary>
+            当前机构Id不能与父机构Id相同
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2002">
+            <summary>
+            已有相同组织机构,编码或名称相同
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2003">
+            <summary>
+            没有权限操作机构
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2004">
+            <summary>
+            该机构下有用户禁止删除
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2005">
+            <summary>
+            附属机构下有用户禁止删除
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D2006">
+            <summary>
+            只能增加下级机构
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D3000">
+            <summary>
+            字典类型不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D3001">
+            <summary>
+            字典类型已存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D3002">
+            <summary>
+            字典类型下面有字典值禁止删除
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D3003">
+            <summary>
+            字典值已存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D3004">
+            <summary>
+            字典值不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D3005">
+            <summary>
+            字典状态错误
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4000">
+            <summary>
+            菜单已存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4001">
+            <summary>
+            路由地址为空
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4002">
+            <summary>
+            打开方式为空
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4003">
+            <summary>
+            权限标识格式为空
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4004">
+            <summary>
+            权限标识格式错误
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4005">
+            <summary>
+            权限不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4006">
+            <summary>
+            父级菜单不能为当前节点，请重新选择父级菜单
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D4007">
+            <summary>
+            不能移动根节点
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D5000">
+            <summary>
+            已存在同名或同编码应用
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D5001">
+            <summary>
+            默认激活系统只能有一个
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D5002">
+            <summary>
+            该应用下有菜单禁止删除
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D5003">
+            <summary>
+            已存在同名或同编码应用
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D6000">
+            <summary>
+            已存在同名或同编码职位
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D6001">
+            <summary>
+            该职位下有用户禁止删除
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D7000">
+            <summary>
+            通知公告状态错误
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D7001">
+            <summary>
+            通知公告删除失败
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D7002">
+            <summary>
+            通知公告编辑失败
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D7003">
+            <summary>
+            通知公告操作失败，非发布者不能进行操作
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D8000">
+            <summary>
+            文件不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D8001">
+            <summary>
+            不允许的文件类型
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D8002">
+            <summary>
+            文件超过允许大小
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D8003">
+            <summary>
+            文件后缀错误
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D9000">
+            <summary>
+            已存在同名或同编码参数配置
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D9001">
+            <summary>
+            禁止删除系统参数
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1100">
+            <summary>
+            已存在同名任务调度
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1101">
+            <summary>
+            任务调度不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1200">
+            <summary>
+            演示环境禁止修改数据
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1300">
+            <summary>
+            已存在同名的租户
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1301">
+            <summary>
+            已存在同名的租户管理员
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1400">
+            <summary>
+            该表代码模板已经生成过
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1501">
+            <summary>
+            该类型不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1502">
+            <summary>
+            该字段不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1503">
+            <summary>
+            该类型不是枚举类型
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1504">
+            <summary>
+            该实体不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1505">
+            <summary>
+            父菜单不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1600">
+            <summary>
+            父资源不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1601">
+            <summary>
+            当前资源Id不能与父资源Id相同
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.D1602">
+            <summary>
+            已有相同编码或名称
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.xg1000">
+            <summary>
+            已存在同名或同编码项目
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.xg1001">
+            <summary>
+            已存在相同证件号码人员
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.xg1002">
+            <summary>
+            检测数据不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.db1000">
+            <summary>
+            请添加数据列
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.db1001">
+            <summary>
+            数据表不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.db1002">
+            <summary>
+            数据表不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.R2000">
+            <summary>
+            父节点不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.R2001">
+            <summary>
+            当前节点Id不能与父节点Id相同
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.R2002">
+            <summary>
+            已有相同编码或名称
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.Z1001">
+            <summary>
+            默认租户状态禁止修改
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.Z1002">
+            <summary>
+            禁止创建此类型的数据库
+            </summary>
+        </member>
+        <member name="F:Hx.Core.ErrorCodeEnum.Z1003">
+            <summary>
+            租户已禁用
+            </summary>
+        </member>
+        <member name="T:Hx.Core.LoginSourceEnum">
+            <summary>
+            登录来源
+            </summary>
+        </member>
+        <member name="F:Hx.Core.LoginSourceEnum.PC">
+            <summary>
+            电脑端
+            </summary>
+        </member>
+        <member name="F:Hx.Core.LoginSourceEnum.Wechat">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="T:Hx.Core.RunModeEnum">
+            <summary>
+            运行模式枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.RunModeEnum.Account">
+            <summary>
+            账号模式
+            </summary>
+        </member>
+        <member name="F:Hx.Core.RunModeEnum.OpenID">
+            <summary>
+            三方授权
+            </summary>
+        </member>
+        <member name="T:Hx.Core.StatusEnum">
+            <summary>
+            通用状态枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.StatusEnum.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="F:Hx.Core.StatusEnum.Disable">
+            <summary>
+            停用
+            </summary>
+        </member>
+        <member name="T:Hx.Core.TenantTypeEnum">
+            <summary>
+            租户类型枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.TenantTypeEnum.Id">
+            <summary>
+            Id隔离
+            </summary>
+        </member>
+        <member name="F:Hx.Core.TenantTypeEnum.Db">
+            <summary>
+            库隔离
+            </summary>
+        </member>
+        <member name="T:Hx.Core.UserTypeEnum">
+            <summary>
+            账号类型枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.UserTypeEnum.Admin">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="F:Hx.Core.UserTypeEnum.None">
+            <summary>
+            普通账号
+            </summary>
+        </member>
+        <member name="F:Hx.Core.UserTypeEnum.SuperAdmin">
+            <summary>
+            超级管理员
+            </summary>
+        </member>
+        <member name="T:Hx.Core.YesNoEnum">
+            <summary>
+            是否枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Core.YesNoEnum.Y">
+            <summary>
+            是
+            </summary>
+        </member>
+        <member name="F:Hx.Core.YesNoEnum.N">
+            <summary>
+            否
+            </summary>
+        </member>
+        <member name="T:Hx.Core.RedisEventSourceStorer">
+            <summary>
+            Redis自定义事件源存储器
+            </summary>
+        </member>
+        <member name="M:Hx.Core.RedisEventSourceStorer.WriteAsync(Furion.EventBus.IEventSource,System.Threading.CancellationToken)">
+            <summary>
+            往 Redis 中写入一条
+            </summary>
+            <param name="eventSource"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:Hx.Core.RedisEventSourceStorer.ReadAsync(System.Threading.CancellationToken)">
+            <summary>
+            从 Redis 中读取一条
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.RetryEventHandlerExecutor">
+            <summary>
+            事件执行器-超时控制、失败重试熔断等等
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EnumExtension">
+            <summary>
+            枚举拓展
+            </summary>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.GetEnumDictionary(System.Type)">
+            <summary>
+            获取枚举对象Key与名称的字典（缓存）
+            </summary>
+            <param name="enumType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.GetEnumDictionaryItems(System.Type)">
+            <summary>
+            获取枚举对象Key与名称的字典
+            </summary>
+            <param name="enumType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.GetEnumDescDictionary(System.Type)">
+            <summary>
+            获取枚举类型key与描述的字典（缓存）
+            </summary>
+            <param name="enumType"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.GetEnumDescDictionaryItems(System.Type)">
+            <summary>
+            获取枚举类型key与描述的字典（没有描述则获取name）
+            </summary>
+            <param name="enumType"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.TryToGetEnumType(System.Reflection.Assembly,System.String)">
+            <summary>
+            从程序集中查找指定枚举类型
+            </summary>
+            <param name="assembly"></param>
+            <param name="typeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.LoadEnumTypeDict(System.Reflection.Assembly)">
+            <summary>
+            从程序集中加载所有枚举类型
+            </summary>
+            <param name="assembly"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.GetDescription(System.Enum)">
+            <summary>
+            获取枚举的Description
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.GetDescription(System.Object)">
+            <summary>
+            获取枚举的Description
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.EnumToList(System.Type)">
+            <summary>
+            将枚举转成枚举信息集合
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.EnumExtension.EnumToList``1(System.Type)">
+            <summary>
+            枚举ToList
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.EnumEntity">
+            <summary>
+            枚举实体
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EnumEntity.Describe">
+            <summary>
+            枚举的描述
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EnumEntity.Name">
+            <summary>
+            枚举名称
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EnumEntity.Value">
+            <summary>
+            枚举对象的值
+            </summary>
+        </member>
+        <member name="T:Hx.Core.LogoExtension">
+            <summary>
+            logo显示
+            </summary>
+        </member>
+        <member name="M:Hx.Core.LogoExtension.AddLogoDisplay(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加logo显示
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:Hx.Core.ObjectExtension">
+            <summary>
+            对象拓展
+            </summary>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.HasImplementedRawGeneric(System.Type,System.Type)">
+            <summary>
+            判断类型是否实现某个泛型
+            </summary>
+            <param name="type">类型</param>
+            <param name="generic">泛型类型</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ToQueryString(System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean)">
+            <summary>
+            将字典转化为QueryString格式
+            </summary>
+            <param name="dict"></param>
+            <param name="urlEncode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.UrlEncode(System.String)">
+            <summary>
+            将字符串URL编码
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ToJson(System.Object)">
+            <summary>
+            对象序列化成Json字符串
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ToObject``1(System.String)">
+            <summary>
+            Json字符串反序列化成对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ParseToLong(System.Object)">
+            <summary>
+            将object转换为long，若失败则返回0
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ParseToLong(System.String,System.Int64)">
+            <summary>
+            将object转换为long，若失败则返回指定值
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ParseToDouble(System.Object)">
+            <summary>
+            将object转换为double，若失败则返回0
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ParseToDouble(System.Object,System.Double)">
+            <summary>
+            将object转换为double，若失败则返回指定值
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ParseToDateTime(System.String)">
+            <summary>
+            将string转换为DateTime，若失败则返回日期最小值
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ObjectExtension.ParseToDateTime(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            将string转换为DateTime，若失败则返回默认值
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.FakeDelete``1(SqlSugar.ISugarRepository,``0)">
+            <summary>
+            实体假删除 _rep.FakeDelete(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="repository"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.FakeDelete``1(SqlSugar.ISqlSugarClient,``0)">
+            <summary>
+            实体假删除 db.FakeDelete(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.FakeDeleteAsync``1(SqlSugar.ISugarRepository,``0)">
+            <summary>
+            实体假删除异步 _rep.FakeDeleteAsync(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="repository"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.FakeDeleteAsync``1(SqlSugar.ISqlSugarClient,``0)">
+            <summary>
+            实体假删除 db.FakeDelete(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.OrderBuilder``1(SqlSugar.ISugarQueryable{``0},Hx.Core.BasePageInput,System.String,System.Boolean)">
+            <summary>
+            排序方式(默认降序)
+            </summary>
+            <param name="queryable"></param>
+            <param name="pageInput"> </param>
+            <param name="defualtSortField"> 默认排序字段 </param>
+            <param name="descSort"> 是否降序 </param>
+            <returns> </returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.UpdateWithDiffLog``1(SqlSugar.ISugarRepository,``0,System.Boolean)">
+            <summary>
+            更新实体并记录差异日志 _rep.UpdateWithDiffLog(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="repository"></param>
+            <param name="entity"></param>
+            <param name="ignoreAllNullColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.UpdateWithDiffLog``1(SqlSugar.ISqlSugarClient,``0,System.Boolean)">
+            <summary>
+            更新实体并记录差异日志 _rep.UpdateWithDiffLog(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="entity"></param>
+            <param name="ignoreAllNullColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.UpdateWithDiffLogAsync``1(SqlSugar.ISugarRepository,``0,System.Boolean)">
+            <summary>
+            更新实体并记录差异日志 _rep.UpdateWithDiffLogAsync(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="repository"></param>
+            <param name="entity"></param>
+            <param name="ignoreAllNullColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.UpdateWithDiffLogAsync``1(SqlSugar.ISqlSugarClient,``0,System.Boolean)">
+            <summary>
+            更新实体并记录差异日志 _rep.UpdateWithDiffLogAsync(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="entity"></param>
+            <param name="ignoreAllNullColumns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.InsertWithDiffLog``1(SqlSugar.ISugarRepository,``0)">
+            <summary>
+            新增实体并记录差异日志 _rep.InsertWithDiffLog(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="repository"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.InsertWithDiffLog``1(SqlSugar.ISqlSugarClient,``0)">
+            <summary>
+            新增实体并记录差异日志 _rep.InsertWithDiffLog(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.InsertWithDiffLogAsync``1(SqlSugar.ISugarRepository,``0)">
+            <summary>
+            新增实体并记录差异日志 _rep.InsertWithDiffLogAsync(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="repository"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.InsertWithDiffLogAsync``1(SqlSugar.ISqlSugarClient,``0)">
+            <summary>
+            新增实体并记录差异日志 _rep.InsertWithDiffLog(entity)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="db"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.AS``1(SqlSugar.ISugarQueryable{``0})">
+            <summary>
+            多库查询
+            </summary>
+            <param name="queryable"></param>
+            <returns> </returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.AS``2(SqlSugar.ISugarQueryable{``0,``1})">
+            <summary>
+            多库查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="queryable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.AS``1(SqlSugar.IUpdateable{``0})">
+            <summary>
+            多库更新
+            </summary>
+            <param name="updateable"></param>
+            <returns> </returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.AS``1(SqlSugar.IInsertable{``0})">
+            <summary>
+            多库新增
+            </summary>
+            <param name="insertable"></param>
+            <returns> </returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.AS``1(SqlSugar.IDeleteable{``0})">
+            <summary>
+            多库删除
+            </summary>
+            <param name="deleteable"></param>
+            <returns> </returns>
+        </member>
+        <member name="M:Hx.Core.RepositoryExtension.GetTableInfo``1">
+            <summary>
+            根据实体类型获取表信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.ResultFilter">
+            <summary>
+            结果筛选器
+            </summary>
+        </member>
+        <member name="T:Hx.Core.ElasticSearchLoggingWriter">
+            <summary>
+            ES日志写入器
+            </summary>
+        </member>
+        <member name="T:Hx.Core.ElasticSearchSetup">
+            <summary>
+            ES服务注册
+            </summary>
+        </member>
+        <member name="T:Hx.Core.CacheOptions">
+            <summary>
+            缓存配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CacheOptions.CacheType">
+            <summary>
+            缓存类型
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CacheOptions.RedisConnectionString">
+            <summary>
+            Redis连接字符串
+            </summary>
+        </member>
+        <member name="T:Hx.Core.CodeGenOptions">
+            <summary>
+            代码生成配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CodeGenOptions.EntityAssemblyNames">
+            <summary>
+            数据库实体程序集名称集合
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CodeGenOptions.BaseEntityNames">
+            <summary>
+            数据库基础实体名称集合
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CodeGenOptions.EntityBaseColumn">
+            <summary>
+            基础实体名
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CodeGenOptions.FrontRootPath">
+            <summary>
+            前端文件根目录
+            </summary>
+        </member>
+        <member name="P:Hx.Core.CodeGenOptions.BackendApplicationNamespace">
+            <summary>
+            后端生成到的项目
+            </summary>
+        </member>
+        <member name="T:Hx.Core.DbConnectionOptions">
+            <summary>
+            数据库配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DbConnectionOptions.ConnectionConfigs">
+            <summary>
+            数据库集合
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DbConnectionConfig.EnableInitDb">
+            <summary>
+            启用库表初始化
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DbConnectionConfig.EnableDiffLog">
+            <summary>
+            启用库表差异日志
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DbConnectionConfig.EnableUnderLine">
+            <summary>
+            启用驼峰转下划线
+            </summary>
+        </member>
+        <member name="T:Hx.Core.EmailOptions">
+            <summary>
+            邮件配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.EmailOptions.ToEmail">
+            <summary>
+            接收人邮箱
+            </summary>
+        </member>
+        <member name="T:Hx.Core.OAuthOptions">
+            <summary>
+            第三方登录授权配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.OAuthOptions.Weixin">
+            <summary>
+            微信配置
+            </summary>
+        </member>
+        <member name="P:Hx.Core.OAuthOptionItem.ClientId">
+            <summary>
+            ClientId
+            </summary>
+        </member>
+        <member name="P:Hx.Core.OAuthOptionItem.ClientSecret">
+            <summary>
+            ClientSecret
+            </summary>
+        </member>
+        <member name="T:Hx.Core.OptionsServiceCollectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Hx.Core.OptionsServiceCollectionExtensions.AddHxCoreOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注册项目配置选项
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.OSSProviderOptions">
+            <summary>
+            对象存储配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.OSSProviderOptions.IsEnable">
+            <summary>
+            是否启用OSS存储
+            </summary>
+        </member>
+        <member name="P:Hx.Core.OSSProviderOptions.Bucket">
+            <summary>
+            自定义桶名称 不能直接使用Provider来替代桶名称
+            例：阿里云 1.只能包括小写字母，数字，短横线（-）2.必须以小写字母或者数字开头 3.长度必须在3-63字节之间
+            </summary>
+        </member>
+        <member name="T:Hx.Core.PayCallBackOptions">
+            <summary>
+            支付回调配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.PayCallBackOptions.WechatPayUrl">
+            <summary>
+            微信支付回调
+            </summary>
+        </member>
+        <member name="P:Hx.Core.PayCallBackOptions.WechatRefundUrl">
+            <summary>
+            微信退款回调
+            </summary>
+        </member>
+        <member name="P:Hx.Core.PayCallBackOptions.AlipayUrl">
+            <summary>
+            支付宝支付回调
+            </summary>
+        </member>
+        <member name="P:Hx.Core.PayCallBackOptions.AlipayRefundUrl">
+            <summary>
+            支付宝退款回调
+            </summary>
+        </member>
+        <member name="T:Hx.Core.RefreshTokenOptions">
+            <summary>
+            刷新Token配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.RefreshTokenOptions.ExpiredTime">
+            <summary>
+            令牌过期时间(分钟) 默认2天
+            </summary>
+        </member>
+        <member name="T:Hx.Core.SnowIdOptions">
+            <summary>
+            雪花Id配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SnowIdOptions.WorkerId">
+            <summary>
+            机器码
+            </summary>
+        </member>
+        <member name="T:Hx.Core.UploadOptions">
+            <summary>
+            文件上传配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.UploadOptions.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Hx.Core.UploadOptions.MaxSize">
+            <summary>
+            大小
+            </summary>
+        </member>
+        <member name="P:Hx.Core.UploadOptions.ContentType">
+            <summary>
+            上传格式
+            </summary>
+        </member>
+        <member name="T:Hx.Core.WechatOptions">
+            <summary>
+            微信相关配置选项
+            </summary>
+        </member>
+        <member name="T:Hx.Core.WechatPayOptions">
+            <summary>
+            微信支付配置选项
+            </summary>
+        </member>
+        <member name="P:Hx.Core.WechatPayOptions.AppId">
+            <summary>
+            微信公众平台AppId、开放平台AppId、小程序AppId、企业微信CorpId
+            </summary>
+        </member>
+        <member name="P:Hx.Core.WechatPayOptions.MerchantId">
+             <summary>
+            商户平台的商户号
+             </summary>
+        </member>
+        <member name="P:Hx.Core.WechatPayOptions.MerchantV3Secret">
+            <summary>
+            商户平台的APIv3密钥
+            </summary>
+        </member>
+        <member name="P:Hx.Core.WechatPayOptions.MerchantCertificateSerialNumber">
+            <summary>
+            商户平台的证书序列号
+            </summary>
+        </member>
+        <member name="P:Hx.Core.WechatPayOptions.MerchantCertificatePrivateKey">
+            <summary>
+            商户平台的API证书私钥(apiclient_key.pem文件内容)
+            </summary>
+        </member>
+        <member name="P:Hx.Core.WechatPayOptions.RsaPublicKey">
+            <summary>
+            RSA公钥 仅调用"企业付款到银行卡API"时使用
+            </summary>
+        </member>
+        <member name="T:Hx.Core.CacheManager">
+            <summary>
+            系统缓存服务
+            </summary>
+        </member>
+        <member name="M:Hx.Core.CacheManager.GetCacheKeys">
+            <summary>
+            获取所有缓存键名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.Set(System.String,System.Object)">
+            <summary>
+            增加缓存
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.Set(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            增加缓存并设置过期时间
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="expire"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.Get``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.Remove(System.String)">
+            <summary>
+            删除缓存
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ExistKey(System.String)">
+            <summary>
+            检查缓存是否存在
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.Increment(System.String,System.Int64)">
+            <summary>
+            累加，原子操作
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.Decrement(System.String,System.Int64)">
+            <summary>
+             递减，原子操作
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.RemoveByPrefixKey(System.String)">
+            <summary>
+            根据键名前缀删除缓存
+            </summary>
+            <param name="prefixKey">键名前缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.GetCacheValue(System.String)">
+            <summary>
+            获取缓存值
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListAdd``1(System.String,``0)">
+            <summary>
+            添加一条数据到List
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListAddRange``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            批量添加
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values">值</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListContains``1(System.String,``0)">
+            <summary>
+            批量添加
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">是否包含指定元素</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListClear``1(System.String)">
+            <summary>
+            清空列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListGet``1(System.String,``0)">
+            <summary>
+            获取元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListGetAll``1(System.String)">
+            <summary>
+            获取所有元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListGetRange``1(System.String,System.Int32,System.Int32)">
+            <summary>
+            返回指定范围的列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="start">起始位置</param>
+            <param name="end">截止位置</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListLeftPop``1(System.String)">
+            <summary>
+            移除并返回最左边一个元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListLeftPop``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            左边批量添加，返回队列元素总数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="values"></param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListRemove``1(System.String,``0)">
+            <summary>
+            删除元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.ListRemove``1(System.String,System.Int32)">
+            <summary>
+            删除指定位置数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="index"></param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HashAdd``1(System.String,System.String,``0)">
+            <summary>
+            添加一条数据到HashMap
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="hashKey"> hash列表里的Key</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HashSet``1(System.String,System.Collections.Generic.Dictionary{System.String,``0})">
+            <summary>
+            添加多条数据到HashMap
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="dic"> 键值对字典</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HashDel``1(System.String,System.String[])">
+            <summary>
+            从HashMap中删除数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="hashKeys"> hash列表里的Key列表</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HashGetOne``1(System.String,System.String)">
+            <summary>
+            根据键获取hash列表中的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="hashKey"> hash列表里的Key</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HashGet``1(System.String,System.String[])">
+            <summary>
+            根据键获取hash列表中的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+            <param name="hashKeys"> hash列表里的Key列表</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HashGetAll``1(System.String)">
+            <summary>
+            获取所有键值对
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key">键</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HContainsKey``1(System.String,System.String)">
+            <summary>
+            判断Hash中是否包含键
+            </summary>
+            <param name="key">键</param>
+            <param name="hashKey"> hash列表里的Key列表</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HIncrBy(System.String,System.String,System.Int64)">
+            <summary>
+            增加Hash列表中指定字段值
+            </summary>
+            <param name="key">键</param>
+            <param name="hashKey"> hash列表里的Key列表</param>
+            <param name="value">累加的值</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.HDecrBy(System.String,System.String,System.Int64)">
+            <summary>
+            减少Hash列表中指定字段值
+            </summary>
+            <param name="key">键</param>
+            <param name="hashKey"> hash列表里的Key列表</param>
+            <param name="value">累加的值</param>
+        </member>
+        <member name="M:Hx.Core.CacheManager.AcquireLock(System.String,System.Int32,System.Int32)">
+            <summary>
+            申请分布式锁,使用using自动释放，或者手动调用Dispose()释放锁
+            </summary>
+            <param name="key">要锁定的key</param>
+            <param name="msTimeout">锁等待时间，申请加锁时如果遇到冲突则等待的最大时间，单位毫秒</param>
+            <param name="msExpire">锁过期时间，超过该时间如果没有主动释放则自动释放锁，必须整数秒，单位毫秒</param>
+            <returns>null:代表抢锁失败</returns>
+        </member>
+        <member name="T:Hx.Core.UserManager">
+            <summary>
+            当前登录用户
+            </summary>
+        </member>
+        <member name="T:Hx.Core.IEntityFilter">
+            <summary>
+            自定义实体过滤器接口
+            </summary>
+        </member>
+        <member name="M:Hx.Core.IEntityFilter.AddEntityFilter">
+            <summary>
+            实体过滤器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.ISqlSugarEntitySeedData`1">
+            <summary>
+            实体种子数据接口
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:Hx.Core.ISqlSugarEntitySeedData`1.HasData">
+            <summary>
+            种子数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Hx.Core.SqlSugarFilter._cache">
+            <summary>
+            缓存全局查询过滤器（内存缓存）
+            </summary>
+        </member>
+        <member name="M:Hx.Core.SqlSugarFilter.SetDeletedEntityFilter(SqlSugar.SqlSugarScopeProvider)">
+            <summary>
+            配置实体假删除过滤器
+            </summary>
+        </member>
+        <member name="M:Hx.Core.SqlSugarFilter.SetTenantEntityFilter(SqlSugar.SqlSugarScopeProvider)">
+            <summary>
+            配置租户过滤器
+            </summary>
+        </member>
+        <member name="M:Hx.Core.SqlSugarFilter.SetOrgEntityFilter(SqlSugar.SqlSugarScopeProvider)">
+            <summary>
+            配置用户机构范围过滤器
+            </summary>
+        </member>
+        <member name="M:Hx.Core.SqlSugarFilter.SetCustomEntityFilter(SqlSugar.SqlSugarScopeProvider)">
+            <summary>
+            配置自定义过滤器
+            </summary>
+        </member>
+        <member name="T:Hx.Core.SqlSugarPagedList`1">
+            <summary>
+            分页泛型集合
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.Page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.PageSize">
+            <summary>
+            页容量
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.Total">
+            <summary>
+            总条数
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.TotalPages">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.Items">
+            <summary>
+            当前页集合
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.HasPrevPage">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:Hx.Core.SqlSugarPagedList`1.HasNextPage">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="T:Hx.Core.SqlSugarPagedExtensions">
+            <summary>
+            分页拓展类
+            </summary>
+        </member>
+        <member name="M:Hx.Core.SqlSugarPagedExtensions.ToPagedList``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页拓展
+            </summary>
+            <param name="entity"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.SqlSugarPagedExtensions.ToPagedListAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页拓展
+            </summary>
+            <param name="entity"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.SqlSugarRepository`1">
+            <summary>
+            SqlSugar仓储类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Hx.Core.SqlSugarRepository`1.ChangeContext(System.Int64)">
+            <summary>
+            根据租户id切换上下文
+            </summary>
+            <param name="tenantId">租户id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.SqlSugarSetup.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Sqlsugar 上下文初始化
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Hx.Core.SqlSugarSetup.SetDbConfig(Hx.Core.DbConnectionConfig)">
+            <summary>
+            配置连接属性
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:Hx.Core.SqlSugarSetup.SetDbAop(SqlSugar.SqlSugarScopeProvider)">
+            <summary>
+            配置Aop
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:Hx.Core.SqlSugarSetup.SetDbDiffLog(SqlSugar.SqlSugarScopeProvider,Hx.Core.DbConnectionConfig)">
+            <summary>
+            开启库表差异化日志
+            </summary>
+            <param name="db"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Hx.Core.SqlSugarSetup.InitDatabase(SqlSugar.SqlSugarScope,Hx.Core.DbConnectionConfig)">
+            <summary>
+            初始化数据库
+            </summary>
+            <param name="db"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Hx.Core.SqlSugarSetup.InitTenantDatabase(SqlSugar.ITenant,Hx.Core.DbConnectionConfig)">
+            <summary>
+            初始化租户业务数据库
+            </summary>
+            <param name="itenant"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Hx.Core.SqlSugarUnitOfWork">
+            <summary>
+            SqlSugar 事务和工作单元
+            </summary>
+        </member>
+        <member name="F:Hx.Core.SqlSugarUnitOfWork._sqlSugarClient">
+            <summary>
+            SqlSugar 对象
+            </summary>
+        </member>
+        <member name="M:Hx.Core.SqlSugarUnitOfWork.#ctor(SqlSugar.ISqlSugarClient)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="sqlSugarClient"></param>
+        </member>
+        <member name="M:Hx.Core.SqlSugarUnitOfWork.BeginTransaction(Microsoft.AspNetCore.Mvc.Filters.FilterContext,Furion.DatabaseAccessor.UnitOfWorkAttribute)">
+            <summary>
+            开启工作单元处理
+            </summary>
+            <param name="context"></param>
+            <param name="unitOfWork"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Hx.Core.SqlSugarUnitOfWork.CommitTransaction(Microsoft.AspNetCore.Mvc.Filters.FilterContext,Furion.DatabaseAccessor.UnitOfWorkAttribute)">
+            <summary>
+            提交工作单元处理
+            </summary>
+            <param name="resultContext"></param>
+            <param name="unitOfWork"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Hx.Core.SqlSugarUnitOfWork.RollbackTransaction(Microsoft.AspNetCore.Mvc.Filters.FilterContext,Furion.DatabaseAccessor.UnitOfWorkAttribute)">
+            <summary>
+            回滚工作单元处理
+            </summary>
+            <param name="resultContext"></param>
+            <param name="unitOfWork"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Hx.Core.SqlSugarUnitOfWork.OnCompleted(Microsoft.AspNetCore.Mvc.Filters.FilterContext,Microsoft.AspNetCore.Mvc.Filters.FilterContext)">
+            <summary>
+            执行完毕（无论成功失败）
+            </summary>
+            <param name="context"></param>
+            <param name="resultContext"></param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Hx.Core.HxUnifyResult`1">
+            <summary>
+            全局返回结果
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Hx.Core.HxUnifyResult`1.Code">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:Hx.Core.HxUnifyResult`1.Type">
+            <summary>
+            类型success、warning、error
+            </summary>
+        </member>
+        <member name="P:Hx.Core.HxUnifyResult`1.Errors">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:Hx.Core.HxUnifyResult`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Hx.Core.HxUnifyResult`1.Extras">
+            <summary>
+            附加数据
+            </summary>
+        </member>
+        <member name="P:Hx.Core.HxUnifyResult`1.Timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="T:Hx.Core.HxUnifyResult">
+            <summary>
+            返回object结果
+            </summary>
+        </member>
+        <member name="T:Hx.Core.HxUnifyResultProvider">
+            <summary>
+            全局规范化结果
+            </summary>
+        </member>
+        <member name="M:Hx.Core.HxUnifyResultProvider.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext,Furion.FriendlyException.ExceptionMetadata)">
+            <summary>
+            异常返回值
+            </summary>
+            <param name="context"></param>
+            <param name="metadata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.HxUnifyResultProvider.OnSucceeded(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext,System.Object)">
+            <summary>
+            成功返回值
+            </summary>
+            <param name="context"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.HxUnifyResultProvider.OnValidateFailed(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Furion.DataValidation.ValidationMetadata)">
+            <summary>
+            验证失败返回值
+            </summary>
+            <param name="context"></param>
+            <param name="metadata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.HxUnifyResultProvider.OnResponseStatusCodes(Microsoft.AspNetCore.Http.HttpContext,System.Int32,Furion.UnifyResult.UnifyResultSettingsOptions)">
+            <summary>
+            特定状态码返回值
+            </summary>
+            <param name="context"></param>
+            <param name="statusCode"></param>
+            <param name="unifyResultSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.HxUnifyResultProvider.RESTfulResult(System.Int32,System.Boolean,System.Object,System.Object)">
+            <summary>
+            返回 RESTful 风格结果集
+            </summary>
+            <param name="statusCode"></param>
+            <param name="succeeded"></param>
+            <param name="data"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.CodeGenUtil">
+            <summary>
+            代码生成帮助类
+            </summary>
+        </member>
+        <member name="M:Hx.Core.CodeGenUtil.CamelColumnName(System.String,System.String[])">
+            <summary>
+            转换大驼峰法命名
+            </summary>
+            <param name="columnName">字段名</param>
+            <param name="dbColumnNames">EntityBase 实体属性名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.CodeGenUtil.DataTypeToEff(System.String)">
+            <summary>
+            数据类型转显示类型
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.CommonUtil">
+            <summary>
+            通用工具类
+            </summary>
+        </member>
+        <member name="M:Hx.Core.CommonUtil.ExecPercent(System.Decimal,System.Decimal)">
+            <summary>
+            生成百分数
+            </summary>
+            <param name="PassCount"></param>
+            <param name="allCount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ComputerUtil.GetComputerInfo">
+            <summary>
+            内存信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ComputerUtil.GetDiskInfos">
+            <summary>
+            磁盘信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ComputerUtil.GetIpFromOnline">
+            <summary>
+            获取外网IP地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ComputerUtil.GetRunTime">
+            <summary>
+            获取系统运行时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.MemoryMetrics">
+            <summary>
+            内存信息
+            </summary>
+        </member>
+        <member name="P:Hx.Core.MemoryMetrics.UsedRam">
+            <summary>
+            已用内存
+            </summary>
+        </member>
+        <member name="P:Hx.Core.MemoryMetrics.CpuRate">
+            <summary>
+            CPU使用率%
+            </summary>
+        </member>
+        <member name="P:Hx.Core.MemoryMetrics.TotalRam">
+            <summary>
+            总内存 GB
+            </summary>
+        </member>
+        <member name="P:Hx.Core.MemoryMetrics.RamRate">
+            <summary>
+            内存使用率 %
+            </summary>
+        </member>
+        <member name="P:Hx.Core.MemoryMetrics.FreeRam">
+            <summary>
+            空闲内存
+            </summary>
+        </member>
+        <member name="T:Hx.Core.DiskInfo">
+            <summary>
+            磁盘信息
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.DiskName">
+            <summary>
+            磁盘名
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.TypeName">
+            <summary>
+            类型名
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.TotalFree">
+            <summary>
+            总剩余
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.TotalSize">
+            <summary>
+            总量
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.Used">
+            <summary>
+            已使用
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.AvailableFreeSpace">
+            <summary>
+            可使用
+            </summary>
+        </member>
+        <member name="P:Hx.Core.DiskInfo.AvailablePercent">
+            <summary>
+            使用百分比
+            </summary>
+        </member>
+        <member name="M:Hx.Core.MemoryMetricsClient.GetWindowsMetrics">
+            <summary>
+            windows系统获取内存信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.MemoryMetricsClient.GetUnixMetrics">
+            <summary>
+            Unix系统获取
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ShellUtil.Bash(System.String)">
+            <summary>
+            linux 系统命令
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.ShellUtil.Cmd(System.String,System.String)">
+            <summary>
+            windows系统命令
+            </summary>
+            <param name="fileName"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetBeginTime(System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            获取开始时间
+            </summary>
+            <param name="dateTime"></param>
+            <param name="days"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.ToLocalTimeDateBySeconds(System.Int64)">
+            <summary>
+             时间戳转本地时间-时间戳精确到秒
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.ToUnixTimestampBySeconds(System.DateTime)">
+            <summary>
+             时间转时间戳Unix-时间戳精确到秒
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.ToLocalTimeDateByMilliseconds(System.Int64)">
+            <summary>
+             时间戳转本地时间-时间戳精确到毫秒
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.ToUnixTimestampByMilliseconds(System.DateTime)">
+            <summary>
+             时间转时间戳Unix-时间戳精确到毫秒
+            </summary>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.FormatTime(System.Int64)">
+            <summary>
+            毫秒转天时分秒
+            </summary>
+            <param name="ms"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetUnixTimeStamp(System.DateTime)">
+            <summary>
+            获取unix时间戳
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetDayMinDate(System.DateTime)">
+            <summary>
+            获取日期天的最小时间
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetDayMaxDate(System.DateTime)">
+            <summary>
+            获取日期天的最大时间
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.FormatDateTime(System.Nullable{System.DateTime})">
+            <summary>
+            获取日期天的最大时间
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetTodayTimeList(System.DateTime)">
+            <summary>
+            获取今天日期范围00:00:00 - 23:59:59
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetWeekByDate(System.DateTime)">
+            <summary>
+            获取星期几
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Core.DateTimeUtil.GetWeekNumInMonth(System.DateTime)">
+            <summary>
+            获取这个月的第几周
+            </summary>
+            <param name="daytime"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Core.ReflectionUtil">
+            <summary>
+            反射工具类
+            </summary>
+        </member>
+        <member name="M:Hx.Core.ReflectionUtil.GetDescriptionValue``1(System.Reflection.FieldInfo)">
+            <summary>
+            获取字段特性
+            </summary>
+            <param name="field"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

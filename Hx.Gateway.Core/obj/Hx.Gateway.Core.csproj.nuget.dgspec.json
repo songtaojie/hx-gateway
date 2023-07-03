@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\workspace\\dotnet\\myprojet\\hx-gateway\\Hx.Gateway.Core\\Hx.Gateway.Core.csproj": {}
+  },
+  "projects": {
+    "E:\\workspace\\dotnet\\myprojet\\hx-gateway\\Hx.Gateway.Core\\Hx.Gateway.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\workspace\\dotnet\\myprojet\\hx-gateway\\Hx.Gateway.Core\\Hx.Gateway.Core.csproj",
+        "projectName": "Hx.Gateway.Core",
+        "projectPath": "E:\\workspace\\dotnet\\myprojet\\hx-gateway\\Hx.Gateway.Core\\Hx.Gateway.Core.csproj",
+        "packagesPath": "F:\\ProgramData\\nuget\\packages",
+        "outputPath": "E:\\workspace\\dotnet\\myprojet\\hx-gateway\\Hx.Gateway.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\stjwo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Hx.Sdk.Cache": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Hx.Sdk.Core": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Hx.Sdk.EventBus": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "SqlSugarCore": {
+              "target": "Package",
+              "version": "[5.0.9.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
