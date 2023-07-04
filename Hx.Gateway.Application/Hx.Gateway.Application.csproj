@@ -27,4 +27,8 @@
 		<PackageReference Include="Ocelot" Version="18.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Hx.Gateway.Core\Hx.Gateway.Core.csproj" />
+	</ItemGroup>
+
 </Project>

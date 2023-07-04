@@ -13,8 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Hx.Sdk.Cache" Version="6.0.0" />
     <PackageReference Include="Hx.Sdk.Core" Version="6.0.0" />
-    <PackageReference Include="Hx.Sdk.EventBus" Version="6.0.0" />
-    <PackageReference Include="SqlSugarCore" Version="5.0.9.7" />
+    <PackageReference Include="Hx.Sdk.Sqlsugar" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

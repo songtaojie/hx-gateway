@@ -1,2 +1,0 @@
-warn: 2023-02-06 21:38:22.8908408 +08:00 星期一 L Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3] #4
-      Failed to determine the https port for redirect.

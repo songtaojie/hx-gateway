@@ -16,3 +16,11 @@ E:\workspace\dotnet\myprojet\hx-micros\src\services\gateway\Hx.Gateway.Applicati
 E:\workspace\dotnet\myprojet\hx-micros\src\services\gateway\Hx.Gateway.Application\obj\Debug\net6.0\refint\Hx.Gateway.Application.dll
 E:\workspace\dotnet\myprojet\hx-micros\src\services\gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.pdb
 E:\workspace\dotnet\myprojet\hx-micros\src\services\gateway\Hx.Gateway.Application\obj\Debug\net6.0\ref\Hx.Gateway.Application.dll
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.csproj.AssemblyReference.cache
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.AssemblyInfoInputs.cache
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.AssemblyInfo.cs
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.csproj.CoreCompileInputs.cache
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.dll
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\refint\Hx.Gateway.Application.dll
+E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Application\obj\Debug\net6.0\Hx.Gateway.Application.pdb

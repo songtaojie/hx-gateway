@@ -1,17 +1,11 @@
 ﻿using Furion.SpecificationDocument;
-using Hx.Core;
 using Hx.Gateway.Application.Services.Consul.Hubs;
 using IGeekFan.AspNetCore.Knife4jUI;
-using Microsoft.AspNetCore.HttpOverrides;
-using NETCore.MailKit.Extensions;
-using OnceMi.AspNetCore.OSS;
 using System.IO;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using Yitter.IdGenerator;
 using Microsoft.Extensions.Logging;
 using Hx.Gateway.Application.Options;
-using SixLabors.ImageSharp;
 
 namespace Hx.Gateway.Web.Core
 {
@@ -19,13 +13,10 @@ namespace Hx.Gateway.Web.Core
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHxCoreOptions();
-            // 缓存注册
-            services.AddCache();
+          
             // SqlSugar
-            services.AddSqlSugar();
+            //services.AddSqlSugar();
 
-            services.AddJwt<JwtHandler>(enableGlobalAuthorize: true);
             services.AddConfigurableOptions<LoginSettingsOptions>();
             services.AddConfigurableOptions<OcelotSettingsOptions>();
             services.AddRemoteRequest();
@@ -59,8 +50,6 @@ namespace Hx.Gateway.Web.Core
 
             services.AddAuthentication();
 
-            // 即时通讯
-            services.AddSignalR();
             // logo显示
             services.AddLogoDisplay();
             // 日志记录

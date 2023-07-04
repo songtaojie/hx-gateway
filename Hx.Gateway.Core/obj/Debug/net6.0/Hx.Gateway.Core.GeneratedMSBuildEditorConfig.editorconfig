@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Hx.Gateway.Core
-build_property.ProjectDir = E:\workspace\dotnet\myprojet\hx-gateway\Hx.Gateway.Core\
+build_property.ProjectDir = E:\5.workspace\dotnet\myproject\hx-gateway\Hx.Gateway.Core\
