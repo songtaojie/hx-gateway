@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hx.Gateway.Application", "H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hx.Gateway.Web.Core", "Hx.Gateway.Web.Core\Hx.Gateway.Web.Core.csproj", "{5CAE220A-1579-4D22-9D93-56DB3343BF9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hx.Gateway.Web.Entry", "Hx.Gateway.Web.Entry\Hx.Gateway.Web.Entry.csproj", "{AF5567BF-E11E-4EBB-B308-B4F30866C3D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hx.Gateway.Web.Entry", "Hx.Gateway.Web.Entry\Hx.Gateway.Web.Entry.csproj", "{AF5567BF-E11E-4EBB-B308-B4F30866C3D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
