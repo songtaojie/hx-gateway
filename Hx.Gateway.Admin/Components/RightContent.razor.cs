@@ -1,4 +1,9 @@
-﻿namespace Hx.Gateway.Admin.Components
+﻿using AntDesign.ProLayout;
+using AntDesign;
+using Hx.Gateway.Application.Services;
+using Microsoft.AspNetCore.Components;
+
+namespace Hx.Gateway.Admin.Components
 {
     public partial class RightContent
     {
