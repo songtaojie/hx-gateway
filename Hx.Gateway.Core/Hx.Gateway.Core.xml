@@ -196,6 +196,11 @@
              项目表
             </summary>
         </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgProject.Code">
+             <summary>
+             项目编码
+            </summary>
+        </member>
         <member name="P:Hx.Gateway.Core.Entity.TgProject.Name">
              <summary>
              项目名称 

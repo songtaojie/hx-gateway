@@ -1,11 +1,11 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Hx.Gateway.Admin</PageTitle>
+<PageTitle>网关管理后台</PageTitle>
 <AntDesign.ProLayout.BasicLayout 
     Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
-                                 MenuData="MenuData">
+                                 MenuData="MenuData" Context="海星网关">
     <RightContentRender>
-        <MyAntDesignApp.Components.RightContent />
+        <Hx.Gateway.Admin.Components.RightContent />
     </RightContentRender>
     <ChildContent>
         @Body

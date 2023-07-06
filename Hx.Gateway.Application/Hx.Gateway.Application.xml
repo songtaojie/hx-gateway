@@ -29,36 +29,6 @@
             全局配置映射
             </summary>
         </member>
-        <member name="M:Hx.Gateway.Application.Services.Dictionary.DictService.GetPageDictionaryAsync(Hx.Sdk.Entity.BasePageParam)">
-            <summary>
-            分页查询字典信息
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Application.Services.Dictionary.DictService.GetDictItemAsync(Hx.Gateway.Core.Enum.DictTypeEnum)">
-            <summary>
-            查询字典项信息
-            </summary>
-            <param name="dictType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Application.Services.Dictionary.DictService.GetAllSelectAsync">
-            <summary>
-            获取所有下拉框
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput.ConsulSettingKey">
-             <summary>
-             consul配置关键字
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Application.Services.Dictionary.Dtos.AllSelectOutput.ConsulDC">
-             <summary>
-             consul DC 库 
-            </summary>
-        </member>
         <member name="T:Hx.Gateway.Application.Services.GlobalConfiguration.Dtos.AddGlobalConfigurationInput">
             <summary>
             新增全局配置
