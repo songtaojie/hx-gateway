@@ -2,15 +2,10 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Furion.ConfigurableOptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
-namespace Hx.Gateway.Application.Options;
-public class OcelotSettingsOptions : IConfigurableOptions
+namespace Hx.Gateway.Core.Options;
+public class OcelotSettingsOptions : IPostConfigureOptions<OcelotSettingsOptions>
 {
     /// <summary>
     /// 是否启用定时器，默认不启动
@@ -46,4 +41,8 @@ public class OcelotSettingsOptions : IConfigurableOptions
     /// 是否开启自定义限流，默认不开启
     /// </summary>
     public bool ClientRateLimit { get; set; } = false;
+
+    public void PostConfigure(string name, OcelotSettingsOptions options)
+    {
+    }
 }

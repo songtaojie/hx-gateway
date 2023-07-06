@@ -8,65 +8,100 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Enum;
+namespace Hx.Gateway.Core.Enum;
 
 /// <summary>
 /// 网关异常代码
 /// </summary>
-[ErrorCodeType]
 public enum GatewayErrorCodeEnum
 {
-    [ErrorCodeItemMetadata("新增雇员失败")]
+    /// <summary>
+    /// 新增雇员失败
+    /// </summary>
     INSERT_EMPLOYEE_FAIL = 9000,
 
-    [ErrorCodeItemMetadata("新增角色失败")]
+    /// <summary>
+    /// 新增角色失败
+    /// </summary>
     INSERT_ROLE_FAIL,
 
-    [ErrorCodeItemMetadata("重置密码失败")]
+    /// <summary>
+    /// 重置密码失败
+    /// </summary>
     RESET_PASSWORD_FAIL,
 
-    [ErrorCodeItemMetadata("用户名或密码错误")]
+    /// <summary>
+    /// 用户名或密码错误
+    /// </summary>
     ACCOUNT_OR_PASSWORD_ERROR,
 
-    [ErrorCodeItemMetadata("用户不存在")]
+    /// <summary>
+    /// 用户不存在
+    /// </summary>
     ACCOUNT_NON_EXISTENT,
 
-    [ErrorCodeItemMetadata("当前用户已被管理员停用")]
+    /// <summary>
+    /// 当前用户已被管理员停用
+    /// </summary>
     ACCOUNT_DISABLED,
 
-    [ErrorCodeItemMetadata("删除雇员失败")]
+    /// <summary>
+    /// 删除雇员失败
+    /// </summary>
     DELETE_EMPLOYEE_FAIL,
 
-    [ErrorCodeItemMetadata("删除雇员角色失败")]
+    /// <summary>
+    /// 删除雇员角色失败
+    /// </summary>
     DELETE_GLOBAL_CONFIGURATION_FAIL,
 
-    [ErrorCodeItemMetadata("编辑全局配置失败")]
+    /// <summary>
+    /// /编辑全局配置失败
+    /// </summary>
     UPDATE_GLOBAL_CONFIGURATION_FAIL,
 
-    [ErrorCodeItemMetadata("新增全局配置失败")]
+    /// <summary>
+    /// 新增全局配置失败
+    /// </summary>
     INSERT_GLOBAL_CONFIGURATION_FAIL,
 
-    [ErrorCodeItemMetadata("新增项目失败")]
+    /// <summary>
+    /// 新增项目失败
+    /// </summary>
     INSERT_PROJECT_FAIL,
 
-    [ErrorCodeItemMetadata("删除项目失败")]
+    /// <summary>
+    /// 删除项目失败
+    /// </summary>
     DELETE_PROJECT_FAIL,
 
-    [ErrorCodeItemMetadata("编辑项目失败")]
+    /// <summary>
+    /// 编辑项目失败
+    /// </summary>
     UPDATE_PROJECT_FAIL,
 
-    [ErrorCodeItemMetadata("启动项目失败")]
+    /// <summary>
+    /// 启动项目失败
+    /// </summary>
     ENABLE_PROJECT_FAIL,
 
-    [ErrorCodeItemMetadata("禁用项目失败")]
+    /// <summary>
+    /// 禁用项目失败
+    /// </summary>
     DISABLE_PROJECT_FAIL,
 
-    [ErrorCodeItemMetadata("删除路由失败")]
+    /// <summary>
+    /// 删除路由失败
+    /// </summary>
     DELETE_ROUTE_FAIL,
 
-    [ErrorCodeItemMetadata("启动路由失败")]
+    /// <summary>
+    /// 启动路由失败
+    /// </summary>
     ENABLE_ROUTE_FAIL,
 
-    [ErrorCodeItemMetadata("禁用路由失败")]
+    /// <summary>
+    /// 禁用路由失败
+    /// </summary>
     DISABLE_ROUTE_FAIL,
 }

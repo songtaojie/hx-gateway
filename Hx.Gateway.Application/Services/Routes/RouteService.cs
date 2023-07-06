@@ -1,12 +1,13 @@
-﻿using Furion.JsonSerialization;
-using Hx.Gateway.Application.Options.Ocelot;
-using Hx.Gateway.Application.Services.GlobalConfiguration;
-using Hx.Gateway.Application.Services.Projects;
+﻿using Hx.Gateway.Application.Services.GlobalConfiguration;
 using Hx.Gateway.Application.Services.Routes.Dtos;
+using Hx.Gateway.Core.Options.Ocelot;
+using Hx.Sdk.Entity;
+using Hx.Sdk.Extensions;
+using Hx.Sdk.Sqlsugar;
 
 namespace Hx.Gateway.Application.Services.Routes
 {
-    public class RouteService : IDynamicApiController, ITransient
+    public class RouteService :  ITransientDependency
     {
         private readonly GlobalConfigurationService _globalConfigurationService;
         private readonly ProjectService _projectService;
@@ -43,7 +44,7 @@ namespace Hx.Gateway.Application.Services.Routes
             var allRoutes = projects.SelectMany(r => r.Routes);
             var configRoutes = allRoutes.Adapt<List<OcelotRouteNode>>();
             ocelotRoot.Routes = configRoutes;
-            return JSON.Serialize(ocelotRoot);
+            return JsonSerializer.Serialize(ocelotRoot);
         }
 
 
@@ -67,7 +68,7 @@ namespace Hx.Gateway.Application.Services.Routes
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<SqlSugarPagedList<PageRouteOutput>> GetPageRouteAsync([FromQuery]PageRouteInput input)
+        public async Task<PagedListResult<PageRouteOutput>> GetPageRouteAsync([FromQuery]PageRouteInput input)
         {
             return await _tgRouteRep.Context.Queryable<TgRoute>()
               .WhereIF(!string.IsNullOrWhiteSpace(input.UpstreamPathTemplate), o => o.UpstreamPathTemplate.Contains(input.UpstreamPathTemplate))
@@ -122,7 +123,7 @@ namespace Hx.Gateway.Application.Services.Routes
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.INSERT_PROJECT_FAIL).StatusCode((int)GatewayErrorCodeEnum.INSERT_PROJECT_FAIL);
+                throw new UserFriendlyException("新增项目失败", (int)GatewayErrorCodeEnum.INSERT_PROJECT_FAIL);
             }
         }
 
@@ -153,7 +154,7 @@ namespace Hx.Gateway.Application.Services.Routes
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL).StatusCode((int)GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL);
+                throw new UserFriendlyException("编辑项目失败", (int)GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL);
             }
         }
 
@@ -182,7 +183,7 @@ namespace Hx.Gateway.Application.Services.Routes
                 var errorCode = status == StatusEnum.Enable 
                     ? GatewayErrorCodeEnum.ENABLE_PROJECT_FAIL 
                     : GatewayErrorCodeEnum.DISABLE_PROJECT_FAIL;
-                throw Oops.Oh(errorCode).StatusCode((int)errorCode);
+                throw new UserFriendlyException("禁用/启动项目失败", (int)errorCode);
             }
         }
 
@@ -210,7 +211,7 @@ namespace Hx.Gateway.Application.Services.Routes
                 var errorCode = status == StatusEnum.Enable 
                     ? GatewayErrorCodeEnum.ENABLE_ROUTE_FAIL 
                     : GatewayErrorCodeEnum.DISABLE_ROUTE_FAIL;
-                throw Oops.Oh(errorCode).StatusCode((int)errorCode);
+                throw new UserFriendlyException("禁用/启动路由失败", (int)errorCode);
             }
         }
 
@@ -235,7 +236,7 @@ namespace Hx.Gateway.Application.Services.Routes
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.DELETE_ROUTE_FAIL).StatusCode((int)GatewayErrorCodeEnum.DELETE_ROUTE_FAIL);
+                throw new UserFriendlyException("删除路由失败", (int)GatewayErrorCodeEnum.DELETE_ROUTE_FAIL);
             }
         }
 

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// Ocelot全局配置节点
 /// </summary>

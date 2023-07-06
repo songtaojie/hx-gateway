@@ -2,7 +2,7 @@
 
 namespace Hx.Gateway.Application.Services.GlobalConfiguration
 {
-    public class GlobalConfigurationService : IDynamicApiController, ITransient
+    public class GlobalConfigurationService : ITransientDependency
     {
         private readonly SqlSugarRepository<TgGlobalConfiguration> _repository;
         public GlobalConfigurationService(SqlSugarRepository<TgGlobalConfiguration> repository)
@@ -25,11 +25,11 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
                 .FirstAsync();
             return entity?.Adapt<GlobalConfigurationOutput>() ?? new GlobalConfigurationOutput()
             { 
-                LoadBalancerOptions = new Options.Ocelot.LoadBalancerOptions(),
-                HttpHandlerOptions = new Options.Ocelot.HttpHandlerOptions(),
-                QoSOptions = new Options.Ocelot.QoSOptions(),
-                ServiceDiscoveryProviderOptions = new Options.Ocelot.ServiceDiscoveryProviderOptions(),
-                RateLimitOptions = new Options.Ocelot.RateLimitOptions()
+                LoadBalancerOptions = new Core.Options.Ocelot.LoadBalancerOptions(),
+                HttpHandlerOptions = new Core.Options.Ocelot.HttpHandlerOptions(),
+                QoSOptions = new Core.Options.Ocelot.QoSOptions(),
+                ServiceDiscoveryProviderOptions = new Core.Options.Ocelot.ServiceDiscoveryProviderOptions(),
+                RateLimitOptions = new Core.Options.Ocelot.RateLimitOptions()
             };
         }
 
@@ -52,7 +52,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.INSERT_GLOBAL_CONFIGURATION_FAIL).StatusCode((int)GatewayErrorCodeEnum.INSERT_GLOBAL_CONFIGURATION_FAIL);
+                throw new UserFriendlyException("新增全局配置失败", (int)GatewayErrorCodeEnum.INSERT_GLOBAL_CONFIGURATION_FAIL);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.UPDATE_GLOBAL_CONFIGURATION_FAIL).StatusCode((int)GatewayErrorCodeEnum.UPDATE_GLOBAL_CONFIGURATION_FAIL);
+                throw new UserFriendlyException("编辑全局配置失败", (int)GatewayErrorCodeEnum.UPDATE_GLOBAL_CONFIGURATION_FAIL);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.DELETE_GLOBAL_CONFIGURATION_FAIL).StatusCode((int)GatewayErrorCodeEnum.DELETE_GLOBAL_CONFIGURATION_FAIL);
+                throw new UserFriendlyException("删除全局配置失败", (int)GatewayErrorCodeEnum.DELETE_GLOBAL_CONFIGURATION_FAIL);
             }
         }
 

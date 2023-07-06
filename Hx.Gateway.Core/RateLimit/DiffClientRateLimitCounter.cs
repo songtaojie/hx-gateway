@@ -1,14 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-
-namespace Hx.Gateway.Web.Core.RateLimit
+﻿namespace Hx.Gateway.Core.RateLimit
 {
     /// <summary>
     /// 客户端限流计数器
     /// </summary>
     public struct DiffClientRateLimitCounter
     {
-        [JsonConstructor]
         public DiffClientRateLimitCounter(DateTime timestamp, long totalRequests)
         {
             Timestamp = timestamp;

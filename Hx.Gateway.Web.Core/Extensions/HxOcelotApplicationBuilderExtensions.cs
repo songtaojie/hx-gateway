@@ -2,19 +2,14 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Hx.Core;
-using Hx.Gateway.Application.Options;
-using Microsoft.Extensions.Caching.Memory;
+using CacheManager.Core;
+using Hx.Gateway.Core.Options;
 using Ocelot.Configuration.Creator;
 using Ocelot.Configuration.Setter;
 using Ocelot.Responses;
 using QrF.Core.GatewayExtension.Middleware.Pipeline;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hx.Gateway.Web.Core.Extensions;
 /// <summary>
@@ -40,29 +35,29 @@ public static class HxOcelotApplicationBuilderExtensions
         var configuration = await CreateConfigurationExt(builder);
 
         ConfigureDiagnosticListener(builder);
-        CacheChangeListener(builder);
+        //CacheChangeListener(builder);
         return CreateOcelotPipeline(builder, pipelineConfiguration);
     }
-    /// <summary>
-    /// 添加缓存数据变更订阅
-    /// </summary>
-    /// <param name="app"></param>
-    /// <returns></returns>
-    private static void CacheChangeListener(IApplicationBuilder app)
-    {
-        var options = app.ApplicationServices.GetService<IOptions<OcelotSettingsOptions>>();
-        var ocelotSettings = options.Value;
-        var cacheManager = app.ApplicationServices.GetService<CacheManager>();
-        if (ocelotSettings.ClusterEnvironment)
-        {
-            //订阅满足条件的所有事件
-            //RedisHelper.PSubscribe(new[] { config.RedisOcelotKeyPrefix + "*" }, message =>
-            //{
-            //    var key = message.Channel;
-            //    _cache.Remove(key); //直接移除，如果有请求从redis里取
-            //});
-        }
-    }
+    ///// <summary>
+    ///// 添加缓存数据变更订阅
+    ///// </summary>
+    ///// <param name="app"></param>
+    ///// <returns></returns>
+    //private static void CacheChangeListener(IApplicationBuilder app)
+    //{
+    //    var options = app.ApplicationServices.GetService<IOptions<OcelotSettingsOptions>>();
+    //    var ocelotSettings = options.Value;
+    //    var cacheManager = app.ApplicationServices.GetService<ICache>();
+    //    if (ocelotSettings.ClusterEnvironment)
+    //    {
+    //        //订阅满足条件的所有事件
+    //        //RedisHelper.PSubscribe(new[] { config.RedisOcelotKeyPrefix + "*" }, message =>
+    //        //{
+    //        //    var key = message.Channel;
+    //        //    _cache.Remove(key); //直接移除，如果有请求从redis里取
+    //        //});
+    //    }
+    //}
     private static IApplicationBuilder CreateOcelotPipeline(IApplicationBuilder builder, OcelotPipelineConfiguration pipelineConfiguration)
     {
         builder.BuildExtOcelotPipeline(pipelineConfiguration);

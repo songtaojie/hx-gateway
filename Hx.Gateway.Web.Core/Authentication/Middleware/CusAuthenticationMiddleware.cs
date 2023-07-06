@@ -1,8 +1,4 @@
-﻿using Hx.Gateway.Application.Options;
-using Microsoft.Extensions.Options;
-using Ocelot.Configuration;
-using Ocelot.Logging;
-using Ocelot.Middleware;
+﻿using Hx.Gateway.Core.Options;
 using System.Linq;
 
 namespace Hx.Gateway.Web.Core.Authentication.Middleware

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// Ocelot支持上游请求的速率限制，这样下游服务就不会过载
 /// </summary>

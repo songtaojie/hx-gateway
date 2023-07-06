@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Hx.Gateway.Core.Enum;
 using System.Collections.Generic;
-using System.Linq;
-using Hx.Core;
-using SqlSugar;
 
-namespace Hx.Gateway.Application.Entities
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 路由表
     ///</summary>
     [SugarTable(null, "路由表")]
-    public class TgRoute: EntityBase
+    public class TgRoute : EntityBase
     {
         /// <summary>
         /// 项目Id 
@@ -21,7 +18,7 @@ namespace Hx.Gateway.Application.Entities
         /// <summary>
         /// 下游的路由模板，即真实处理请求的路径模板 
         ///</summary>
-        [SugarColumn(ColumnDescription = "下游的路由模板，即真实处理请求的路径模板 ",IsNullable =true,Length =200)]
+        [SugarColumn(ColumnDescription = "下游的路由模板，即真实处理请求的路径模板 ", IsNullable = true, Length = 200)]
         public string DownstreamPathTemplate { get; set; }
 
         /// <summary>
@@ -89,7 +86,7 @@ namespace Hx.Gateway.Application.Entities
         /// 服务质量
         /// </summary>
         /// <see cref="Options.Ocelot.QoSOptions"/>
-        [SugarColumn(ColumnDescription = "服务质量配置", IsNullable =true,Length =64)]
+        [SugarColumn(ColumnDescription = "服务质量配置", IsNullable = true, Length = 64)]
         public string QoSOptions { get; set; }
 
         /// <summary>
@@ -146,7 +143,7 @@ namespace Hx.Gateway.Application.Entities
         ///</summary>
         [SugarColumn(ColumnDescription = "如果要忽略SSL警告/错误，请在路由配置中设置该参数")]
         public bool? DangerousAcceptAnyServerCertificateValidator { get; set; }
-        
+
         /// <summary>
         /// 排序
         /// </summary>

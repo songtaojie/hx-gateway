@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Const;
+namespace Hx.Gateway.Core.Const;
 /// <summary>
 /// 数据库配置id常量
 /// </summary>

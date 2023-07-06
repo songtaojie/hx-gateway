@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Hx.Core;
-using SqlSugar;
-
-namespace Hx.Gateway.Application.Entities
+﻿namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 路由地址配置表
     ///</summary>
     [SugarTable(null, "路由地址配置表")]
-    public class TgRouteHostPort: EntityBaseId
+    public class TgRouteHostPort : EntityBaseId
     {
         /// <summary>
         ///  路由主机
         ///</summary>
-        [SugarColumn(ColumnDescription = "路由主机",Length =64)]
+        [SugarColumn(ColumnDescription = "路由主机", Length = 64)]
         public string Host { get; set; }
 
         /// <summary>

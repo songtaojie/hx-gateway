@@ -2,13 +2,9 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Hx.Gateway.Application.Options.Ocelot;
 using Hx.Gateway.Application.Services.Routes.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hx.Gateway.Core.Entity;
+using Hx.Gateway.Core.Options.Ocelot;
 
 namespace Hx.Gateway.Application.AutoMapper;
 public class RouteMapper : BaseMapper

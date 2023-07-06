@@ -1,9 +1,12 @@
 ﻿using Hx.Gateway.Application.Services.Projects;
 using Hx.Gateway.Application.Services.Routes;
+using Hx.Sdk.Entity;
+using Hx.Sdk.Extensions;
+using Hx.Sdk.Sqlsugar;
 
 namespace Hx.Gateway.Application.Services
 {
-    public class ProjectService : IDynamicApiController, ITransient
+    public class ProjectService :  ITransientDependency
     {
         private readonly SqlSugarRepository<TgProject> _tgProjectRep;
         public ProjectService(SqlSugarRepository<TgProject> tgProjectRep)
@@ -44,7 +47,7 @@ namespace Hx.Gateway.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<SqlSugarPagedList<TgProject>> GetPageProjectAsync([FromQuery]PageProjectInput input)
+        public async Task<PagedListResult<TgProject>> GetPageProjectAsync([FromQuery]PageProjectInput input)
         {
             return await _tgProjectRep.AsQueryable()
                 .WhereIF(input.Status.HasValue, o => o.Status == input.Status)
@@ -64,15 +67,14 @@ namespace Hx.Gateway.Application.Services
         public async Task<string> AddProjectAsync(AddProjectInput request)
         {
             var Project = request.Adapt<TgProject>();
-            var result = await _tgProjectRep.InsertAsync(Project);
+            var result = await _tgProjectRep.InsertAsync(Project) > 0;
             if (result)
             {
                 return "新增项目成功";
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.INSERT_PROJECT_FAIL)
-                    .StatusCode((int)GatewayErrorCodeEnum.INSERT_PROJECT_FAIL);
+                throw new UserFriendlyException("新增项目失败", (int)GatewayErrorCodeEnum.INSERT_PROJECT_FAIL);
             }
         }
 
@@ -88,7 +90,7 @@ namespace Hx.Gateway.Application.Services
         public async Task<string> UpdateProjectAsync(UpdateProjectInput request)
         {
             var project = request.Adapt<TgProject>();
-            var result = await _tgProjectRep.AsUpdateable(project)
+            var result = await _tgProjectRep.Context.Updateable(project)
                     .UpdateColumns(u => new
                     {
                         u.Name,
@@ -100,7 +102,7 @@ namespace Hx.Gateway.Application.Services
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL).StatusCode((int)GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL);
+                throw new UserFriendlyException("编辑项目失败", (int)GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL);
             }
         }
 
@@ -112,7 +114,7 @@ namespace Hx.Gateway.Application.Services
         /// <returns></returns>
         public async Task<string> PatchProjectAsync(long projectId, StatusEnum status)
         {
-            var result = await _tgProjectRep.AsUpdateable()
+            var result = await _tgProjectRep.Context.Updateable<TgProject>()
                 .SetColumns(it => new TgProject()
                 {
                     Status = status,
@@ -129,7 +131,7 @@ namespace Hx.Gateway.Application.Services
                 var errorCode = status == StatusEnum.Enable
                     ? GatewayErrorCodeEnum.ENABLE_PROJECT_FAIL
                     : GatewayErrorCodeEnum.DISABLE_PROJECT_FAIL;
-                throw Oops.Oh(errorCode).StatusCode((int)errorCode);
+                throw new UserFriendlyException("禁用/启用项目失败", (int)errorCode);
             }
         }
 
@@ -144,7 +146,7 @@ namespace Hx.Gateway.Application.Services
         /// <returns></returns>
         public async Task<string> DeleteProjectAsync(int projectId)
         {
-            var result = await _tgProjectRep.AsDeleteable()
+            var result = await _tgProjectRep.Context.Deleteable<TgProject>()
                 .Where(it => it.Id == projectId)
                 .ExecuteCommandHasChangeAsync();
             if (result)
@@ -153,7 +155,7 @@ namespace Hx.Gateway.Application.Services
             }
             else
             {
-                throw Oops.Oh(GatewayErrorCodeEnum.DELETE_PROJECT_FAIL).StatusCode((int)GatewayErrorCodeEnum.DELETE_PROJECT_FAIL);
+                throw new UserFriendlyException("删除项目失败", (int)GatewayErrorCodeEnum.DELETE_PROJECT_FAIL);
             }
         }
 

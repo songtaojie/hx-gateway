@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Web.Core.RateLimit
+namespace Hx.Gateway.Core.RateLimit
 {
     /// <summary>
     /// 客户端限流相关仓储接口

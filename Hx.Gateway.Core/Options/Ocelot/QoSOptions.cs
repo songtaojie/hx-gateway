@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// Quality of Service
 /// Ocelot当前只支持一个QoS能力。

@@ -1,34 +1,28 @@
-﻿using Dapper;
-using Hx.Core;
-using Hx.Gateway.Application.Entities;
-using Hx.Gateway.Application.Options;
+﻿using Hx.Gateway.Core.Entity;
+using Hx.Gateway.Core.Enum;
+using Hx.Gateway.Core.Options;
+using Hx.Gateway.Core.Options.Ocelot;
+using Hx.Sdk.Extensions.LinqBuilder;
+using Hx.Sdk.Sqlsugar.Repositories;
 using Mapster;
 using Microsoft.Data.SqlClient;
-using Ocelot.Configuration.File;
-using Ocelot.Configuration.Repository;
 using Ocelot.Responses;
-using QrF.Core.GatewayExtension.Configuration;
-using QrF.Core.GatewayExtension.Entities;
-using QrF.Core.Utils.Extension;
-using System;
-using System.Collections.Generic;
+using SqlSugar;
+using StackExchange.Profiling.Internal;
 using System.Data;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace QrF.Core.GatewayExtension.Dapper.SqlServer.Stores
 {
     /// <summary>
-    /// 使用SqlServer来实现配置文件仓储接口
+    /// 使用数据库来实现配置文件仓储接口
     /// </summary>
     public class FileConfigurationRepository : IFileConfigurationRepository
     {
-        private readonly OcelotSettingsOptions _ocelotSettings;
-        private readonly SqlSugarRepository<TgGlobalConfiguration> _globalConfigurationRep;
-        public FileConfigurationRepository(IOptions<OcelotSettingsOptions> option,
-            SqlSugarRepository<TgGlobalConfiguration> globalConfigurationRep)
+        private readonly SqlSugarRepository<TgGlobalConfiguration> _rep;
+        public FileConfigurationRepository(SqlSugarRepository<TgGlobalConfiguration> rep)
         {
-            _ocelotSettings = option.Value;
-            _globalConfigurationRep = globalConfigurationRep;
+            _rep = rep;
         }
 
         /// <summary>
@@ -40,7 +34,7 @@ namespace QrF.Core.GatewayExtension.Dapper.SqlServer.Stores
             #region 提取配置信息
             var file = new FileConfiguration();
             //提取默认启用的路由配置信息
-            var globalConfiguration = await _globalConfigurationRep.AsQueryable()
+            var globalConfiguration = await _rep.AsQueryable()
                 .Where(u=>u.Status == StatusEnum.Enable)
                 .FirstAsync();
             if (globalConfiguration != null)
@@ -49,78 +43,16 @@ namespace QrF.Core.GatewayExtension.Dapper.SqlServer.Stores
                 file.GlobalConfiguration = globalConfiguration.Adapt<FileGlobalConfiguration>();
 
                 //提取所有路由信息
-                _globalConfigurationRep.Context.Queryable<TgRoute>()
-            }
-            string glbsql = "select * from GlobalConfiguration where IsDefault=1 and InfoStatus=1";
-            //提取全局配置信息
-            using (var connection = new SqlConnection(_option.DbConnectionStrings))
-            {
-                var result = await connection.QueryFirstOrDefaultAsync<GlobalConfiguration>(glbsql);
-                if (result != null)
-                {
-                    var glb = new FileGlobalConfiguration();
-                    //赋值全局信息
-                    glb.BaseUrl = result.BaseUrl;
-                    glb.DownstreamScheme = result.DownstreamScheme;
-                    glb.RequestIdKey = result.RequestIdKey;
-                    
-                    file.GlobalConfiguration = glb;
-
-                    //提取所有路由信息
-                    string routesql = "select T2.* from ConfigReRoutes T1 inner join ReRoute T2 on T1.ReRouteId=T2.ReRouteId where KeyId=@KeyId and InfoStatus=1";
-                    var routeresult = (await connection.QueryAsync<ReRoute>(routesql, new { result.KeyId }))?.AsList();
-                    if (routeresult != null && routeresult.Count > 0)
-                    {
-                        var reroutelist = new List<FileRoute>();
-                        foreach (var model in routeresult)
-                        {
-                            var m = new FileRoute();
-                            if (!model.AuthenticationOptions.IsNullOrEmpty())
-                            {
-                                m.AuthenticationOptions = model.AuthenticationOptions.ToObject<FileAuthenticationOptions>();
-                            }
-                            if (!model.CacheOptions.IsNullOrEmpty())
-                            {
-                                m.FileCacheOptions = model.CacheOptions.ToObject<FileCacheOptions>();
-                            }
-                            if (!model.DelegatingHandlers.IsNullOrEmpty())
-                            {
-                                m.DelegatingHandlers = model.DelegatingHandlers.ToObject<List<string>>();
-                            }
-                            if (!model.LoadBalancerOptions.IsNullOrEmpty())
-                            {
-                                m.LoadBalancerOptions = model.LoadBalancerOptions.ToObject<FileLoadBalancerOptions>();
-                            }
-                            if (!model.QoSOptions.IsNullOrEmpty())
-                            {
-                                m.QoSOptions = model.QoSOptions.ToObject<FileQoSOptions>();
-                            }
-                            if (!model.DownstreamHostAndPorts.IsNullOrEmpty())
-                            {
-                                m.DownstreamHostAndPorts = model.DownstreamHostAndPorts.ToObject<List<FileHostAndPort>>();
-                            }
-                            //开始赋值
-                            m.DownstreamPathTemplate = model.DownstreamPathTemplate;
-                            m.DownstreamScheme = model.DownstreamScheme;
-                            m.Key = model.RequestIdKey;
-                            m.Priority = model.Priority ?? 0;
-                            m.RequestIdKey = model.RequestIdKey;
-                            m.ServiceName = model.ServiceName;
-                            m.UpstreamHost = model.UpstreamHost;
-                            m.UpstreamHttpMethod = model.UpstreamHttpMethod?.ToObject<List<string>>();
-                            m.UpstreamPathTemplate = model.UpstreamPathTemplate;
-                            reroutelist.Add(m);
-                        }
-                        file.Routes = reroutelist;
-                    }
-                }
-                else
-                {
-                    throw new Exception("未监测到任何可用的配置信息");
-                }
+               var routeList = await _rep.Context.Queryable<TgRoute>()
+                    .LeftJoin<TgProject>((u,p) => u.ProjectId == p.Id)
+                    .Where((u,p) => p.Status == StatusEnum.Enable && u.Status == StatusEnum.Enable)
+                    .OrderByDescending((u, p) => u.CreateTime)
+                    .Select((u, p) => u)
+                    .ToListAsync();
+                file.Routes = routeList.Adapt<List<FileRoute>>();
             }
             #endregion
-            if (file.Routes == null || file.Routes.Count == 0)
+            if (file.Routes == null || !file.Routes.Any())
             {
                 return new OkResponse<FileConfiguration>(null);
             }
@@ -129,44 +61,55 @@ namespace QrF.Core.GatewayExtension.Dapper.SqlServer.Stores
         
         public async Task<Response> Set(FileConfiguration fileConfiguration)
         {
-            using (var con = new SqlConnection(_option.DbConnectionStrings))
+            if (fileConfiguration != null && fileConfiguration.GlobalConfiguration != null && !string.IsNullOrEmpty(fileConfiguration.GlobalConfiguration.RequestIdKey))
             {
-                var global = fileConfiguration?.GlobalConfiguration;
-                if (global != null && !global.RequestIdKey.IsNullOrEmpty())
-                {
-                    var cmd = "UPDATE GlobalConfiguration SET BaseUrl=@BaseUrl,DownstreamScheme=@DownstreamScheme,ServiceDiscoveryProvider=@ServiceDiscoveryProvider,LoadBalancerOptions=@LoadBalancerOptions,HttpHandlerOptions=@HttpHandlerOptions,QoSOptions=@QoSOptions WHERE RequestIdKey=@RequestIdKey";
-                    var result = await con.ExecuteAsync(cmd, new {
-                        global.BaseUrl,global.DownstreamScheme, ServiceDiscoveryProvider=global.ServiceDiscoveryProvider.ToJson(),
-                        LoadBalancerOptions = global.LoadBalancerOptions.ToJson(),
-                        HttpHandlerOptions = global.HttpHandlerOptions.ToJson(),
-                        QoSOptions = global.QoSOptions.ToJson(),
-                        global.RequestIdKey
-                    }, null, null, CommandType.Text);
-                }
+                var tgGlobalConfiguration = fileConfiguration.GlobalConfiguration.Adapt<TgGlobalConfiguration>();
+                await _rep.Context.Updateable<TgGlobalConfiguration>()
+                    .SetColumns(u => new TgGlobalConfiguration
+                    {
+                        BaseUrl = tgGlobalConfiguration.BaseUrl,
+                        DownstreamScheme = tgGlobalConfiguration.DownstreamScheme,
+                        ServiceDiscoveryProviderOptions = tgGlobalConfiguration.ServiceDiscoveryProviderOptions,
+                        LoadBalancerOptions = tgGlobalConfiguration.LoadBalancerOptions,
+                        HttpHandlerOptions = tgGlobalConfiguration.HttpHandlerOptions,
+                        QoSOptions = tgGlobalConfiguration.QoSOptions
+                    })
+                    .Where(u => u.RequestIdKey == tgGlobalConfiguration.RequestIdKey)
+                    .ExecuteCommandAsync();
                 var reRoutes = fileConfiguration.Routes;
                 if (reRoutes != null && reRoutes.Count > 0)
                 {
-                    foreach(var item in reRoutes)
+                    foreach (var item in reRoutes)
                     {
-                        var cmd = @"UPDATE ReRoute SET UpstreamPathTemplate=@UpstreamPathTemplate,UpstreamHttpMethod=@UpstreamHttpMethod,UpstreamHost=@UpstreamHost,DownstreamScheme=@DownstreamScheme,DownstreamPathTemplate=@DownstreamPathTemplate,
-  DownstreamHostAndPorts=@DownstreamHostAndPorts,AuthenticationOptions=@AuthenticationOptions,CacheOptions=@CacheOptions,LoadBalancerOptions=@LoadBalancerOptions,QoSOptions=@QoSOptions,DelegatingHandlers=@DelegatingHandlers,ServiceName=@ServiceName WHERE RequestIdKey=@RequestIdKey";
-                      var result = await con.ExecuteAsync(cmd, new {
-                            item.UpstreamPathTemplate,item.UpstreamHost,item.DownstreamScheme,item.DownstreamPathTemplate,
-                            UpstreamHttpMethod =item.UpstreamHttpMethod.ToJson(),
-                            DownstreamHostAndPorts = item.DownstreamHostAndPorts.ToJson(),
-                            AuthenticationOptions = item.AuthenticationOptions.ToJson(),
-                            CacheOptions = item.FileCacheOptions.ToJson(),
-                            LoadBalancerOptions = item.LoadBalancerOptions.ToJson(),
-                            QoSOptions = item.QoSOptions.ToJson(),
-                            DelegatingHandlers = item.DelegatingHandlers.ToJson(),
-                            item.ServiceName,
-                            item.RequestIdKey
-                        }, null, null, CommandType.Text);
+                        var route =item.Adapt<TgRoute>();
+                        await _rep.Context.Updateable<TgRoute>()
+                        .SetColumns(u => new TgRoute
+                        {
+                            UpstreamPathTemplate = route.UpstreamPathTemplate,
+                            UpstreamHost = route.UpstreamHost,
+                            DownstreamHostAndPorts = route.DownstreamHostAndPorts,
+                            AuthenticationOptions = route.AuthenticationOptions,
+                            DelegatingHandlers = route.DelegatingHandlers,
+                            DangerousAcceptAnyServerCertificateValidator =  route.DangerousAcceptAnyServerCertificateValidator,
+                            DownstreamHttpMethod = route.DownstreamHttpMethod,
+                            DownstreamHttpVersion = route.DownstreamHttpVersion,
+                            DownstreamPathTemplate = route.DownstreamPathTemplate,
+                            DownstreamScheme = route.DownstreamScheme,
+                            FileCacheOptions = route.FileCacheOptions,
+                            HttpHandlerOptions = route.HttpHandlerOptions,
+                            LoadBalancerOptions = route.LoadBalancerOptions,
+                            QoSOptions = route.QoSOptions,
+                            RateLimitOptions = route.RateLimitOptions,
+                            RouteIsCaseSensitive = route.RouteIsCaseSensitive,
+                            ServiceName = route.ServiceName,
+                            ServiceNamespace = route.ServiceNamespace,
+                            RouteProperties = route.RouteProperties,
+                        })
+                        .Where(u => u.RequestIdKey == item.RequestIdKey)
+                        .ExecuteCommandAsync();
                     }
                 }
             }
-
-
             return await Task.FromResult<Response>(new OkResponse());
         }
     }

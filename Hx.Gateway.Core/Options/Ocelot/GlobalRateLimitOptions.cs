@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// 全局限流配置
 /// </summary>

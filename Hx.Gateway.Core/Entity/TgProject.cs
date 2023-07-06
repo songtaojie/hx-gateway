@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hx.Gateway.Core.Enum;
 using SqlSugar;
 
-namespace Hx.Gateway.Application.Entities
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 项目表
@@ -12,10 +13,17 @@ namespace Hx.Gateway.Application.Entities
     public class TgProject : EntityBase
     {
         /// <summary>
+        /// 项目编码
+        ///</summary>
+        [SugarColumn(ColumnDescription = "项目名称",IsNullable =true,Length =20)]
+        public string Code { get; set; }
+
+        /// <summary>
         /// 项目名称 
         ///</summary>
-        [SugarColumn(ColumnDescription = "项目名称")]
+        [SugarColumn(ColumnDescription = "项目名称",IsNullable =true,Length =36)]
         public string Name { get; set; }
+
         /// <summary>
         /// 排序字段 
         ///</summary>

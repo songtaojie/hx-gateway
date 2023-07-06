@@ -1,10 +1,12 @@
-﻿using Hx.Gateway.Application.Options;
+﻿using Hx.Gateway.Core.Options;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Ocelot.Logging;
 using Ocelot.Middleware;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace Hx.Gateway.Web.Core.RateLimit.Middleware
+namespace Hx.Gateway.Core.RateLimit.Middleware
 {
     /// <summary>
     /// 自定义客户端限流中间件

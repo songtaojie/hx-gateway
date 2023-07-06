@@ -1,8 +1,6 @@
-﻿using Hx.Gateway.Application.Const;
-using Hx.Gateway.Application.Options;
-using Hx.Gateway.Application.RateLimit;
-using Microsoft.Extensions.Options;
-using Ocelot.Cache;
+﻿using Hx.Gateway.Core.Const;
+using Hx.Gateway.Core.Options;
+using Hx.Gateway.Core.RateLimit;
 
 namespace Hx.Gateway.Web.Core.Authentication
 {

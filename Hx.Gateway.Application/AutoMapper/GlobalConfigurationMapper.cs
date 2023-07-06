@@ -2,15 +2,10 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Hx.Gateway.Application.Options.Ocelot;
 using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
-using Hx.Gateway.Application.Services.Routes.Dtos;
+using Hx.Gateway.Core.Entity;
+using Hx.Gateway.Core.Options.Ocelot;
 using Ocelot.Configuration.File;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hx.Gateway.Application.AutoMapper;
 /// <summary>
@@ -34,6 +29,13 @@ public class GlobalConfigurationMapper : BaseMapper
            .Map(dest => dest.RateLimitOptions, src => Deserialize<FileRateLimitOptions>(src.RateLimitOptions))
            .Map(dest => dest.ServiceDiscoveryProvider, src => Deserialize<FileServiceDiscoveryProvider>(src.ServiceDiscoveryProviderOptions));
 
+
+        config.ForType<FileGlobalConfiguration, TgGlobalConfiguration>()
+           .Map(dest => dest.LoadBalancerOptions, src => Serialize(src.LoadBalancerOptions))
+           .Map(dest => dest.HttpHandlerOptions, src => Serialize(src.HttpHandlerOptions))
+           .Map(dest => dest.QoSOptions, src => Serialize(src.QoSOptions))
+           .Map(dest => dest.RateLimitOptions, src => Serialize(src.RateLimitOptions))
+           .Map(dest => dest.ServiceDiscoveryProviderOptions, src => Serialize(src.ServiceDiscoveryProvider));
 
         config.ForType<AddGlobalConfigurationInput, TgGlobalConfiguration>()
           .Map(dest => dest.RateLimitOptions, src => Serialize(src.RateLimitOptions))

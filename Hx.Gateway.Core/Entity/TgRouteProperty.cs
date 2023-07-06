@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using SqlSugar;
 
-namespace Hx.Gateway.Application.Entities
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 路由属性表
     ///</summary>
     [SugarTable(null, "路由属性表")]
-    public class TgRouteProperty: EntityBaseId
+    public class TgRouteProperty : EntityBaseId
     {
         /// <summary>
         ///  

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hx.Gateway.Core.Enum;
 using SqlSugar;
 
-namespace Hx.Gateway.Application.Entities
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 全局配置表
@@ -14,7 +15,7 @@ namespace Hx.Gateway.Application.Entities
         /// <summary>
         /// 基础地址 
         ///</summary>
-        [SugarColumn(ColumnDescription = "基础地址",IsNullable =true,Length =200)]
+        [SugarColumn(ColumnDescription = "基础地址", IsNullable = true, Length = 200)]
         public string BaseUrl { get; set; }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace Hx.Gateway.Application.Entities
         /// 负载均衡
         ///</summary>
         ///<see cref="Options.Ocelot.LoadBalancerOptions"/>
-        [SugarColumn(ColumnDescription = "负载均衡",IsNullable =true,Length =64)]
+        [SugarColumn(ColumnDescription = "负载均衡", IsNullable = true, Length = 64)]
         public string LoadBalancerOptions { get; set; }
 
         /// <summary>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application
+namespace Hx.Gateway.Core
 {
     /// <summary>
     /// 下拉框

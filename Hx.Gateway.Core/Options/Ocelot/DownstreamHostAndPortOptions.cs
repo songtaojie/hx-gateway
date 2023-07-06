@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// 它定义希望向其转发请求的任何下游服务的主机和端口。
 /// 通常这将只包含一个条目，但有时你可能想要负载平衡请求到你的下游服务，

@@ -1,11 +1,13 @@
-﻿using Hx.Gateway.Application.Options;
+﻿using Hx.Gateway.Core.Const;
+using Hx.Gateway.Core.Options;
+using Microsoft.Extensions.Options;
 using Ocelot.Cache;
 using Ocelot.Configuration;
 using Ocelot.Configuration.Creator;
 using Ocelot.Configuration.Repository;
 using Ocelot.Responses;
 
-namespace Hx.Gateway.Application;
+namespace Hx.Gateway.Core;
 public class RedisInternalConfigurationRepository : IInternalConfigurationRepository
 {
     private readonly OcelotSettingsOptions _ocelotSettings;

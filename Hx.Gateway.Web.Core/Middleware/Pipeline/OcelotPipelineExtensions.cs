@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Ocelot.Authentication.Middleware;
+﻿using Ocelot.Authentication.Middleware;
 using Ocelot.Authorization.Middleware;
 using Ocelot.Cache.Middleware;
 using Ocelot.Claims.Middleware;
@@ -10,7 +8,6 @@ using Ocelot.DownstreamUrlCreator.Middleware;
 using Ocelot.Errors.Middleware;
 using Ocelot.Headers.Middleware;
 using Ocelot.LoadBalancer.Middleware;
-using Ocelot.Middleware;
 using Ocelot.Multiplexer;
 using Ocelot.QueryStrings.Middleware;
 using Ocelot.RateLimit.Middleware;
@@ -20,10 +17,6 @@ using Ocelot.RequestId.Middleware;
 using Ocelot.Responder.Middleware;
 using Ocelot.Security.Middleware;
 using Ocelot.WebSockets.Middleware;
-using QrF.Core.GatewayExtension.Authentication.Middleware;
-using QrF.Core.GatewayExtension.RateLimit.Middleware;
-using System;
-using System.Threading.Tasks;
 
 namespace QrF.Core.GatewayExtension.Middleware.Pipeline
 {

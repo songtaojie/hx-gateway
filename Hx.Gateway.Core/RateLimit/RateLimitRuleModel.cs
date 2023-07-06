@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Hx.Gateway.Web.Core.RateLimit
+namespace Hx.Gateway.Core.RateLimit
 {
     public class RateLimitRuleModel
     {

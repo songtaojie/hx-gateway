@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hx.Gateway.Application.Options.Ocelot;
+using Hx.Gateway.Core.Options.Ocelot;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// Ocelot路由节点配置
 /// </summary>

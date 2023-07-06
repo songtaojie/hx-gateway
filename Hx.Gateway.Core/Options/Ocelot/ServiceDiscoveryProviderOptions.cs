@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// Ocelot允许您指定一个服务发现提供程序，并使用它来为Ocelot转发请求的下游服务找到主机和端口。目前，
 /// 这只在GlobalConfiguration部分中得到支持，

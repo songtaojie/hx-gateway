@@ -4,699 +4,1131 @@
         <name>Hx.Gateway.Core</name>
     </assembly>
     <members>
-        <member name="T:Hx.Gateway.Core.CacheKeyConst">
+        <member name="T:Hx.Gateway.Core.BaseSelectDto`1">
             <summary>
-            缓存Key
+            下拉框
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Hx.Gateway.Core.BaseSelectDto`1.Value">
+            <summary>
+            下拉框的值
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.CacheKeyConst.Route">
+        <member name="P:Hx.Gateway.Core.BaseSelectDto`1.Label">
             <summary>
-            路由缓存
+            下拉框的标签
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.CacheKeyConst.ConsulSettingKey">
+        <member name="T:Hx.Gateway.Core.BaseTreeDto`1">
             <summary>
-            consul配置关键字
+            基础树
             </summary>
+            <typeparam name="T"></typeparam>
         </member>
-        <member name="F:Hx.Gateway.Core.CacheKeyConst.ConsulDC">
-            <summary>
-            consul DC 库
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.CacheKeyConst.AllSelect">
-            <summary>
-            全部下拉框内容
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.DatabaseConfigIdConst">
+        <member name="T:Hx.Gateway.Core.Const.DatabaseConfigIdConst">
             <summary>
             数据库配置id常量
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.DatabaseConfigIdConst.OcelotSettings">
+        <member name="F:Hx.Gateway.Core.Const.DatabaseConfigIdConst.OcelotSettings">
             <summary>
             网关配置
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.StatusConst.Disabled">
+        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.Route">
             <summary>
-            禁用
+            路由缓存
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.StatusConst.Enabled">
+        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.ConsulSettingKey">
             <summary>
-            启用
+            consul配置关键字
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.Dictionary">
-             <summary>
-             字典
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Dictionary.Id">
-             <summary>
-             主键Id 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Dictionary.DictionaryName">
-             <summary>
-             字典名称 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Dictionary.DictionaryType">
-             <summary>
-             字典类型 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Dictionary.DictionaryItems">
+        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.ConsulDC">
             <summary>
-            路由地址配置
+            consul DC 库
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.DictionaryItem">
-             <summary>
-             字典项
+        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.AllSelect">
+            <summary>
+            全部下拉框内容
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.DictionaryItem.Id">
-             <summary>
-             主键Id 
+        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.OcelotCacheKey">
+            <summary>
+            
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.DictionaryItem.DictionaryId">
-             <summary>
-             字典Id
+        <member name="T:Hx.Gateway.Core.Entity.EntityBaseId">
+            <summary>
+            框架实体基类Id
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.DictionaryItem.Key">
-             <summary>
-             字典关键字
+        <member name="P:Hx.Gateway.Core.Entity.EntityBaseId.Id">
+            <summary>
+            雪花Id
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.DictionaryItem.Value">
-             <summary>
-             字典值
+        <member name="T:Hx.Gateway.Core.Entity.EntityBase">
+            <summary>
+            框架实体基类
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.DictionaryItem.Remark">
-             <summary>
-             备注
+        <member name="P:Hx.Gateway.Core.Entity.EntityBase.CreateTime">
+            <summary>
+            创建时间
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.DictionaryItem.Enabled">
-             <summary>
-             是否启用
+        <member name="P:Hx.Gateway.Core.Entity.EntityBase.UpdateTime">
+            <summary>
+            更新时间
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.GlobalConfiguration">
+        <member name="P:Hx.Gateway.Core.Entity.EntityBase.CreateUserId">
+            <summary>
+            创建者Id
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.EntityBase.UpdateUserId">
+            <summary>
+            修改者Id
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.EntityBase.IsDelete">
+            <summary>
+            软删除
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.EntityBaseData">
+            <summary>
+            业务数据实体基类(数据权限)
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.EntityBaseData.CreateOrgId">
+            <summary>
+            创建者部门Id
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.EntityTenant">
+            <summary>
+            租户基类实体
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.EntityTenant.TenantId">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.EntityTenantId">
+            <summary>
+            租户基类实体Id
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.EntityTenantId.TenantId">
+            <summary>
+            租户Id
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.TgGlobalConfiguration">
              <summary>
              全局配置表
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.Id">
-             <summary>
-             主键Id 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.BaseUrl">
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.BaseUrl">
              <summary>
              基础地址 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.RequestIdKey">
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.RequestIdKey">
              <summary>
              请求ID 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.DownstreamScheme">
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.DownstreamScheme">
              <summary>
              Http协议（http,https） 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.DownstreamHttpVersion">
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.DownstreamHttpVersion">
              <summary>
              Http版本（1.0，1.1，2.0） 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.LoadbalancerType">
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.LoadBalancerOptions">
              <summary>
-             负载均衡方式（LeastConnection，RoundRobin，NoLoadBalance） 
+             负载均衡
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.HttpHandlerOptions">
+             <summary>
+             HttpHandler配置 
+            </summary>   
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.QoSOptions">
+             <summary>
+             服务质量控制
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.QoSOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.RateLimitOptions">
+             <summary>
+             全局限流配置 
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.GlobalRateLimitOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.ServiceDiscoveryProviderOptions">
+            <summary>
+            服务发现代理配置
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.Status">
+             <summary>
+             状态
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.LoadbalancerKey">
-             <summary>
-             负载均衡关键字 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.LoadbalancerExpiry">
-             <summary>
-             负载均衡结束时间（ms） 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.HttphandlerAllowautoredirect">
-             <summary>
-             允许自定重定向 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.HttphandlerUsecookiecontainer">
-             <summary>
-             使用Cookie容器 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.HttphandlerUsetracing">
-             <summary>
-             使用追踪 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.HttphandlerUseproxy">
-             <summary>
-             使用代理 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.HttphandlerMaxconnectionsperserver">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.QosEnabled">
-             <summary>
-             流量调控开启 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.QosExceptionsallowedbeforebreaking">
-             <summary>
-             打开断路器之前允许的例外数量 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.QosDurationofbreak">
-             <summary>
-             断路器复位之前打开的时间（ms） 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.QosTimeoutvalue">
-             <summary>
-             请求超时时间（ms） 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.RatelimitClientidheader">
-             <summary>
-             客户Header 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.RatelimitQuotaexceededmessage">
-             <summary>
-             超过限制提示语 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.RatelimitRatelimitcounterprefix">
-             <summary>
-             计数前缀 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.RatelimitDisableratelimitheaders">
-             <summary>
-             包含X-Rate-Limit和Rety-After 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.RatelimitHttpstatuscode">
-             <summary>
-             超过限制Http状态码 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryScheme">
-             <summary>
-             Http协议（http,https） 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryHost">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryPort">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryType">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryToken">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryConfigurationkey">
-             <summary>
-             配置key 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryPollinginterval">
-             <summary>
-             轮询间隔 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServicediscoveryNamespace">
-             <summary>
-             命名空间 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.ServiceDiscoveryEnabled">
-             <summary>
-             服务发现开启 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.GlobalConfiguration.Enabled">
-             <summary>
-             配置启动
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Project">
+        <member name="T:Hx.Gateway.Core.Entity.TgProject">
              <summary>
              项目表
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Project.Id">
-             <summary>
-             主键Id 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Project.ProjectName">
+        <member name="P:Hx.Gateway.Core.Entity.TgProject.Name">
              <summary>
              项目名称 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Project.OrderIndex">
+        <member name="P:Hx.Gateway.Core.Entity.TgProject.SortIndex">
              <summary>
              排序字段 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Project.Enabled">
+        <member name="P:Hx.Gateway.Core.Entity.TgProject.Status">
              <summary>
-             启用 
+             状态字段 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Project.CreateTime">
-             <summary>
-             创建时间 
+        <member name="P:Hx.Gateway.Core.Entity.TgProject.Routes">
+            <summary>
+            路由配置
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Project.UpdateTime">
-             <summary>
-             编辑时间 
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Route">
+        <member name="T:Hx.Gateway.Core.Entity.TgRoute">
              <summary>
              路由表
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.Id">
-             <summary>
-             主键ID 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.ProjectId">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.ProjectId">
              <summary>
              项目Id 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.DownstreamPathTemplate">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DownstreamPathTemplate">
              <summary>
              下游的路由模板，即真实处理请求的路径模板 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.UpstreamPathTemplate">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.UpstreamPathTemplate">
              <summary>
              上游请求的模板，即用户真实请求的链接 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.UpstreamHttpMethod">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.UpstreamHttpMethod">
              <summary>
              上游请求的http方法（数组：GET、POST、PUT） 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.DownstreamHttpMethod">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DownstreamHttpMethod">
              <summary>
              下游请求的http方法（数组：GET、POST、PUT） 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.DownstreamHttpVersion">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DownstreamHttpVersion">
              <summary>
               下游Http版本 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.RequestIdKey">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.RequestIdKey">
              <summary>
               请求Id 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.RouteIsCaseSensitive">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.RouteIsCaseSensitive">
              <summary>
               开启上下游路由模板大小写匹配 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.ServiceName">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.ServiceName">
              <summary>
               服务名 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.ServiceNamespace">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.ServiceNamespace">
              <summary>
               服务命名空间 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.DownstreamScheme">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DownstreamScheme">
              <summary>
              请求的方式，如：http,htttps 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.CacheTtlseconds">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.FileCacheOptions">
              <summary>
-             请求缓存过期时间（需使用Ocelot.Cache.CacheManager） 
+             缓存配置
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.FileCacheOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.QoSOptions">
+            <summary>
+            服务质量
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.QoSOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.LoadBalancerOptions">
+             <summary>
+              负载均衡
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.RateLimitOptions">
+             <summary>
+             限制配置
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.AuthenticationOptions">
+             <summary>
+              身份认证
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.AuthenticationOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.HttpHandlerOptions">
+             <summary>
+              HttpHandler配置
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.UpstreamHost">
+             <summary>
+              该特性允许您拥有基于上游主机的路由。
+              它的工作原理是查看客户端使用的主机头，然后将其作为我们用来标识路由的信息的一部分
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.CacheRegion">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DelegatingHandlers">
              <summary>
-             缓存区域（需使用Ocelot.Cache.CacheManager） 
+              委托处理程序，需要实现DelegatingHandler类
+              数组[ "FakeHandlerTwo", "FakeHandler"]
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.QosExceptionsallowedbeforebreaking">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.Priority">
              <summary>
-              
+              你可以通过在ocelot.json中包含“Priority”属性来定义你想要的路由匹配Upstream HttpRequest的顺序
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.QosDurationofbreak">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.QosTimeoutvalue">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.LoadbalancerType">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.LoadbalancerKey">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.LoadbalancerExpiry">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.RatelimitEnableratelimiting">
-             <summary>
-             是否启用流量限制
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.RatelimitPeriod">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.RatelimitPeriodtimespan">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.RatelimitLimit">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.RatelimitWhitelist">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.AuthenticationAuthenticationproviderkey">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.AuthenticationAllowedscopes">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.HttphandlerAllowautoredirect">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.HttphandlerUsecookiecontainer">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.HttphandlerUsetracing">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.HttphandlerUseproxy">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.HttphandlerMaxconnectionsperserver">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.UpstreamHost">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.Key">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.DelegatingHandlers">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.Priority">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.Timeout">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.DangerousAcceptAnyServerCertificateValidator">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DangerousAcceptAnyServerCertificateValidator">
              <summary>
              评估危险服务验证 
+             如果要忽略SSL警告/错误，请在路由配置中设置以下参数
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.SecurityIpallowedlist">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.SecurityIpblockedlist">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Route.Sort">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.Sort">
             <summary>
             排序
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.Enabled">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.Status">
              <summary>
-              
+              状态
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.RouteHostPorts">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.DownstreamHostAndPorts">
             <summary>
             路由地址配置
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Route.RouteProperties">
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.RouteProperties">
             <summary>
             路由属性
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.RouteHostPort">
+        <member name="T:Hx.Gateway.Core.Entity.TgRouteHostPort">
              <summary>
              路由地址配置表
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteHostPort.Id">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteHostPort.Host">
              <summary>
-             主键Id 
+              路由主机
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteHostPort.Host">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteHostPort.Port">
              <summary>
-              
+              端口
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteHostPort.Port">
-             <summary>
-              
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.RouteHostPort.RouteId">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteHostPort.RouteId">
              <summary>
              路由Id 
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.RouteProperty">
+        <member name="T:Hx.Gateway.Core.Entity.TgRouteProperty">
              <summary>
              路由属性表
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteProperty.Id">
-             <summary>
-             主键Id 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.RouteProperty.Key">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteProperty.Key">
              <summary>
               
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteProperty.Value">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteProperty.Value">
              <summary>
               
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteProperty.RouteId">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteProperty.RouteId">
              <summary>
              路由Id 
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RouteProperty.Type">
+        <member name="P:Hx.Gateway.Core.Entity.TgRouteProperty.Type">
              <summary>
               
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.SettingBak">
-             <summary>
-             配置备份
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.SettingBak.Id">
-             <summary>
-             主键Id 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.SettingBak.BakTime">
-             <summary>
-             备份时间
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.SettingBak.BakJson">
-             <summary>
-             备份内容
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.SettingBak.Remark">
-            <summary>
-            备注
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.SettingBak.ConsulKey">
-            <summary>
-            ConsulKey
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.SettingBak.ConsulDc">
-            <summary>
-            ConsulDc
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.UserAccount">
+        <member name="T:Hx.Gateway.Core.Entity.TgUserAccount">
              <summary>
              用户表
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.UserAccount.ID">
-             <summary>
-             主键Id 
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.UserAccount.Account">
+        <member name="P:Hx.Gateway.Core.Entity.TgUserAccount.Account">
              <summary>
              账户
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.UserAccount.Password">
+        <member name="P:Hx.Gateway.Core.Entity.TgUserAccount.Password">
              <summary>
              密码
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.UserAccount.OpenId">
+        <member name="P:Hx.Gateway.Core.Entity.TgUserAccount.OpenId">
             <summary>
             OpenId
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.UserAccount.Name">
+        <member name="P:Hx.Gateway.Core.Entity.TgUserAccount.Name">
             <summary>
             姓名
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.UserAccount.Enabled">
+        <member name="P:Hx.Gateway.Core.Entity.TgUserAccount.Status">
             <summary>
-            是否启动
+            状态
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.StateEnum.Disable">
+        <member name="T:Hx.Gateway.Core.Enum.DictTypeEnum">
             <summary>
-            禁用
+            字典类型枚举
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.StateEnum.Enable">
+        <member name="T:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum">
+            <summary>
+            网关异常代码
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_EMPLOYEE_FAIL">
+            <summary>
+            新增雇员失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_ROLE_FAIL">
+            <summary>
+            新增角色失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.RESET_PASSWORD_FAIL">
+            <summary>
+            重置密码失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ACCOUNT_OR_PASSWORD_ERROR">
+            <summary>
+            用户名或密码错误
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ACCOUNT_NON_EXISTENT">
+            <summary>
+            用户不存在
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ACCOUNT_DISABLED">
+            <summary>
+            当前用户已被管理员停用
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_EMPLOYEE_FAIL">
+            <summary>
+            删除雇员失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_GLOBAL_CONFIGURATION_FAIL">
+            <summary>
+            删除雇员角色失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.UPDATE_GLOBAL_CONFIGURATION_FAIL">
+            <summary>
+            /编辑全局配置失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_GLOBAL_CONFIGURATION_FAIL">
+            <summary>
+            新增全局配置失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_PROJECT_FAIL">
+            <summary>
+            新增项目失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_PROJECT_FAIL">
+            <summary>
+            删除项目失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL">
+            <summary>
+            编辑项目失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ENABLE_PROJECT_FAIL">
+            <summary>
+            启动项目失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DISABLE_PROJECT_FAIL">
+            <summary>
+            禁用项目失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_ROUTE_FAIL">
+            <summary>
+            删除路由失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ENABLE_ROUTE_FAIL">
+            <summary>
+            启动路由失败
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DISABLE_ROUTE_FAIL">
+            <summary>
+            禁用路由失败
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Enum.StatusEnum">
+            <summary>
+            通用状态枚举
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Enum.StatusEnum.Enable">
             <summary>
             启用
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.StateEnum.Deleted">
+        <member name="F:Hx.Gateway.Core.Enum.StatusEnum.Disable">
             <summary>
-            已删除
+            停用
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.IConsulHttp">
+        <member name="T:Hx.Gateway.Core.LogoExtension">
             <summary>
-            Consul Http客户端
+            logo显示
             </summary>
         </member>
-        <member name="M:Hx.Gateway.Core.IConsulHttp.GetConsulKeyValueAsync(System.String,System.String)">
+        <member name="M:Hx.Gateway.Core.LogoExtension.AddLogoDisplay(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
-            读取Consul指定配置
+            添加logo显示
             </summary>
-            <param name="settingPath"></param>
-            <param name="dc"></param>
+            <param name="services"></param>
+        </member>
+        <member name="T:Hx.Gateway.Core.OcelotCache`1">
+            <summary>
+            网关缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Hx.Gateway.Core.RedisInternalConfigurationRepository.AddOrReplace(Ocelot.Configuration.IInternalConfiguration)">
+            <summary>
+            设置配置信息
+            </summary>
+            <param name="internalConfiguration">配置信息</param>
             <returns></returns>
         </member>
-        <member name="P:Hx.Gateway.Core.AppInfoOptions.TotpLogin">
+        <member name="M:Hx.Gateway.Core.RedisInternalConfigurationRepository.Get">
             <summary>
-            是否使用Totp登录
+            从缓存中获取配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.EnableTimer">
+            <summary>
+            是否启用定时器，默认不启动
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.Totp._timeStepTicks">
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.TimerDelay">
             <summary>
-            timestep
-            30s(Recommend)
+            定时器周期，单位（毫秒），默认30分总自动更新一次
             </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ClusterEnvironment">
+            <summary>
+            是否启用集群环境，如果非集群环境直接本地缓存+数据库即可
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ClientAuthorization">
+            <summary>
+            是否启用客户端授权,默认不开启
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.CacheTime">
+            <summary>
+            服务器缓存时间，默认30分钟
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ClientKey">
+            <summary>
+            客户端标识，默认 client_id
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ClientRateLimit">
+            <summary>
+            是否开启自定义限流，默认不开启
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.AuthenticationOptions">
+            <summary>
+            为了验证路由，然后使用Ocelot的任何基于声明的功能，如授权或使用令牌的值修改请求。
+            用户必须像往常一样在他们的Startup.cs中注册身份验证服务，
+            但每次注册时都提供一个方案(身份验证提供者密钥)。
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.AuthenticationOptions.AuthenticationProviderKey">
+            <summary>
+            当Ocelot运行时，它会查看这个AuthenticationProviderKey并检查是否有一个使用给定密钥注册的身份验证提供程序。
+            如果没有，那么Ocelot将不会启动，如果有，那么Route将在执行时使用该提供程序
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.AuthenticationOptions.AllowedScopes">
+            <summary>
+            允许的范围
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.DownstreamHostAndPortOptions">
+            <summary>
+            它定义希望向其转发请求的任何下游服务的主机和端口。
+            通常这将只包含一个条目，但有时你可能想要负载平衡请求到你的下游服务，
+            Ocelot允许你添加多个条目，然后选择负载均衡器。
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.DownstreamHostAndPortOptions.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.DownstreamHostAndPortOptions.Port">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.FileCacheOptions">
+            <summary>
+            Ocelot目前支持CacheManager项目提供的一些非常基本的缓存。
+            这是一个了不起的项目，解决了很多缓存问题。我
+            建议使用这个包来缓存Ocelot
+            Install-Package Ocelot.Cache.CacheManager
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.FileCacheOptions.TtlSeconds">
+            <summary>
+            如设置为15，这意味着缓存将在15秒后过期
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.FileCacheOptions.Region">
+            <summary>
+            区域
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.GlobalRateLimitOptions">
+            <summary>
+            全局限流配置
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.GlobalRateLimitOptions.DisableRateLimitHeaders">
+            <summary>
+            该值指定是否禁用X-Rate-Limit和Retry-After报头
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.GlobalRateLimitOptions.QuotaExceededMessage">
+            <summary>
+            此值指定超过的消息
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.GlobalRateLimitOptions.HttpStatusCode">
+            <summary>
+            此值指定限速发生时返回的HTTP状态码
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.GlobalRateLimitOptions.ClientIdHeader">
+            <summary>
+            允许您指定应用于标识客户端的标头。默认情况下是" ClientId "
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions">
+            <summary>
+            使用路由配置中的HttpHandlerOptions设置HttpHandler行为
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions.AllowAutoRedirect">
+            <summary>
+            AllowAutoRedirect是一个指示请求是否应该遵循重定向响应的值。
+            如果请求应该自动跟随来自下游资源的重定向响应，
+            则将其设置为true;否则错误。默认值为false
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions.UseCookieContainer">
+            <summary>
+            UseCookieContainer是一个值，指示处理程序是否使用cookie econtainer属性存储服务器cookie，并在发送请求时使用这些cookie。默认值为false。请注意，如果您正在使用CookieContainer, 
+            Ocelot会为每个下游服务缓存HttpClient。
+            这意味着对DownstreamService的所有请求都将共享相同的cookie
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions.UseTracing">
+            <summary>
+            是否使用跟踪
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions.UseProxy">
+            <summary>
+            是否使用代理
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions.MaxConnectionsPerServer">
+            <summary>
+            这将控制内部HttpClient将打开多少个连接。这可以在Route或全局级别设置。
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions">
+            <summary>
+            Ocelot可以为每条路由在可用的下游服务之间进行负载平衡。这意味着您可以扩展您的下游服务，Ocelot可以有效地使用它们
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions.Type">
+            <summary>
+            可用的负载均衡器类型
+            LeastConnection:跟踪哪些服务正在处理请求，并将新请求发送给现有请求最少的服务。算法状态并不分布在Ocelot的集群中
+            RoundRobin:循环可用的服务并发送请求。算法状态并不分布在Ocelot的集群中
+            NoLoadBalancer:从配置或服务发现中获取第一个可用服务
+            CookieStickySessions :使用cookie将所有请求粘贴到特定的服务器
+            Custom Load Balancers:自定义类型，需要实现ILoadBalancer
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions.Key">
+            <summary>
+            Key:这是您希望用于粘滞会话的cookie的密钥
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions.Expiry">
+            <summary>
+            这是您希望会话被卡住的毫秒数
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode">
+            <summary>
+            Ocelot全局配置节点
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.ServiceDiscoveryProvider">
+            <summary>
+            服务发现
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.RequestIdKey">
+            <summary>
+            请求id
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.RateLimitOptions">
+            <summary>
+            限流配置
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.OcelotRoot">
+            <summary>
+            Ocelot配置
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRoot.Routes">
+            <summary>
+            路由配置
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRoot.GlobalConfiguration">
+            <summary>
+            全局配置
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode">
+            <summary>
+            Ocelot路由节点配置
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.DownstreamPathTemplate">
+             <summary>
+             下游的路由模板，即真实处理请求的路径模板 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.UpstreamPathTemplate">
+             <summary>
+             下游的路由模板，即真实处理请求的路径模板 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.DownstreamHttpMethod">
+            <summary>
+            下游请求的http方法
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.UpstreamHttpMethod">
+             <summary>
+             上游请求的http方法（数组：GET、POST、PUT） 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.RequestIdKey">
+             <summary>
+             请求Id 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.RouteIsCaseSensitive">
+             <summary>
+             开启上下游路由模板大小写匹配 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.ServiceName">
+             <summary>
+              服务名 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.DownstreamScheme">
+             <summary>
+             请求的方式，如：http,htttps 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.DownstreamHostAndPorts">
+            <summary>
+            下游请求地址和端口
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.LoadBalancerOptions">
+            <summary>
+            负载均衡
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotRouteNode.DelegatingHandlers">
+            <summary>
+            委托
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.QoSOptions">
+            <summary>
+            Quality of Service
+            Ocelot当前只支持一个QoS能力。
+            如果您想在向下游服务发出请求时使用断路器，
+            则可以在每个路由的基础上进行设置。它使用了一个叫做Polly的很棒的.net库。
+            Install-Package Ocelot.Provider.Polly
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.QoSOptions.Enabled">
+            <summary>
+            流量调控开启
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.QoSOptions.ExceptionsAllowedBeforeBreaking">
+            <summary>
+            要实现此规则，必须对ExceptionsAllowedBeforeBreaking设置一个大于0的数字
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.QoSOptions.DurationOfBreak">
+            <summary>
+            断路时间是指断路器被跳闸后将保持1秒的开启状态
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.QoSOptions.TimeoutValue">
+            <summary>
+            表示如果一个请求超过5秒，它将自动超时。
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions">
+            <summary>
+            Ocelot支持上游请求的速率限制，这样下游服务就不会过载
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions.ClientWhitelist">
+            <summary>
+            这是一个包含客户端白名单的数组。这意味着该数组中的客户端将不受速率限制的影响
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions.EnableRateLimiting">
+            <summary>
+            此值指定启用端点速率限制
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions.Period">
+            <summary>
+            该值指定限制适用的时间段，如1s、5m、1h、1d等。
+            如果在此时间段内发出的请求超过限制，则需要等待PeriodTimespan结束后再发出另一个请求
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions.PeriodTimespan">
+            <summary>
+            这个值指定我们可以在特定的秒数后重试
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.RateLimitOptions.Limit">
+            <summary>
+            此值指定客户端在指定时间段内可以发出的最大请求数
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions">
+            <summary>
+            Ocelot允许您指定一个服务发现提供程序，并使用它来为Ocelot转发请求的下游服务找到主机和端口。目前，
+            这只在GlobalConfiguration部分中得到支持，
+            这意味着相同的服务发现提供者将用于您在Route级别指定ServiceName的所有路由
+            Install-Package Ocelot.Provider.Consul
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Enabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Scheme">
+            <summary>
+            Http协议（http,https） 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Host">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Token">
+            <summary>
+            如果您正在使用ACL与Consul Ocelot支持添加X-Consul-Token头。为了使其工作，您必须添加下面的附加属性
+            Ocelot将把这个令牌添加到Consul客户端，用于发出请求，然后用于每个请求
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.ConfigurationKey">
+            <summary>
+            配置key
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.PollingInterval">
+            <summary>
+            轮询间隔以毫秒为单位，告诉Ocelot多久调用Consul更改一次服务配置
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Namespace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.ClientRoleModel.CacheTime">
+            <summary>
+            缓存时间
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.ClientRoleModel.Role">
+            <summary>
+            是否有访问权限
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.DiffClientRateLimitCounter">
+            <summary>
+            客户端限流计数器
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitCounter.Timestamp">
+            <summary>
+            最后请求时间
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitCounter.TotalRequests">
+            <summary>
+            请求总数
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.RateLimitPath">
+            <summary>
+            限流请求的地址
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.Limit">
+            <summary>
+            限制的访问次数
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.Period">
+            <summary>
+            限流的策略，如  1s 2m 3h 4d
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.ClientId">
+            <summary>
+            客户端ID
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor">
+            <summary>
+            实现客户端限流处理器
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckClientRateLimitResultAsync(System.String,System.String)">
+            <summary>
+            校验客户端限流结果
+            </summary>
+            <param name="clientid">客户端ID</param>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckReRouteRuleAsync(System.String)">
+            <summary>
+            检验是否启用限流规则
+            </summary>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckClientRateLimitAsync(System.String,System.String)">
+            <summary>
+            校验客户端限流规则
+            </summary>
+            <param name="clientid">客户端ID</param>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckClientReRouteWhiteListAsync(System.String,System.String)">
+            <summary>
+            校验是否设置了路由白名单
+            </summary>
+            <param name="clientid">客户端ID</param>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckRateLimitResult(System.Collections.Generic.List{Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions})">
+            <summary>
+            校验完整的限流规则
+            </summary>
+            <param name="rateLimitOptions">限流配置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.ConvertToSecond(System.String)">
+            <summary>
+            根据限流标识，获取周期秒数
+            </summary>
+            <param name="timeSpan">标识</param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.RateLimitOptionsError">
+            <summary>
+            限流错误信息
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.IClientRateLimitProcessor">
+            <summary>
+            客户端限流处理器
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitProcessor.CheckClientRateLimitResultAsync(System.String,System.String)">
+            <summary>
+            校验客户端限流结果
+            </summary>
+            <param name="clientid">客户端ID</param>
+            <param name="path">应用策略地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository">
+            <summary>
+            客户端限流相关仓储接口
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository.CheckReRouteRuleAsync(System.String)">
+            <summary>
+            校验是否启用限流规则
+            </summary>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository.CheckClientRateLimitAsync(System.String,System.String)">
+            <summary>
+            校验客户端限流规则
+            </summary>
+            <param name="clientid">客户端ID</param>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository.CheckClientReRouteWhiteListAsync(System.String,System.String)">
+            <summary>
+            校验是否设置了路由白名单
+            </summary>
+            <param name="clientid">客户端ID</param>
+            <param name="path">请求地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.RateLimit.Middleware.DiffClientRateLimitMiddleware">
+            <summary>
+            自定义客户端限流中间件
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.RateLimitRuleModel.RateLimit">
+            <summary>
+            是否启用限流
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.RateLimit.RateLimitRuleModel.RateLimitOptions">
+            <summary>
+            限流配置信息
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.SeedData.TgUserAccountSeedData">
+            <summary>
+            系统用户表种子数据
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.SeedData.TgUserAccountSeedData.HasData">
+            <summary>
+            种子数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.DiffClientRateLimitApplicationBuilderExtensions">
+            <summary>
+            自定义客户端限流中间件扩展
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.DiffClientRateLimitApplicationBuilderExtensions.UseDiffClientRateLimit(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用自定义限流
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

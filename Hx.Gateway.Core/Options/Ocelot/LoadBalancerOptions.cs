@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Options.Ocelot;
+namespace Hx.Gateway.Core.Options.Ocelot;
 /// <summary>
 /// Ocelot可以为每条路由在可用的下游服务之间进行负载平衡。这意味着您可以扩展您的下游服务，Ocelot可以有效地使用它们
 /// </summary>

@@ -1,30 +1,29 @@
-﻿using Ocelot.Cache;
-using QrF.Core.GatewayExtension.Configuration;
-using QrF.Core.GatewayExtension.Configuration.Model;
-using System;
+﻿using Hx.Gateway.Core.Options;
+using Microsoft.Extensions.Options;
+using Ocelot.Cache;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Web.Core.RateLimit
+namespace Hx.Gateway.Core.RateLimit
 {
     /// <summary>
     /// 实现客户端限流处理器
     /// </summary>
     public class DiffClientRateLimitProcessor : IClientRateLimitProcessor
     {
-        private readonly CusOcelotConfiguration _options;
+        private readonly OcelotSettingsOptions _options;
         private readonly IOcelotCache<ClientRoleModel> _ocelotCache;
         private readonly IOcelotCache<RateLimitRuleModel> _rateLimitRuleCache;
         private readonly IOcelotCache<DiffClientRateLimitCounter?> _clientRateLimitCounter;
         private readonly IClientRateLimitRepository _clientRateLimitRepository;
         private static readonly object _processLocker = new object();
-        public DiffClientRateLimitProcessor(CusOcelotConfiguration options, 
+        public DiffClientRateLimitProcessor(IOptions<OcelotSettingsOptions> options, 
             IClientRateLimitRepository clientRateLimitRepository, 
             IOcelotCache<DiffClientRateLimitCounter?> clientRateLimitCounter, 
             IOcelotCache<ClientRoleModel> ocelotCache, 
             IOcelotCache<RateLimitRuleModel> rateLimitRuleCache)
         {
-            _options = options;
+            _options = options.Value;
             _clientRateLimitRepository = clientRateLimitRepository;
             _clientRateLimitCounter = clientRateLimitCounter;
             _ocelotCache = ocelotCache;
@@ -69,7 +68,7 @@ namespace Hx.Gateway.Web.Core.RateLimit
         /// <returns></returns>
         private async Task<bool> CheckReRouteRuleAsync(string path)
         {
-            var region = _options.RedisOcelotKeyPrefix + "CheckReRouteRuleAsync";
+            var region = "CheckReRouteRuleAsync";
             var key = path;
             var cacheResult = _ocelotCache.Get(key, region);
             if (cacheResult != null)
@@ -93,7 +92,7 @@ namespace Hx.Gateway.Web.Core.RateLimit
         /// <returns></returns>
         private async Task<(bool RateLimit, List<DiffClientRateLimitOptions> RateLimitOptions)> CheckClientRateLimitAsync(string clientid, string path)
         {
-            var region = _options.RedisOcelotKeyPrefix + "CheckClientRateLimitAsync";
+            var region = "CheckClientRateLimitAsync";
             var key = clientid + path;
             var cacheResult = _rateLimitRuleCache.Get(key, region);
             if (cacheResult != null)
@@ -116,7 +115,7 @@ namespace Hx.Gateway.Web.Core.RateLimit
         /// <returns></returns>
         private async Task<bool> CheckClientReRouteWhiteListAsync(string clientid, string path)
         {
-            var region = _options.RedisOcelotKeyPrefix + "CheckClientReRouteWhiteListAsync";
+            var region = "CheckClientReRouteWhiteListAsync";
             var key = region + clientid + path;
             var cacheResult = _ocelotCache.Get(key, region);
             if (cacheResult != null)
@@ -145,9 +144,9 @@ namespace Hx.Gateway.Web.Core.RateLimit
                 {
                     var counter = new DiffClientRateLimitCounter(DateTime.UtcNow, 1);
                     //分别对每个策略校验
-                    var enablePrefix = _options.RedisOcelotKeyPrefix + "RateLimitRule";
-                    var key = CusKeyHelper.ComputeCounterKey(enablePrefix, op.ClientId, op.Period, op.RateLimitPath);
-                    var periodTimestamp = CusKeyHelper.ConvertToSecond(op.Period);
+                    var enablePrefix = "RateLimitRule";
+                    var key = $"{enablePrefix}_{op.ClientId}_{op.Period}_{op.RateLimitPath}";
+                    var periodTimestamp = ConvertToSecond(op.Period);
                     lock (_processLocker)
                     {
                         var rateLimitCounter = _clientRateLimitCounter.Get(key, enablePrefix);
@@ -176,6 +175,32 @@ namespace Hx.Gateway.Web.Core.RateLimit
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// 根据限流标识，获取周期秒数
+        /// </summary>
+        /// <param name="timeSpan">标识</param>
+        /// <returns></returns>
+        private int ConvertToSecond(string timeSpan)
+        {
+            var l = timeSpan.Length - 1;
+            var value = timeSpan.Substring(0, l);
+            var type = timeSpan.Substring(l, 1);
+
+            switch (type)
+            {
+                case "d":
+                    return Convert.ToInt32(double.Parse(value) * 24 * 3600);
+                case "h":
+                    return Convert.ToInt32(double.Parse(value) * 3600);
+                case "m":
+                    return Convert.ToInt32(double.Parse(value) * 60);
+                case "s":
+                    return Convert.ToInt32(value);
+                default:
+                    throw new FormatException($"{timeSpan} can't be converted to TimeSpan, unknown type {type}");
+            }
         }
     }
 }

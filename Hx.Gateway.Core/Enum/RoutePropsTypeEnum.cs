@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Application.Enum;
+namespace Hx.Gateway.Core.Enum;
 public enum RoutePropsTypeEnum
 {
     Header = 1,

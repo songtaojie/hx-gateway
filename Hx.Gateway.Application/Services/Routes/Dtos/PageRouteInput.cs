@@ -1,16 +1,11 @@
-﻿using Hx.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hx.Sdk.Entity;
 
 namespace Hx.Gateway.Application.Services.Routes.Dtos
 {
     /// <summary>
     /// 分页查询路由
     /// </summary>
-    public class PageRouteInput : BasePageInput
+    public class PageRouteInput : BasePageParam
     {
         /// <summary>
         /// 项目Id

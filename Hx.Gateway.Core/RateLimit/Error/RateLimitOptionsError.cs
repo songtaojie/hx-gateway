@@ -4,7 +4,7 @@
 
 using Ocelot.Errors;
 
-namespace Hx.Gateway.Web.Core.RateLimit;
+namespace Hx.Gateway.Core.RateLimit;
 /// <summary>
 /// 限流错误信息
 /// </summary>

@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dtos\**" />
+    <EmbeddedResource Remove="Dtos\**" />
+    <None Remove="Dtos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Hx.Gateway.Core.xml" />
   </ItemGroup>
 
@@ -14,10 +20,14 @@
     <PackageReference Include="Hx.Sdk.Cache" Version="6.0.0" />
     <PackageReference Include="Hx.Sdk.Core" Version="6.0.0" />
     <PackageReference Include="Hx.Sdk.Sqlsugar" Version="1.0.0" />
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Ocelot" Version="18.0.0" />
+    <PackageReference Include="Ocelot.Cache.CacheManager" Version="18.0.0" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
+    <Folder Include="RateLimit\" />
   </ItemGroup>
 
 </Project>
