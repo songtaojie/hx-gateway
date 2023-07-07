@@ -13,6 +13,12 @@ namespace Hx.Gateway.Core.Entity
     public class TgGlobalConfiguration : EntityBase
     {
         /// <summary>
+        /// 项目Id 
+        ///</summary>
+        [SugarColumn(ColumnDescription = "项目Id")]
+        public long ProjectId { get; set; }
+
+        /// <summary>
         /// 基础地址 
         ///</summary>
         [SugarColumn(ColumnDescription = "基础地址", IsNullable = true, Length = 200)]

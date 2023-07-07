@@ -8,6 +8,11 @@ namespace Hx.Gateway.Core.Options;
 public class OcelotSettingsOptions : IPostConfigureOptions<OcelotSettingsOptions>
 {
     /// <summary>
+    /// 项目编码
+    /// </summary>
+    public string ProjectCode { get; set; }
+
+    /// <summary>
     /// 是否启用定时器，默认不启动
     /// </summary>
     public bool EnableTimer { get; set; } = false;
