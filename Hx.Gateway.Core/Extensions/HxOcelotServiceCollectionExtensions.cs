@@ -40,15 +40,26 @@ public static class HxOcelotServiceCollectionExtensions
         ////http输出转换类
         //builder.Services.AddSingleton<IHttpResponder, HttpContextResponder>();
         //添加数据库存储
+        var dbConnectionConfig = new DbConnectionConfig()
+        {
+            DbType = DbType.Sqlite,
+            ConnectionString = "./Hx.Gateway.db",
+            EnableInitDb = true,
+            EnableInitSeed = true,
+            EnableUnderLine = true,
+            EnableSqlLog = true,
+        };
+        dbAction?.Invoke(dbConnectionConfig);
         builder.Services.AddSqlSugar(configAction =>
         {
             configAction.ConnectionConfigs = new DbConnectionConfig[]
             {
-                new DbConnectionConfig
-                { 
-                    
-                }
+                dbConnectionConfig
             };
+        },db => 
+        {
+            SqlSugarConfigProvider.SetAopLog(db);
+            SqlSugarConfigProvider.SetDbConfig()
         });
         //配置信息
         builder.Services.Configure(option);

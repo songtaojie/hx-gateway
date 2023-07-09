@@ -2,6 +2,7 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
+using Hx.Sdk.SqlSugar;
 using Microsoft.Extensions.Options;
 
 namespace Hx.Gateway.Core.Options;
@@ -46,6 +47,11 @@ public class OcelotSettingsOptions : IPostConfigureOptions<OcelotSettingsOptions
     /// 是否开启自定义限流，默认不开启
     /// </summary>
     public bool ClientRateLimit { get; set; } = false;
+
+    /// <summary>
+    /// 数据库连接配置
+    /// </summary>
+    public DbConnectionConfig DbConnectionConfig { get; set; }
 
     public void PostConfigure(string name, OcelotSettingsOptions options)
     {
