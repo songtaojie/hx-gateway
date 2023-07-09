@@ -11,8 +11,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.19" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Hx.Gateway.Application\Hx.Gateway.Application.csproj" />
-  </ItemGroup>
-
 </Project>

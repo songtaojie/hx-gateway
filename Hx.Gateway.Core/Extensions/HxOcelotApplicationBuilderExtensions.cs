@@ -2,14 +2,19 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using CacheManager.Core;
-using Hx.Gateway.Core.Options;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Ocelot;
+using Ocelot.Configuration;
 using Ocelot.Configuration.Creator;
-using Ocelot.Configuration.Setter;
+using Ocelot.Configuration.Repository;
+using Ocelot.Logging;
+using Ocelot.Middleware;
 using Ocelot.Responses;
-using QrF.Core.GatewayExtension.Middleware.Pipeline;
 using System.Diagnostics;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hx.Gateway.Web.Core.Extensions;
 /// <summary>
@@ -32,35 +37,18 @@ public static class HxOcelotApplicationBuilderExtensions
 
     public static async Task<IApplicationBuilder> UseHxOcelot(this IApplicationBuilder builder, OcelotPipelineConfiguration pipelineConfiguration)
     {
-        var configuration = await CreateConfigurationExt(builder);
+        //重写创建配置方法
+        var configuration = await CreateConfiguration(builder);
 
         ConfigureDiagnosticListener(builder);
-        //CacheChangeListener(builder);
+
         return CreateOcelotPipeline(builder, pipelineConfiguration);
     }
-    ///// <summary>
-    ///// 添加缓存数据变更订阅
-    ///// </summary>
-    ///// <param name="app"></param>
-    ///// <returns></returns>
-    //private static void CacheChangeListener(IApplicationBuilder app)
-    //{
-    //    var options = app.ApplicationServices.GetService<IOptions<OcelotSettingsOptions>>();
-    //    var ocelotSettings = options.Value;
-    //    var cacheManager = app.ApplicationServices.GetService<ICache>();
-    //    if (ocelotSettings.ClusterEnvironment)
-    //    {
-    //        //订阅满足条件的所有事件
-    //        //RedisHelper.PSubscribe(new[] { config.RedisOcelotKeyPrefix + "*" }, message =>
-    //        //{
-    //        //    var key = message.Channel;
-    //        //    _cache.Remove(key); //直接移除，如果有请求从redis里取
-    //        //});
-    //    }
-    //}
+
     private static IApplicationBuilder CreateOcelotPipeline(IApplicationBuilder builder, OcelotPipelineConfiguration pipelineConfiguration)
     {
-        builder.BuildExtOcelotPipeline(pipelineConfiguration);
+        builder.BuildOcelotPipeline(pipelineConfiguration);
+
         /*
         inject first delegate into first piece of asp.net middleware..maybe not like this
         then because we are updating the http context in ocelot it comes out correct for
@@ -74,94 +62,25 @@ public static class HxOcelotApplicationBuilderExtensions
 
     private static async Task<IInternalConfiguration> CreateConfiguration(IApplicationBuilder builder)
     {
-        // make configuration from file system?
-        // earlier user needed to add ocelot files in startup configuration stuff, asp.net will map it to this
-        var fileConfig = builder.ApplicationServices.GetService<IOptionsMonitor<FileConfiguration>>();
-
-        // now create the config
+        //提取文件配置信息
+        var fileConfig = await builder.ApplicationServices.GetService<IFileConfigurationRepository>().Get();
         var internalConfigCreator = builder.ApplicationServices.GetService<IInternalConfigurationCreator>();
-        var internalConfig = await internalConfigCreator.Create(fileConfig.CurrentValue);
-
-        //Configuration error, throw error message
+        var internalConfig = await internalConfigCreator.Create(fileConfig.Data);
+        //如果配置文件错误直接抛出异常
         if (internalConfig.IsError)
         {
             ThrowToStopOcelotStarting(internalConfig);
         }
-
-        // now save it in memory
+        //配置信息缓存，这块需要注意实现方式，因为后期我们需要改造下满足分布式架构,这篇不做讲解
         var internalConfigRepo = builder.ApplicationServices.GetService<IInternalConfigurationRepository>();
         internalConfigRepo.AddOrReplace(internalConfig.Data);
-
-        fileConfig.OnChange(async (config) =>
-        {
-            var newInternalConfig = await internalConfigCreator.Create(config);
-            internalConfigRepo.AddOrReplace(newInternalConfig.Data);
-        });
-
-        var adminPath = builder.ApplicationServices.GetService<IAdministrationPath>();
-
+        //获取中间件配置委托
         var configurations = builder.ApplicationServices.GetServices<OcelotMiddlewareConfigurationDelegate>();
-
-        // Todo - this has just been added for consul so far...will there be an ordering problem in the future? Should refactor all config into this pattern?
         foreach (var configuration in configurations)
         {
             await configuration(builder);
         }
-
-        if (AdministrationApiInUse(adminPath))
-        {
-            //We have to make sure the file config is set for the ocelot.env.json and ocelot.json so that if we pull it from the
-            //admin api it works...boy this is getting a spit spags boll.
-            var fileConfigSetter = builder.ApplicationServices.GetService<IFileConfigurationSetter>();
-
-            await SetFileConfig(fileConfigSetter, fileConfig);
-        }
-
         return GetOcelotConfigAndReturn(internalConfigRepo);
-    }
-
-    private static async Task<IInternalConfiguration> CreateConfigurationExt(IApplicationBuilder app)
-    {
-        var fileConfig = await app.ApplicationServices.GetService<IFileConfigurationRepository>().Get();
-
-        // now create the config
-        var internalConfigCreator = app.ApplicationServices.GetService<IInternalConfigurationCreator>();
-        var internalConfig = await internalConfigCreator.Create(fileConfig.Data);
-
-        //Configuration error, throw error message
-        if (internalConfig.IsError)
-        {
-            ThrowToStopOcelotStarting(internalConfig);
-        }
-
-        // now save it in memory
-        var internalConfigRepo = app.ApplicationServices.GetService<IInternalConfigurationRepository>();
-        internalConfigRepo.AddOrReplace(internalConfig.Data);
-
-        var configurations = app.ApplicationServices.GetServices<OcelotMiddlewareConfigurationDelegate>();
-
-        // Todo - this has just been added for consul so far...will there be an ordering problem in the future? Should refactor all config into this pattern?
-        foreach (var configuration in configurations)
-        {
-            await configuration(app);
-        }
-
-        return GetOcelotConfigAndReturn(internalConfigRepo);
-    }
-
-    private static bool AdministrationApiInUse(IAdministrationPath adminPath)
-    {
-        return adminPath != null;
-    }
-
-    private static async Task SetFileConfig(IFileConfigurationSetter fileConfigSetter, IOptionsMonitor<FileConfiguration> fileConfig)
-    {
-        var response = await fileConfigSetter.Set(fileConfig.CurrentValue);
-
-        if (IsError(response))
-        {
-            ThrowToStopOcelotStarting(response);
-        }
     }
 
     private static bool IsError(Response response)
@@ -188,6 +107,7 @@ public static class HxOcelotApplicationBuilderExtensions
 
     private static void ConfigureDiagnosticListener(IApplicationBuilder builder)
     {
+        var env = builder.ApplicationServices.GetService<IWebHostEnvironment>();
         var listener = builder.ApplicationServices.GetService<OcelotDiagnosticListener>();
         var diagnosticListener = builder.ApplicationServices.GetService<DiagnosticListener>();
         diagnosticListener.SubscribeWithAdapter(listener);

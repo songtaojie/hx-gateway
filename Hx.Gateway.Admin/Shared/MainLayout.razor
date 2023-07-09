@@ -3,7 +3,7 @@
 <PageTitle>网关管理后台</PageTitle>
 <AntDesign.ProLayout.BasicLayout 
     Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
-                                 MenuData="MenuData" Context="海星网关">
+                                 MenuData="MenuData" >
     <RightContentRender>
         <Hx.Gateway.Admin.Components.RightContent />
     </RightContentRender>
@@ -18,11 +18,19 @@
 @inject IConfiguration configuration
 @code
 {
-    private MenuDataItem[] MenuData { get; set; } = { };
+    private MenuDataItem[] MenuData { get; set; } = new MenuDataItem[]
+    {
+        new MenuDataItem
+        {
+            Path = "/dashboard",
+            Name = "Dashboard",
+            Key = "dashboard",
+            Icon = "dashboard",
+        }
+    };
 
     protected override Task OnInitializedAsync()
     {
-        MenuData = configuration.GetValue<MenuDataItem[]>("Menu", Array.Empty<MenuDataItem>());
         return base.OnInitializedAsync();
     }
 

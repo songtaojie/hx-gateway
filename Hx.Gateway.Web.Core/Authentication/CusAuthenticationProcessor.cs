@@ -28,7 +28,7 @@ namespace Hx.Gateway.Web.Core.Authentication
         /// <returns></returns>
         public async Task<bool> CheckClientAuthenticationAsync(string clientid, string path)
         {
-            var cachePrefix = $"{GatewayCacheConst.OcelotCacheKey}ClientAuthentication";
+            var cachePrefix = $"{CacheConst.OcelotCacheKey}ClientAuthentication";
             var key = $"{cachePrefix}:{clientid}:{path}";
             var cacheResult = _ocelotCache.Get(key, cachePrefix);
             if (cacheResult != null)

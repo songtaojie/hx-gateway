@@ -9,8 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hx.Gateway.Core.Const;
-public class GatewayCacheConst
+public class CacheConst
 {
+    /// <summary>
+    /// 缓存前缀
+    /// </summary>
+    public const string Prefix = "HxOcelot";
     /// <summary>
     /// 路由缓存
     /// </summary>
