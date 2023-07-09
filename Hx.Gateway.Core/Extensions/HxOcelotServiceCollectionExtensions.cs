@@ -40,7 +40,16 @@ public static class HxOcelotServiceCollectionExtensions
         ////http输出转换类
         //builder.Services.AddSingleton<IHttpResponder, HttpContextResponder>();
         //添加数据库存储
-        builder.Services.AddSqlSugar();
+        builder.Services.AddSqlSugar(configAction =>
+        {
+            configAction.ConnectionConfigs = new DbConnectionConfig[]
+            {
+                new DbConnectionConfig
+                { 
+                    
+                }
+            };
+        });
         //配置信息
         builder.Services.Configure(option);
         //builder.Services.AddSingleton(
