@@ -59,7 +59,8 @@ public static class HxOcelotServiceCollectionExtensions
         },db => 
         {
             SqlSugarConfigProvider.SetAopLog(db);
-            SqlSugarConfigProvider.SetDbConfig()
+            SqlSugarConfigProvider.SetDbConfig(dbConnectionConfig);
+            SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig);
         });
         //配置信息
         builder.Services.Configure(option);
