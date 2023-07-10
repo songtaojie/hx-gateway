@@ -16,7 +16,7 @@ using Ocelot.Responses;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Hx.Gateway.Web.Core.Extensions;
+namespace Microsoft.AspNetCore.Builder;
 /// <summary>
 /// 中间件扩展程序
 /// </summary>

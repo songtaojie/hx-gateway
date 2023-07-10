@@ -4,27 +4,106 @@
         <name>Hx.Gateway.Core</name>
     </assembly>
     <members>
-        <member name="T:Hx.Gateway.Core.BaseSelectDto`1">
+        <member name="T:Hx.Gateway.Core.Cache.RedisOcelotCache`1">
             <summary>
-            下拉框
+            自定义缓存实现
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="P:Hx.Gateway.Core.BaseSelectDto`1.Value">
+        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.Add(System.String,`0,System.TimeSpan,System.String)">
             <summary>
-            下拉框的值
+            添加缓存信息
+            </summary>
+            <param name="key">缓存的key</param>
+            <param name="value">缓存的实体</param>
+            <param name="ttl">过期时间</param>
+            <param name="region">缓存所属分类，可以指定分类缓存过期</param>
+        </member>
+        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.ClearRegion(System.String)">
+            <summary>
+            批量移除regin开头的所有缓存记录
+            </summary>
+            <param name="region">缓存分类</param>
+        </member>
+        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.Get(System.String,System.String)">
+            <summary>
+            获取执行的缓存信息
+            </summary>
+            <param name="key">缓存key</param>
+            <param name="region">缓存分类</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.GetKey(System.String,System.String)">
+            <summary>
+            获取格式化后的key
+            </summary>
+            <param name="region">分类标识</param>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.Configuration.Repository.DbFileConfigurationRepository">
+            <summary>
+            数据库配置文件读取
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.BaseSelectDto`1.Label">
+        <member name="M:Hx.Gateway.Core.Configuration.Repository.DbFileConfigurationRepository.Get">
             <summary>
-            下拉框的标签
+            从数据库中获取配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.Configuration.Repository.RedisInternalConfigurationRepository">
+            <summary>
+            使用redis存储内部配置信息
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.BaseTreeDto`1">
+        <member name="M:Hx.Gateway.Core.Configuration.Repository.RedisInternalConfigurationRepository.AddOrReplace(Ocelot.Configuration.IInternalConfiguration)">
             <summary>
-            基础树
+            设置配置信息
             </summary>
-            <typeparam name="T"></typeparam>
+            <param name="internalConfiguration">配置信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.Configuration.Repository.RedisInternalConfigurationRepository.Get">
+            <summary>
+            从缓存中获取配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CacheConst.Prefix">
+            <summary>
+            缓存前缀
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CacheConst.Route">
+            <summary>
+            路由缓存
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CacheConst.ConsulSettingKey">
+            <summary>
+            consul配置关键字
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CacheConst.ConsulDC">
+            <summary>
+            consul DC 库
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CacheConst.AllSelect">
+            <summary>
+            全部下拉框内容
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CacheConst.OcelotCacheKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Const.CommonConst.ConfigId">
+            <summary>
+            默认数据库标识
+            </summary>
         </member>
         <member name="T:Hx.Gateway.Core.Const.DatabaseConfigIdConst">
             <summary>
@@ -34,31 +113,6 @@
         <member name="F:Hx.Gateway.Core.Const.DatabaseConfigIdConst.OcelotSettings">
             <summary>
             网关配置
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.Route">
-            <summary>
-            路由缓存
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.ConsulSettingKey">
-            <summary>
-            consul配置关键字
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.ConsulDC">
-            <summary>
-            consul DC 库
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.AllSelect">
-            <summary>
-            全部下拉框内容
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.GatewayCacheConst.OcelotCacheKey">
-            <summary>
-            
             </summary>
         </member>
         <member name="T:Hx.Gateway.Core.Entity.EntityBaseId">
@@ -134,6 +188,11 @@
         <member name="T:Hx.Gateway.Core.Entity.TgGlobalConfiguration">
              <summary>
              全局配置表
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.ProjectId">
+             <summary>
+             项目Id 
             </summary>
         </member>
         <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.BaseUrl">
@@ -550,35 +609,10 @@
             停用
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.LogoExtension">
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ProjectCode">
             <summary>
-            logo显示
+            项目编码
             </summary>
-        </member>
-        <member name="M:Hx.Gateway.Core.LogoExtension.AddLogoDisplay(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            添加logo显示
-            </summary>
-            <param name="services"></param>
-        </member>
-        <member name="T:Hx.Gateway.Core.OcelotCache`1">
-            <summary>
-            网关缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Hx.Gateway.Core.RedisInternalConfigurationRepository.AddOrReplace(Ocelot.Configuration.IInternalConfiguration)">
-            <summary>
-            设置配置信息
-            </summary>
-            <param name="internalConfiguration">配置信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Core.RedisInternalConfigurationRepository.Get">
-            <summary>
-            从缓存中获取配置信息
-            </summary>
-            <returns></returns>
         </member>
         <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.EnableTimer">
             <summary>
@@ -613,6 +647,11 @@
         <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ClientRateLimit">
             <summary>
             是否开启自定义限流，默认不开启
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.DbConnectionConfig">
+            <summary>
+            数据库连接配置
             </summary>
         </member>
         <member name="T:Hx.Gateway.Core.Options.Ocelot.AuthenticationOptions">
@@ -1123,6 +1162,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Microsoft.AspNetCore.Builder.HxOcelotApplicationBuilderExtensions">
+            <summary>
+            中间件扩展程序
+            </summary>
+        </member>
         <member name="T:Microsoft.AspNetCore.Builder.DiffClientRateLimitApplicationBuilderExtensions">
             <summary>
             自定义客户端限流中间件扩展
@@ -1133,6 +1177,38 @@
             使用自定义限流
             </summary>
             <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加默认的注入方式，所有需要传入的参数都是用默认值
+            </summary>
+            <param name="services"></param>
+            <param name="configuration">配置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Hx.Gateway.Core.Options.OcelotSettingsOptions})">
+            <summary>
+            添加默认的注入方式，所有需要传入的参数都是用默认值
+            </summary>
+            <param name="services"></param>
+            <param name="configuration">配置</param>
+            <param name="option">配置信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Ocelot.DependencyInjection.IOcelotBuilder)">
+            <summary>
+            添加默认的注入方式，所有需要传入的参数都是用默认值
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Ocelot.DependencyInjection.IOcelotBuilder,System.Action{Hx.Gateway.Core.Options.OcelotSettingsOptions})">
+            <summary>
+            添加默认的注入方式，所有需要传入的参数都是用默认值
+            </summary>
+            <param name="builder"></param>
+            <param name="option">配置信息</param>
             <returns></returns>
         </member>
     </members>

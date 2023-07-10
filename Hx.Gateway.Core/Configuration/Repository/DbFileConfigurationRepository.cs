@@ -1,6 +1,7 @@
 ﻿using Hx.Gateway.Core.Entity;
 using Hx.Gateway.Core.Enum;
 using Hx.Gateway.Core.Options;
+using Hx.Sdk.SqlSugar;
 using Hx.Sdk.SqlSugar.Repositories;
 using Microsoft.Extensions.Options;
 using Ocelot.Configuration.File;
@@ -18,9 +19,9 @@ namespace Hx.Gateway.Core.Configuration.Repository
     /// </summary>
     public class DbFileConfigurationRepository : IFileConfigurationRepository
     {
-        private readonly SqlSugarRepository<TgGlobalConfiguration> _rep;
+        private readonly ISqlSugarRepository<TgGlobalConfiguration> _rep;
         private readonly OcelotSettingsOptions _ocelotSettings;
-        public DbFileConfigurationRepository(SqlSugarRepository<TgGlobalConfiguration> rep,
+        public DbFileConfigurationRepository(ISqlSugarRepository<TgGlobalConfiguration> rep,
             IOptions<OcelotSettingsOptions> options)
         {
             _rep = rep;
