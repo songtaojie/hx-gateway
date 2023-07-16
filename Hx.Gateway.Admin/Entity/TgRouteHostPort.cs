@@ -1,18 +1,11 @@
-﻿using Hx.Sdk.Common;
-
-namespace Hx.Gateway.Core.Entity
+﻿namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 路由地址配置表
     ///</summary>
     [SugarTable(null, "路由地址配置表")]
-    public class TgRouteHostPort : EntityBase
+    public class TgRouteHostPort : EntityBaseId
     {
-        /// <summary>
-        /// 主键Id
-        /// </summary>
-        [SugarColumn(ColumnDescription = "主键Id", IsPrimaryKey = true)]
-        public override long Id { get => base.Id; set => base.Id = value; }
         /// <summary>
         ///  路由主机
         ///</summary>
