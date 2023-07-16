@@ -10,10 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hx.Gateway.Core.Const;
-public class CommonConst
+internal class CommonConst
 {
     /// <summary>
     /// 默认数据库标识
     /// </summary>
-    public const string ConfigId = "1300000000001";
+    public const string ConfigId = "gxcoregateway";
 }

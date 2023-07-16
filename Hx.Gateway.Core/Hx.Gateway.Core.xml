@@ -1179,28 +1179,13 @@
             <param name="builder"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            添加默认的注入方式，所有需要传入的参数都是用默认值
-            </summary>
-            <param name="services"></param>
-            <param name="configuration">配置</param>
-            <returns></returns>
-        </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Hx.Gateway.Core.Options.OcelotSettingsOptions})">
             <summary>
             添加默认的注入方式，所有需要传入的参数都是用默认值
             </summary>
             <param name="services"></param>
             <param name="configuration">配置</param>
-            <param name="option">配置信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Ocelot.DependencyInjection.IOcelotBuilder)">
-            <summary>
-            添加默认的注入方式，所有需要传入的参数都是用默认值
-            </summary>
-            <param name="builder"></param>
+            <param name="ocelotOptionAction">配置信息</param>
             <returns></returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Ocelot.DependencyInjection.IOcelotBuilder,System.Action{Hx.Gateway.Core.Options.OcelotSettingsOptions})">
@@ -1208,7 +1193,7 @@
             添加默认的注入方式，所有需要传入的参数都是用默认值
             </summary>
             <param name="builder"></param>
-            <param name="option">配置信息</param>
+            <param name="ocelotOptionAction">配置信息</param>
             <returns></returns>
         </member>
     </members>

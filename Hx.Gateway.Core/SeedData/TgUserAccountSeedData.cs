@@ -4,7 +4,7 @@
 
 using Hx.Gateway.Core.Entity;
 using Hx.Gateway.Core.Enum;
-using Hx.Sdk.SqlSugar;
+using Hx.Sdk.Sqlsugar;
 using System.Collections.Generic;
 
 namespace Hx.Gateway.Core.SeedData;
