@@ -1,4 +1,6 @@
-﻿namespace Hx.Gateway.Application.Services.Projects;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Hx.Gateway.Application.Services.Projects;
 public class AddProjectInput
 {
     /// <summary>

@@ -2,7 +2,9 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Hx.Gateway.Core.Options.Ocelot;
+using Hx.Gateway.Admin.Enum;
+using Hx.Gateway.Admin.Options.Ocelot;
+using Hx.Gateway.Core.Entity;
 
 namespace Hx.Gateway.Application.Services.Routes.Dtos;
 /// <summary>

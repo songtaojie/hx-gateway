@@ -1,4 +1,5 @@
-﻿using Hx.Sdk.Extensions;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,5 @@
-﻿using Hx.Sdk.Entity;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
 
 namespace Hx.Gateway.Application.Services.Routes.Dtos
 {

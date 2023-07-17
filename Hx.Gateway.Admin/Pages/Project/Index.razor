@@ -1,0 +1,72 @@
+﻿@page "/project"
+
+<PageTitle>项目管理</PageTitle>
+
+<Table @ref="table"
+       TItem="PageProjectOutput"
+       DataSource="@_data.Items"
+       Total="_data.Total"
+@bind-PageIndex="_pageInput.Page"
+@bind-PageSize="_pageInput.PageSize">
+    <Selection Key="@(context.Id.ToString())" />
+    <PropertyColumn Property="c=>c.Id" Title="标识" Hidden/>
+    <PropertyColumn Property="c=>c.Code" Title="项目编码" />
+    <PropertyColumn Property="c=>c.Name" Title="项目名称" />
+    <Column @bind-Field="@context.Status" Title="状态">
+        @*<Tag Color="@(context.Status == StatusEnum.Enable?"green":"geekblue")">@context.Status_V</Tag>*@
+        <Switch Checked="@(context.Status == StatusEnum.Enable)" Disabled CheckedChildren="启用" UnCheckedChildren="禁用"></Switch>
+    </Column>
+    <PropertyColumn Property="c=>c.CreateTime" Format="yyyy-MM-dd HH:mm:ss" Title="创建时间" />
+    <ActionColumn Title="Action">
+        <Space>
+            <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
+        </Space>
+    </ActionColumn>
+</Table>
+
+@using System.Text.Json;
+@using System.ComponentModel;
+@using AntDesign.TableModels;
+@using Hx.Gateway.Admin.Enum;
+@using Hx.Gateway.Admin.Services.Projects.Dto;
+@using Hx.Gateway.Application.Services;
+@using Hx.Gateway.Application.Services.Projects;
+@using Hx.Gateway.Core.Entity;
+@using Hx.Sdk.Common;
+@code {
+    [Inject]
+    ProjectService ProjectService { get; set; }
+    PageProjectInput _pageInput = new PageProjectInput();
+    PagedListResult<PageProjectOutput> _data;
+    IEnumerable<PageProjectOutput> selectedRows;
+    ITable table;
+    protected override async Task OnInitializedAsync()
+    {
+        _data = await GetPageProjectAsync();
+    }
+
+    public async Task OnChange(QueryModel<PageProjectInput> queryModel)
+    {
+        Console.WriteLine(JsonSerializer.Serialize(queryModel));
+    }
+
+    public async Task<PagedListResult<PageProjectOutput>> GetPageProjectAsync()
+    {
+        return await ProjectService.GetPageProjectAsync(_pageInput);
+    }
+    public bool GetStatus(object c)
+    {
+        return true;
+    }
+
+    public void RemoveSelection(long id)
+    {
+        var selected = selectedRows.Where(x => x.Id != id);
+        selectedRows = selected;
+    }
+
+    private void Delete(long id)
+    {
+        Console.WriteLine(id);
+    }
+}

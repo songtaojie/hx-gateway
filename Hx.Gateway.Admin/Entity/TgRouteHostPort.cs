@@ -1,10 +1,13 @@
-﻿namespace Hx.Gateway.Core.Entity
+﻿using Hx.Sdk.Common;
+using SqlSugar;
+
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 路由地址配置表
     ///</summary>
     [SugarTable(null, "路由地址配置表")]
-    public class TgRouteHostPort : EntityBaseId
+    public class TgRouteHostPort : EntityBase
     {
         /// <summary>
         ///  路由主机

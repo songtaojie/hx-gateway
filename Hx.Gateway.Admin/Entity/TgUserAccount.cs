@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Hx.Gateway.Core.Enum;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
 using SqlSugar;
 
 namespace Hx.Gateway.Core.Entity
@@ -10,7 +8,7 @@ namespace Hx.Gateway.Core.Entity
     /// 用户表
     ///</summary>
     [SugarTable(null, "用户表")]
-    public class TgUserAccount : EntityBaseId
+    public class TgUserAccount : EntityBase
     {
         /// <summary>
         /// 账户

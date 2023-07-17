@@ -1,4 +1,5 @@
-﻿using Hx.Sdk.Common;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
 using SqlSugar;
 
 namespace Hx.Gateway.Core.Entity
@@ -7,7 +8,7 @@ namespace Hx.Gateway.Core.Entity
     /// 全局配置表
     ///</summary>
     [SugarTable(null, "全局配置表")]
-    public class TgGlobalConfiguration : EntityBase
+    public class TgGlobalConfiguration : AuditedEntityBase
     {
         /// <summary>
         /// 项目Id 

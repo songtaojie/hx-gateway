@@ -2,7 +2,8 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Hx.Gateway.Core.Options.Ocelot;
+using Hx.Gateway.Admin.Enum;
+using Hx.Gateway.Admin.Options.Ocelot;
 
 namespace Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
 /// <summary>
@@ -36,31 +37,31 @@ public class GlobalConfigurationOutput
     /// <summary>
     /// 负载均衡
     ///</summary>
-    ///<see cref=" Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions"/>
+    ///<see cref=" Hx.Gateway.Admin.Options.Ocelot.LoadBalancerOptions"/>
     public LoadBalancerOptions LoadBalancerOptions { get; set; }
 
     /// <summary>
     /// HttpHandler配置 
     ///</summary>   
-    ///<see cref=" Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions"/>
+    ///<see cref=" Hx.Gateway.Admin.Options.Ocelot.HttpHandlerOptions"/>
     public HttpHandlerOptions HttpHandlerOptions { get; set; }
 
     /// <summary>
     /// 服务质量控制
     ///</summary>
-    ///<see cref=" Hx.Gateway.Core.Options.Ocelot.QoSOptions"/>
+    ///<see cref=" Hx.Gateway.Admin.Options.Ocelot.QoSOptions"/>
     public QoSOptions QoSOptions { get; set; }
 
     /// <summary>
     /// 全局限流配置 
     ///</summary>
-    ///<see cref=" Hx.Gateway.Core.Options.Ocelot.RateLimitOptions"/>
+    ///<see cref=" Hx.Gateway.Admin.Options.Ocelot.RateLimitOptions"/>
     public RateLimitOptions RateLimitOptions { get; set; }
 
     /// <summary>
     /// 服务发现代理配置
     /// </summary>
-    /// <see cref=" Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions"/>
+    /// <see cref=" Hx.Gateway.Admin.Options.Ocelot.ServiceDiscoveryProviderOptions"/>
     public ServiceDiscoveryProviderOptions ServiceDiscoveryProviderOptions { get; set; }
 
     /// <summary>

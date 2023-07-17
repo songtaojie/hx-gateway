@@ -1,11 +1,15 @@
-﻿using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
+using Hx.Gateway.Core.Entity;
+using Hx.Sdk.Sqlsugar;
+using System.Text.Json;
 
 namespace Hx.Gateway.Application.Services.GlobalConfiguration
 {
-    public class GlobalConfigurationService : ITransientDependency
+    public class GlobalConfigurationService
     {
-        private readonly SqlSugarRepository<TgGlobalConfiguration> _repository;
-        public GlobalConfigurationService(SqlSugarRepository<TgGlobalConfiguration> repository)
+        private readonly ISqlSugarRepository<TgGlobalConfiguration> _repository;
+        public GlobalConfigurationService(ISqlSugarRepository<TgGlobalConfiguration> repository)
         {
             _repository = repository;
         }
@@ -19,17 +23,18 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         public async Task<GlobalConfigurationOutput> GetGlobalConfigurationAsync()
         {
             var entity = await _repository.Context.Queryable<TgGlobalConfiguration>()
-                .With(SqlWith.NoLock)
                 .Where(u => u.Status == StatusEnum.Enable)
                 .OrderByDescending(u => u.CreateTime)
                 .FirstAsync();
-            return entity?.Adapt<GlobalConfigurationOutput>() ?? new GlobalConfigurationOutput()
+            if(entity == null) return new GlobalConfigurationOutput();
+
+            return new GlobalConfigurationOutput()
             { 
-                LoadBalancerOptions = new Core.Options.Ocelot.LoadBalancerOptions(),
-                HttpHandlerOptions = new Core.Options.Ocelot.HttpHandlerOptions(),
-                QoSOptions = new Core.Options.Ocelot.QoSOptions(),
-                ServiceDiscoveryProviderOptions = new Core.Options.Ocelot.ServiceDiscoveryProviderOptions(),
-                RateLimitOptions = new Core.Options.Ocelot.RateLimitOptions()
+                LoadBalancerOptions = new Admin.Options.Ocelot.LoadBalancerOptions(),
+                HttpHandlerOptions = new Admin.Options.Ocelot.HttpHandlerOptions(),
+                QoSOptions = new Admin.Options.Ocelot.QoSOptions(),
+                ServiceDiscoveryProviderOptions = new Admin.Options.Ocelot.ServiceDiscoveryProviderOptions(),
+                RateLimitOptions = new Admin.Options.Ocelot.RateLimitOptions()
             };
         }
 
@@ -44,15 +49,22 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         /// <returns></returns>
         public async Task<int> AddGlobalConfigurationAsync(AddGlobalConfigurationInput request)
         {
-            var TgGlobalConfiguration = request.Adapt<TgGlobalConfiguration>();
-            var insertResult = await _repository.Context.Insertable(TgGlobalConfiguration).ExecuteReturnIdentityAsync();
+            var tgGlobalConfiguration = new TgGlobalConfiguration
+            { 
+                BaseUrl = request.BaseUrl,
+                DownstreamHttpVersion = request.DownstreamHttpVersion,
+                DownstreamScheme = request.DownstreamScheme,
+                HttpHandlerOptions = request.HttpHandlerOptions == null ?string.Empty:JsonSerializer.Serialize(request.HttpHandlerOptions),
+                //ProjectId = request.ProjectId
+            };
+            var insertResult = await _repository.Context.Insertable(tgGlobalConfiguration).ExecuteReturnIdentityAsync();
             if (insertResult > 0)
             {
                 return insertResult;
             }
             else
             {
-                throw new UserFriendlyException("新增全局配置失败", (int)GatewayErrorCodeEnum.INSERT_GLOBAL_CONFIGURATION_FAIL);
+                throw new Exception("新增全局配置失败");
             }
         }
 
@@ -67,8 +79,11 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         /// <returns></returns>
         public async Task<string> UpdateGlobalConfigurationAsync(UpdateGlobalConfigurationInput request)
         {
-            var TgGlobalConfiguration = request.Adapt<TgGlobalConfiguration>();
-            var result = await _repository.Context.Updateable(TgGlobalConfiguration)
+            var tgGlobalConfiguration = new TgGlobalConfiguration
+            {
+
+            }; 
+            var result = await _repository.Context.Updateable(tgGlobalConfiguration)
                    .ExecuteCommandHasChangeAsync();
             if (result)
             {
@@ -76,7 +91,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
             }
             else
             {
-                throw new UserFriendlyException("编辑全局配置失败", (int)GatewayErrorCodeEnum.UPDATE_GLOBAL_CONFIGURATION_FAIL);
+                throw new Exception("编辑全局配置失败");
             }
         }
 
@@ -100,7 +115,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
             }
             else
             {
-                throw new UserFriendlyException("删除全局配置失败", (int)GatewayErrorCodeEnum.DELETE_GLOBAL_CONFIGURATION_FAIL);
+                throw new Exception("删除全局配置失败");
             }
         }
 

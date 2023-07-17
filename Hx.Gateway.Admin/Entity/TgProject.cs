@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hx.Gateway.Core.Enum;
+using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
 using SqlSugar;
 
 namespace Hx.Gateway.Core.Entity
@@ -10,7 +11,7 @@ namespace Hx.Gateway.Core.Entity
     /// 项目表
     ///</summary>
     [SugarTable(null, "项目表")]
-    public class TgProject : EntityBase
+    public class TgProject : AuditedEntityBase
     {
         /// <summary>
         /// 项目编码

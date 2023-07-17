@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hx.Sdk.Common;
 using SqlSugar;
 
 namespace Hx.Gateway.Core.Entity
@@ -9,7 +10,7 @@ namespace Hx.Gateway.Core.Entity
     /// 路由属性表
     ///</summary>
     [SugarTable(null, "路由属性表")]
-    public class TgRouteProperty : EntityBaseId
+    public class TgRouteProperty : EntityBase
     {
         /// <summary>
         ///  

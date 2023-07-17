@@ -1,9 +1,5 @@
-﻿using Hx.Sdk.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
 
 namespace Hx.Gateway.Application.Services.Projects
 {

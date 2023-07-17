@@ -1,4 +1,6 @@
-﻿using Hx.Gateway.Core.Enum;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
+using SqlSugar;
 using System.Collections.Generic;
 
 namespace Hx.Gateway.Core.Entity
