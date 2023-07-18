@@ -62,3 +62,56 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+
+.ant-pro-basicLayout-content {
+    margin: 10px;
+}
+
+.container-page {
+    height: 100%;
+    width: 100%;
+}
+.search-box-card {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.filter-container .el-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.filter-container .el-form-item {
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+
+.filter-container .filter-label {
+    width: 116px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+    .filter-container .filter-label input {
+        font-weight: 700;
+    }
+
+.filter-container .el-form-item__label {
+    width: 120px;
+}
+
+.filter-container .filter-item {
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+.filter-container .filter-query {
+    padding-left: 10px;
+}

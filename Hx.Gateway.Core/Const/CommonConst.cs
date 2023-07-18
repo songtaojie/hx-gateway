@@ -15,5 +15,5 @@ internal class CommonConst
     /// <summary>
     /// 默认数据库标识
     /// </summary>
-    public const string ConfigId = "gxcoregateway";
+    public const string ConfigId = "hxcoregateway";
 }

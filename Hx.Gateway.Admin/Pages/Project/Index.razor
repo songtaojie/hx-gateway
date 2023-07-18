@@ -1,28 +1,75 @@
 ﻿@page "/project"
 
 <PageTitle>项目管理</PageTitle>
+<Card Class="search-box-card" Hoverable>
+    <div>
+        <Form @ref="_form" Model="_pageInput" Name="advanced_search">
+            <Row Gutter="24">
+                <GridCol Span="8">
+                    <FormItem Label="状态">
+                        <Select TItem="StatusEnum?"
+                                TItemValue="StatusEnum?"
+                                @bind-Value="@_pageInput.Status"
+                                Placeholder="请选择状态"
+                                AllowClear>
+                            <SelectOptions>
+                                <SelectOption TItemValue="StatusEnum?" TItem="StatusEnum?" Value="@(StatusEnum.Enable)" Label="启用" />
+                                <SelectOption TItemValue="StatusEnum?" TItem="StatusEnum?" Value="@(StatusEnum.Disable)" Label="禁用" />
+                            </SelectOptions>
+                        </Select>
+                    </FormItem>
+                </GridCol>
+                <GridCol Span="8" Style="text-align:right;">
+                    <Button Type="primary" HtmlType="submit">查询</Button>
+                </GridCol>
+            </Row>
+        </Form>
+    </div>
+</Card>
 
-<Table @ref="table"
-       TItem="PageProjectOutput"
-       DataSource="@_data.Items"
-       Total="_data.Total"
-@bind-PageIndex="_pageInput.Page"
-@bind-PageSize="_pageInput.PageSize">
-    <Selection Key="@(context.Id.ToString())" />
-    <PropertyColumn Property="c=>c.Id" Title="标识" Hidden/>
-    <PropertyColumn Property="c=>c.Code" Title="项目编码" />
-    <PropertyColumn Property="c=>c.Name" Title="项目名称" />
-    <Column @bind-Field="@context.Status" Title="状态">
-        @*<Tag Color="@(context.Status == StatusEnum.Enable?"green":"geekblue")">@context.Status_V</Tag>*@
-        <Switch Checked="@(context.Status == StatusEnum.Enable)" Disabled CheckedChildren="启用" UnCheckedChildren="禁用"></Switch>
-    </Column>
-    <PropertyColumn Property="c=>c.CreateTime" Format="yyyy-MM-dd HH:mm:ss" Title="创建时间" />
-    <ActionColumn Title="Action">
-        <Space>
-            <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
-        </Space>
-    </ActionColumn>
-</Table>
+<Card>
+    <Table @ref="_table"
+           TItem="PageProjectOutput"
+           DataSource="@_data.Items"
+           Total="_data.Total"
+           @bind-PageIndex="_pageInput.Page"
+           @bind-PageSize="_pageInput.PageSize">
+        <Selection Key="@(context.Id.ToString())" />
+        <PropertyColumn Property="c=>c.Id" Title="标识" Hidden />
+        <PropertyColumn Property="c=>c.Code" Title="项目编码" />
+        <PropertyColumn Property="c=>c.Name" Title="项目名称" />
+        <Column @bind-Field="@context.Status" Title="状态">
+            <Switch Checked="@(context.Status == StatusEnum.Enable)" Disabled CheckedChildren="启用" UnCheckedChildren="禁用"></Switch>
+            </Column>
+            <PropertyColumn Property="c=>c.CreateTime" Format="yyyy-MM-dd HH:mm:ss" Title="创建时间" />
+            <ActionColumn Title="操作">
+            <Space>
+                <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">删除</Button></SpaceItem>
+                    </Space>
+                    </ActionColumn>
+                    </Table>
+                    </Card>
+
+<style>
+    [data-theme='compact'] .ant-advanced-search-form,
+    .ant-advanced-search-form {
+        padding: 24px;
+        background: #fbfbfb;
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+
+        [data-theme='compact'] .ant-advanced-search-form .ant-form-item,
+        .ant-advanced-search-form .ant-form-item {
+            display: flex;
+        }
+
+        [data-theme='compact'] .ant-advanced-search-form .ant-form-item-control-wrapper,
+        .ant-advanced-search-form .ant-form-item-control-wrapper {
+            flex: 1;
+        }
+</style>
+
 
 @using System.Text.Json;
 @using System.ComponentModel;
@@ -39,7 +86,8 @@
     PageProjectInput _pageInput = new PageProjectInput();
     PagedListResult<PageProjectOutput> _data;
     IEnumerable<PageProjectOutput> selectedRows;
-    ITable table;
+    ITable _table;
+    AntDesign.Internal.IForm _form;
     protected override async Task OnInitializedAsync()
     {
         _data = await GetPageProjectAsync();
