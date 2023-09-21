@@ -2,29 +2,36 @@
 
 <PageTitle>项目管理</PageTitle>
 <Card Class="search-box-card" Hoverable>
-    <div>
-        <Form @ref="_form" Model="_pageInput" Name="advanced_search">
-            <Row Gutter="24">
-                <GridCol Span="8">
-                    <FormItem Label="状态">
-                        <Select TItem="StatusEnum?"
-                                TItemValue="StatusEnum?"
-                                @bind-Value="@_pageInput.Status"
-                                Placeholder="请选择状态"
-                                AllowClear>
-                            <SelectOptions>
-                                <SelectOption TItemValue="StatusEnum?" TItem="StatusEnum?" Value="@(StatusEnum.Enable)" Label="启用" />
-                                <SelectOption TItemValue="StatusEnum?" TItem="StatusEnum?" Value="@(StatusEnum.Disable)" Label="禁用" />
-                            </SelectOptions>
-                        </Select>
-                    </FormItem>
-                </GridCol>
-                <GridCol Span="8" Style="text-align:right;">
-                    <Button Type="primary" HtmlType="submit">查询</Button>
-                </GridCol>
-            </Row>
-        </Form>
-    </div>
+    <Form Model="_pageInput" >
+        <Row Gutter="@gutter">
+            <Col Xs="16" Sm="12" Md="8" Lg="6" Xl="6" Xxl="4">
+                <FormItem Label="状态" LabelAlign="@(AntLabelAlignType.Right)">
+                    <Select TItem="StatusEnum?"
+                            TItemValue="StatusEnum?"
+                            @bind-Value="@_pageInput.Status"
+                            Placeholder="请选择状态"
+                            AllowClear>
+                        <SelectOptions>
+                            <SelectOption TItemValue="StatusEnum?" TItem="StatusEnum?" Value="@(StatusEnum.Enable)" Label="启用" />
+                            <SelectOption TItemValue="StatusEnum?" TItem="StatusEnum?" Value="@(StatusEnum.Disable)" Label="禁用" />
+                        </SelectOptions>
+                    </Select>
+                </FormItem>
+            </Col>
+            <Col>
+                <FormItem>
+                <Space>
+                    <SpaceItem>
+                        <Button Type="@ButtonType.Primary" OnClick="OnQuery">查询</Button>
+                    </SpaceItem>
+                    <SpaceItem>
+                        <Button Type="@(ButtonType.Default)" OnClick="@(() => {_visible = true;_isEdit = false;})">新增</Button>
+                    </SpaceItem>
+                </Space>
+                </FormItem>
+            </Col>
+        </Row>
+    </Form>
 </Card>
 
 <Card>
@@ -43,13 +50,34 @@
             </Column>
             <PropertyColumn Property="c=>c.CreateTime" Format="yyyy-MM-dd HH:mm:ss" Title="创建时间" />
             <ActionColumn Title="操作">
-            <Space>
-                <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">删除</Button></SpaceItem>
-                    </Space>
-                    </ActionColumn>
-                    </Table>
-                    </Card>
-
+                <Space>
+                <SpaceItem><Button Danger OnClick="()=>OnEdit(context)">编辑</Button></SpaceItem>
+                    <SpaceItem><Button Danger OnClick="()=>OnDelete(context.Id)">删除</Button></SpaceItem>
+                </Space>
+            </ActionColumn>
+    </Table>
+</Card>
+                    <Modal Title="@(_isEdit?"编辑项目":"添加项目")"
+                        Centered
+       Visible="@_visible"
+       OnOk="@(() => {_form.Submit();})"
+       OnCancel="@(() => {_visible = false;})">
+                    <Form Model="@_addModel"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="OnFinish"
+          @ref="@_form">
+                    <FormItem Label="项目编码">
+                    <Input @bind-Value="@(context.Code)" />
+                    </FormItem>
+                    <FormItem Label="项目名称">
+                        <Input @bind-Value="@(context.Name)" />
+                    </FormItem>
+                    <FormItem Label="状态">
+                    <Switch OnChange="@((c) => {_addModel.Status=c?StatusEnum.Enable:StatusEnum.Disable;})" CheckedChildren="启用" UnCheckedChildren="禁用" />
+                    </FormItem>
+                    </Form>
+                    </Modal>
 <style>
     [data-theme='compact'] .ant-advanced-search-form,
     .ant-advanced-search-form {
@@ -80,41 +108,62 @@
 @using Hx.Gateway.Application.Services.Projects;
 @using Hx.Gateway.Core.Entity;
 @using Hx.Sdk.Common;
+@inject IMessageService _message;
 @code {
     [Inject]
     ProjectService ProjectService { get; set; }
     PageProjectInput _pageInput = new PageProjectInput();
+    AddProjectInput _addModel = new AddProjectInput();
+    bool _visible = false;
+    bool _isEdit = false;
     PagedListResult<PageProjectOutput> _data;
     IEnumerable<PageProjectOutput> selectedRows;
     ITable _table;
     AntDesign.Internal.IForm _form;
+    Dictionary<string, int> gutter = new()
+    {
+        ["xs"] = 4,
+        ["sm"] = 8,
+        ["md"] = 12,
+        ["lg"] = 16,
+        ["xl"] = 24,
+        ["xxl"] = 32
+    };
+
     protected override async Task OnInitializedAsync()
     {
         _data = await GetPageProjectAsync();
     }
 
-    public async Task OnChange(QueryModel<PageProjectInput> queryModel)
-    {
-        Console.WriteLine(JsonSerializer.Serialize(queryModel));
-    }
-
-    public async Task<PagedListResult<PageProjectOutput>> GetPageProjectAsync()
+    private async Task<PagedListResult<PageProjectOutput>> GetPageProjectAsync()
     {
         return await ProjectService.GetPageProjectAsync(_pageInput);
     }
-    public bool GetStatus(object c)
+
+    private async Task OnQuery(MouseEventArgs e)
+    {
+        _data = await GetPageProjectAsync();
+    }
+
+    private bool OnDelete(long id)
     {
         return true;
     }
 
-    public void RemoveSelection(long id)
+    private void OnEdit(PageProjectOutput input)
     {
-        var selected = selectedRows.Where(x => x.Id != id);
-        selectedRows = selected;
+        _addModel.Id = input.Id;
+        _addModel.Code = input.Code;
+        _addModel.Name = input.Name;
+        _addModel.Status = input.Status;
+        _isEdit = true;
+        _visible = true;
     }
 
-    private void Delete(long id)
+    private async Task OnFinish(EditContext editContext)
     {
-        Console.WriteLine(id);
+        var result = await ProjectService.AddOrUpdateProjectAsync(_addModel);
+        _visible = false;
+        await _message.Info(_isEdit?"编辑程功":"添加成功");
     }
 }

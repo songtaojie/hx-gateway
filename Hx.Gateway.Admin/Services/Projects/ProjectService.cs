@@ -61,26 +61,36 @@ namespace Hx.Gateway.Application.Services
 
         #endregion
 
-        //#region 新增
-
-        ///// <summary>
-        ///// 新增项目信息
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //public async Task<string> AddProjectAsync(AddProjectInput request)
-        //{
-        //    var Project = request.Adapt<TgProject>();
-        //    var result = await _tgProjectRep.InsertAsync(Project) > 0;
-        //    if (result)
-        //    {
-        //        return "新增项目成功";
-        //    }
-        //    else
-        //    {
-        //        throw new UserFriendlyException("新增项目失败", (int)GatewayErrorCodeEnum.INSERT_PROJECT_FAIL);
-        //    }
-        //}
+        #region 新增
+        /// <summary>
+        /// 新增项目信息
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<bool> AddOrUpdateProjectAsync(AddProjectInput request)
+        {
+            if (request.Id.HasValue && request.Id > 0)
+            {
+                var project = new TgProject
+                {
+                    Id = request.Id.Value,
+                    Code = request.Code,
+                    Name = request.Name,
+                    Status = request.Status
+                };
+                return await _tgProjectRep.UpdateAsync(project) > 0;
+            }
+            else
+            {
+                var project = new TgProject
+                {
+                    Code = request.Code,
+                    Name = request.Name,
+                    Status = request.Status
+                };
+                return await _tgProjectRep.InsertAsync(project) > 0;
+            }
+        }
 
         //#endregion
 
@@ -163,6 +173,6 @@ namespace Hx.Gateway.Application.Services
         //    }
         //}
 
-        //#endregion
+        #endregion
     }
 }
