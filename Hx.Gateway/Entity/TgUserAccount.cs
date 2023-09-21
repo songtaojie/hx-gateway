@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Hx.Gateway.Core.Enum;
+﻿using Hx.Gateway.Admin.Enum;
+using Hx.Sdk.Common;
 using SqlSugar;
 
-namespace Hx.Gateway.Core.Entity
+namespace Hx.Gateway.Entity
 {
     /// <summary>
     /// 用户表

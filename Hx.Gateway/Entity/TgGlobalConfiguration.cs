@@ -1,18 +1,14 @@
-﻿using Hx.Gateway.Core.Enum;
+﻿using Hx.Gateway.Enum;
+using SqlSugar;
 
-namespace Hx.Gateway.Core.Entity
+namespace Hx.Gateway.Entity
 {
     /// <summary>
     /// 全局配置表
     ///</summary>
     [SugarTable(null, "全局配置表")]
-    public class TgGlobalConfiguration : EntityBase
+    public class TgGlobalConfiguration : AuditedEntityBase
     {
-        /// <summary>
-        /// 主键Id
-        /// </summary>
-        [SugarColumn(ColumnDescription = "主键Id",IsPrimaryKey =true)]
-        public override long Id { get => base.Id; set => base.Id = value; }
         /// <summary>
         /// 项目Id 
         ///</summary>
