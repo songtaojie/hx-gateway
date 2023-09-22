@@ -1,4 +1,4 @@
-﻿namespace Hx.Gateway.Core.Enum;
+﻿namespace Hx.Gateway.Core;
 /// <summary>
 /// 通用状态枚举
 /// </summary>

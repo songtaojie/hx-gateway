@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hx.Gateway.Core\Hx.Gateway.Core.csproj" />
+    <ProjectReference Include="..\Hx.Gateway\Hx.Gateway.csproj" />
   </ItemGroup>
 
 </Project>

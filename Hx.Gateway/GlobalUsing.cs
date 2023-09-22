@@ -1,2 +1,1 @@
-﻿global using Hx.Gateway.Enum;
-global using SqlSugar;
+﻿global using SqlSugar;

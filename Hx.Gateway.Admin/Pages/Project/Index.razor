@@ -25,7 +25,7 @@
                         <Button Type="@ButtonType.Primary" OnClick="OnQuery">查询</Button>
                     </SpaceItem>
                     <SpaceItem>
-                        <Button Type="@(ButtonType.Default)" OnClick="@(() => {_visible = true;_isEdit = false;})">新增</Button>
+                        <Button Type="@(ButtonType.Default)" OnClick="@OnAdd">新增</Button>
                     </SpaceItem>
                 </Space>
                 </FormItem>
@@ -74,7 +74,7 @@
                         <Input @bind-Value="@(context.Name)" />
                     </FormItem>
                     <FormItem Label="状态">
-                    <Switch OnChange="@((c) => {_addModel.Status=c?StatusEnum.Enable:StatusEnum.Disable;})" CheckedChildren="启用" UnCheckedChildren="禁用" />
+                        <Switch @bind-Value="_isCheck" OnChange="@((c) => {_addModel.Status=c?StatusEnum.Enable:StatusEnum.Disable;})" CheckedChildren="启用" UnCheckedChildren="禁用" />
                     </FormItem>
                     </Form>
                     </Modal>
@@ -102,20 +102,19 @@
 @using System.Text.Json;
 @using System.ComponentModel;
 @using AntDesign.TableModels;
-@using Hx.Gateway.Admin.Enum;
 @using Hx.Gateway.Admin.Services.Projects.Dto;
+@using Hx.Gateway.Admin.Services;
 @using Hx.Gateway.Application.Services;
 @using Hx.Gateway.Application.Services.Projects;
-@using Hx.Gateway.Core.Entity;
-@using Hx.Sdk.Common;
 @inject IMessageService _message;
 @code {
     [Inject]
     ProjectService ProjectService { get; set; }
     PageProjectInput _pageInput = new PageProjectInput();
-    AddProjectInput _addModel = new AddProjectInput();
+    SaveProjectInput _addModel;
     bool _visible = false;
     bool _isEdit = false;
+    bool _isCheck = true;
     PagedListResult<PageProjectOutput> _data;
     IEnumerable<PageProjectOutput> selectedRows;
     ITable _table;
@@ -140,30 +139,44 @@
         return await ProjectService.GetPageProjectAsync(_pageInput);
     }
 
-    private async Task OnQuery(MouseEventArgs e)
+    private async Task OnQuery(MouseEventArgs? e)
     {
         _data = await GetPageProjectAsync();
     }
 
-    private bool OnDelete(long id)
+    private bool OnDelete(Guid id)
     {
         return true;
     }
 
+    private void OnAdd(MouseEventArgs e)
+    {
+        _addModel = new SaveProjectInput();
+        _isCheck = true;
+        _isEdit = false;
+        _visible = true;
+    }
+
     private void OnEdit(PageProjectOutput input)
     {
+        _addModel = new SaveProjectInput();
         _addModel.Id = input.Id;
         _addModel.Code = input.Code;
         _addModel.Name = input.Name;
         _addModel.Status = input.Status;
+        _isCheck = _addModel.Status == StatusEnum.Enable ? true : false;
         _isEdit = true;
         _visible = true;
     }
 
     private async Task OnFinish(EditContext editContext)
     {
-        var result = await ProjectService.AddOrUpdateProjectAsync(_addModel);
-        _visible = false;
-        await _message.Info(_isEdit?"编辑程功":"添加成功");
+        var result = await ProjectService.SaveProjectAsync(_addModel);
+        if (result)
+        {
+            _visible = false;
+            await _message.Info(_isEdit ? "编辑程功" : "添加成功");
+            await OnQuery(null);
+        }
     }
 }

@@ -1,13 +1,13 @@
-﻿using Hx.Gateway.Admin.Enum;
+﻿using Hx.Gateway.Core;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hx.Gateway.Application.Services.Projects;
-public class AddProjectInput
+public class SaveProjectInput
 {
     /// <summary>
     /// 主键id
     /// </summary>
-    public long? Id { get; set; }
+    public Guid? Id { get; set; }
 
     /// <summary>
     /// 项目编码

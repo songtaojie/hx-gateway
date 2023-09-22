@@ -5,27 +5,6 @@ using System.Text;
 namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
-    /// 带有状态数据的实体（泛型）
-    /// </summary>
-    public abstract class FullAuditedEntityBase<TKey>: AuditedEntityBase<TKey>
-    {
-        /// <summary>
-        /// 是否删除
-        /// </summary>
-        public virtual bool IsDeleted { get; set; }
-
-        /// <summary>
-        /// 删除人id
-        /// </summary>
-        public virtual TKey DeleterId { get; set; }
-
-        /// <summary>
-        /// 删除时间
-        /// </summary>
-        public virtual DateTime? DeleteTime { get; set; }
-    }
-
-    /// <summary>
     /// 带有状态数据的实体（非泛型）
     /// </summary>
     public abstract class FullAuditedEntityBase : AuditedEntityBase
@@ -33,16 +12,19 @@ namespace Hx.Gateway.Core.Entity
         /// <summary>
         /// 是否删除
         /// </summary>
+        [SugarColumn(ColumnDescription = "是否删除")]
         public virtual bool IsDeleted { get; set; }
 
         /// <summary>
         /// 删除人id
         /// </summary>
-        public virtual long? DeleterId { get; set; }
+        [SugarColumn(ColumnDescription = "删除人id")]
+        public virtual Guid? DeleterId { get; set; }
 
         /// <summary>
         /// 删除时间
         /// </summary>
+        [SugarColumn(ColumnDescription = "删除时间")]
         public virtual DateTime? DeleteTime { get; set; }
     }
 }

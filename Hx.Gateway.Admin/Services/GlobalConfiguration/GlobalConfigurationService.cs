@@ -1,7 +1,6 @@
-﻿using Hx.Gateway.Admin.Enum;
-using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
+﻿using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
+using Hx.Gateway.Core;
 using Hx.Gateway.Core.Entity;
-using Hx.Sdk.Sqlsugar;
 using System.Text.Json;
 
 namespace Hx.Gateway.Application.Services.GlobalConfiguration
@@ -30,11 +29,11 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
 
             return new GlobalConfigurationOutput()
             { 
-                LoadBalancerOptions = new Admin.Options.Ocelot.LoadBalancerOptions(),
-                HttpHandlerOptions = new Admin.Options.Ocelot.HttpHandlerOptions(),
-                QoSOptions = new Admin.Options.Ocelot.QoSOptions(),
-                ServiceDiscoveryProviderOptions = new Admin.Options.Ocelot.ServiceDiscoveryProviderOptions(),
-                RateLimitOptions = new Admin.Options.Ocelot.RateLimitOptions()
+                LoadBalancerOptions = new Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions(),
+                HttpHandlerOptions = new Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions(),
+                QoSOptions = new Hx.Gateway.Core.Options.Ocelot.QoSOptions(),
+                ServiceDiscoveryProviderOptions = new Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions(),
+                RateLimitOptions = new Hx.Gateway.Core.Options.Ocelot.RateLimitOptions()
             };
         }
 
@@ -104,7 +103,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         /// </summary>
         /// <param name="globalConfigurationId">全局配置Id</param>
         /// <returns></returns>
-        public async Task<string> DeletGlobalConfigurationAsync(int globalConfigurationId)
+        public async Task<string> DeletGlobalConfigurationAsync(Guid globalConfigurationId)
         {
             var result = await _repository.Context.Deleteable<TgGlobalConfiguration>()
                 .Where(it => it.Id == globalConfigurationId)

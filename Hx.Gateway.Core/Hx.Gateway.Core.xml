@@ -4,185 +4,116 @@
         <name>Hx.Gateway.Core</name>
     </assembly>
     <members>
-        <member name="T:Hx.Gateway.Core.Cache.RedisOcelotCache`1">
+        <member name="T:Hx.Gateway.Core.Entity.AuditedEntityBase">
             <summary>
-            自定义缓存实现
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.Add(System.String,`0,System.TimeSpan,System.String)">
-            <summary>
-            添加缓存信息
-            </summary>
-            <param name="key">缓存的key</param>
-            <param name="value">缓存的实体</param>
-            <param name="ttl">过期时间</param>
-            <param name="region">缓存所属分类，可以指定分类缓存过期</param>
-        </member>
-        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.ClearRegion(System.String)">
-            <summary>
-            批量移除regin开头的所有缓存记录
-            </summary>
-            <param name="region">缓存分类</param>
-        </member>
-        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.Get(System.String,System.String)">
-            <summary>
-            获取执行的缓存信息
-            </summary>
-            <param name="key">缓存key</param>
-            <param name="region">缓存分类</param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Core.Cache.RedisOcelotCache`1.GetKey(System.String,System.String)">
-            <summary>
-            获取格式化后的key
-            </summary>
-            <param name="region">分类标识</param>
-            <param name="key">key</param>
-            <returns></returns>
-        </member>
-        <member name="T:Hx.Gateway.Core.Configuration.Repository.DbFileConfigurationRepository">
-            <summary>
-            数据库配置文件读取
+            带有更新信息的实体(非泛型，默认主键为雪花id)
             </summary>
         </member>
-        <member name="M:Hx.Gateway.Core.Configuration.Repository.DbFileConfigurationRepository.Get">
-            <summary>
-            从数据库中获取配置信息
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Hx.Gateway.Core.Configuration.Repository.RedisInternalConfigurationRepository">
-            <summary>
-            使用redis存储内部配置信息
-            </summary>
-        </member>
-        <member name="M:Hx.Gateway.Core.Configuration.Repository.RedisInternalConfigurationRepository.AddOrReplace(Ocelot.Configuration.IInternalConfiguration)">
-            <summary>
-            设置配置信息
-            </summary>
-            <param name="internalConfiguration">配置信息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Core.Configuration.Repository.RedisInternalConfigurationRepository.Get">
-            <summary>
-            从缓存中获取配置信息
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CacheConst.Prefix">
-            <summary>
-            缓存前缀
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CacheConst.Route">
-            <summary>
-            路由缓存
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CacheConst.ConsulSettingKey">
-            <summary>
-            consul配置关键字
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CacheConst.ConsulDC">
-            <summary>
-            consul DC 库
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CacheConst.AllSelect">
-            <summary>
-            全部下拉框内容
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CacheConst.OcelotCacheKey">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.CommonConst.ConfigId">
-            <summary>
-            默认数据库标识
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Const.DatabaseConfigIdConst">
-            <summary>
-            数据库配置id常量
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Const.DatabaseConfigIdConst.OcelotSettings">
-            <summary>
-            网关配置
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Entity.EntityBaseId">
-            <summary>
-            框架实体基类Id
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBaseId.Id">
-            <summary>
-            雪花Id
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Entity.EntityBase">
-            <summary>
-            框架实体基类
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBase.CreateTime">
-            <summary>
-            创建时间
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBase.UpdateTime">
+        <member name="P:Hx.Gateway.Core.Entity.AuditedEntityBase.UpdateTime">
             <summary>
             更新时间
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBase.CreateUserId">
+        <member name="P:Hx.Gateway.Core.Entity.AuditedEntityBase.UpdaterId">
+            <summary>
+            更新者id
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.BasePageParam">
+            <summary>
+            分页参数
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.BasePageParam.PageSize">
+            <summary>
+            每页多少条数据
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.BasePageParam.Page">
+            <summary>
+            当前页码
+            默认从第一页开始
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.BasePageParam.SortField">
+            <summary>
+            排序的字段
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.BasePageParam.OrderType">
+            <summary>
+            0 正序 1倒序
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.OrderTypeEnum">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Entity.OrderTypeEnum.ASC">
+            <summary>
+            正序
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.Entity.OrderTypeEnum.DESC">
+            <summary>
+            倒序
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.Entity.CreationEntityBase">
+            <summary>
+            带有创建信息的实体
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.CreationEntityBase.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Entity.CreationEntityBase.CreatorId">
             <summary>
             创建者Id
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBase.UpdateUserId">
+        <member name="T:Hx.Gateway.Core.Entity.EntityBase">
             <summary>
-            修改者Id
+            框架实体基类Id
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBase.IsDelete">
+        <member name="P:Hx.Gateway.Core.Entity.EntityBase.Id">
             <summary>
-            软删除
+            雪花Id
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.Entity.EntityBaseData">
+        <member name="T:Hx.Gateway.Core.Entity.FullAuditedEntityBase">
             <summary>
-            业务数据实体基类(数据权限)
+            带有状态数据的实体（非泛型）
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityBaseData.CreateOrgId">
+        <member name="P:Hx.Gateway.Core.Entity.FullAuditedEntityBase.IsDeleted">
             <summary>
-            创建者部门Id
+            是否删除
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.Entity.EntityTenant">
+        <member name="P:Hx.Gateway.Core.Entity.FullAuditedEntityBase.DeleterId">
             <summary>
-            租户基类实体
+            删除人id
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityTenant.TenantId">
+        <member name="P:Hx.Gateway.Core.Entity.FullAuditedEntityBase.DeleteTime">
             <summary>
-            租户Id
+            删除时间
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.Entity.EntityTenantId">
+        <member name="T:Hx.Gateway.Core.Entity.IEntity`1">
             <summary>
-            租户基类实体Id
+            实体接口
             </summary>
+            <typeparam name="TKey"></typeparam>
         </member>
-        <member name="P:Hx.Gateway.Core.Entity.EntityTenantId.TenantId">
+        <member name="P:Hx.Gateway.Core.Entity.IEntity`1.Id">
             <summary>
-            租户Id
+            主键id
             </summary>
         </member>
         <member name="T:Hx.Gateway.Core.Entity.TgGlobalConfiguration">
@@ -494,119 +425,146 @@
             状态
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.Enum.DictTypeEnum">
-            <summary>
-            字典类型枚举
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum">
-            <summary>
-            网关异常代码
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_EMPLOYEE_FAIL">
-            <summary>
-            新增雇员失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_ROLE_FAIL">
-            <summary>
-            新增角色失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.RESET_PASSWORD_FAIL">
-            <summary>
-            重置密码失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ACCOUNT_OR_PASSWORD_ERROR">
-            <summary>
-            用户名或密码错误
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ACCOUNT_NON_EXISTENT">
-            <summary>
-            用户不存在
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ACCOUNT_DISABLED">
-            <summary>
-            当前用户已被管理员停用
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_EMPLOYEE_FAIL">
-            <summary>
-            删除雇员失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_GLOBAL_CONFIGURATION_FAIL">
-            <summary>
-            删除雇员角色失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.UPDATE_GLOBAL_CONFIGURATION_FAIL">
-            <summary>
-            /编辑全局配置失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_GLOBAL_CONFIGURATION_FAIL">
-            <summary>
-            新增全局配置失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.INSERT_PROJECT_FAIL">
-            <summary>
-            新增项目失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_PROJECT_FAIL">
-            <summary>
-            删除项目失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.UPDATE_PROJECT_FAIL">
-            <summary>
-            编辑项目失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ENABLE_PROJECT_FAIL">
-            <summary>
-            启动项目失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DISABLE_PROJECT_FAIL">
-            <summary>
-            禁用项目失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DELETE_ROUTE_FAIL">
-            <summary>
-            删除路由失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.ENABLE_ROUTE_FAIL">
-            <summary>
-            启动路由失败
-            </summary>
-        </member>
-        <member name="F:Hx.Gateway.Core.Enum.GatewayErrorCodeEnum.DISABLE_ROUTE_FAIL">
-            <summary>
-            禁用路由失败
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.Enum.StatusEnum">
+        <member name="T:Hx.Gateway.Core.StatusEnum">
             <summary>
             通用状态枚举
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.Enum.StatusEnum.Enable">
+        <member name="F:Hx.Gateway.Core.StatusEnum.Enable">
             <summary>
             启用
             </summary>
         </member>
-        <member name="F:Hx.Gateway.Core.Enum.StatusEnum.Disable">
+        <member name="F:Hx.Gateway.Core.StatusEnum.Disable">
             <summary>
             停用
+            </summary>
+        </member>
+        <member name="T:Hx.Gateway.Core.EnumExtension">
+            <summary>
+            枚举扩展
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.EnumExtension.GetDescription(System.Enum)">
+            <summary>
+             获取枚举的中文描述
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.HasImplementedRawGeneric(System.Type,System.Type)">
+            <summary>
+            判断类型是否实现某个泛型
+            </summary>
+            <param name="type">类型</param>
+            <param name="generic">泛型类型</param>
+            <returns>bool</returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ToQueryString(System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean)">
+            <summary>
+            将字典转化为QueryString格式
+            </summary>
+            <param name="dict"></param>
+            <param name="urlEncode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.UrlEncode(System.String)">
+            <summary>
+            将字符串URL编码
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ToJson(System.Object)">
+            <summary>
+            对象序列化成Json字符串
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ToObject``1(System.String)">
+            <summary>
+            Json字符串反序列化成对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ParseToLong(System.Object)">
+            <summary>
+            将object转换为long，若失败则返回0
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ParseToLong(System.String,System.Int64)">
+            <summary>
+            将object转换为long，若失败则返回指定值
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ParseToDouble(System.Object)">
+            <summary>
+            将object转换为double，若失败则返回0
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ParseToDouble(System.Object,System.Double)">
+            <summary>
+            将object转换为double，若失败则返回指定值
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ParseToDateTime(System.String)">
+            <summary>
+            将string转换为DateTime，若失败则返回日期最小值
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.ParseToDateTime(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            将string转换为DateTime，若失败则返回默认值
+            </summary>
+            <param name="str"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ObjectExtension.IsNullOrEmpty(System.Object)">
+            <summary>
+            判断是否有值
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.Options.DbConnectionConfig">
+            <summary>
+            数据库连接配置
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.DbConnectionConfig.EnableInitDb">
+            <summary>
+            启用库表初始化
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.DbConnectionConfig.EnableInitSeed">
+            <summary>
+            启用种子初始化
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.DbConnectionConfig.EnableUnderLine">
+            <summary>
+            启用驼峰转下划线
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.DbConnectionConfig.EnableSqlLog">
+            <summary>
+            启用Sql日志记录
             </summary>
         </member>
         <member name="P:Hx.Gateway.Core.Options.OcelotSettingsOptions.ProjectCode">
@@ -990,210 +948,967 @@
             命名空间
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.ClientRoleModel.CacheTime">
+        <member name="T:Hx.Gateway.Core.PagedListResult`1">
             <summary>
-            缓存时间
+            分页泛型集合
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:Hx.Gateway.Core.PagedListResult`1.#ctor">
+            <summary>
+            构造函数
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.ClientRoleModel.Role">
+        <member name="M:Hx.Gateway.Core.PagedListResult`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32)">
             <summary>
-            是否有访问权限
+            构造函数
+            </summary>
+            <param name="items">数据集合</param>
+            <param name="total">总条数</param>
+        </member>
+        <member name="M:Hx.Gateway.Core.PagedListResult`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="items">数据集合</param>
+            <param name="total">总条数</param>
+            <param name="page">当前页码</param>
+            <param name="pageSize">每页条数</param>
+        </member>
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.Page">
+            <summary>
+            页码
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.DiffClientRateLimitCounter">
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.PageSize">
             <summary>
-            客户端限流计数器
+            页容量
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitCounter.Timestamp">
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.Total">
             <summary>
-            最后请求时间
+            总条数
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitCounter.TotalRequests">
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.TotalPages">
             <summary>
-            请求总数
+            总页数
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions">
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.Items">
             <summary>
-            
+            当前页集合
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.RateLimitPath">
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.HasPrevPage">
             <summary>
-            限流请求的地址
+            是否有上一页
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.Limit">
+        <member name="P:Hx.Gateway.Core.PagedListResult`1.HasNextPage">
             <summary>
-            限制的访问次数
+            是否有下一页
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.Period">
+        <member name="T:Hx.Gateway.Core.SqlSugarConfigProvider">
             <summary>
-            限流的策略，如  1s 2m 3h 4d
+            SqlSugar配置初始化
             </summary>
         </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions.ClientId">
+        <member name="F:Hx.Gateway.Core.SqlSugarConfigProvider.Assemblies">
             <summary>
-            客户端ID
+            应用有效程序集
             </summary>
         </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor">
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.SetAssemblies(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
             <summary>
-            实现客户端限流处理器
+            设置实体所在的程序集
             </summary>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckClientRateLimitResultAsync(System.String,System.String)">
+        <member name="P:Hx.Gateway.Core.SqlSugarConfigProvider.EffectiveTypes">
             <summary>
-            校验客户端限流结果
+            有效程序集类型
             </summary>
-            <param name="clientid">客户端ID</param>
-            <param name="path">请求地址</param>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.GetTypes(System.Reflection.Assembly)">
+            <summary>
+            加载程序集中的所有类型
+            </summary>
+            <param name="ass"></param>
             <returns></returns>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckReRouteRuleAsync(System.String)">
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.SetDbConfig(Hx.Gateway.Core.Options.DbConnectionConfig)">
             <summary>
-            检验是否启用限流规则
+            配置连接属性
             </summary>
-            <param name="path">请求地址</param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.SetAopLog(SqlSugar.ISqlSugarClient)">
+            <summary>
+            配置Aop日志
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.InitDatabase(SqlSugar.ISqlSugarClient,Hx.Gateway.Core.Options.DbConnectionConfig)">
+            <summary>
+            初始化数据库和种子数据
+            DbConnectionConfig需开启相应的开关
+            </summary>
+            <param name="dbProvider"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Hx.Gateway.Core.SqlSugarPagedExtensions">
+            <summary>
+            分页拓展类
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarPagedExtensions.ToPagedList``2(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            分页拓展
+            </summary>
+            <param name="query"><see cref="T:SqlSugar.ISugarQueryable`1"/>对象</param>
+            <param name="pageIndex">当前页码，从1开始</param>
+            <param name="pageSize">页码容量</param>
+            <param name="expression">查询结果 Select 表达式</param>
             <returns></returns>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckClientRateLimitAsync(System.String,System.String)">
+        <member name="M:Hx.Gateway.Core.SqlSugarPagedExtensions.ToPagedList``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
             <summary>
-            校验客户端限流规则
+            分页拓展
             </summary>
-            <param name="clientid">客户端ID</param>
-            <param name="path">请求地址</param>
+            <param name="query"><see cref="T:SqlSugar.ISugarQueryable`1"/>对象</param>
+            <param name="pageIndex">当前页码，从1开始</param>
+            <param name="pageSize">页码容量</param>
             <returns></returns>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckClientReRouteWhiteListAsync(System.String,System.String)">
+        <member name="M:Hx.Gateway.Core.SqlSugarPagedExtensions.ToPagedListAsync``2(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
-            校验是否设置了路由白名单
+            分页拓展
             </summary>
-            <param name="clientid">客户端ID</param>
-            <param name="path">请求地址</param>
+            <param name="query"><see cref="T:SqlSugar.ISugarQueryable`1"/>对象</param>
+            <param name="pageIndex">当前页码，从1开始</param>
+            <param name="pageSize">页码容量</param>
+            <param name="expression">查询结果 Select 表达式</param>
             <returns></returns>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.CheckRateLimitResult(System.Collections.Generic.List{Hx.Gateway.Core.RateLimit.DiffClientRateLimitOptions})">
+        <member name="M:Hx.Gateway.Core.SqlSugarPagedExtensions.ToPagedListAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
             <summary>
-            校验完整的限流规则
+            分页拓展
             </summary>
-            <param name="rateLimitOptions">限流配置</param>
+            <param name="query"><see cref="T:SqlSugar.ISugarQueryable`1"/>对象</param>
+            <param name="pageIndex">当前页码，从1开始</param>
+            <param name="pageSize">页码容量</param>
             <returns></returns>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.DiffClientRateLimitProcessor.ConvertToSecond(System.String)">
+        <member name="M:Hx.Gateway.Core.SqlSugarPagedExtensions.ToPagedList``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
             <summary>
-            根据限流标识，获取周期秒数
+            分页拓展
             </summary>
-            <param name="timeSpan">标识</param>
+            <param name="list">集合对象</param>
+            <param name="pageIndex">当前页码，从1开始</param>
+            <param name="pageSize">页码容量</param>
             <returns></returns>
         </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.RateLimitOptionsError">
+        <member name="M:Hx.Gateway.Core.SqlSugarPagedExtensions.CreateSqlSugarPagedList``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Int32)">
             <summary>
-            限流错误信息
+            创建 <see cref="T:Hx.Gateway.Core.PagedListResult`1"/> 对象
             </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.IClientRateLimitProcessor">
-            <summary>
-            客户端限流处理器
-            </summary>
-        </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitProcessor.CheckClientRateLimitResultAsync(System.String,System.String)">
-            <summary>
-            校验客户端限流结果
-            </summary>
-            <param name="clientid">客户端ID</param>
-            <param name="path">应用策略地址</param>
+            <typeparam name="TEntity"></typeparam>
+            <param name="items">分页内容的对象集合</param>
+            <param name="total">总条数</param>
+            <param name="pageIndex">当前页码，从1开始</param>
+            <param name="pageSize">页码容量</param>
             <returns></returns>
         </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository">
+        <member name="T:Hx.Gateway.Core.ISqlSugarEntitySeedData`1">
             <summary>
-            客户端限流相关仓储接口
+            实体种子数据接口
             </summary>
+            <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository.CheckReRouteRuleAsync(System.String)">
-            <summary>
-            校验是否启用限流规则
-            </summary>
-            <param name="path">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository.CheckClientRateLimitAsync(System.String,System.String)">
-            <summary>
-            校验客户端限流规则
-            </summary>
-            <param name="clientid">客户端ID</param>
-            <param name="path">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="M:Hx.Gateway.Core.RateLimit.IClientRateLimitRepository.CheckClientReRouteWhiteListAsync(System.String,System.String)">
-            <summary>
-            校验是否设置了路由白名单
-            </summary>
-            <param name="clientid">客户端ID</param>
-            <param name="path">请求地址</param>
-            <returns></returns>
-        </member>
-        <member name="T:Hx.Gateway.Core.RateLimit.Middleware.DiffClientRateLimitMiddleware">
-            <summary>
-            自定义客户端限流中间件
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.RateLimitRuleModel.RateLimit">
-            <summary>
-            是否启用限流
-            </summary>
-        </member>
-        <member name="P:Hx.Gateway.Core.RateLimit.RateLimitRuleModel.RateLimitOptions">
-            <summary>
-            限流配置信息
-            </summary>
-        </member>
-        <member name="T:Hx.Gateway.Core.SeedData.TgUserAccountSeedData">
-            <summary>
-            系统用户表种子数据
-            </summary>
-        </member>
-        <member name="M:Hx.Gateway.Core.SeedData.TgUserAccountSeedData.HasData">
+        <member name="M:Hx.Gateway.Core.ISqlSugarEntitySeedData`1.HasData">
             <summary>
             种子数据
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Microsoft.AspNetCore.Builder.HxOcelotApplicationBuilderExtensions">
+        <member name="T:Hx.Gateway.Core.ISqlSugarRepository">
             <summary>
-            中间件扩展程序
+            非泛型 SqlSugar 仓储
             </summary>
         </member>
-        <member name="T:Microsoft.AspNetCore.Builder.DiffClientRateLimitApplicationBuilderExtensions">
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository.Change``1">
             <summary>
-            自定义客户端限流中间件扩展
+            切换仓储
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <returns>仓储</returns>
+        </member>
+        <member name="P:Hx.Gateway.Core.ISqlSugarRepository.Context">
+            <summary>
+            数据库上下文
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.Builder.DiffClientRateLimitApplicationBuilderExtensions.UseDiffClientRateLimit(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="P:Hx.Gateway.Core.ISqlSugarRepository.Ado">
             <summary>
-            使用自定义限流
+            原生 Ado 对象
             </summary>
-            <param name="builder"></param>
+        </member>
+        <member name="T:Hx.Gateway.Core.ISqlSugarRepository`1">
+            <summary>
+            SqlSugar 仓储接口定义
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:Hx.Gateway.Core.ISqlSugarRepository`1.Entities">
+            <summary>
+            实体集合
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.ISqlSugarRepository`1.Context">
+            <summary>
+            数据库上下文
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.ISqlSugarRepository`1.Ado">
+            <summary>
+            原生 Ado 对象
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取总数
+            </summary>
+            <param name="whereExpression"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Hx.Gateway.Core.Options.OcelotSettingsOptions})">
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
-            添加默认的注入方式，所有需要传入的参数都是用默认值
+            获取总数
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            检查是否存在
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            检查是否存在
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Single(System.Object)">
+            <summary>
+            通过主键获取实体
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.SingleAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.FirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.ToList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.ToList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.ToList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},SqlSugar.OrderByType)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <param name="orderByExpression"></param>
+            <param name="orderByType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.ToListAsync">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.ToListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.ToListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},SqlSugar.OrderByType)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <param name="orderByExpression"></param>
+            <param name="orderByType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Insert(`0)">
+            <summary>
+            新增一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Insert(`0[])">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Insert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.InsertReturnIdentity(`0)">
+            <summary>
+            新增一条记录返回自增Id
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.InsertAsync(`0)">
+            <summary>
+            新增一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.InsertAsync(`0[])">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.InsertAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.InsertReturnIdentityAsync(`0)">
+            <summary>
+            新增一条记录返回自增Id
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Update(`0)">
+            <summary>
+            更新一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Update(`0[])">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Update(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.UpdateAsync(`0)">
+            <summary>
+            更新一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.UpdateAsync(`0[])">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.UpdateAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Delete(`0)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Delete(System.Object)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Delete(System.Object[])">
+            <summary>
+            删除多条记录
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            自定义条件删除记录
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.DeleteAsync(`0)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.DeleteAsync(System.Object)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.DeleteAsync(System.Object[])">
+            <summary>
+            删除多条记录
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.DeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            自定义条件删除记录
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据表达式查询多条记录
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Where(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据表达式查询多条记录
+            </summary>
+            <param name="condition"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AsQueryable">
+            <summary>
+            构建查询分析器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AsQueryable(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            构建查询分析器
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AsEnumerable">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AsEnumerable(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AsAsyncEnumerable">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.AsAsyncEnumerable(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ISqlSugarRepository`1.Change``1">
+            <summary>
+            切换仓储
+            </summary>
+            <typeparam name="TChangeEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.SqlSugarRepository">
+            <summary>
+            非泛型 SqlSugar 仓储
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.SqlSugarRepository._serviceProvider">
+            <summary>
+            服务提供器
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository.#ctor(System.IServiceProvider,SqlSugar.ISqlSugarClient)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="serviceProvider">服务提供器</param>
+            <param name="db"></param>
+        </member>
+        <member name="P:Hx.Gateway.Core.SqlSugarRepository.Context">
+            <summary>
+            数据库上下文
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.SqlSugarRepository.Ado">
+            <summary>
+            原生 Ado 对象
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository.Change``1">
+            <summary>
+            切换仓储
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <returns>仓储</returns>
+        </member>
+        <member name="T:Hx.Gateway.Core.SqlSugarRepository`1">
+            <summary>
+            SqlSugar 仓储实现类
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="F:Hx.Gateway.Core.SqlSugarRepository`1._sqlSugarRepository">
+            <summary>
+            非泛型 SqlSugar 仓储
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.#ctor(Hx.Gateway.Core.ISqlSugarRepository)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="sqlSugarRepository"></param>
+        </member>
+        <member name="P:Hx.Gateway.Core.SqlSugarRepository`1.Entities">
+            <summary>
+            实体集合
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.SqlSugarRepository`1.Context">
+            <summary>
+            数据库上下文
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.SqlSugarRepository`1.Ado">
+            <summary>
+            原生 Ado 对象
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取总数
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取总数
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            检查是否存在
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            检查是否存在
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Single(System.Object)">
+            <summary>
+            通过主键获取实体
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.SingleAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.FirstOrDefaultAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取一个实体
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.ToList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.ToList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.ToList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},SqlSugar.OrderByType)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <param name="orderByExpression"></param>
+            <param name="orderByType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.ToListAsync">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.ToListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.ToListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},SqlSugar.OrderByType)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="whereExpression"></param>
+            <param name="orderByExpression"></param>
+            <param name="orderByType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Insert(`0)">
+            <summary>
+            新增一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Insert(`0[])">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Insert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.InsertReturnIdentity(`0)">
+            <summary>
+            新增一条记录返回自增Id
+            </summary>
+            <param name="insertObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.InsertAsync(`0)">
+            <summary>
+            新增一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.InsertAsync(`0[])">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.InsertAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            新增多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.InsertReturnIdentityAsync(`0)">
+            <summary>
+            新增一条记录返回自增Id
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Update(`0)">
+            <summary>
+            更新一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Update(`0[])">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Update(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.UpdateAsync(`0)">
+            <summary>
+            更新一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.UpdateAsync(`0[])">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.UpdateAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Delete(`0)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Delete(System.Object)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Delete(System.Object[])">
+            <summary>
+            删除多条记录
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            自定义条件删除记录
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.DeleteAsync(`0)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.DeleteAsync(System.Object)">
+            <summary>
+            删除一条记录
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.DeleteAsync(System.Object[])">
+            <summary>
+            删除多条记录
+            </summary>
+            <param name="keys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.DeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            自定义条件删除记录
+            </summary>
+            <param name="whereExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据表达式查询多条记录
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Where(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据表达式查询多条记录
+            </summary>
+            <param name="condition"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AsQueryable">
+            <summary>
+            构建查询分析器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AsQueryable(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            构建查询分析器
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AsEnumerable">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AsEnumerable(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AsAsyncEnumerable">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.AsAsyncEnumerable(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            直接返回数据库结果
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarRepository`1.Change``1">
+            <summary>
+            切换仓储
+            </summary>
+            <typeparam name="TChangeEntity">实体类型</typeparam>
+            <returns>仓储</returns>
+        </member>
+        <member name="T:Hx.Sdk.Sqlsugar.IgnoreSeedUpdateAttribute">
+            <summary>
+            忽略更新种子数据特性
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SqlSugarServiceCollectionExtensions">
+            <summary>
+            SqlSugar 拓展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SqlSugarServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hx.Gateway.Core.Options.DbConnectionConfig})">
+            <summary>
+            添加 SqlSugar 拓展
             </summary>
             <param name="services"></param>
-            <param name="configuration">配置</param>
-            <param name="ocelotOptionAction">配置信息</param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.HxOcelotServiceCollectionExtensions.AddHxOcelot(Ocelot.DependencyInjection.IOcelotBuilder,System.Action{Hx.Gateway.Core.Options.OcelotSettingsOptions})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SqlSugarServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
-            添加默认的注入方式，所有需要传入的参数都是用默认值
+            添加 SqlSugar 拓展
             </summary>
-            <param name="builder"></param>
-            <param name="ocelotOptionAction">配置信息</param>
+            <param name="services"></param>
+            <param name="config"></param>
             <returns></returns>
         </member>
     </members>

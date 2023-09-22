@@ -1,15 +1,11 @@
 ﻿using Hx.Gateway.Core.Entity;
-using Hx.Gateway.Core.Enum;
 using Hx.Gateway.Core.Options;
-using Hx.Sdk.Sqlsugar;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Ocelot.Configuration.File;
 using Ocelot.Configuration.Repository;
 using Ocelot.Responses;
-using System.Collections.Generic;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Hx.Gateway.Core.Configuration.Repository
 {

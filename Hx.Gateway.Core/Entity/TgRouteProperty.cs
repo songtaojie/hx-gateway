@@ -27,7 +27,7 @@ namespace Hx.Gateway.Core.Entity
         /// 路由Id 
         ///</summary>
         [SugarColumn(ColumnDescription = "RouteId")]
-        public long RouteId { get; set; }
+        public Guid RouteId { get; set; }
 
         /// <summary>
         ///  

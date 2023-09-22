@@ -7,14 +7,9 @@ using Hx.Gateway.Core.Options;
 using Hx.Sdk.Sqlsugar;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Hx.Gateway.Core.Entity;
 
 namespace Hx.Gateway.Core;
 
@@ -148,6 +143,29 @@ internal static class SqlSugarConfigProvider
             if (ex.Parametres == null) return;
             _logger.LogError($"【{DateTime.Now}——错误SQL】\r\n {UtilMethods.GetSqlString(config.DbType, ex.Sql, (SugarParameter[])ex.Parametres)} \r\n");
         };
+
+        // 数据审计
+        db.Aop.DataExecuting = (oldValue, entityInfo) =>
+        {
+            if (entityInfo.OperationType == DataFilterType.InsertByObject)
+            {
+                // 主键(long类型)且没有值的---赋值雪花Id
+                if (entityInfo.EntityColumnInfo.IsPrimarykey && entityInfo.EntityColumnInfo.PropertyInfo.PropertyType == typeof(Guid))
+                {
+                    var id = entityInfo.EntityColumnInfo.PropertyInfo.GetValue(entityInfo.EntityValue);
+                    if (id == null || (Guid)id == Guid.Empty)
+                        entityInfo.SetValue(Guid.NewGuid());
+                }
+                if (entityInfo.PropertyName == "CreateTime")
+                    entityInfo.SetValue(DateTime.Now);
+            }
+            if (entityInfo.OperationType == DataFilterType.UpdateByObject)
+            {
+                if (entityInfo.PropertyName == "UpdateTime")
+                    entityInfo.SetValue(DateTime.Now);
+            }
+        };
+
     }
 
 

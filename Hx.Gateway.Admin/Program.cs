@@ -1,5 +1,7 @@
 using AntDesign.ProLayout;
+using Hx.Gateway.Admin.Services;
 using Hx.Gateway.Application.Services;
+using Hx.Gateway.Core.Options;
 using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);

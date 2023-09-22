@@ -1,5 +1,5 @@
-﻿using Hx.Gateway.Admin.Enum;
-using Hx.Sdk.Common;
+﻿using Hx.Gateway.Core;
+using Hx.Gateway.Core.Entity;
 
 namespace Hx.Gateway.Application.Services.Projects
 {

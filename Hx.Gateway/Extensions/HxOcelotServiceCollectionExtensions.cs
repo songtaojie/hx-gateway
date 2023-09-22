@@ -50,30 +50,30 @@ public static class HxOcelotServiceCollectionExtensions
         OcelotSettingsOptions ocelotSettingsOptions = new OcelotSettingsOptions();
         ocelotOptionAction?.Invoke(ocelotSettingsOptions);
      
-        //添加数据库存储
-        var config = SqlSugarConfigProvider.SetDbConfig(new DbConnectionConfig()
-        {
-            ConfigId = CommonConst.ConfigId,
-            DbType = DbType.Sqlite,
-            ConnectionString = "DataSource=./Hx.Gateway.db",
-            EnableInitDb = true,
-            EnableInitSeed = true,
-            EnableUnderLine = true,
-            EnableSqlLog = true,
-        });
-        if (ocelotSettingsOptions.DbConnectionConfig != null)
-        {
-            config = ocelotSettingsOptions.DbConnectionConfig;
-        };
-        builder.Services.AddSqlSugar(dbOptions => 
-        {
-            dbOptions.ConnectionConfigs = new DbConnectionConfig[] { config };
-        },db =>
-        {
-            SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
-            SqlSugarConfigProvider.SetAopLog(dbProvider);
-            SqlSugarConfigProvider.InitDatabase(dbProvider, config);
-        });
+        ////添加数据库存储
+        //var config = SqlSugarConfigProvider.SetDbConfig(new DbConnectionConfig()
+        //{
+        //    ConfigId = CommonConst.ConfigId,
+        //    DbType = DbType.Sqlite,
+        //    ConnectionString = "DataSource=./Hx.Gateway.db",
+        //    EnableInitDb = true,
+        //    EnableInitSeed = true,
+        //    EnableUnderLine = true,
+        //    EnableSqlLog = true,
+        //});
+        //if (ocelotSettingsOptions.DbConnectionConfig != null)
+        //{
+        //    config = ocelotSettingsOptions.DbConnectionConfig;
+        //};
+        //builder.Services.AddSqlSugar(dbOptions => 
+        //{
+        //    dbOptions.ConnectionConfigs = new DbConnectionConfig[] { config };
+        //},db =>
+        //{
+        //    SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
+        //    SqlSugarConfigProvider.SetAopLog(dbProvider);
+        //    SqlSugarConfigProvider.InitDatabase(dbProvider, config);
+        //});
 
         //配置文件仓储注入
         builder.Services.AddSingleton<IFileConfigurationRepository, DbFileConfigurationRepository>();

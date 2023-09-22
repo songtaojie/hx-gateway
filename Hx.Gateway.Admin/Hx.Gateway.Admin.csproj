@@ -9,7 +9,6 @@
   <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.15.5" />
     <PackageReference Include="AntDesign.ProLayout" Version="0.14.4.1" />
-    <PackageReference Include="Hx.Sdk.Sqlsugar" Version="6.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.19" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.20" />
   </ItemGroup>

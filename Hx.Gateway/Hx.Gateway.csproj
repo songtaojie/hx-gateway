@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SqlSugarCore" Version="5.1.4.106" />
+    <ProjectReference Include="..\Hx.Gateway.Core\Hx.Gateway.Core.csproj" />
   </ItemGroup>
 
 </Project>

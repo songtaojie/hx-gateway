@@ -3,9 +3,7 @@
 // 作者:songtaojie
 // 电话/微信：stjworkemail@163.com
 
-using Hx.Gateway.Admin.Enum;
-using Hx.Sdk.Extensions;
-using SqlSugar;
+using Hx.Gateway.Core;
 
 namespace Hx.Gateway.Admin.Services.Projects.Dto;
 
@@ -14,7 +12,7 @@ public class PageProjectOutput
     /// <summary>
     /// 主键Id
     /// </summary>
-    public long Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// 项目编码

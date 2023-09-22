@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Hx.Gateway.Core.Enum;
-using SqlSugar;
-
-namespace Hx.Gateway.Core.Entity
+﻿namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 用户表
     ///</summary>
     [SugarTable(null, "用户表")]
-    public class TgUserAccount : EntityBase
+    public class TgUserAccount : FullAuditedEntityBase
     {
         /// <summary>
         /// 账户

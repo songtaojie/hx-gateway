@@ -3,9 +3,6 @@
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
 using Hx.Gateway.Core.Entity;
-using Hx.Gateway.Core.Enum;
-using Hx.Sdk.Sqlsugar;
-using System.Collections.Generic;
 
 namespace Hx.Gateway.Core.SeedData;
 
@@ -25,7 +22,7 @@ public class TgUserAccountSeedData : ISqlSugarEntitySeedData<TgUserAccount>
         {
             new TgUserAccount
             {
-                Id=252885263000000,
+                Id = Guid.Parse("a2e92532-b47f-40d8-8b6c-ab12517a9787"),
                 Account="admin",
                 Password="e10adc3949ba59abbe56e057f20f883e",
                 Name="系统管理员",

@@ -7,11 +7,6 @@
     public class TgRouteHostPort : EntityBase
     {
         /// <summary>
-        /// 主键Id
-        /// </summary>
-        [SugarColumn(ColumnDescription = "主键Id", IsPrimaryKey = true)]
-        public override long Id { get => base.Id; set => base.Id = value; }
-        /// <summary>
         ///  路由主机
         ///</summary>
         [SugarColumn(ColumnDescription = "路由主机", Length = 64)]

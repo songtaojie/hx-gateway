@@ -1,13 +1,9 @@
-﻿using Hx.Gateway.Admin.Enum;
-using Hx.Gateway.Admin.Services.Projects.Dto;
+﻿using Hx.Gateway.Admin.Services.Projects.Dto;
 using Hx.Gateway.Application.Services.Projects;
-using Hx.Gateway.Application.Services.Routes;
+using Hx.Gateway.Core;
 using Hx.Gateway.Core.Entity;
-using Hx.Sdk.Common;
-using Hx.Sdk.Extensions;
-using Hx.Sdk.Sqlsugar;
 
-namespace Hx.Gateway.Application.Services
+namespace Hx.Gateway.Admin.Services
 {
     public class ProjectService
     {
@@ -37,7 +33,7 @@ namespace Hx.Gateway.Application.Services
         /// 查询所有可用的项目
         /// </summary>
         /// <returns></returns>
-        public async Task<List<long>> GetAllEnabledProjectIdsAsync()
+        public async Task<List<Guid>> GetAllEnabledProjectIdsAsync()
         {
             return await _tgProjectRep.AsQueryable()
                 .Where(o => o.Status == StatusEnum.Enable)
@@ -67,9 +63,9 @@ namespace Hx.Gateway.Application.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<bool> AddOrUpdateProjectAsync(AddProjectInput request)
+        public async Task<bool> SaveProjectAsync(SaveProjectInput request)
         {
-            if (request.Id.HasValue && request.Id > 0)
+            if (request.Id.HasValue && request.Id != Guid.Empty)
             {
                 var project = new TgProject
                 {
