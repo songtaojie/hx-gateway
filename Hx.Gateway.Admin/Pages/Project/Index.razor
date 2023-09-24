@@ -25,7 +25,7 @@
                         <Button Type="@ButtonType.Primary" OnClick="OnQuery">查询</Button>
                     </SpaceItem>
                     <SpaceItem>
-                        <Button Type="@(ButtonType.Default)" OnClick="@OnAdd">新增</Button>
+                        <Button Type="@(ButtonType.Default)" OnClick="OnAdd">新增</Button>
                     </SpaceItem>
                 </Space>
                 </FormItem>
@@ -39,22 +39,23 @@
            TItem="PageProjectOutput"
            DataSource="@_data.Items"
            Total="_data.Total"
+           Size="@(TableSize.Small)"
            @bind-PageIndex="_pageInput.Page"
            @bind-PageSize="_pageInput.PageSize">
         <Selection Key="@(context.Id.ToString())" />
-        <PropertyColumn Property="c=>c.Id" Title="标识" Hidden />
-        <PropertyColumn Property="c=>c.Code" Title="项目编码" />
-        <PropertyColumn Property="c=>c.Name" Title="项目名称" />
-        <Column @bind-Field="@context.Status" Title="状态">
+        <PropertyColumn Align="@ColumnAlign.Center" Property="c=>c.Id" Title="标识" Hidden />
+        <PropertyColumn Align="@ColumnAlign.Center" Property="c=>c.Code" Title="项目编码" />
+        <PropertyColumn Align="@ColumnAlign.Center" Property="c=>c.Name" Title="项目名称" />
+        <Column Align="@ColumnAlign.Center" @bind-Field="@context.Status" Title="状态">
             <Switch Checked="@(context.Status == StatusEnum.Enable)" Disabled CheckedChildren="启用" UnCheckedChildren="禁用"></Switch>
-            </Column>
-            <PropertyColumn Property="c=>c.CreateTime" Format="yyyy-MM-dd HH:mm:ss" Title="创建时间" />
-            <ActionColumn Title="操作">
-                <Space>
-                <SpaceItem><Button Danger OnClick="()=>OnEdit(context)">编辑</Button></SpaceItem>
-                    <SpaceItem><Button Danger OnClick="()=>OnDelete(context.Id)">删除</Button></SpaceItem>
-                </Space>
-            </ActionColumn>
+        </Column>
+        <PropertyColumn Align="@ColumnAlign.Center" Property="c=>c.CreateTime" Format="yyyy-MM-dd HH:mm:ss" Title="创建时间" />
+        <ActionColumn Title="操作" Align="@ColumnAlign.Center">
+            <Space>
+            <SpaceItem><Button Danger OnClick="()=>OnEdit(context)" Size="small">编辑</Button></SpaceItem>
+            <SpaceItem><Button Danger OnClick="()=>OnDelete(context.Id)" Size="small">删除</Button></SpaceItem>
+            </Space>
+        </ActionColumn>
     </Table>
 </Card>
                     <Modal Title="@(_isEdit?"编辑项目":"添加项目")"

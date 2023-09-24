@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Hx.Gateway.Core\Hx.Gateway.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Route\" />
+  </ItemGroup>
+
 </Project>
