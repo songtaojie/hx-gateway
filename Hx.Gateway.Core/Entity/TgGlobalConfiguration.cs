@@ -13,6 +13,12 @@
         public Guid ProjectId { get; set; }
 
         /// <summary>
+        /// 全局配置名称 
+        ///</summary>
+        [SugarColumn(ColumnDescription = "全局配置名称", IsNullable = true, Length = 200)]
+        public string Name { get; set; }
+
+        /// <summary>
         /// 基础地址 
         ///</summary>
         [SugarColumn(ColumnDescription = "基础地址", IsNullable = true, Length = 200)]

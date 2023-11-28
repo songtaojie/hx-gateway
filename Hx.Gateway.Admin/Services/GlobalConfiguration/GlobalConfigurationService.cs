@@ -1,4 +1,7 @@
-﻿using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
+﻿using Hx.Gateway.Admin.Services.GlobalConfiguration.Dtos;
+using Hx.Gateway.Admin.Services.Projects.Dto;
+using Hx.Gateway.Application.Services.GlobalConfiguration.Dtos;
+using Hx.Gateway.Application.Services.Projects;
 using Hx.Gateway.Core;
 using Hx.Gateway.Core.Entity;
 using System.Text.Json;
@@ -35,6 +38,28 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
                 ServiceDiscoveryProviderOptions = new Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions(),
                 RateLimitOptions = new Hx.Gateway.Core.Options.Ocelot.RateLimitOptions()
             };
+        }
+
+        /// <summary>
+        /// 分页查询项目信息
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<PagedListResult<PageGlobalConfigurationOutput>> GetPageAsync(PageGlobalConfigurationInput input)
+        {
+            return await _repository.AsQueryable()
+                .LeftJoin<TgProject>((u,p) => u.ProjectId == p.Id)
+                .WhereIF(input.Status.HasValue, u => u.Status == input.Status)
+                .OrderByDescending((u, p) => u.CreateTime)
+                .Select((u, p) => new PageGlobalConfigurationOutput
+                { 
+                    Id = u.Id,
+                    Name = u.Name,
+                    ProjectId = u.ProjectId,
+                    ProjectName = p.Name,
+                    Status = u.Status
+                })
+                .ToPagedListAsync(input.Page, input.PageSize);
         }
 
         #endregion

@@ -12,7 +12,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddAntDesign();
 builder.Services.Configure<ProSettings>(builder.Configuration.GetSection("ProSettings"));
 builder.Services.AddSqlSugar(builder.Configuration);
-builder.Services.AddTransient<ProjectService>();
+builder.Services.AddGatewayServices();
 //builder.ConfigureHxWebApp();
 var app = builder.Build();
 

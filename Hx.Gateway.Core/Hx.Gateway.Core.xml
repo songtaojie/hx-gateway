@@ -126,6 +126,11 @@
              项目Id 
             </summary>
         </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.Name">
+             <summary>
+             全局配置名称 
+            </summary>
+        </member>
         <member name="P:Hx.Gateway.Core.Entity.TgGlobalConfiguration.BaseUrl">
              <summary>
              基础地址 

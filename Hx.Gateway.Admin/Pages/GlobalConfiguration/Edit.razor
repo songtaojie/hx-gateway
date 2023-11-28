@@ -1,0 +1,16 @@
+﻿@page "/globalconfig/edit/{id}"
+<h3>Edit</h3>
+
+@code {
+    [Parameter]
+    public string Id{ get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Id) && Guid.TryParse(Id, out Guid _id))
+        {
+              
+        }
+        return base.OnInitializedAsync();
+    }
+}
