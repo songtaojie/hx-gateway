@@ -22,10 +22,10 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         /// 查询全局配置信息
         /// </summary>
         /// <returns></returns>
-        public async Task<GlobalConfigurationOutput> GetGlobalConfigurationAsync()
+        public async Task<GlobalConfigurationOutput> GetByIdAsync(Guid id)
         {
             var entity = await _repository.Context.Queryable<TgGlobalConfiguration>()
-                .Where(u => u.Status == StatusEnum.Enable)
+                .Where(u => u.Id == id)
                 .OrderByDescending(u => u.CreateTime)
                 .FirstAsync();
             if(entity == null) return new GlobalConfigurationOutput();
@@ -71,15 +71,34 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<int> AddGlobalConfigurationAsync(AddGlobalConfigurationInput request)
+        public async Task<int> AddAsync(GlobalConfigurationOutput request)
         {
             var tgGlobalConfiguration = new TgGlobalConfiguration
             { 
+                Id = Guid.NewGuid(),
+                ProjectId = request.ProjectId,
                 BaseUrl = request.BaseUrl,
+                Name = request.Name,
+                Status = request.Status,    
+                CreateTime = DateTime.Now,
+                RequestIdKey = request.RequestIdKey,
                 DownstreamHttpVersion = request.DownstreamHttpVersion,
                 DownstreamScheme = request.DownstreamScheme,
-                HttpHandlerOptions = request.HttpHandlerOptions == null ?string.Empty:JsonSerializer.Serialize(request.HttpHandlerOptions),
-                //ProjectId = request.ProjectId
+                HttpHandlerOptions = request.HttpHandlerOptions == null 
+                    ?string.Empty
+                    :JsonSerializer.Serialize(request.HttpHandlerOptions),
+                LoadBalancerOptions = request.LoadBalancerOptions == null
+                     ? string.Empty
+                    : JsonSerializer.Serialize(request.LoadBalancerOptions),
+                QoSOptions = request.QoSOptions == null
+                     ? string.Empty
+                    : JsonSerializer.Serialize(request.QoSOptions),
+                RateLimitOptions = request.RateLimitOptions == null
+                     ? string.Empty
+                    : JsonSerializer.Serialize(request.RateLimitOptions),
+                ServiceDiscoveryProviderOptions = request.ServiceDiscoveryProviderOptions == null
+                     ? string.Empty
+                    : JsonSerializer.Serialize(request.ServiceDiscoveryProviderOptions),
             };
             var insertResult = await _repository.Context.Insertable(tgGlobalConfiguration).ExecuteReturnIdentityAsync();
             if (insertResult > 0)
@@ -101,7 +120,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<string> UpdateGlobalConfigurationAsync(UpdateGlobalConfigurationInput request)
+        public async Task<string> UpdateAsync(GlobalConfigurationOutput request)
         {
             var tgGlobalConfiguration = new TgGlobalConfiguration
             {

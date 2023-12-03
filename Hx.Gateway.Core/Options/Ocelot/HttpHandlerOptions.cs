@@ -19,27 +19,27 @@ public class HttpHandlerOptions
     /// 如果请求应该自动跟随来自下游资源的重定向响应，
     /// 则将其设置为true;否则错误。默认值为false
     /// </summary>
-    public bool? AllowAutoRedirect { get; set; }
+    public bool AllowAutoRedirect { get; set; }
 
     /// <summary>
     /// UseCookieContainer是一个值，指示处理程序是否使用cookie econtainer属性存储服务器cookie，并在发送请求时使用这些cookie。默认值为false。请注意，如果您正在使用CookieContainer, 
     /// Ocelot会为每个下游服务缓存HttpClient。
     /// 这意味着对DownstreamService的所有请求都将共享相同的cookie
     /// </summary>
-    public bool? UseCookieContainer { get; set; }
+    public bool UseCookieContainer { get; set; }
 
     /// <summary>
     /// 是否使用跟踪
     /// </summary>
-    public bool? UseTracing { get; set; }
+    public bool UseTracing { get; set; }
 
     /// <summary>
     /// 是否使用代理
     /// </summary>
-    public bool? UseProxy { get; set; }
+    public bool UseProxy { get; set; }
 
     /// <summary>
     /// 这将控制内部HttpClient将打开多少个连接。这可以在Route或全局级别设置。
     /// </summary>
-    public int? MaxConnectionsPerServer { get; set; }
+    public int MaxConnectionsPerServer { get; set; }
 }

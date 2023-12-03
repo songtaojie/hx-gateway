@@ -17,6 +17,16 @@ public class GlobalConfigurationOutput
     public long Id { get; set; }
 
     /// <summary>
+    /// 项目Id 
+    ///</summary>
+    public Guid ProjectId { get; set; }
+
+    /// <summary>
+    /// 全局配置名称 
+    ///</summary>
+    public string Name { get; set; }
+
+    /// <summary>
     /// 基础地址 
     ///</summary>
     public string BaseUrl { get; set; }
@@ -38,31 +48,31 @@ public class GlobalConfigurationOutput
     /// 负载均衡
     ///</summary>
     ///<see cref=" Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions"/>
-    public LoadBalancerOptions LoadBalancerOptions { get; set; }
+    public LoadBalancerOptions LoadBalancerOptions { get; set; } = new LoadBalancerOptions();
 
     /// <summary>
     /// HttpHandler配置 
     ///</summary>   
     ///<see cref=" Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions"/>
-    public HttpHandlerOptions HttpHandlerOptions { get; set; }
+    public HttpHandlerOptions HttpHandlerOptions { get; set; } = new HttpHandlerOptions();
 
     /// <summary>
     /// 服务质量控制
     ///</summary>
     ///<see cref=" Hx.Gateway.Core.Options.Ocelot.QoSOptions"/>
-    public QoSOptions QoSOptions { get; set; }
+    public QoSOptions QoSOptions { get; set; } = new QoSOptions();
 
     /// <summary>
     /// 全局限流配置 
     ///</summary>
     ///<see cref=" Hx.Gateway.Core.Options.Ocelot.RateLimitOptions"/>
-    public RateLimitOptions RateLimitOptions { get; set; }
+    public RateLimitOptions RateLimitOptions { get; set; } = new RateLimitOptions();
 
     /// <summary>
     /// 服务发现代理配置
     /// </summary>
     /// <see cref="Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions"/>
-    public ServiceDiscoveryProviderOptions ServiceDiscoveryProviderOptions { get; set; }
+    public ServiceDiscoveryProviderOptions ServiceDiscoveryProviderOptions { get; set; } = new ServiceDiscoveryProviderOptions();
 
     /// <summary>
     /// 状态

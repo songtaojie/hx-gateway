@@ -27,12 +27,18 @@ public class ServiceDiscoveryProviderOptions
     /// </summary>
     public string Scheme { get; set; }
     /// <summary>
-    /// 
+    /// 服务发现站点
     /// </summary>
     public string Host { get; set; }
 
+    /// <summary>
+    /// 服务发现端口
+    /// </summary>
     public int? Port { get; set; }
 
+    /// <summary>
+    /// 服务发现类型，Consul，PollConsul，Eureka
+    /// </summary>
     public string Type { get; set; }
 
     /// <summary>

@@ -929,7 +929,17 @@
         </member>
         <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Host">
             <summary>
-            
+            服务发现站点
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Port">
+            <summary>
+            服务发现端口
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Type">
+            <summary>
+            服务发现类型，Consul，PollConsul，Eureka
             </summary>
         </member>
         <member name="P:Hx.Gateway.Core.Options.Ocelot.ServiceDiscoveryProviderOptions.Token">
