@@ -1,4 +1,6 @@
-﻿namespace Hx.Gateway.Core.Entity
+﻿using SqlSugar;
+
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 用户表

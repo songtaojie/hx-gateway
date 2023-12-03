@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Principal;
 using System.Text;
+using SqlSugar;
 
 namespace Hx.Gateway.Core.Entity
 {

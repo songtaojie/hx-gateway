@@ -25,10 +25,18 @@ export class QoSOptions {
 
 export class RateLimitOptions {
   enableRateLimiting: boolean | undefined // 此值指定启用端点速率限制
+  clientWhitelistStr: string | undefined
   clientWhitelist: Array<string> | undefined // 这是一个包含客户端白名单的数组。这意味着该数组中的客户端将不受速率限制的影响
   period: number | undefined //如果在此时间段内发出的请求超过限制，则需要等待PeriodTimespan结束后再发出另一个请求
   periodTimespan: number | undefined // 这个值指定我们可以在特定的秒数后重试
   limit: number | undefined // 此值指定客户端在指定时间段内可以发出的最大请求数
+  SetcCientWhitelist() {
+    if(this.clientWhitelistStr != undefined && this.clientWhitelistStr != '') {
+      this.clientWhitelist = this.clientWhitelistStr.split(/,|，/)
+    }else {
+      this.clientWhitelist = []
+    }
+  }
 }
 
 export class ServiceDiscoveryProviderOptions {

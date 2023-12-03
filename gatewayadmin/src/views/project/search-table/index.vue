@@ -281,21 +281,21 @@ const patchProjectEnabled = async (projectId: number, enabled: boolean) => {
   fetchData()
 }
 
-const formatDate = (value: any) => {
-  const date = new Date(value)
-  const y = date.getFullYear()
-  const MM = date.getMonth() + 1
-  const MMstr = MM < 10 ? `0${MM}` : MM
-  const d = date.getDate()
-  const dstr = d < 10 ? `0${d}` : d
-  const h = date.getHours()
-  const hstr = h < 10 ? `0${h}` : h
-  const m = date.getMinutes()
-  const mstr = m < 10 ? `0${m}` : m
-  const s = date.getSeconds()
-  const sstr = s < 10 ? `0${s}` : s
-  return `${y}-${MMstr}-${dstr} ${hstr}:${mstr}:${sstr}`
-}
+// const formatDate = (value: any) => {
+//   const date = new Date(value)
+//   const y = date.getFullYear()
+//   const MM = date.getMonth() + 1
+//   const MMstr = MM < 10 ? `0${MM}` : MM
+//   const d = date.getDate()
+//   const dstr = d < 10 ? `0${d}` : d
+//   const h = date.getHours()
+//   const hstr = h < 10 ? `0${h}` : h
+//   const m = date.getMinutes()
+//   const mstr = m < 10 ? `0${m}` : m
+//   const s = date.getSeconds()
+//   const sstr = s < 10 ? `0${s}` : s
+//   return `${y}-${MMstr}-${dstr} ${hstr}:${mstr}:${sstr}`
+// }
 
 const toRoutePageSearch = (projectId: number) => {
   const routeStore = useRouteStore()

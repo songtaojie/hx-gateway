@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-
+using SqlSugar;
 namespace Hx.Gateway.Core
 {
     /// <summary>

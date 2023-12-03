@@ -1,6 +1,7 @@
 ﻿using Hx.Gateway.Core;
 using Hx.Gateway.Core.Options;
 using Microsoft.Extensions.Configuration;
+using SqlSugar;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

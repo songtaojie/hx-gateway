@@ -1,39 +1,34 @@
-using AntDesign.ProLayout;
-using Hx.Gateway.Admin.Services;
-using Hx.Gateway.Application.Services;
-using Hx.Gateway.Core.Options;
-using Microsoft.Extensions.DependencyInjection;
+// Apache-2.0 License
+// Copyright (c) 2021-2022 
+// 作者:songtaojie
+// 电话/微信：stjworkemail@163.com
+
+using Microsoft.AspNetCore.Mvc.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-builder.Services.AddAntDesign();
-builder.Services.Configure<ProSettings>(builder.Configuration.GetSection("ProSettings"));
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<FriendlyExceptionFilter>();
+    options.Filters.Add<UnifyResultFilterAttribute>();
+});
+builder.Services.AddSwaggerGen();
+builder.Services.AddJWTAuthentication(builder.Configuration);
 builder.Services.AddSqlSugar(builder.Configuration);
 builder.Services.AddGatewayServices();
-//builder.ConfigureHxWebApp();
+builder.Services.AddCorsAccessor(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-else
-{
-    app.UseDeveloperExceptionPage();
-    app.UseWebAssemblyDebugging();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseCorsAccessor();
+app.UseAuthentication();
+app.UseAuthorization();
 
-//app.UseBlazorFrameworkFiles();
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+app.MapControllers();
 
 app.Run();

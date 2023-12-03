@@ -24,7 +24,7 @@ public class TgUserAccountSeedData : ISqlSugarEntitySeedData<TgUserAccount>
             {
                 Id = Guid.Parse("a2e92532-b47f-40d8-8b6c-ab12517a9787"),
                 Account="admin",
-                Password="e10adc3949ba59abbe56e057f20f883e",
+                Password= MD5Encryption.Encrypt("123456"),
                 Name="系统管理员",
                 Status = StatusEnum.Enable
             },

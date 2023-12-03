@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using SqlSugar;
+using System.Runtime.Loader;
 
 namespace Hx.Gateway.Core;
 
@@ -22,22 +24,30 @@ internal static class SqlSugarConfigProvider
     /// <summary>
     /// 应用有效程序集
     /// </summary>
-    private static IEnumerable<Assembly> Assemblies;
+    private static IEnumerable<Assembly> _assemblies;
 
     private static IEnumerable<Type> _effectiveTypes;
 
     static SqlSugarConfigProvider()
     {
         _logger = NullLoggerFactory.Instance.CreateLogger(nameof(SqlSugarConfigProvider));
-        Assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        _assemblies = GetAssemblies();
     }
-
+    /// <summary>
+    /// 获取应用有效程序集
+    /// </summary>
+    /// <returns>IEnumerable</returns>
+    private static IEnumerable<Assembly> GetAssemblies()
+    {
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        return assemblies.Where(r => !r.FullName.StartsWith("System"));
+    }
     /// <summary>
     /// 设置实体所在的程序集
     /// </summary>
     public static void SetAssemblies(IEnumerable<Assembly> assemblies)
     {
-        Assemblies = assemblies;
+        _assemblies = assemblies;
         _effectiveTypes = null;
     }
     /// <summary>
@@ -47,9 +57,10 @@ internal static class SqlSugarConfigProvider
     {
         get
         {
-            if (_effectiveTypes == null && Assemblies != null)
+            if (_effectiveTypes != null) return _effectiveTypes;
+            if (_effectiveTypes == null && _assemblies != null)
             {
-                _effectiveTypes = Assemblies.SelectMany(GetTypes);
+                _effectiveTypes = _assemblies.SelectMany(GetTypes);
             }
             else
             {

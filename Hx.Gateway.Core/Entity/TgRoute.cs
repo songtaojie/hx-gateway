@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using SqlSugar;
 namespace Hx.Gateway.Core.Entity
 {
     /// <summary>

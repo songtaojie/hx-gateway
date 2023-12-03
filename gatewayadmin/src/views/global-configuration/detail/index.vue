@@ -213,7 +213,7 @@
             </a-col>
             <a-col :span="6">
               <a-form-item :label="$t('gc.rateLimit.clientWhitelist.label')" field="rateLimitOptions.clientWhitelist">
-                <a-input v-model="formData.rateLimitOptions.clientWhitelist" :placeholder="$t('gc.rateLimit.clientWhitelist.placeholder')"></a-input>
+                <a-input v-model="formData.rateLimitOptions.clientWhitelistStr" :placeholder="$t('gc.rateLimit.clientWhitelist.placeholder')"></a-input>
               </a-form-item>
             </a-col>
           </a-row>
@@ -281,31 +281,33 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { FormInstance } from '@arco-design/web-vue/es/form'
 import useLoading from '@/hooks/loading'
-import { addGlobalConfiguration, updateGlobalConfiguration, getGlobalConfiguration, GlobalConfigurationModel, LoadBalancerOptions, HttpHandlerOptions, QoSOptions, RateLimitOptions, ServiceDiscoveryProviderOptions } from '../../../api/global-configuration'
+import { addGlobalConfig, updateGlobalConfig, getGlobalConfig, createGlobalConfigModel,GlobalConfigModel } from '../../../api/global-configuration'
 import { Message } from '@arco-design/web-vue'
 
 const { t } = useI18n()
-const formData = ref<GlobalConfigurationModel>({
-  id: 0, // 主键Id
-  baseUrl: '', // 基础地址
+const formData = ref<GlobalConfigModel>({
+  id: undefined ,// 主键Id
+  baseUrl: undefined, // 基础地址
   requestIdKey: undefined, // 请求ID
   downstreamScheme: undefined, // 请求的方式（http,https）
   downstreamHttpVersion: undefined, // Http版本（1.0，1.1，2.0）
-  loadBalancerOptions: new LoadBalancerOptions(), // 负载均衡方式（LeastConnection，RoundRobin，NoLoadBalance）
-  httpHandlerOptions: new HttpHandlerOptions(),
-  qoSOptions: new QoSOptions(),
-  rateLimitOptions: new RateLimitOptions(),
-  serviceDiscoveryProviderOptions: new ServiceDiscoveryProviderOptions(),
-  status: 2
+  loadBalancerOptions: undefined, //
+  httpHandlerOptions: undefined,
+  qoSOptions: undefined,
+  rateLimitOptions: undefined,
+
+  serviceDiscoveryProviderOptions: undefined, 
+  status: undefined // 配置启动
 })
+formData.value = createGlobalConfigModel()
 const formRef = ref<FormInstance>()
 const { loading, setLoading } = useLoading()
 const onSubmitClick = async () => {
   setLoading(true)
   if (formData.value.id != undefined && formData.value.id > 0) {
-    await updateGlobalConfiguration(formData.value)
+    await updateGlobalConfig(formData.value)
   } else {
-    const { data } = await addGlobalConfiguration(formData.value)
+    const { data } = await addGlobalConfig(formData.value)
     formData.value.id = data
   }
   Message.success({
@@ -316,7 +318,7 @@ const onSubmitClick = async () => {
 }
 const fetchData = async () => {
   try {
-    const { data } = await getGlobalConfiguration()
+    const { data } = await getGlobalConfig()
     if (data) {
       formData.value = data
     }

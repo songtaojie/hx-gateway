@@ -3,6 +3,7 @@
 // 作者:songtaojie
 // 电话/微信：stjworkemail@163.com
 
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;

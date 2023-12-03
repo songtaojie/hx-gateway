@@ -1,4 +1,5 @@
-﻿namespace Hx.Gateway.Core.Entity
+﻿using SqlSugar;
+namespace Hx.Gateway.Core.Entity
 {
     /// <summary>
     /// 全局配置表
