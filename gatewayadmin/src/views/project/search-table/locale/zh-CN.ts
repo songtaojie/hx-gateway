@@ -11,6 +11,7 @@ export default {
   'projectTable.operation.download': '下载',
   'projectTable.operation.create.projetct': '新增项目',
   'projectTable.operation.update.projetct': '更新项目',
+  'project.code.label': '项目编码',
 
   'projectTable.placeholder.project.name': '请输入项目名称',
   'projectTable.placeholder.project.order.index': '请输入排序',

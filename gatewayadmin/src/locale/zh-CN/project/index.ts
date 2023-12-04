@@ -1,5 +1,6 @@
 export default {
   'project.enabled': '启用/禁用',
+  'project.code.label':'项目编号',
   'project.name.label': '项目名称',
   'project.sort.index.label': '排序',
 

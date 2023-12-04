@@ -9,7 +9,7 @@ const CONSUL: AppRouteRecordRaw = {
     locale: 'menu.consul',
     requiresAuth: false,
     icon: 'icon-book',
-    order: 1
+    order: 3
   },
   children: [
     {

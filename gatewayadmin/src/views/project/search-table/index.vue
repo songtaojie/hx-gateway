@@ -47,16 +47,19 @@
               </template>
               {{ $t('project.name.table.operation') }}
             </a-button>
-            <a-button type="outline" @click="syncProjects">
+            <!-- <a-button type="outline" @click="syncProjects">
               <template #icon>
                 <icon-sync />
               </template>
               {{ $t('consul.form.sync') }}
-            </a-button>
+            </a-button> -->
           </a-space>
         </a-col>
         <a-col :span="6"></a-col>
       </a-row>
+    </a-card>
+
+    <a-card class="general-card" :title="$t('menu.project.search')">
       <a-table row-key="id" :loading="loading" :pagination="pagination" :data="renderData" :bordered="false" @page-change="onPageChange">
         <template #columns>
           <a-table-column :title="$t('project.name.table')" data-index="name" align="center" />
@@ -85,6 +88,7 @@
                   size="small"
                   @click="
                     handleEdit(false, {
+                      code:record.code,
                       name: record.name,
                       id: record.id,
                       sortIndex: record.sortIndex
@@ -107,10 +111,13 @@
     </a-card>
     <a-modal v-model:visible="visible" title-align="start" :title="$t(`${isCreate ? 'project.create.modal' : 'project.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" @ok="handleOk">
       <a-form :model="form">
+        <a-form-item field="code" :label="$t('project.code.label')">
+          <a-input v-model="form.code" />
+        </a-form-item>
         <a-form-item field="name" :label="$t('project.name.label')">
           <a-input v-model="form.name" />
         </a-form-item>
-        <a-form-item field="orderIndex" :label="$t('project.sort.index.label')">
+        <a-form-item field="sortIndex" :label="$t('project.sort.index.label')">
           <a-input-number v-model="form.sortIndex" />
         </a-form-item>
       </a-form>
@@ -122,7 +129,7 @@
 import { computed, ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useLoading from '@/hooks/loading'
-import { getPageProject, patchProject, addProject, updateProject, EditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
+import { getPage, patchProject, addProject, updateProject, EditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
 import { getAllSelect } from '@/api/dictionary'
 import { Pagination } from '@/types/global'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
@@ -144,8 +151,9 @@ const router = useRouter()
 const visible = ref(false)
 const isCreate = ref(true)
 const form = ref<EditProjectModel>({
+  id: undefined,
   name: '',
-  id: 0,
+  code:'',
   sortIndex: 1
 })
 
@@ -168,7 +176,7 @@ const handleOk = async () => {
 }
 const handleEdit = (useCreate: boolean, editProjectParams: EditProjectModel | undefined) => {
   if (useCreate) {
-    form.value = { name: '', id: 0, sortIndex: 1 }
+    form.value = { name: '', id: undefined, sortIndex: 1,code:'' }
   } else {
     form.value = editProjectParams as EditProjectModel
   }
@@ -233,7 +241,7 @@ const fetchData = async (
 ) => {
   setLoading(true)
   try {
-    const { data } = await getPageProject(params)
+    const { data } = await getPage(params)
     renderData.value = data.items
     pagination.page = params.page
     pagination.total = data.total

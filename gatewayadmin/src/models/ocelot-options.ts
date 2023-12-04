@@ -31,9 +31,9 @@ export class RateLimitOptions {
   periodTimespan: number | undefined // 这个值指定我们可以在特定的秒数后重试
   limit: number | undefined // 此值指定客户端在指定时间段内可以发出的最大请求数
   SetcCientWhitelist() {
-    if(this.clientWhitelistStr != undefined && this.clientWhitelistStr != '') {
+    if (this.clientWhitelistStr != undefined && this.clientWhitelistStr != '') {
       this.clientWhitelist = this.clientWhitelistStr.split(/,|，/)
-    }else {
+    } else {
       this.clientWhitelist = []
     }
   }

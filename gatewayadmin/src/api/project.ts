@@ -4,6 +4,7 @@ import { PageResponseModel, BasePageRequest, StatusEnum } from '../models/common
 
 export interface ProjectResponse {
   id: number
+  code:string
   name: string
   sortIndex: number
   enabled: boolean
@@ -16,13 +17,14 @@ export interface PageProjectRequest extends BasePageRequest {
 }
 
 export interface EditProjectModel {
-  id: number // 项目Id
+  id: number | undefined // 项目Id
+  code:string,
   name: string // 项目名称
   sortIndex: number // 排序字段
 }
 
-export function getPageProject(params: PageProjectRequest) {
-  return axios.get<PageResponseModel<ProjectResponse>>('/api/project/getPageProject', {
+export function getPage(params: PageProjectRequest) {
+  return axios.get<PageResponseModel<ProjectResponse>>('/api/project/getPage', {
     params,
     paramsSerializer: (obj) => {
       return qs.stringify(obj)
@@ -31,11 +33,11 @@ export function getPageProject(params: PageProjectRequest) {
 }
 
 export function addProject(data: EditProjectModel) {
-  return axios.post('/api/project/addProject', data)
+  return axios.post('/api/project/add', data)
 }
 
 export function updateProject(data: EditProjectModel) {
-  return axios.put('/api/project/UpdateProject', data)
+  return axios.put('/api/project/Update', data)
 }
 
 // 启用或禁用项目

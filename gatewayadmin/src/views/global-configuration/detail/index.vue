@@ -281,12 +281,12 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { FormInstance } from '@arco-design/web-vue/es/form'
 import useLoading from '@/hooks/loading'
-import { addGlobalConfig, updateGlobalConfig, getGlobalConfig, createGlobalConfigModel,GlobalConfigModel } from '../../../api/global-configuration'
+import { addGlobalConfig, updateGlobalConfig, getGlobalConfig, createGlobalConfigModel, GlobalConfigModel } from '../../../api/global-configuration'
 import { Message } from '@arco-design/web-vue'
 
 const { t } = useI18n()
 const formData = ref<GlobalConfigModel>({
-  id: undefined ,// 主键Id
+  id: undefined, // 主键Id
   baseUrl: undefined, // 基础地址
   requestIdKey: undefined, // 请求ID
   downstreamScheme: undefined, // 请求的方式（http,https）
@@ -296,7 +296,7 @@ const formData = ref<GlobalConfigModel>({
   qoSOptions: undefined,
   rateLimitOptions: undefined,
 
-  serviceDiscoveryProviderOptions: undefined, 
+  serviceDiscoveryProviderOptions: undefined,
   status: undefined // 配置启动
 })
 formData.value = createGlobalConfigModel()

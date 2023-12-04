@@ -3,7 +3,7 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { Message, Modal } from '@arco-design/web-vue'
 import { useUserStore } from '@/store'
 import { getToken, getRefreshToken, clearToken, setToken } from '@/utils/auth'
-import { isString } from 'lodash'
+import { isString, isObject } from 'lodash'
 
 const accessTokenKey = 'access-token'
 const refreshAccessTokenKey = `x-${accessTokenKey}`
@@ -11,10 +11,10 @@ const refreshAccessTokenKey = `x-${accessTokenKey}`
 export interface HttpResponse<T = unknown> {
   data: T
   extras: object | null
-  code: number
+  statusCode: number
   succeeded: boolean
   timestamp: number
-  errors: object | string | null
+  message: object | string | null
 }
 
 if (import.meta.env.VITE_API_BASE_URL) {
@@ -43,23 +43,52 @@ axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+
+// 清除 token
+export const clearAccessTokens = () => {
+  clearToken()
+
+  // 刷新浏览器
+  window.location.reload()
+}
 // add response interceptors
 axios.interceptors.response.use(
   (response: AxiosResponse<HttpResponse>) => {
+    // 获取状态码和返回数据
+    const status = response.status
+    // 处理 401
+    if (status === 401) {
+      clearAccessTokens()
+    }
+    // 读取响应报文头 token 信息
+    const accessToken = response.headers[accessTokenKey]
+    const refreshAccessToken = response.headers[refreshAccessTokenKey]
+    // 判断是否是无效 token
+    if (accessToken === 'invalid_token') {
+      clearAccessTokens()
+    }
+    // 判断是否存在刷新 token，如果存在则存储在本地
+    else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
+      setToken(accessToken, refreshAccessToken)
+    }
     const res = response.data
-    if (res.code !== 200) {
+    if (res.statusCode === 401) {
+      clearAccessTokens()
+    } else if (res.statusCode === undefined) {
+      return Promise.resolve(res)
+    } else if (res.statusCode !== 200) {
       let errorMsg = ''
-      if (isString(res.errors)) {
-        errorMsg = res.errors
-      } else {
-        errorMsg = JSON.stringify(res.errors) || 'Error'
+      if (isString(res.message)) {
+        errorMsg = res.message
+      } else if (isObject(res.message)) {
+        errorMsg = JSON.stringify(res.message) || 'Error'
       }
       Message.error({
         content: errorMsg,
         duration: 5 * 1000
       })
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if ([50008, 50012, 50014].includes(res.code) && response.config.url !== '/api/user/info') {
+      if ([50008, 50012, 50014].includes(res.statusCode) && response.config.url !== '/api/user/info') {
         Modal.error({
           title: 'Confirm logout',
           content: 'You have been logged out, you can cancel to stay on this page, or log in again',
@@ -73,17 +102,6 @@ axios.interceptors.response.use(
         })
       }
       return Promise.reject(new Error(errorMsg))
-    }
-    // 读取响应报文头 token 信息
-    const accessToken = response.headers[accessTokenKey]
-    const refreshAccessToken = response.headers[refreshAccessTokenKey]
-    // 判断是否是无效 token
-    if (accessToken === 'invalid_token') {
-      clearToken()
-    }
-    // 判断是否存在刷新 token，如果存在则存储在本地
-    else if (refreshAccessToken && accessToken && accessToken !== 'invalid_token') {
-      setToken(accessToken, refreshAccessToken)
     }
     return res
   },

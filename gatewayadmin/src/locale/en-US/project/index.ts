@@ -2,6 +2,7 @@ export default {
   'project.enabled': 'Enabled/Disabled',
   'project.name': 'Project Name',
   'order.index': 'Order Index',
+  'project.code.label':'Project Code',
   'project.name.label': 'Project Name',
   'project.sort.index.label': 'SOrt',
 

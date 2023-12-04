@@ -24,7 +24,7 @@ export interface GlobalConfigModel {
 
 // 设置默认值
 const defaultGlobalConfigModel: GlobalConfigModel = {
-  id: undefined ,// 主键Id
+  id: undefined, // 主键Id
   baseUrl: undefined, // 基础地址
   requestIdKey: undefined, // 请求ID
   downstreamScheme: undefined, // 请求的方式（http,https）
@@ -34,7 +34,7 @@ const defaultGlobalConfigModel: GlobalConfigModel = {
   qoSOptions: new QoSOptions(),
   rateLimitOptions: new RateLimitOptions(),
 
-  serviceDiscoveryProviderOptions: new ServiceDiscoveryProviderOptions(), 
+  serviceDiscoveryProviderOptions: new ServiceDiscoveryProviderOptions(),
   status: StatusEnum.Disable // 配置启动
 }
 
