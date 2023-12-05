@@ -4,7 +4,7 @@ import { PageResponseModel, BasePageRequest, StatusEnum } from '../models/common
 
 export interface ProjectResponse {
   id: number
-  code:string
+  code: string
   name: string
   sortIndex: number
   enabled: boolean
@@ -18,7 +18,7 @@ export interface PageProjectRequest extends BasePageRequest {
 
 export interface EditProjectModel {
   id: number | undefined // 项目Id
-  code:string,
+  code: string
   name: string // 项目名称
   sortIndex: number // 排序字段
 }

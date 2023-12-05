@@ -6,4 +6,5 @@ module.exports = {
   htmlWhitespaceSensitivity: 'ignore',
   vueIndentScriptAndStyle:false, // 是否缩进Vue文件中<script>和<style>标签内的代码,true:缩进Vue文件中的脚本和样式标记
   trailingComma: 'none', // 函数后面不加逗号，如果不写这一个，在methods 最后一个函数也会加逗号，eslint会报错，多了一个逗号
+  endOfLine:"auto"//不让prettier检测文件每行结束的格式
 }

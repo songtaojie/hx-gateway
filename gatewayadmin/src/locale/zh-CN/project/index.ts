@@ -1,10 +1,14 @@
 export default {
   'project.enabled': '启用/禁用',
-  'project.code.label':'项目编号',
+  'project.code.label': '项目编号',
   'project.name.label': '项目名称',
   'project.sort.index.label': '排序',
 
+  'project.code.placeholder': '请输入项目编号',
   'project.name.placeholder': '请输入项目名称',
+  'project.sort.index.placeholder': '请输入项目排序',
+  'project.form.code.required.errmsg': '项目编号不能为空',
+  'project.form.name.required.errmsg': '项目名称不能为空',
 
   'project.name.table': '项目名称',
   'project.sort.index.table': '排序',

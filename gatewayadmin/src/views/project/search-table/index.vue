@@ -88,7 +88,7 @@
                   size="small"
                   @click="
                     handleEdit(false, {
-                      code:record.code,
+                      code: record.code,
                       name: record.name,
                       id: record.id,
                       sortIndex: record.sortIndex
@@ -109,16 +109,16 @@
         </template>
       </a-table>
     </a-card>
-    <a-modal v-model:visible="visible" title-align="start" :title="$t(`${isCreate ? 'project.create.modal' : 'project.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" @ok="handleOk">
-      <a-form :model="form">
-        <a-form-item field="code" :label="$t('project.code.label')">
-          <a-input v-model="form.code" />
+    <a-modal v-model:visible="visible" title-align="start" :title="$t(`${isCreate ? 'project.create.modal' : 'project.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" :on-before-ok="handleOk">
+      <a-form :model="form" ref="formRef">
+        <a-form-item field="code" :label="$t('project.code.label')" :rules="[{ required: true, message: $t('project.form.code.required.errmsg') }]" :validate-trigger="['change', 'blur']">
+          <a-input v-model="form.code" :placeholder="$t('project.code.placeholder')" />
         </a-form-item>
-        <a-form-item field="name" :label="$t('project.name.label')">
-          <a-input v-model="form.name" />
+        <a-form-item field="name" :label="$t('project.name.label')" :rules="[{ required: true, message: $t('project.form.name.required.errmsg') }]" :validate-trigger="['change', 'blur']">
+          <a-input v-model="form.name" :placeholder="$t('project.name.placeholder')" />
         </a-form-item>
         <a-form-item field="sortIndex" :label="$t('project.sort.index.label')">
-          <a-input-number v-model="form.sortIndex" />
+          <a-input-number v-model="form.sortIndex" :placeholder="$t('project.sort.index.placeholder')" />
         </a-form-item>
       </a-form>
     </a-modal>
@@ -130,30 +130,20 @@ import { computed, ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useLoading from '@/hooks/loading'
 import { getPage, patchProject, addProject, updateProject, EditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
-import { getAllSelect } from '@/api/dictionary'
 import { Pagination } from '@/types/global'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
 import { Message, Modal } from '@arco-design/web-vue'
 import { useRouter } from 'vue-router'
 import { useRouteStore } from '@/store'
 
-const consulSettingKeyOptions = ref<SelectOptionData[]>([])
-const consulDCOptions = ref<SelectOptionData[]>([])
-const initSelect = async () => {
-  const { data } = await getAllSelect()
-  consulSettingKeyOptions.value = data.consulSettingKey
-  consulDCOptions.value = data.consulDC
-}
-
-initSelect()
-
 const router = useRouter()
+const formRef = ref()
 const visible = ref(false)
 const isCreate = ref(true)
 const form = ref<EditProjectModel>({
   id: undefined,
   name: '',
-  code:'',
+  code: '',
   sortIndex: 1
 })
 
@@ -161,22 +151,32 @@ const handleCancel = () => {
   visible.value = false
 }
 const handleOk = async () => {
-  visible.value = false
-  if (isCreate.value) {
-    await addProject(form.value)
-  } else {
-    await updateProject(form.value)
-  }
-  const msg = t('detailForm.submitSuccess')
-  Message.success({
-    content: msg,
-    duration: 5 * 1000
+  var result = await new Promise((resolve) => {
+    formRef.value &&
+      formRef.value.validate(async (r: any, v: any) => {
+        if (r == void 0) {
+          visible.value = false
+          if (isCreate.value) {
+            await addProject(form.value)
+          } else {
+            await updateProject(form.value)
+          }
+          const msg = t('detailForm.submitSuccess')
+          Message.success({
+            content: msg,
+            duration: 5 * 1000
+          })
+          fetchData()
+        } else {
+          resolve(false)
+        }
+      })
   })
-  fetchData()
+  return result
 }
 const handleEdit = (useCreate: boolean, editProjectParams: EditProjectModel | undefined) => {
   if (useCreate) {
-    form.value = { name: '', id: undefined, sortIndex: 1,code:'' }
+    form.value = { name: '', id: undefined, sortIndex: 1, code: '' }
   } else {
     form.value = editProjectParams as EditProjectModel
   }
@@ -258,12 +258,6 @@ const search = () => {
     ...basePagination,
     ...queryModel.value
   } as unknown as PageProjectRequest)
-}
-
-const syncProjects = async () => {
-  router.push({
-    name: 'SysnRoute'
-  })
 }
 
 const onPageChange = (page: number) => {
