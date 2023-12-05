@@ -34,7 +34,9 @@ public class ProjectController:BaseControllerBase
     [HttpGet]
     public async Task<PagedListResult<PageProjectOutput>> GetPageAsync([FromQuery]PageProjectInput input)
     {
-        return await _service.GetPageAsync(input);
+        var result = await _service.GetPageAsync(input);
+        if (result != null) throw new Exception("sss");
+        return result;
     }
 
     /// <summary>

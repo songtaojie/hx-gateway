@@ -17,17 +17,14 @@ namespace Hx.Gateway.Core;
 public static class EnumExtension
 {
     /// <summary>
-    ///  获取枚举的中文描述
+    /// 获取枚举的Description
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
-    public static string GetDescription(this Enum obj)
+    public static string GetDescription(this System.Enum value)
     {
-        string objName = obj.ToString();
-        Type t = obj.GetType();
-        FieldInfo fi = t.GetField(objName);
-        DescriptionAttribute[] arrDesc = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-        return arrDesc[0].Description;
+        return value.GetType().GetMember(value.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()
+            ?.Description;
     }
+
 }
-      

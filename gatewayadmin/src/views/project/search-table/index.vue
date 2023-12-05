@@ -91,6 +91,7 @@
                       code: record.code,
                       name: record.name,
                       id: record.id,
+                      status: record.status,
                       sortIndex: record.sortIndex
                     })
                   "
@@ -120,6 +121,9 @@
         <a-form-item field="sortIndex" :label="$t('project.sort.index.label')">
           <a-input-number v-model="form.sortIndex" :placeholder="$t('project.sort.index.placeholder')" />
         </a-form-item>
+        <a-form-item field="status" :label="$t('project.status.label')">
+          <a-switch v-model="form.status" :checked-value="1" :unchecked-value="2" checked-text="启用" unchecked-text="禁用" />
+        </a-form-item>
       </a-form>
     </a-modal>
   </div>
@@ -129,7 +133,7 @@
 import { computed, ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useLoading from '@/hooks/loading'
-import { getPage, patchProject, addProject, updateProject, EditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
+import { getPage, patchProject, addProject, updateProject, EditProjectModel, CreateEditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
 import { Pagination } from '@/types/global'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
 import { Message, Modal } from '@arco-design/web-vue'
@@ -140,18 +144,13 @@ const router = useRouter()
 const formRef = ref()
 const visible = ref(false)
 const isCreate = ref(true)
-const form = ref<EditProjectModel>({
-  id: undefined,
-  name: '',
-  code: '',
-  sortIndex: 1
-})
+const form = ref<EditProjectModel>(CreateEditProjectModel())
 
 const handleCancel = () => {
   visible.value = false
 }
-const handleOk = async () => {
-  var result = await new Promise((resolve) => {
+const handleOk = async (): Promise<boolean> => {
+  var result = await new Promise<boolean>((resolve) => {
     formRef.value &&
       formRef.value.validate(async (r: any, v: any) => {
         if (r == void 0) {
@@ -176,7 +175,7 @@ const handleOk = async () => {
 }
 const handleEdit = (useCreate: boolean, editProjectParams: EditProjectModel | undefined) => {
   if (useCreate) {
-    form.value = { name: '', id: undefined, sortIndex: 1, code: '' }
+    form.value = CreateEditProjectModel()
   } else {
     form.value = editProjectParams as EditProjectModel
   }

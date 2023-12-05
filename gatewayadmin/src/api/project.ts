@@ -20,7 +20,18 @@ export interface EditProjectModel {
   id: number | undefined // 项目Id
   code: string
   name: string // 项目名称
+  status: StatusEnum | undefined
   sortIndex: number // 排序字段
+}
+
+export function CreateEditProjectModel(): EditProjectModel {
+  return {
+    id: undefined,
+    code: '',
+    name: '',
+    status: StatusEnum.Disable,
+    sortIndex: 0
+  }
 }
 
 export function getPage(params: PageProjectRequest) {

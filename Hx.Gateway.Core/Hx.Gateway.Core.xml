@@ -594,9 +594,9 @@
         </member>
         <member name="M:Hx.Gateway.Core.EnumExtension.GetDescription(System.Enum)">
             <summary>
-             获取枚举的中文描述
+            获取枚举的Description
             </summary>
-            <param name="obj"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:Hx.Gateway.Core.Extensions.HttpContextExtensions.GetMetadata``1(Microsoft.AspNetCore.Http.HttpContext)">
