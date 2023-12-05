@@ -122,7 +122,7 @@
           <a-input-number v-model="form.sortIndex" :placeholder="$t('project.sort.index.placeholder')" />
         </a-form-item>
         <a-form-item field="status" :label="$t('project.status.label')">
-          <a-switch v-model="form.status" :checked-value="1" :unchecked-value="2" checked-text="启用" unchecked-text="禁用" />
+          <a-switch v-model="form.status" :checked-value="1" :unchecked-value="2" :checked-text="'启用'" :unchecked-text="'禁用'" />
         </a-form-item>
       </a-form>
     </a-modal>
