@@ -3,11 +3,9 @@ import localeLogin from '@/views/login/locale/en-US'
 
 import localeWorkplace from '@/views/dashboard/workplace/locale/en-US'
 
-import localeSearchProject from '@/views/project/search-table/locale/en-US'
 import localeSearchRoute from '@/views/route/search-table/locale/en-US'
 import localeCreateRoute from '@/views/route/create-route/locale/en-US'
 import localeConsulPreview from '@/views/consul/preview/locale/en-US'
-import localeSyncProject from '@/views/project/sync-content/locale/en-US'
 import localeConsul from '@/views/consul/search-table/locale/en-US'
 
 import localeSuccess from '@/views/result/success/locale/en-US'
@@ -39,8 +37,6 @@ export default {
   ...localeLogin,
   ...localeWorkplace,
 
-  ...localeSyncProject,
-  ...localeSearchProject,
   ...localeSearchRoute,
   ...localeCreateRoute,
   ...localeConsulPreview,

@@ -11,6 +11,7 @@ export default {
   'project.form.code.required.errmsg': '项目编号不能为空',
   'project.form.name.required.errmsg': '项目名称不能为空',
 
+  'project.code.table': '项目编码',
   'project.name.table': '项目名称',
   'project.sort.index.table': '排序',
   'project.createdTime.table': '创建时间',

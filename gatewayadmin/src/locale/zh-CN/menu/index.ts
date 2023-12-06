@@ -6,7 +6,7 @@ export default {
   'menu.project': '项目',
   'menu.result': '结果页',
   'menu.exception': '异常页',
-  'menu.globalconfiguration': '全局配置',
+
   'menu.profile': '详情页',
   'menu.visualization': '数据可视化',
   'menu.user': '个人中心',
@@ -14,7 +14,11 @@ export default {
   'menu.consul': 'Consul',
   'menu.consul.search': 'Consul备份查询',
   'menu.consul.preview': 'Consul预览',
+
+  'menu.globalconfiguration': '全局配置',
+  'menu.globalconfiguration.search': '全局配置查询',
   'menu.globalconfiguration.detail': '全局配置详情',
+
   'menu.project.search': '查询项目',
   'menu.route.edit': '路由编辑'
 }

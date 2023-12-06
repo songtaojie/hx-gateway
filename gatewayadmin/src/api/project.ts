@@ -57,6 +57,6 @@ export function patchProject(projectId: number, status: number) {
 }
 
 // 删除项目
-export function deleteProject(projectId: number) {
-  return axios.delete(`/api/project/project/${projectId}`)
+export function deleteProject(projectId: string) {
+  return axios.delete(`/api/project/delete`, { data: { id: projectId } })
 }

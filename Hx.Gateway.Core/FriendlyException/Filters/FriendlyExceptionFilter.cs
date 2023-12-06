@@ -25,6 +25,7 @@ public sealed class FriendlyExceptionFilter : IAsyncExceptionFilter
     /// 构造函数
     /// </summary>
     /// <param name="serviceProvider">服务提供器</param>
+    /// <param name="logger"></param>
     public FriendlyExceptionFilter(IServiceProvider serviceProvider,
         ILogger<FriendlyExceptionFilter> logger)
     {
@@ -39,6 +40,7 @@ public sealed class FriendlyExceptionFilter : IAsyncExceptionFilter
     /// <returns></returns>
     public async Task OnExceptionAsync(ExceptionContext context)
     {
+        _logger.LogError(context.Exception, context.Exception.Message);
         // 如果异常在其他地方被标记了处理，那么这里不再处理
         if (context.ExceptionHandled) return;
         // 排除 WebSocket 请求处理

@@ -9,6 +9,11 @@ namespace Hx.Gateway.Application.Services.Projects
     public class PageProjectInput : BasePageParam
     {
         /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// 启动/禁用
         /// </summary>
         public StatusEnum? Status { get; set; }

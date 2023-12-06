@@ -15,7 +15,7 @@ const PROJECT: AppRouteRecordRaw = {
     {
       path: 'search-project',
       name: 'SearchProject',
-      component: () => import('@/views/project/search-table/index.vue'),
+      component: () => import('@/views/project/index.vue'),
       meta: {
         locale: 'menu.project.search',
         requiresAuth: true,
@@ -42,16 +42,6 @@ const PROJECT: AppRouteRecordRaw = {
         requiresAuth: false,
         roles: ['*'],
         hideInMenu: true
-      }
-    },
-    {
-      path: 'sync-route',
-      name: 'SysnRoute',
-      component: () => import('@/views/project/sync-content/index.vue'),
-      meta: {
-        locale: 'menu.project.sync',
-        requiresAuth: true,
-        roles: ['*']
       }
     }
   ]

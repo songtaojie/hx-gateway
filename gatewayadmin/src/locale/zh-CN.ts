@@ -6,7 +6,6 @@ import localeWorkplace from '@/views/dashboard/workplace/locale/zh-CN'
 import localeSearchRoute from '@/views/route/search-table/locale/zh-CN'
 import localeCreateRoute from '@/views/route/create-route/locale/zh-CN'
 import localeConsulPreview from '@/views/consul/preview/locale/zh-CN'
-import localeSyncProject from '@/views/project/sync-content/locale/zh-CN'
 import localeConsul from '@/views/consul/search-table/locale/zh-CN'
 
 import localeSuccess from '@/views/result/success/locale/zh-CN'
@@ -40,7 +39,6 @@ export default {
   ...localeSearchRoute,
   ...localeCreateRoute,
   ...localeConsulPreview,
-  ...localeSyncProject,
   ...localeConsul,
 
   ...localeSuccess,

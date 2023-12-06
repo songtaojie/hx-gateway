@@ -50,6 +50,7 @@ namespace Hx.Gateway.Admin.Services
         {
             return await _rep.AsQueryable()
                 .WhereIF(input.Status.HasValue, o => o.Status == input.Status)
+                .WhereIF(!string.IsNullOrEmpty(input.Name),o => o.Name.Contains(input.Name))
                 .OrderByDescending(o => o.CreateTime)
                 .Select<PageProjectOutput>()
                 .ToPagedListAsync(input.Page, input.PageSize);
@@ -105,6 +106,15 @@ namespace Hx.Gateway.Admin.Services
                 .UpdateColumns(u => new { u.Code, u.Name,u.Status, u.UpdateTime })
                 .ExecuteCommandAsync();
             return result > 0;
+        }
+
+        /// <summary>
+        ///删除项目信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> DeleteAsync(DeleteProjectInput input)
+        {
+            return await _rep.DeleteAsync(input.Id) > 0;
         }
         #endregion
     }

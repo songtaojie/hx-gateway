@@ -28,11 +28,17 @@ const tableOperations = {
   'del.operations.table': '删除'
 }
 
+const modalOperations = {
+  'modal.delete.title': '警告',
+  'modal.delete.content': '确定删除当前数据?'
+}
+
 export default {
   'unit.ms': '毫秒',
   'unit.second': '秒',
   'navbar.action.locale': '切换为中文',
   'submit.success': '提交成功',
+  'delete.success': '删除成功',
   submit: '提交',
   confirm: '确认',
   exit: '退出',
@@ -41,5 +47,6 @@ export default {
   ...status,
   ...select,
   ...search,
-  ...tableOperations
+  ...tableOperations,
+  ...modalOperations
 }

@@ -35,7 +35,6 @@ public class ProjectController:BaseControllerBase
     public async Task<PagedListResult<PageProjectOutput>> GetPageAsync([FromQuery]PageProjectInput input)
     {
         var result = await _service.GetPageAsync(input);
-        if (result != null) throw new Exception("sss");
         return result;
     }
 
@@ -51,13 +50,25 @@ public class ProjectController:BaseControllerBase
     }
 
     /// <summary>
-    /// 新增项目信息
+    /// 编辑项目信息
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpPut]
     public async Task<bool> UpdateAsync(UpdateProjectInput request)
     {
         return await _service.UpdateAsync(request);
     }
+
+    /// <summary>
+    /// 删除项目信息
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [HttpDelete]
+    public async Task<bool> DeleteAsync(DeleteProjectInput request)
+    {
+        return await _service.DeleteAsync(request);
+    }
+    
 }

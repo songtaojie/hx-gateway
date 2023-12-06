@@ -13,11 +13,11 @@ const GLOBALCONFIG: AppRouteRecordRaw = {
   },
   children: [
     {
-      path: 'detail',
-      name: 'Detail',
-      component: () => import('@/views/global-configuration/detail/index.vue'),
+      path: 'search-global',
+      name: 'global-search',
+      component: () => import('@/views/global-configuration/search/index.vue'),
       meta: {
-        locale: 'menu.globalconfiguration.detail',
+        locale: 'menu.globalconfiguration.search',
         requiresAuth: true,
         roles: ['*']
       }
