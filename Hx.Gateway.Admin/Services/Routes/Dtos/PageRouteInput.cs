@@ -11,7 +11,7 @@ namespace Hx.Gateway.Application.Services.Routes.Dtos
         /// <summary>
         /// 项目Id
         /// </summary>
-        public long ProjectId { get; set; }
+        public Guid? ProjectId { get; set; }
 
         /// <summary>
         /// 启动/禁用

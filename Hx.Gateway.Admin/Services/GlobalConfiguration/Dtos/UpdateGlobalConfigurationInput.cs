@@ -16,6 +16,6 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration.Dtos
         /// 主键Id 
         ///</summary>
         [Required(ErrorMessage ="主键标识不能为空")]
-        public long Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

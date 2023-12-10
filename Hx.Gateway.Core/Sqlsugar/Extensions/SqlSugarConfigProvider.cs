@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using SqlSugar;
 using System.Runtime.Loader;
+using FreeRedis;
 
 namespace Hx.Gateway.Core;
 
@@ -20,7 +21,6 @@ namespace Hx.Gateway.Core;
 /// </summary>
 internal static class SqlSugarConfigProvider
 {
-    private readonly static ILogger _logger = null;
     /// <summary>
     /// 应用有效程序集
     /// </summary>
@@ -30,7 +30,6 @@ internal static class SqlSugarConfigProvider
 
     static SqlSugarConfigProvider()
     {
-        _logger = NullLoggerFactory.Instance.CreateLogger(nameof(SqlSugarConfigProvider));
         _assemblies = GetAssemblies();
     }
     /// <summary>
@@ -85,9 +84,9 @@ internal static class SqlSugarConfigProvider
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error load `{ass.FullName}` assembly.");
+            Console.WriteLine($"Error load `{ass.FullName}` assembly,{ex.Message}\r\n{ex.StackTrace}");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
         }
-
         return types.Where(u => u.IsPublic);
     }
 
@@ -147,12 +146,21 @@ internal static class SqlSugarConfigProvider
         // 打印SQL语句
         db.Aop.OnLogExecuting = (sql, pars) =>
         {
-            _logger.LogInformation($"【{DateTime.Now}——执行SQL】\r\n{UtilMethods.GetSqlString(config.DbType, sql, pars)}\r\n");
+            var originColor = Console.ForegroundColor;
+            if (sql.StartsWith("SELECT", StringComparison.OrdinalIgnoreCase))
+                Console.ForegroundColor = ConsoleColor.Green;
+            if (sql.StartsWith("UPDATE", StringComparison.OrdinalIgnoreCase) || sql.StartsWith("INSERT", StringComparison.OrdinalIgnoreCase))
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            if (sql.StartsWith("DELETE", StringComparison.OrdinalIgnoreCase))
+                Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"【{DateTime.Now}——执行SQL】\r\n{UtilMethods.GetSqlString(config.DbType, sql, pars)}\r\n");
+            Console.ForegroundColor = originColor;
         };
         db.Aop.OnError = ex =>
         {
             if (ex.Parametres == null) return;
-            _logger.LogError($"【{DateTime.Now}——错误SQL】\r\n {UtilMethods.GetSqlString(config.DbType, ex.Sql, (SugarParameter[])ex.Parametres)} \r\n");
+            Console.WriteLine($"【{DateTime.Now}——错误SQL】\r\n {UtilMethods.GetSqlString(config.DbType, ex.Sql, (SugarParameter[])ex.Parametres)} \r\n");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
         };
 
         // 数据审计

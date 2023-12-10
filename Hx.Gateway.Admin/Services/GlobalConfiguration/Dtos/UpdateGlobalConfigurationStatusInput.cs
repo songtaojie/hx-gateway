@@ -4,19 +4,20 @@
 // 电话/微信：stjworkemail@163.com
 
 using Hx.Gateway.Core;
-using Hx.Gateway.Core.Entity;
-using SqlSugar;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hx.Gateway.Admin.Services.GlobalConfiguration.Dtos;
 
-public class PageGlobalConfigurationInput: BasePageParam
+public class UpdateGlobalConfigurationStatusInput
 {
     /// <summary>
-    /// 项目id
-    /// </summary>
-    public Guid? ProjectId { get; set; }
+    /// 主键Id 
+    ///</summary>
+    [Required(ErrorMessage = "主键标识不能为空")]
+    public Guid Id { get; set; }
+
     /// <summary>
     /// 状态
     ///</summary>
-    public StatusEnum? Status { get; set; }
+    public StatusEnum Status { get; set; }
 }

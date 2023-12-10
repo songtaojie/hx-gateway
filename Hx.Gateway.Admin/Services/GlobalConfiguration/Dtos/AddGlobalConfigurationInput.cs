@@ -10,6 +10,16 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration.Dtos
     public class AddGlobalConfigurationInput
     {
         /// <summary>
+        /// 项目Id 
+        ///</summary>
+        public Guid ProjectId { get; set; }
+
+        /// <summary>
+        /// 全局配置名称 
+        ///</summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// 基础地址 
         ///</summary>
         public string BaseUrl { get; set; }
@@ -27,10 +37,7 @@ namespace Hx.Gateway.Application.Services.GlobalConfiguration.Dtos
         /// Http版本（1.0，1.1，2.0） 
         ///</summary>
         public string DownstreamHttpVersion { get; set; }
-        /// <summary>
-        /// 状态
-        ///</summary>
-        public StatusEnum Status { get; set; } = StatusEnum.Enable;
+       
         /// <summary>
         /// 负载均衡
         ///</summary>

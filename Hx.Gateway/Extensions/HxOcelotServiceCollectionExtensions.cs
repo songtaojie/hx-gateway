@@ -30,7 +30,7 @@ public static class HxOcelotServiceCollectionExtensions
     {
         var ocelotSettingsOptions = configuration.GetSection("OcelotSettings").Get<OcelotSettingsOptions>();
         services.AddOcelot(configuration)
-            .AddHxOcelot(options => 
+            .AddHxOcelotCore(options => 
             {
                 if (ocelotSettingsOptions != null)
                     options = ocelotSettingsOptions;
@@ -45,22 +45,32 @@ public static class HxOcelotServiceCollectionExtensions
     /// <param name="builder"></param>
     /// <param name="ocelotOptionAction">配置信息</param>
     /// <returns></returns>
-    public static IOcelotBuilder AddHxOcelot(this IOcelotBuilder builder, Action<OcelotSettingsOptions> ocelotOptionAction = default)
+    public static IOcelotBuilder AddHxOcelotCore(this IOcelotBuilder builder, Action<OcelotSettingsOptions> ocelotOptionAction = default)
     {
         OcelotSettingsOptions ocelotSettingsOptions = new OcelotSettingsOptions();
         ocelotOptionAction?.Invoke(ocelotSettingsOptions);
-     
+        ocelotSettingsOptions.DbConnectionConfig ??= new DbConnectionConfig()
+        {
+            ConfigId = CommonConst.ConfigId,
+            DbType = DbType.Sqlite,
+            ConnectionString = "DataSource=./Hx.Gateway.db",
+            EnableInitDb = false,
+            EnableInitSeed = false,
+            EnableUnderLine = true,
+            EnableSqlLog = false,
+        };
+        builder.Services.AddSqlSugar(config=> 
+        {
+            if (ocelotSettingsOptions.DbConnectionConfig != null)
+            {
+                config.ConfigId = ocelotSettingsOptions.DbConnectionConfig.ConfigId;
+                config.SlaveConnectionConfigs = ocelotSettingsOptions.DbConnectionConfig.SlaveConnectionConfigs;
+                config.ConnectionString = ocelotSettingsOptions.DbConnectionConfig.ConnectionString;
+                config.IsAutoCloseConnection = ocelotSettingsOptions.DbConnectionConfig.IsAutoCloseConnection;
+                config.EnableUnderLine = ocelotSettingsOptions.DbConnectionConfig.EnableUnderLine;
+            }
+        });
         ////添加数据库存储
-        //var config = SqlSugarConfigProvider.SetDbConfig(new DbConnectionConfig()
-        //{
-        //    ConfigId = CommonConst.ConfigId,
-        //    DbType = DbType.Sqlite,
-        //    ConnectionString = "DataSource=./Hx.Gateway.db",
-        //    EnableInitDb = true,
-        //    EnableInitSeed = true,
-        //    EnableUnderLine = true,
-        //    EnableSqlLog = true,
-        //});
         //if (ocelotSettingsOptions.DbConnectionConfig != null)
         //{
         //    config = ocelotSettingsOptions.DbConnectionConfig;

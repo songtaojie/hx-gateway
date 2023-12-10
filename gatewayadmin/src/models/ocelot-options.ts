@@ -61,5 +61,5 @@ export class FileCacheOptions {
 export class DownstreamHostAndPortOptions {
   host: string | undefined // 主机
   port: number | undefined // 端口
-  routeId: number | undefined // 路由id
+  routeId: string | undefined // 路由id
 }

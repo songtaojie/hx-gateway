@@ -37,12 +37,17 @@ namespace Hx.Gateway.Core.Configuration.Repository
 
                 var rep = services.GetRequiredService<ISqlSugarRepository<TgGlobalConfiguration>>();
                 var file = new FileConfiguration();
+                var project = await rep.Context.Queryable<TgProject>()
+                    .Where(u => u.Code == _ocelotSettings.ProjectCode)
+                    .Select(u => new { u.Id,u.Status })
+                    .FirstAsync();
+                if(project == null)
+                    throw new Exception($"未找到编码为【{_ocelotSettings.ProjectCode}】的项目信息");
+                if (project.Status == StatusEnum.Disable)
+                    throw new Exception($"项目【{_ocelotSettings.ProjectCode}】已停用");
                 //提取默认启用的路由配置信息
                 var globalConfiguration = await rep.AsQueryable()
-                    .LeftJoin<TgProject>((u, p) => u.ProjectId == p.Id)
-                    .WhereIF(!string.IsNullOrEmpty(_ocelotSettings.ProjectCode), (u, p) => p.Code == _ocelotSettings.ProjectCode)
-                    .Where((u, p) => u.Status == StatusEnum.Enable && p.Status == StatusEnum.Enable)
-                    //.OrderByDescending((u, p) => u.)
+                    .Where(u => u.ProjectId == project.Id && u.Status == StatusEnum.Enable)
                     .FirstAsync();
 
                 if (globalConfiguration != null)
@@ -54,7 +59,6 @@ namespace Hx.Gateway.Core.Configuration.Repository
                         DownstreamScheme = globalConfiguration.DownstreamScheme,
                         DownstreamHttpVersion = globalConfiguration.DownstreamHttpVersion,
                         RequestIdKey = globalConfiguration.RequestIdKey,
-                        //RateLimitOptions
                     };
                     if (!string.IsNullOrEmpty(globalConfiguration.HttpHandlerOptions))
                     {
@@ -78,14 +82,12 @@ namespace Hx.Gateway.Core.Configuration.Repository
                     }
                     //提取所有路由信息
                     var routeList = await rep.Context.Queryable<TgRoute>()
-                         .LeftJoin<TgProject>((u, p) => u.ProjectId == p.Id)
-                         .WhereIF(!string.IsNullOrEmpty(_ocelotSettings.ProjectCode), (u, p) => p.Code == _ocelotSettings.ProjectCode)
-                         .Where((u, p) => p.Status == StatusEnum.Enable && u.Status == StatusEnum.Enable)
-                         //.OrderByDescending((u, p) => u.CreateTime)
-                         .Select((u, p) => u)
-                         .ToListAsync();
+                       .Includes(u => u.DownstreamHostAndPorts)
+                       .Includes(u => u.RouteProperties)
+                       .Where(u => u.ProjectId == project.Id && u.Status == StatusEnum.Enable)
+                       .ToListAsync();
                     if (!routeList.Any())
-                        throw new Exception("未监测到任何可用的配置信息");
+                        throw new Exception($"项目【{_ocelotSettings.ProjectCode}】中未找到任何可用的配置信息");
                     var reroutelist = new List<FileRoute>();
                     routeList.ForEach(r =>
                     {
@@ -139,133 +141,133 @@ namespace Hx.Gateway.Core.Configuration.Repository
                     file.Routes = reroutelist;
                 }
                 #endregion
-                if (file.Routes == null || !file.Routes.Any())
-                    throw new Exception("未找到任何可用的配置信息");
-                //{
-                //    return new OkResponse<FileConfiguration>(null);
-                //}
                 return new OkResponse<FileConfiguration>(file);
             }
         }
 
         public async Task<Response> Set(FileConfiguration fileConfiguration)
         {
-            using (var serviceScope = _provider.CreateScope())
-            {
-                var services = serviceScope.ServiceProvider;
+            using var serviceScope = _provider.CreateScope();
+            var services = serviceScope.ServiceProvider;
 
-                var rep = services.GetRequiredService<ISqlSugarRepository<TgGlobalConfiguration>>();
-                if (fileConfiguration != null && fileConfiguration.GlobalConfiguration != null && !string.IsNullOrEmpty(fileConfiguration.GlobalConfiguration.RequestIdKey))
+            var rep = services.GetRequiredService<ISqlSugarRepository<TgGlobalConfiguration>>();
+            if (fileConfiguration != null && fileConfiguration.GlobalConfiguration != null && !string.IsNullOrEmpty(fileConfiguration.GlobalConfiguration.RequestIdKey))
+            {
+                var project = await rep.Context.Queryable<TgProject>()
+                    .Where(u => u.Code == _ocelotSettings.ProjectCode)
+                    .Select(u => new { u.Id, u.Status })
+                    .FirstAsync();
+                if (project == null)
+                    return await Task.FromResult<Response>(new OkResponse());
+
+                var globalConfiguration = fileConfiguration.GlobalConfiguration;
+                var tgGlobalConfiguration = new TgGlobalConfiguration
                 {
-                    var globalConfiguration = fileConfiguration.GlobalConfiguration;
-                    var tgGlobalConfiguration = new TgGlobalConfiguration
+                    RequestIdKey = globalConfiguration.RequestIdKey,
+                    BaseUrl = globalConfiguration.BaseUrl,
+                    DownstreamHttpVersion = globalConfiguration.DownstreamHttpVersion,
+                    DownstreamScheme = globalConfiguration.DownstreamScheme,
+                    HttpHandlerOptions = globalConfiguration.HttpHandlerOptions == null
+                            ? string.Empty
+                            : JsonSerializer.Serialize(globalConfiguration.HttpHandlerOptions),
+                    LoadBalancerOptions = globalConfiguration.LoadBalancerOptions == null
+                            ? string.Empty
+                            : JsonSerializer.Serialize(globalConfiguration.LoadBalancerOptions),
+                    RateLimitOptions = globalConfiguration.RateLimitOptions == null
+                            ? string.Empty
+                            : JsonSerializer.Serialize(globalConfiguration.RateLimitOptions),
+                    ServiceDiscoveryProviderOptions = globalConfiguration.ServiceDiscoveryProvider == null
+                            ? string.Empty
+                            : JsonSerializer.Serialize(globalConfiguration.ServiceDiscoveryProvider),
+                    QoSOptions = globalConfiguration.QoSOptions == null
+                            ? string.Empty
+                            : JsonSerializer.Serialize(globalConfiguration.QoSOptions)
+                };
+                await rep.Context.Updateable<TgGlobalConfiguration>()
+                    .SetColumns(u => new TgGlobalConfiguration
                     {
-                        RequestIdKey = globalConfiguration.RequestIdKey,
-                        BaseUrl = globalConfiguration.BaseUrl,
-                        DownstreamHttpVersion = globalConfiguration.DownstreamHttpVersion,
-                        DownstreamScheme = globalConfiguration.DownstreamScheme,
-                        HttpHandlerOptions = globalConfiguration.HttpHandlerOptions == null
-                                ? string.Empty
-                                : JsonSerializer.Serialize(globalConfiguration.HttpHandlerOptions),
-                        LoadBalancerOptions = globalConfiguration.LoadBalancerOptions == null
-                                ? string.Empty
-                                : JsonSerializer.Serialize(globalConfiguration.LoadBalancerOptions),
-                        RateLimitOptions = globalConfiguration.RateLimitOptions == null
-                                ? string.Empty
-                                : JsonSerializer.Serialize(globalConfiguration.RateLimitOptions),
-                        ServiceDiscoveryProviderOptions = globalConfiguration.ServiceDiscoveryProvider == null
-                                ? string.Empty
-                                : JsonSerializer.Serialize(globalConfiguration.ServiceDiscoveryProvider),
-                        QoSOptions = globalConfiguration.QoSOptions == null
-                                ? string.Empty
-                                : JsonSerializer.Serialize(globalConfiguration.QoSOptions)
-                    };
-                    await rep.Context.Updateable<TgGlobalConfiguration>()
-                        .SetColumns(u => new TgGlobalConfiguration
+                        BaseUrl = tgGlobalConfiguration.BaseUrl,
+                        DownstreamScheme = tgGlobalConfiguration.DownstreamScheme,
+                        ServiceDiscoveryProviderOptions = tgGlobalConfiguration.ServiceDiscoveryProviderOptions,
+                        LoadBalancerOptions = tgGlobalConfiguration.LoadBalancerOptions,
+                        HttpHandlerOptions = tgGlobalConfiguration.HttpHandlerOptions,
+                        QoSOptions = tgGlobalConfiguration.QoSOptions
+                    })
+                    .Where(u => u.RequestIdKey == globalConfiguration.RequestIdKey)
+                    .ExecuteCommandAsync();
+                var routes = fileConfiguration.Routes;
+                if (routes != null && routes.Count > 0)
+                {
+                    foreach (var fileRoute in routes)
+                    {
+                        var tgRoute = new TgRoute
                         {
-                            BaseUrl = tgGlobalConfiguration.BaseUrl,
-                            DownstreamScheme = tgGlobalConfiguration.DownstreamScheme,
-                            ServiceDiscoveryProviderOptions = tgGlobalConfiguration.ServiceDiscoveryProviderOptions,
-                            LoadBalancerOptions = tgGlobalConfiguration.LoadBalancerOptions,
-                            HttpHandlerOptions = tgGlobalConfiguration.HttpHandlerOptions,
-                            QoSOptions = tgGlobalConfiguration.QoSOptions
+                            RequestIdKey = fileRoute.RequestIdKey,
+                            UpstreamPathTemplate = fileRoute.UpstreamPathTemplate,
+                            UpstreamHost = fileRoute.UpstreamHost,
+                            DownstreamHostAndPorts = fileRoute.DownstreamHostAndPorts == null
+                                ? null
+                                : fileRoute.DownstreamHostAndPorts.Select(r => new TgRouteHostPort { Host = r.Host, Port = r.Port }).ToList(),
+                            AuthenticationOptions = fileRoute.AuthenticationOptions == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.AuthenticationOptions),
+                            DelegatingHandlers = fileRoute.DelegatingHandlers == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.DelegatingHandlers),
+                            DangerousAcceptAnyServerCertificateValidator = fileRoute.DangerousAcceptAnyServerCertificateValidator,
+                            DownstreamHttpMethod = fileRoute.DownstreamHttpMethod,
+                            DownstreamHttpVersion = fileRoute.DownstreamHttpVersion,
+                            DownstreamPathTemplate = fileRoute.DownstreamPathTemplate,
+                            DownstreamScheme = fileRoute.DownstreamScheme,
+                            FileCacheOptions = fileRoute.FileCacheOptions == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.FileCacheOptions),
+                            HttpHandlerOptions = fileRoute.HttpHandlerOptions == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.HttpHandlerOptions),
+                            LoadBalancerOptions = fileRoute.LoadBalancerOptions == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.LoadBalancerOptions),
+                            QoSOptions = fileRoute.QoSOptions == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.QoSOptions),
+                            RateLimitOptions = fileRoute.RateLimitOptions == null
+                                ? string.Empty
+                                : JsonSerializer.Serialize(fileRoute.RateLimitOptions),
+                            RouteIsCaseSensitive = fileRoute.RouteIsCaseSensitive,
+                            ServiceName = fileRoute.ServiceName,
+                            ServiceNamespace = fileRoute.ServiceNamespace
+                        };
+                        await rep.Context.Updateable<TgRoute>()
+                        .SetColumns(u => new TgRoute
+                        {
+                            UpstreamPathTemplate = tgRoute.UpstreamPathTemplate,
+                            UpstreamHost = tgRoute.UpstreamHost,
+                            DownstreamHostAndPorts = tgRoute.DownstreamHostAndPorts,
+                            AuthenticationOptions = tgRoute.AuthenticationOptions,
+                            DelegatingHandlers = tgRoute.DelegatingHandlers,
+                            DangerousAcceptAnyServerCertificateValidator = tgRoute.DangerousAcceptAnyServerCertificateValidator,
+                            DownstreamHttpMethod = tgRoute.DownstreamHttpMethod,
+                            DownstreamHttpVersion = tgRoute.DownstreamHttpVersion,
+                            DownstreamPathTemplate = tgRoute.DownstreamPathTemplate,
+                            DownstreamScheme = tgRoute.DownstreamScheme,
+                            FileCacheOptions = tgRoute.FileCacheOptions,
+                            HttpHandlerOptions = tgRoute.HttpHandlerOptions,
+                            LoadBalancerOptions = tgRoute.LoadBalancerOptions,
+                            QoSOptions = tgRoute.QoSOptions,
+                            RateLimitOptions = tgRoute.RateLimitOptions,
+                            RouteIsCaseSensitive = tgRoute.RouteIsCaseSensitive,
+                            ServiceName = tgRoute.ServiceName,
+                            ServiceNamespace = tgRoute.ServiceNamespace,
+                            RouteProperties = tgRoute.RouteProperties,
                         })
-                        .Where(u => u.RequestIdKey == globalConfiguration.RequestIdKey)
+                        .Where(u => u.RequestIdKey == tgRoute.RequestIdKey)
                         .ExecuteCommandAsync();
-                    var routes = fileConfiguration.Routes;
-                    if (routes != null && routes.Count > 0)
-                    {
-                        foreach (var fileRoute in routes)
-                        {
-                            var tgRoute = new TgRoute
-                            {
-                                RequestIdKey = fileRoute.RequestIdKey,
-                                UpstreamPathTemplate = fileRoute.UpstreamPathTemplate,
-                                UpstreamHost = fileRoute.UpstreamHost,
-                                DownstreamHostAndPorts = fileRoute.DownstreamHostAndPorts == null
-                                    ? null
-                                    : fileRoute.DownstreamHostAndPorts.Select(r => new TgRouteHostPort { Host = r.Host, Port = r.Port }).ToList(),
-                                AuthenticationOptions = fileRoute.AuthenticationOptions == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.AuthenticationOptions),
-                                DelegatingHandlers = fileRoute.DelegatingHandlers == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.DelegatingHandlers),
-                                DangerousAcceptAnyServerCertificateValidator = fileRoute.DangerousAcceptAnyServerCertificateValidator,
-                                DownstreamHttpMethod = fileRoute.DownstreamHttpMethod,
-                                DownstreamHttpVersion = fileRoute.DownstreamHttpVersion,
-                                DownstreamPathTemplate = fileRoute.DownstreamPathTemplate,
-                                DownstreamScheme = fileRoute.DownstreamScheme,
-                                FileCacheOptions = fileRoute.FileCacheOptions == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.FileCacheOptions),
-                                HttpHandlerOptions = fileRoute.HttpHandlerOptions == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.HttpHandlerOptions),
-                                LoadBalancerOptions = fileRoute.LoadBalancerOptions == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.LoadBalancerOptions),
-                                QoSOptions = fileRoute.QoSOptions == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.QoSOptions),
-                                RateLimitOptions = fileRoute.RateLimitOptions == null
-                                    ? string.Empty
-                                    : JsonSerializer.Serialize(fileRoute.RateLimitOptions),
-                                RouteIsCaseSensitive = fileRoute.RouteIsCaseSensitive,
-                                ServiceName = fileRoute.ServiceName,
-                                ServiceNamespace = fileRoute.ServiceNamespace
-                            };
-                            await rep.Context.Updateable<TgRoute>()
-                            .SetColumns(u => new TgRoute
-                            {
-                                UpstreamPathTemplate = tgRoute.UpstreamPathTemplate,
-                                UpstreamHost = tgRoute.UpstreamHost,
-                                DownstreamHostAndPorts = tgRoute.DownstreamHostAndPorts,
-                                AuthenticationOptions = tgRoute.AuthenticationOptions,
-                                DelegatingHandlers = tgRoute.DelegatingHandlers,
-                                DangerousAcceptAnyServerCertificateValidator = tgRoute.DangerousAcceptAnyServerCertificateValidator,
-                                DownstreamHttpMethod = tgRoute.DownstreamHttpMethod,
-                                DownstreamHttpVersion = tgRoute.DownstreamHttpVersion,
-                                DownstreamPathTemplate = tgRoute.DownstreamPathTemplate,
-                                DownstreamScheme = tgRoute.DownstreamScheme,
-                                FileCacheOptions = tgRoute.FileCacheOptions,
-                                HttpHandlerOptions = tgRoute.HttpHandlerOptions,
-                                LoadBalancerOptions = tgRoute.LoadBalancerOptions,
-                                QoSOptions = tgRoute.QoSOptions,
-                                RateLimitOptions = tgRoute.RateLimitOptions,
-                                RouteIsCaseSensitive = tgRoute.RouteIsCaseSensitive,
-                                ServiceName = tgRoute.ServiceName,
-                                ServiceNamespace = tgRoute.ServiceNamespace,
-                                RouteProperties = tgRoute.RouteProperties,
-                            })
-                            .Where(u => u.RequestIdKey == tgRoute.RequestIdKey)
-                            .ExecuteCommandAsync();
-                        }
                     }
                 }
-                return await Task.FromResult<Response>(new OkResponse());
             }
-                
+            return await Task.FromResult<Response>(new OkResponse());
+
         }
     }
 }

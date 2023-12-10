@@ -37,6 +37,16 @@ public class ProjectController:BaseControllerBase
         var result = await _service.GetPageAsync(input);
         return result;
     }
+    
+    /// <summary>
+    /// 分页查询项目信息
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<List<ListProjectOutput>> GetListAsync()
+    {
+        return await _service.GetListAsync();
+    }
 
     /// <summary>
     /// 新增项目信息

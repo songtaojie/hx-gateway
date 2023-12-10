@@ -7,12 +7,12 @@
           <a-form :model="queryModel" :label-col-props="{ span: 6 }" :wrapper-col-props="{ span: 18 }" label-align="left">
             <a-row :gutter="16">
               <a-col :span="8">
-                <a-form-item field="number" :label="$t('project.name.label')">
+                <a-form-item field="number" :label="$t('project.label.name')">
                   <a-input v-model="queryModel.searchKey" :placeholder="$t('project.name.placeholder')" />
                 </a-form-item>
               </a-col>
               <a-col :span="8">
-                <a-form-item field="status" :label="$t('status.name.label')">
+                <a-form-item field="status" :label="$t('label.status')">
                   <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
                 </a-form-item>
               </a-col>
@@ -64,10 +64,10 @@
         <template #columns>
           <a-table-column :title="$t('project.code.table')" data-index="code" align="center" />
           <a-table-column :title="$t('project.name.table')" data-index="name" align="center" />
-          <a-table-column :title="$t('project.sort.index.table')" data-index="sortIndex" align="center" />
-          <a-table-column :title="$t('project.createdTime.table')" data-index="createTime" align="center" />
+          <a-table-column :title="$t('table.column.sort.index')" data-index="sortIndex" align="center" />
+          <a-table-column :title="$t('table.column.createtime')" data-index="createTime" align="center" />
 
-          <a-table-column :title="$t('project.status.table')" data-index="status" align="center">
+          <a-table-column :title="$t('table.column.status')" data-index="status" align="center">
             <template #cell="{ record }">
               <a-tag :color="record.status === 1 ? 'blue' : 'orange'">
                 <template #icon>
@@ -78,7 +78,7 @@
               </a-tag>
             </template>
           </a-table-column>
-          <a-table-column :title="$t('operations.table')" data-index="operations" align="center">
+          <a-table-column :title="$t('table.operations')" data-index="operations" align="center">
             <template #cell="{ record }">
               <a-space>
                 <a-button
@@ -94,10 +94,10 @@
                     })
                   "
                 >
-                  {{ $t('edit.operations.table') }}
+                  {{ $t('table.operations.edit') }}
                 </a-button>
                 <a-button type="primary" size="small" status="danger" @click="handleDel(record.id)">
-                  {{ $t('del.operations.table') }}
+                  {{ $t('table.operations.del') }}
                 </a-button>
               </a-space>
             </template>
@@ -107,16 +107,16 @@
     </a-card>
     <a-modal v-model:visible="visible" title-align="start" :title="$t(`${isCreate ? 'project.create.modal' : 'project.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" :on-before-ok="handleOk">
       <a-form :model="form" ref="formRef">
-        <a-form-item field="code" :label="$t('project.code.label')" :rules="[{ required: true, message: $t('project.form.code.required.errmsg') }]" :validate-trigger="['change', 'blur']">
+        <a-form-item field="code" :label="$t('project.label.code')" :rules="[{ required: true, message: $t('project.form.code.required.errmsg') }]" :validate-trigger="['blur']">
           <a-input v-model="form.code" :placeholder="$t('project.code.placeholder')" />
         </a-form-item>
-        <a-form-item field="name" :label="$t('project.name.label')" :rules="[{ required: true, message: $t('project.form.name.required.errmsg') }]" :validate-trigger="['change', 'blur']">
+        <a-form-item field="name" :label="$t('project.label.name')" :rules="[{ required: true, message: $t('project.form.name.required.errmsg') }]" :validate-trigger="['blur']">
           <a-input v-model="form.name" :placeholder="$t('project.name.placeholder')" />
         </a-form-item>
-        <a-form-item field="sortIndex" :label="$t('project.sort.index.label')">
+        <a-form-item field="sortIndex" :label="$t('project.label.sort.index')">
           <a-input-number v-model="form.sortIndex" :placeholder="$t('project.sort.index.placeholder')" />
         </a-form-item>
-        <a-form-item field="status" :label="$t('project.status.label')">
+        <a-form-item field="status" :label="$t('label.status')">
           <a-switch v-model="form.status" :checked-value="1" :unchecked-value="2">
             <template #checked>启用</template>
             <template #unchecked>禁用</template>
@@ -132,13 +132,9 @@ import { computed, ref, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useLoading from '@/hooks/loading'
 import { getPage, addProject, updateProject, EditProjectModel, CreateEditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
-import { Pagination } from '@/types/global'
+import { Pagination } from '@/models/global'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
 import { Message, Modal } from '@arco-design/web-vue'
-import { useRouter } from 'vue-router'
-import { useRouteStore } from '@/store'
-
-const router = useRouter()
 const formRef = ref()
 const visible = ref(false)
 const isCreate = ref(true)
@@ -221,11 +217,11 @@ const pagination = reactive({
 })
 const statusOptions = computed<SelectOptionData[]>(() => [
   {
-    label: t('status.enabled.label'),
+    label: t('label.status.enabled'),
     value: 1
   },
   {
-    label: t('status.disabled.label'),
+    label: t('label.status.disabled'),
     value: 2
   }
 ])

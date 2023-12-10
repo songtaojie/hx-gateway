@@ -6,7 +6,7 @@ namespace Hx.Gateway.Core.Entity
     /// 路由表
     ///</summary>
     [SugarTable(null, "路由表")]
-    public class TgRoute : EntityBase
+    public class TgRoute : AuditedEntityBase
     {
         /// <summary>
         /// 项目Id 
@@ -55,6 +55,12 @@ namespace Hx.Gateway.Core.Entity
         ///</summary>
         [SugarColumn(ColumnDescription = "开启上下游路由模板大小写匹配 ")]
         public bool? RouteIsCaseSensitive { get; set; }
+
+        /// <summary>
+        /// 使用服务发现
+        /// </summary>
+        [SugarColumn(ColumnDescription = "使用服务发现")]
+        public bool? UseServiceDiscovery { get; set; }
 
         /// <summary>
         ///  服务名 

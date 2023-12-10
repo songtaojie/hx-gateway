@@ -17,5 +17,5 @@ public class UpdateRouteInput:AddRouteInput
     /// <summary>
     /// 路由id
     /// </summary>
-    public long Id { get; set; }
+    public Guid Id { get; set; }
 }

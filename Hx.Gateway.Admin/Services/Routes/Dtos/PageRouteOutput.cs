@@ -10,7 +10,12 @@ namespace Hx.Gateway.Application.Services.Routes.Dtos
         /// <summary>
         /// 主键ID 
         ///</summary>
-        public long Id { get; set; }
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// 项目名称
+        /// </summary>
+        public string ProjectName { get; set; }
 
         /// <summary>
         /// 下游的路由模板，即真实处理请求的路径模板 

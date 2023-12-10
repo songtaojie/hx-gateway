@@ -4,10 +4,8 @@
 // 电话/微信：stjworkemail@163.com
 
 using Hx.Gateway.Core;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Extensions.Logging.Abstractions;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
@@ -39,7 +37,6 @@ app.UseSwaggerUI();
 app.UseCorsAccessor();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

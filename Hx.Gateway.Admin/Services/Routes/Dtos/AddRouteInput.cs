@@ -5,6 +5,7 @@
 using Hx.Gateway.Core;
 using Hx.Gateway.Core.Entity;
 using Hx.Gateway.Core.Options.Ocelot;
+using SqlSugar;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hx.Gateway.Application.Services.Routes.Dtos;
@@ -13,9 +14,8 @@ public class AddRouteInput
     /// <summary>
     /// 项目Id 
     ///</summary>
-    [Range(1, long.MaxValue)]
     [Required(ErrorMessage ="项目标识不能为空")]
-    public long ProjectId { get; set; }
+    public Guid ProjectId { get; set; }
 
     /// <summary>
     /// 请求Id 
@@ -39,7 +39,7 @@ public class AddRouteInput
     /// 上游请求的http方法（数组：GET、POST、PUT） 
     ///</summary>
     [Required]
-    public List<string> UpstreamHttpMethod { get; set; }
+    public IEnumerable<string> UpstreamHttpMethod { get; set; }
 
     /// <summary>
     /// 下游请求的协议，如：http,htttps 
@@ -107,7 +107,7 @@ public class AddRouteInput
     /// <summary>
     /// 委托
     /// </summary>
-    public List<string> DelegatingHandlers { get; set; }
+    public IEnumerable<string> DelegatingHandlers { get; set; }
 
     /// <summary>
     ///  你可以通过在ocelot.json中包含“Priority”属性来定义你想要的路由匹配Upstream HttpRequest的顺序,0是最低优先级
@@ -126,7 +126,7 @@ public class AddRouteInput
     public List<TgRouteProperty> RouteProperties { get; set; }
 
     /// <summary>
-    ///  状态
-    ///</summary>
-    public StatusEnum? Status { get; set; }
+    /// 排序
+    /// </summary>
+    public int? Sort { get; set; }
 }

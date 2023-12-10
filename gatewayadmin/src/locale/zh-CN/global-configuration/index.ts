@@ -1,11 +1,17 @@
+import { NamedValue } from 'vue-i18n'
 // 基础参数语言配置
 const basic = {
   'gc.basic.title': '基础参数',
+  'gc.basic.name.label': '配置名称',
   'gc.basic.baseUrl.label': '基础域名',
   'gc.basic.requestIdKey.label': '基础请求Id',
 
+  'gc.basic.name.placeholder': '请输入配置名称',
   'gc.basic.baseUrl.placeholder': '请输入基础域名',
-  'gc.basic.requestIdKey.placeholder': '请输入基础请求Id'
+  'gc.basic.requestIdKey.placeholder': '请输入基础请求Id',
+
+  'gc.form.name.required.errmsg': '配置名称不能为空',
+  'gc.form.requestIdKey.required.errmsg': '基础请求Id不能为空'
 }
 
 // 下游协议语言配置
@@ -95,7 +101,21 @@ const httpHandler = {
 
   'gc.httpHandler.max.connections.per.server.placeholder': '请输入服务最大连接数'
 }
-
+const table = {
+  'gc.name.table': '配置名称'
+}
+const modal = {
+  'gc.modal.content': ({ named }: { named: any }) => {
+    let desc = '启用'
+    const op = named('op')
+    if (op === 3) {
+      desc = '删除'
+    } else if (op === 2) {
+      desc = '禁用'
+    }
+    return `确定${desc}当前配置?`
+  }
+}
 export default {
   ...basic,
   ...downstream,
@@ -103,5 +123,7 @@ export default {
   ...serviceDiscovery,
   ...qos,
   ...rateLimit,
-  ...httpHandler
+  ...httpHandler,
+  ...table,
+  ...modal
 }

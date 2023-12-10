@@ -33,7 +33,7 @@ public class OcelotRouteNode
     /// <summary>
     /// 上游请求的http方法（数组：GET、POST、PUT） 
     ///</summary>
-    public List<string> UpstreamHttpMethod { get; set; }
+    public IEnumerable<string> UpstreamHttpMethod { get; set; }
 
     /// <summary>
     /// 请求Id 
@@ -58,7 +58,7 @@ public class OcelotRouteNode
     /// <summary>
     /// 下游请求地址和端口
     /// </summary>
-    public List<DownstreamHostAndPortOptions> DownstreamHostAndPorts { get; set; }
+    public IEnumerable<DownstreamHostAndPortOptions> DownstreamHostAndPorts { get; set; }
 
     public QoSOptions QoSOptions { get; set; }
 
@@ -82,5 +82,5 @@ public class OcelotRouteNode
     /// <summary>
     /// 委托
     /// </summary>
-    public List<string> DelegatingHandlers { get; set; }
+    public IEnumerable<string> DelegatingHandlers { get; set; }
 }

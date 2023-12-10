@@ -3,11 +3,11 @@ import qs from 'query-string'
 import { PageResponseModel, BasePageRequest, StatusEnum } from '../models/common'
 
 export interface ProjectResponse {
-  id: number
-  code: string
-  name: string
+  id: string | undefined
+  code: string | undefined
+  name: string | undefined
   sortIndex: number
-  enabled: boolean
+  status: StatusEnum | undefined
   createTime: number
   updateTime: number
 }
@@ -17,7 +17,7 @@ export interface PageProjectRequest extends BasePageRequest {
 }
 
 export interface EditProjectModel {
-  id: number | undefined // 项目Id
+  id: string | undefined // 项目Id
   code: string
   name: string // 项目名称
   status: StatusEnum | undefined
@@ -41,6 +41,10 @@ export function getPage(params: PageProjectRequest) {
       return qs.stringify(obj)
     }
   })
+}
+
+export function getList() {
+  return axios.get<Array<ProjectResponse>>('/api/project/getList')
 }
 
 export function addProject(data: EditProjectModel) {

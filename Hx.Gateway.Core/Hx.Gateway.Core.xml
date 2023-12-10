@@ -384,6 +384,11 @@
               开启上下游路由模板大小写匹配 
             </summary>
         </member>
+        <member name="P:Hx.Gateway.Core.Entity.TgRoute.UseServiceDiscovery">
+            <summary>
+            使用服务发现
+            </summary>
+        </member>
         <member name="P:Hx.Gateway.Core.Entity.TgRoute.ServiceName">
              <summary>
               服务名 
@@ -1347,6 +1352,39 @@
             <summary>
             限流配置
             </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.BaseUrl">
+             <summary>
+             基础地址 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.DownstreamScheme">
+             <summary>
+             Http协议（http,https） 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.DownstreamHttpVersion">
+             <summary>
+             Http版本（1.0，1.1，2.0） 
+            </summary>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.LoadBalancerOptions">
+             <summary>
+             负载均衡
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.LoadBalancerOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.HttpHandlerOptions">
+             <summary>
+             HttpHandler配置 
+            </summary>   
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.HttpHandlerOptions"/>
+        </member>
+        <member name="P:Hx.Gateway.Core.Options.Ocelot.OcelotGlobalConfigurationNode.QoSOptions">
+             <summary>
+             服务质量控制
+            </summary>
+            <see cref="T:Hx.Gateway.Core.Options.Ocelot.QoSOptions"/>
         </member>
         <member name="T:Hx.Gateway.Core.Options.Ocelot.OcelotRoot">
             <summary>

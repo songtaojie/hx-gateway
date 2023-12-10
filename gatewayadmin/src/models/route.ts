@@ -32,8 +32,8 @@ export interface RouteModel {
 }
 
 export interface PageRouteModel {
-  id: number | undefined
-  projectId: number | undefined
+  id: string | undefined
+  projectName: string | undefined
   downstreamPathTemplate: string | undefined // 下游的路由模板，即真实处理请求的路径模板
   upstreamPathTemplate: string | undefined // 上游请求的模板，即用户真实请求的链接
   upstreamHttpMethod: string[] | undefined // 上游请求的http方法（数组：GET、POST、PUT）

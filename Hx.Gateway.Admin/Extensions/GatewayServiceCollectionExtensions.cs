@@ -6,6 +6,7 @@
 
 using Hx.Gateway.Admin.Services;
 using Hx.Gateway.Application.Services.GlobalConfiguration;
+using Hx.Gateway.Application.Services.Routes;
 using Ocelot.Admin.Api.Application;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -15,8 +16,9 @@ public static class GatewayServiceCollectionExtensions
     public static IServiceCollection AddGatewayServices(this IServiceCollection services)
     {
         services.AddTransient<ProjectService>();
-        services.AddTransient<GlobalConfigService>();
+        services.AddTransient<GlobalConfigurationService>();
         services.AddTransient<SystemService>();
+        services.AddTransient<RouteService>(); 
         return services;
     }
 }

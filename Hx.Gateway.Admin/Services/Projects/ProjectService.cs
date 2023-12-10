@@ -19,13 +19,18 @@ namespace Hx.Gateway.Admin.Services
         /// 查询项目信息
         /// </summary>
         /// <returns></returns>
-        public async Task<List<TgProject>> GetProjectList()
+        public async Task<List<ListProjectOutput>> GetListAsync()
         {
             return await _rep.AsQueryable()
-                .Includes(o => o.Routes, route => route.DownstreamHostAndPorts)
-                .Includes(o => o.Routes, route => route.RouteProperties)
                 .OrderByDescending(o => o.SortIndex)
+                .OrderByDescending(o => o.CreateTime)
                 .Where(o => o.Status == StatusEnum.Enable)
+                .Select(o => new ListProjectOutput
+                { 
+                    Id = o.Id,
+                    Code = o.Code,
+                    Name = o.Name
+                })
                 .ToListAsync();
         }
 
@@ -51,6 +56,7 @@ namespace Hx.Gateway.Admin.Services
             return await _rep.AsQueryable()
                 .WhereIF(input.Status.HasValue, o => o.Status == input.Status)
                 .WhereIF(!string.IsNullOrEmpty(input.Name),o => o.Name.Contains(input.Name))
+                .OrderBy(o => o.SortIndex)
                 .OrderByDescending(o => o.CreateTime)
                 .Select<PageProjectOutput>()
                 .ToPagedListAsync(input.Page, input.PageSize);

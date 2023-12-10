@@ -1,23 +1,23 @@
-export default {
-  'route.basic.title': '路由基础设置',
-  'route.downstream.http.version': '下游Http版本',
-  'route.downstream.path.template.label': '下游路径模板',
-  'route.downstream.scheme.label': '下游协议',
-  'route.upstream.path.template.label': '上游路径模板',
-  'route.upstream.host.label': '上游站点',
-  'route.upstream.http.method.label': '上游Http方法',
-  'route.downstream.http.method.label': '下游Http方法',
-  'route.requestIdKey.label': '请求Key',
-  'route.filecache.ttlseconds.label': '请求缓存过期时间',
-  'route.filecache.region.label': '缓存区域',
-  'route.useServiceDiscovery.label': '是否使用服务发现',
-  'route.service.name.label': '服务发现名称',
-  'route.service.namespace.label': '服务发现命名空间',
-  'route.priority.label': '路由优先级',
-  'route.dangerousAcceptAnyServerCertificateValidator.label': '评估危险服务验证',
-  'route.sort.label': '序号',
+const create = {
+  'route.card.basic.title': '路由基础设置',
+  'route.label.downstream.http.version': '下游Http版本',
+  'route.label.downstream.path.templatelabel': '下游路径模板',
+  'route.label.downstream.scheme': '下游协议',
+  'route.label.upstream.path.template': '上游路径模板',
+  'route.label.upstream.host': '上游站点',
+  'route.label.upstream.http.method': '上游Http方法',
+  'route.label.downstream.http.method': '下游Http方法',
+  'route.label.requestIdKey': '请求Key',
+  'route.label.filecache.ttlseconds': '请求缓存过期时间',
+  'route.label.filecache.region': '缓存区域',
+  'route.label.useServiceDiscovery': '是否使用服务发现',
+  'route.label.service.name': '服务发现名称',
+  'route.label.service.namespace': '服务发现命名空间',
+  'route.label.priority': '路由优先级',
+  'route.label.dangerousAcceptAnyServerCertificateValidator': '评估危险服务验证',
+  'route.label.sort': '序号',
 
-  'route.downstreamHostAndPorts.title': '下游主机端口',
+  'route.card.downstreamHostAndPorts.title': '下游主机端口',
   'route.downstreamHostAndPorts.host.table': '主机',
   'route.downstreamHostAndPorts.port.table': '端口',
 
@@ -53,8 +53,8 @@ export default {
   'route.delegating.handlers.label': '委托处理',
   'route.routeIsCaseSensitive.label': '路由大小写敏感',
 
-  'route.downstream.http.version.placeholder': '请选择下游协议',
-  'route.downstream.path.template.placeholder': '请输入下游路径模板',
+  'route.label.downstream.http.version.placeholder': '请选择下游协议',
+  'route.label.downstream.path.templateplaceholder': '请输入下游路径模板',
   'route.downstream.scheme.placeholder': '请输入下游协议',
   'route.upstream.path.template.placeholder': '请输入上游路径模板',
   'route.upstream.host.placeholder': '请输入上游站点',
@@ -85,4 +85,38 @@ export default {
 
   'route.downstreamHostAndPorts.create.modal': '创建主机端口',
   'route.downstreamHostAndPorts.update.modal': '编辑主机端口'
+}
+const table = {
+  'route.downstream.scheme': '下游协议',
+  'route.downstream.http.version': '下游Http版本',
+  'route.downstream.http.method': '下游Http协议',
+  'route.downstream.path.template': '下游路径模板',
+  'route.upstream.http.method': '上游Http协议',
+  'route.upstream.path.template': '上游路径模板',
+  'route.upstream.host': '上游站点',
+  'authentication.manager': '鉴权管理',
+  'authentication.provider.key': '身份验证关键字',
+  'authentication.allowed.scopes': '允许的作用域',
+  'authentication.add.scope': '新增'
+}
+export default {
+  'menu.route.search': '查询路由',
+
+  'routeTable.form.search': '查询',
+  'routeTable.form.reset': '重置',
+
+  'routeTable.placeholder.downstream.path.template': '请输入',
+  'routeTable.placeholder.upstream.path.template': '请输入',
+  'routeTable.placeholder.route.requestIdKey': '请输入',
+
+  'routeTable.columns.status': '状态',
+  'routeTable.columns.operations': '操作',
+  'routeTable.columns.operations.view': '查看',
+  'routeTable.columns.operations.edit': '编辑',
+  'routeTable.columns.operations.del': '删除',
+  'routeTable.operation.create.route': '创建路由',
+  'routeTable.operation.update.route': '编辑路由',
+  'routeTable.columns.sort': '排序',
+  ...create,
+  ...table
 }

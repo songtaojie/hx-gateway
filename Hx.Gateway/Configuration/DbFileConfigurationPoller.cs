@@ -13,12 +13,11 @@ using System.Threading.Tasks;
 
 namespace Hx.Gateway.Core.Configuration
 {
-    public class DbConfigurationPoller : IHostedService, IDisposable
+    public class DbConfigurationPoller :BackgroundService
     {
         private readonly IOcelotLogger _logger;
         private readonly IFileConfigurationRepository _repo;
         private readonly OcelotSettingsOptions _ocelotSettings;
-        private Timer _timer;
         private bool _polling;
         private readonly IInternalConfigurationRepository _internalConfigRepo;
         private readonly IInternalConfigurationCreator _internalConfigCreator;
@@ -35,39 +34,19 @@ namespace Hx.Gateway.Core.Configuration
             _ocelotSettings = option.CurrentValue;
         }
 
-        public void Dispose()
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _timer?.Dispose();
-        }
-
-        public Task StartAsync(CancellationToken cancellationToken)
-        {
-            if (_ocelotSettings.EnableTimer)
+            _logger.LogInformation($"{nameof(DbConfigurationPoller)} is starting.");
+            while (!stoppingToken.IsCancellationRequested)
             {
-                //判断是否启用自动更新
-                _logger.LogInformation($"{nameof(DbConfigurationPoller)} is starting.");
-                _timer = new Timer(async x =>
+                if (_ocelotSettings.EnableTimer && !_polling)
                 {
-                    if (_polling)
-                    {
-                        return;
-                    }
                     _polling = true;
                     await Poll();
                     _polling = false;
-                }, null, _ocelotSettings.TimerDelay, _ocelotSettings.TimerDelay);
+                }
+                await Task.Delay(_ocelotSettings.TimerDelay, stoppingToken);
             }
-            return Task.CompletedTask;
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            if (_ocelotSettings.EnableTimer)
-            {//判断是否启用自动更新
-                _logger.LogInformation($"{nameof(DbConfigurationPoller)} is stopping.");
-                _timer?.Change(Timeout.Infinite, 0);
-            }
-            return Task.CompletedTask;
         }
 
         private async Task Poll()

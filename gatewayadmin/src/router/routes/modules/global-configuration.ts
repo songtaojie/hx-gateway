@@ -21,6 +21,17 @@ const GLOBALCONFIG: AppRouteRecordRaw = {
         requiresAuth: true,
         roles: ['*']
       }
+    },
+    {
+      path: 'edit',
+      name: 'global-edit',
+      component: () => import('@/views/global-configuration/create/index.vue'),
+      meta: {
+        locale: 'menu.globalconfiguration.create',
+        requiresAuth: false,
+        roles: ['*'],
+        hideInMenu: true
+      }
     }
   ]
 }

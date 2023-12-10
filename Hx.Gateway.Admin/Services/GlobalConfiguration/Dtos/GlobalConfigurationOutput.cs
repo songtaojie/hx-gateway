@@ -14,12 +14,12 @@ public class GlobalConfigurationOutput
     /// <summary>
     /// 主键id
     /// </summary>
-    public long Id { get; set; }
+    public Guid? Id { get; set; }
 
     /// <summary>
     /// 项目Id 
     ///</summary>
-    public Guid ProjectId { get; set; }
+    public Guid? ProjectId { get; set; }
 
     /// <summary>
     /// 全局配置名称 

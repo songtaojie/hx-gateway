@@ -17,7 +17,7 @@ public class OcelotRoot
     /// <summary>
     /// 路由配置
     /// </summary>
-    public List<OcelotRouteNode> Routes { get; set; }
+    public IEnumerable<OcelotRouteNode> Routes { get; set; }
 
     /// <summary>
     /// 全局配置

@@ -7,12 +7,12 @@
           <a-form :model="queryModel" :label-col-props="{ span: 6 }" :wrapper-col-props="{ span: 18 }" label-align="left">
             <a-row :gutter="16">
               <a-col :span="8">
-                <a-form-item field="number" :label="$t('project.name.label')">
-                  <a-input v-model="queryModel.searchKey" :placeholder="$t('project.name.placeholder')" />
+                <a-form-item field="projectId" :label="$t('project.label.name')">
+                  <a-select v-model="queryModel.projectId" allow-clear :options="projectOptions" :field-names="{ value: 'id', label: 'name' }" :placeholder="$t('select.options.default')" />
                 </a-form-item>
               </a-col>
               <a-col :span="8">
-                <a-form-item field="status" :label="$t('status.name.label')">
+                <a-form-item field="status" :label="$t('label.status')">
                   <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
                 </a-form-item>
               </a-col>
@@ -41,7 +41,7 @@
       <a-row style="margin-bottom: 16px" :gutter="16">
         <a-col>
           <a-space>
-            <a-button type="primary" @click="handleEdit(true, undefined)">
+            <a-button type="primary" @click="handleEdit('')">
               <template #icon>
                 <icon-plus />
               </template>
@@ -62,12 +62,9 @@
     <a-card class="general-card">
       <a-table row-key="id" :loading="loading" :pagination="pagination" :data="renderData" :bordered="false" @page-change="onPageChange">
         <template #columns>
-          <a-table-column :title="$t('project.code.table')" data-index="code" align="center" />
-          <a-table-column :title="$t('project.name.table')" data-index="name" align="center" />
-          <a-table-column :title="$t('project.sort.index.table')" data-index="sortIndex" align="center" />
-          <a-table-column :title="$t('project.createdTime.table')" data-index="createTime" align="center" />
-
-          <a-table-column :title="$t('project.status.table')" data-index="status" align="center">
+          <a-table-column :title="$t('project.name.table')" data-index="projectName" align="center" />
+          <a-table-column :title="$t('gc.name.table')" data-index="name" align="center" />
+          <a-table-column :title="$t('table.column.status')" data-index="status" align="center">
             <template #cell="{ record }">
               <a-tag :color="record.status === 1 ? 'blue' : 'orange'">
                 <template #icon>
@@ -78,26 +75,19 @@
               </a-tag>
             </template>
           </a-table-column>
-          <a-table-column :title="$t('operations.table')" data-index="operations" align="center">
+          <a-table-column :title="$t('table.column.createtime')" data-index="createTime" align="center" />
+
+          <a-table-column :title="$t('table.operations')" data-index="operations" align="center">
             <template #cell="{ record }">
               <a-space>
-                <a-button
-                  type="outline"
-                  size="small"
-                  @click="
-                    handleEdit(false, {
-                      code: record.code,
-                      name: record.name,
-                      id: record.id,
-                      status: record.status,
-                      sortIndex: record.sortIndex
-                    })
-                  "
-                >
-                  {{ $t('edit.operations.table') }}
+                <a-button type="outline" size="small" @click="handleEdit(record.id)">
+                  {{ $t('table.operations.edit') }}
+                </a-button>
+                <a-button type="primary" :status="record.status === 1 ? 'warning' : 'success'" size="small" @click="onupdateStatus(record.id, record.status)">
+                  {{ $t(`${record.status === 1 ? 'radio.disabled.label' : 'radio.enabled.label'}`) }}
                 </a-button>
                 <a-button type="primary" size="small" status="danger" @click="handleDel(record.id)">
-                  {{ $t('del.operations.table') }}
+                  {{ $t('table.operations.del') }}
                 </a-button>
               </a-space>
             </template>
@@ -105,113 +95,55 @@
         </template>
       </a-table>
     </a-card>
-    <a-modal v-model:visible="visible" title-align="start" :title="$t(`${isCreate ? 'project.create.modal' : 'project.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" :on-before-ok="handleOk">
-      <a-form :model="form" ref="formRef">
-        <a-form-item field="code" :label="$t('project.code.label')" :rules="[{ required: true, message: $t('project.form.code.required.errmsg') }]" :validate-trigger="['change', 'blur']">
-          <a-input v-model="form.code" :placeholder="$t('project.code.placeholder')" />
-        </a-form-item>
-        <a-form-item field="name" :label="$t('project.name.label')" :rules="[{ required: true, message: $t('project.form.name.required.errmsg') }]" :validate-trigger="['change', 'blur']">
-          <a-input v-model="form.name" :placeholder="$t('project.name.placeholder')" />
-        </a-form-item>
-        <a-form-item field="sortIndex" :label="$t('project.sort.index.label')">
-          <a-input-number v-model="form.sortIndex" :placeholder="$t('project.sort.index.placeholder')" />
-        </a-form-item>
-        <a-form-item field="status" :label="$t('project.status.label')">
-          <a-switch v-model="form.status" :checked-value="1" :unchecked-value="2">
-            <template #checked>启用</template>
-            <template #unchecked>禁用</template>
-          </a-switch>
-        </a-form-item>
-      </a-form>
-    </a-modal>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, reactive } from 'vue'
+import { computed, ref, reactive, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useLoading from '@/hooks/loading'
-import { getPage, addProject, updateProject, EditProjectModel, CreateEditProjectModel, ProjectResponse, PageProjectRequest, deleteProject } from '@/api/project'
-import { Pagination } from '@/types/global'
+import { getList as getProjectList, ProjectResponse } from '@/api/project'
+import { getPage, del, genQueryModel, PageGlobalConfigurationRequest, PageGlobalConfigurationResponse, updateStatus } from '@/api/global-configuration'
+
+import { Pagination } from '@/models/global'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
 import { Message, Modal } from '@arco-design/web-vue'
 import { useRouter } from 'vue-router'
-import { useRouteStore } from '@/store'
 
 const router = useRouter()
-const formRef = ref()
-const visible = ref(false)
-const isCreate = ref(true)
-const form = ref<EditProjectModel>(CreateEditProjectModel())
-
-const handleCancel = () => {
-  visible.value = false
+const projectOptions = ref<ProjectResponse[]>([])
+const handleEdit = (id: string) => {
+  router.push({ name: 'global-edit', query: { id } })
 }
-const handleOk = async (): Promise<boolean> => {
-  var result = await new Promise<boolean>((resolve) => {
-    formRef.value &&
-      formRef.value.validate(async (r: any, v: any) => {
-        if (r == void 0) {
-          visible.value = false
-          if (isCreate.value) {
-            await addProject(form.value)
-          } else {
-            await updateProject(form.value)
-          }
-          const msg = t('submit.success')
-          Message.success({
-            content: msg,
-            duration: 5 * 1000
-          })
-          fetchData()
-        } else {
-          resolve(false)
-        }
-      })
-  })
-  return result
-}
-const handleEdit = (useCreate: boolean, editProjectParams: EditProjectModel | undefined) => {
-  if (useCreate) {
-    form.value = CreateEditProjectModel()
-  } else {
-    form.value = editProjectParams as EditProjectModel
-  }
-  visible.value = true
-  isCreate.value = useCreate
-}
-const handleDel = (projectId: string) => {
+const handleDel = (id: string) => {
   Modal.warning({
     titleAlign: 'start',
-    title: t('modal.delete.title'),
-    content: t('modal.delete.content'),
+    title: t('modal.title', { op: 1 }),
+    content: t('gc.modal.contentt', { op: 3 }),
     okText: t('confirm'),
     cancelText: t('cancel'),
     hideCancel: false,
     onOk: async () => {
-      var res = await deleteProject(projectId)
+      var res = await del(id)
       if (res && res.data) {
         Message.success({
           content: t('delete.success'),
           duration: 5 * 1000
         })
         fetchData()
+      } else {
+        Message.error({
+          content: t('delete.fail')
+        })
       }
     }
   })
 }
-const generateQueryModel = () => {
-  return {
-    searchKey: '',
-    status: undefined,
-    orderIndex: undefined,
-    createTime: []
-  }
-}
+
 const { loading, setLoading } = useLoading(true)
 const { t } = useI18n()
-const renderData = ref<ProjectResponse[]>([])
-const queryModel = ref(generateQueryModel())
+const queryModel = ref(genQueryModel())
+const renderData = ref<PageGlobalConfigurationResponse[]>([])
 const basePagination: Pagination = {
   page: 1,
   pageSize: 10
@@ -221,23 +153,15 @@ const pagination = reactive({
 })
 const statusOptions = computed<SelectOptionData[]>(() => [
   {
-    label: t('status.enabled.label'),
+    label: t('label.status.enabled'),
     value: 1
   },
   {
-    label: t('status.disabled.label'),
+    label: t('label.status.disabled'),
     value: 2
   }
 ])
-const fetchData = async (
-  params: PageProjectRequest = {
-    page: 1,
-    pageSize: 10,
-    status: undefined,
-    field: undefined,
-    order: undefined
-  }
-) => {
+const fetchData = async (params: PageGlobalConfigurationRequest = genQueryModel()) => {
   setLoading(true)
   try {
     const { data } = await getPage(params)
@@ -256,7 +180,7 @@ const search = () => {
   fetchData({
     ...basePagination,
     ...queryModel.value
-  } as unknown as PageProjectRequest)
+  } as unknown as PageGlobalConfigurationRequest)
 }
 
 const onPageChange = (page: number) => {
@@ -264,13 +188,45 @@ const onPageChange = (page: number) => {
   fetchData({
     ...basePagination,
     ...queryModel.value
-  } as unknown as PageProjectRequest)
+  } as unknown as PageGlobalConfigurationRequest)
 }
-
-fetchData()
+const onupdateStatus = (id: string, status: number) => {
+  var newStatus = status === 1 ? 2 : 1
+  Modal.warning({
+    titleAlign: 'start',
+    title: t('modal.title'),
+    content: t('gc.modal.content', { op: newStatus }),
+    okText: t('confirm'),
+    cancelText: t('cancel'),
+    hideCancel: false,
+    onOk: async () => {
+      var res = await updateStatus(id, newStatus)
+      if (res && res.data) {
+        Message.success({
+          content: t('submit.update.success'),
+          duration: 5 * 1000
+        })
+        fetchData()
+      } else {
+        Message.error({
+          content: t('submit.update.fail'),
+          duration: 5 * 1000
+        })
+      }
+    }
+  })
+}
 const reset = () => {
-  queryModel.value = generateQueryModel()
+  queryModel.value = genQueryModel()
+  fetchData(queryModel.value)
 }
+onMounted(async () => {
+  fetchData()
+  const { data } = await getProjectList()
+  if (data) {
+    projectOptions.value = data
+  }
+})
 </script>
 
 <script lang="ts">

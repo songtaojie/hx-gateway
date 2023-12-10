@@ -15,12 +15,12 @@ public class DetailRouteOutput
     /// <summary>
     /// 主键id
     /// </summary>
-    public long Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <summary>
     /// 项目Id 
     ///</summary>
-    public long ProjectId { get; set; }
+    public Guid ProjectId { get; set; }
 
     /// <summary>
     /// 请求Id 
@@ -40,7 +40,7 @@ public class DetailRouteOutput
     /// <summary>
     /// 上游请求的http方法（数组：GET、POST、PUT） 
     ///</summary>
-    public List<string> UpstreamHttpMethod { get; set; }
+    public IEnumerable<string> UpstreamHttpMethod { get; set; }
 
     /// <summary>
     /// 下游请求的协议，如：http,htttps 
@@ -107,7 +107,7 @@ public class DetailRouteOutput
     /// <summary>
     /// 委托
     /// </summary>
-    public List<string> DelegatingHandlers { get; set; }
+    public IEnumerable<string> DelegatingHandlers { get; set; }
 
     /// <summary>
     ///  你可以通过在ocelot.json中包含“Priority”属性来定义你想要的路由匹配Upstream HttpRequest的顺序,0是最低优先级
@@ -117,13 +117,12 @@ public class DetailRouteOutput
     /// <summary>
     /// 路由地址配置
     /// </summary>
-    public List<TgRouteHostPort> DownstreamHostAndPorts { get; set; }
+    public IEnumerable<TgRouteHostPort> DownstreamHostAndPorts { get; set; }
 
     /// <summary>
     /// 路由属性
     /// </summary>
-    public List<TgRouteProperty> RouteProperties { get; set; }
-
+    public IEnumerable<TgRouteProperty> RouteProperties { get; set; }
     /// <summary>
     ///  状态
     ///</summary>

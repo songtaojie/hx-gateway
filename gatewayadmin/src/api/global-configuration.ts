@@ -1,9 +1,40 @@
 import axios from 'axios'
-import { StatusEnum } from '../models/common'
+import { PageResponseModel, StatusEnum, BasePageRequest } from '../models/common'
 import { LoadBalancerOptions, HttpHandlerOptions, QoSOptions, RateLimitOptions, ServiceDiscoveryProviderOptions } from '../models/ocelot-options'
 
-export interface GlobalConfigModel {
-  id: number | undefined // 主键Id
+export interface PageGlobalConfigurationRequest extends BasePageRequest {
+  projectId: string | undefined
+  status: StatusEnum | undefined
+}
+// 设置默认值
+const defaultPageGlobalConfigurationRequest: PageGlobalConfigurationRequest = {
+  projectId: undefined,
+  status: undefined,
+  page: 1,
+  pageSize: 10,
+  field: undefined,
+  order: undefined
+}
+export function genQueryModel(config: Partial<PageGlobalConfigurationRequest> = {}): PageGlobalConfigurationRequest {
+  return {
+    ...defaultPageGlobalConfigurationRequest,
+    ...config
+  }
+}
+
+export interface PageGlobalConfigurationResponse {
+  id: string
+  projectId: string
+  projectName: string
+  name: string
+  status: StatusEnum | undefined
+  createTime: string
+}
+
+export interface GlobalConfigurationModel {
+  id: string | undefined // 主键Id
+  projectId: string | undefined
+  name: string | undefined // 全局配置名称
   baseUrl: string | undefined // 基础地址
   requestIdKey: string | undefined // 请求ID
   downstreamScheme: string | undefined // 请求的方式（http,https）
@@ -19,12 +50,13 @@ export interface GlobalConfigModel {
   // ratelimitHttpstatuscode: number | undefined // 超过限制Http状态码
   // ratelimitClientidheader: string | undefined // 客户Header
   serviceDiscoveryProviderOptions: ServiceDiscoveryProviderOptions | undefined
-  status: StatusEnum | undefined // 配置启动
 }
 
 // 设置默认值
-const defaultGlobalConfigModel: GlobalConfigModel = {
+const defaultGlobalConfigurationModel: GlobalConfigurationModel = {
   id: undefined, // 主键Id
+  projectId: undefined,
+  name: undefined,
   baseUrl: undefined, // 基础地址
   requestIdKey: undefined, // 请求ID
   downstreamScheme: undefined, // 请求的方式（http,https）
@@ -34,29 +66,47 @@ const defaultGlobalConfigModel: GlobalConfigModel = {
   qoSOptions: new QoSOptions(),
   rateLimitOptions: new RateLimitOptions(),
 
-  serviceDiscoveryProviderOptions: new ServiceDiscoveryProviderOptions(),
-  status: StatusEnum.Disable // 配置启动
+  serviceDiscoveryProviderOptions: new ServiceDiscoveryProviderOptions()
+}
+
+export function getPage(params: PageGlobalConfigurationRequest) {
+  return axios.get<PageResponseModel<PageGlobalConfigurationResponse>>('/api/globalconfiguration/getPage', {
+    params
+  })
 }
 
 // 使用对象解构和默认值语法获取参数值
-export function createGlobalConfigModel(config: Partial<GlobalConfigModel> = {}): GlobalConfigModel {
+export function createGlobalConfigurationModel(config: Partial<GlobalConfigurationModel> = {}): GlobalConfigurationModel {
   return {
-    ...defaultGlobalConfigModel,
+    ...defaultGlobalConfigurationModel,
     ...config
   }
 }
 
 // 新增全局配置
-export function addGlobalConfig(data: GlobalConfigModel) {
-  return axios.post<number>('/api/globalconfiguration/addGlobalConfiguration', data)
+export function add(data: GlobalConfigurationModel) {
+  return axios.post<boolean>('/api/globalconfiguration/add', data)
 }
 
 // 编辑全局配置
-export function updateGlobalConfig(data: GlobalConfigModel) {
-  return axios.put<string>('/api/globalconfiguration/updateGlobalConfiguration', data)
+export function update(data: GlobalConfigurationModel) {
+  return axios.put<boolean>('/api/globalconfiguration/update', data)
+}
+
+// 启用或禁用项目
+export function updateStatus(id: string, status: StatusEnum) {
+  return axios.patch(`/api/globalconfiguration/UpdateStatus`, {
+    id,
+    status
+  })
 }
 
 // 查询全局配置信息
-export function getGlobalConfig() {
-  return axios.get<GlobalConfigModel>('/api/globalconfiguration/getGlobalConfiguration')
+export function getDetail(id: string | undefined | null) {
+  return axios.get<GlobalConfigurationModel>('/api/globalconfiguration/getDetail/' + id)
+}
+
+// 删除项目
+export function del(id: string) {
+  return axios.delete(`/api/project/delete`, { data: { id: id } })
 }

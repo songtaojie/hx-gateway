@@ -71,7 +71,7 @@ public static class HxOcelotApplicationBuilderExtensions
         {
             ThrowToStopOcelotStarting(internalConfig);
         }
-        //配置信息缓存，这块需要注意实现方式，因为后期我们需要改造下满足分布式架构,这篇不做讲解
+        //配置信息缓存，这块需要注意实现方式，因为后期我们需要改造下满足分布式架构
         var internalConfigRepo = builder.ApplicationServices.GetService<IInternalConfigurationRepository>();
         internalConfigRepo.AddOrReplace(internalConfig.Data);
         //获取中间件配置委托

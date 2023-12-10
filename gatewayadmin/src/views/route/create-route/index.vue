@@ -5,37 +5,34 @@
       <a-space direction="vertical" :size="16">
         <a-card class="general-card">
           <template #title>
-            {{ $t('route.basic.title') }}
+            {{ $t('route.card.basic.title') }}
           </template>
-          <a-row :gutter="80">
-            <a-col :span="8">
-              <a-form-item :label="$t('radio.label')" field="status">
-                <a-radio-group v-model="formData.status">
-                  <a-radio :value="StatusEnum.Enable">{{ $t('radio.enabled.label') }}</a-radio>
-                  <a-radio :value="StatusEnum.Disable">{{ $t('radio.disabled.label') }}</a-radio>
-                </a-radio-group>
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item field="projectId" :label="$t('project.label.name')" :rules="[{ required: true, message: $t('project.form.name.required.errmsg') }]">
+                <a-select v-model="formData.projectId" allow-clear :options="projectOptions" :field-names="{ value: 'id', label: 'name' }" :placeholder="$t('select.options.default')" />
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.requestIdKey.label')" :rules="[{ required: true, message: 'requestIdKey is required' }]" field="requestIdKey">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.requestIdKey')" :rules="[{ required: true, message: 'requestIdKey is required' }]" :validate-trigger="['change', 'blur']" field="requestIdKey">
                 <a-input v-model="formData.requestIdKey" :placeholder="$t('route.requestIdKey.placeholder')"></a-input>
+              </a-form-item>
+            </a-col>
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.upstream.host')" :rules="[{ required: true, message: 'upstreamHost is required' }]" :validate-trigger="['change', 'blur']" field="upstreamHost">
+                <a-input v-model="formData.upstreamHost" :placeholder="$t('route.upstream.host.placeholder')"></a-input>
+              </a-form-item>
+            </a-col>
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.upstream.path.template')" field="upstreamPathTemplate">
+                <a-input v-model="formData.upstreamPathTemplate" :placeholder="$t('route.upstream.path.template.placeholder')"></a-input>
               </a-form-item>
             </a-col>
           </a-row>
 
-          <a-row :gutter="80">
-            <a-col :span="8">
-              <a-form-item :label="$t('route.upstream.host.label')" :rules="[{ required: true, message: 'upstreamHost is required' }]" field="upstreamHost">
-                <a-input v-model="formData.upstreamHost" :placeholder="$t('route.upstream.host.placeholder')"></a-input>
-              </a-form-item>
-            </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.upstream.path.template.label')" field="upstreamPathTemplate">
-                <a-input v-model="formData.upstreamPathTemplate" :placeholder="$t('route.upstream.path.template.placeholder')"></a-input>
-              </a-form-item>
-            </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.upstream.http.method.label')" field="upstreamHttpMethod">
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.upstream.http.method')" field="upstreamHttpMethod">
                 <a-checkbox-group v-model="formData.upstreamHttpMethod">
                   <a-checkbox value="Get">GET</a-checkbox>
                   <a-checkbox value="Post">POST</a-checkbox>
@@ -46,28 +43,25 @@
                 </a-checkbox-group>
               </a-form-item>
             </a-col>
-          </a-row>
-
-          <a-row :gutter="80">
-            <a-col :span="8">
-              <a-form-item :label="$t('route.downstream.http.version')" field="downstreamHttpVersion">
-                <a-select v-model="formData.downstreamHttpVersion" allow-clear :placeholder="$t('route.downstream.http.version.placeholder')">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.downstream.http.version')" field="downstreamHttpVersion">
+                <a-select v-model="formData.downstreamHttpVersion" allow-clear :placeholder="$t('route.label.downstream.http.version.placeholder')">
                   <a-option value="1.0">1.0</a-option>
                   <a-option value="1.1">1.1</a-option>
                   <a-option value="2.0">2.0</a-option>
                 </a-select>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.downstream.scheme.label')" field="downstreamScheme">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.downstream.scheme')" field="downstreamScheme">
                 <a-select v-model="formData.downstreamScheme" allow-clear :placeholder="$t('route.downstream.scheme.placeholder')">
                   <a-option value="http">http</a-option>
                   <a-option value="https">https</a-option>
                 </a-select>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.downstream.http.method.label')" field="downstreamHttpMethod">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.downstream.http.method')" field="downstreamHttpMethod">
                 <a-select v-model="formData.downstreamHttpMethod" allow-clear :placeholder="$t('route.downstream.http.method.placeholder')">
                   <a-option value="Get">GET</a-option>
                   <a-option value="Post">POST</a-option>
@@ -79,28 +73,29 @@
               </a-form-item>
             </a-col>
           </a-row>
-          <a-row :gutter="80">
-            <a-col :span="8">
-              <a-form-item :label="$t('route.downstream.path.template.label')" field="downstreamPathTemplate">
-                <a-input v-model="formData.downstreamPathTemplate" :placeholder="$t('route.downstream.path.template.placeholder')"></a-input>
+
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.downstream.path.templatelabel')" field="downstreamPathTemplate">
+                <a-input v-model="formData.downstreamPathTemplate" :placeholder="$t('route.label.downstream.path.templateplaceholder')"></a-input>
               </a-form-item>
             </a-col>
-            <a-col :span="8" v-if="formData.fileCacheOptions">
-              <a-form-item :label="$t('route.filecache.ttlseconds.label')" field="cacheTtlseconds">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6" v-if="formData.fileCacheOptions">
+              <a-form-item :label="$t('route.label.filecache.ttlseconds')" field="cacheTtlseconds">
                 <a-input-number v-model="formData.fileCacheOptions.ttlSeconds" :hide-button="true" :placeholder="$t('route.filecache.ttlseconds.placeholder')">
                   <template #append>{{ $t('unit.second') }}</template>
                 </a-input-number>
               </a-form-item>
             </a-col>
-            <a-col :span="8" v-if="formData.fileCacheOptions">
-              <a-form-item :label="$t('route.filecache.region.label')" field="cacheRegion">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6" v-if="formData.fileCacheOptions">
+              <a-form-item :label="$t('route.label.filecache.region')" field="cacheRegion">
                 <a-input v-model="formData.fileCacheOptions.region" :placeholder="$t('route.filecache.region.placeholder')"></a-input>
               </a-form-item>
             </a-col>
           </a-row>
 
-          <a-row :gutter="80">
-            <a-col :span="8">
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
               <a-form-item :label="$t('route.delegating.handlers.label')" field="delegatingHandlers">
                 <!-- <a-input v-model="formData.delegatingHandlers" :placeholder="$t('route.delegating.handlers')"></a-input> -->
                 <a-space wrap>
@@ -130,8 +125,8 @@
             </a-col>
           </a-row>
 
-          <a-row :gutter="80">
-            <a-col :span="8">
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
               <a-form-item :label="$t('route.routeIsCaseSensitive.label')" field="routeIsCaseSensitive">
                 <a-radio-group v-model="formData.routeIsCaseSensitive">
                   <a-radio :value="true">{{ $t('radio.use.label') }}</a-radio>
@@ -139,8 +134,8 @@
                 </a-radio-group>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.dangerousAcceptAnyServerCertificateValidator.label')" field="dangerousAcceptAnyServerCertificateValidator">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.dangerousAcceptAnyServerCertificateValidator')" field="dangerousAcceptAnyServerCertificateValidator">
                 <a-radio-group v-model="formData.dangerousAcceptAnyServerCertificateValidator">
                   <a-radio :value="true">{{ $t('radio.use.label') }}</a-radio>
                   <a-radio :value="false">{{ $t('radio.not.use.label') }}</a-radio>
@@ -148,34 +143,34 @@
               </a-form-item>
             </a-col>
           </a-row>
-          <a-row :gutter="80">
-            <a-col :span="8">
-              <a-form-item :label="$t('route.useServiceDiscovery.label')" field="useServiceDiscovery">
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.useServiceDiscovery')" field="useServiceDiscovery">
                 <a-radio-group v-model="formData.useServiceDiscovery">
                   <a-radio :value="true">{{ $t('radio.use.label') }}</a-radio>
                   <a-radio :value="false">{{ $t('radio.not.use.label') }}</a-radio>
                 </a-radio-group>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.service.namespace.label')" field="serviceNamespace">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.service.namespace')" field="serviceNamespace">
                 <a-input v-model="formData.serviceNamespace" :disabled="!formData.useServiceDiscovery" :placeholder="$t('route.service.namespace.placeholder')"></a-input>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.service.name.label')" field="serviceName">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.service.name')" field="serviceName">
                 <a-input v-model="formData.serviceName" :disabled="!formData.useServiceDiscovery" :placeholder="$t('route.service.name.placeholder')"></a-input>
               </a-form-item>
             </a-col>
           </a-row>
-          <a-row :gutter="80">
-            <a-col :span="8">
-              <a-form-item :label="$t('route.priority.label')" field="priority">
+          <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.priority')" field="priority">
                 <a-input-number v-model="formData.priority" :hide-button="true" :placeholder="$t('route.priority.placeholder')"></a-input-number>
               </a-form-item>
             </a-col>
-            <a-col :span="8">
-              <a-form-item :label="$t('route.sort.label')" field="sort">
+            <a-col :sm="24" :md="12" :lg="8" :xl="6">
+              <a-form-item :label="$t('route.label.sort')" field="sort">
                 <a-input-number v-model="formData.sort" :placeholder="$t('route.sort.placeholder')"></a-input-number>
               </a-form-item>
             </a-col>
@@ -183,7 +178,7 @@
         </a-card>
         <a-card class="general-card" :bordered="false">
           <a-tabs default-active-key="1">
-            <a-tab-pane key="1" :title="$t('route.downstreamHostAndPorts.title')">
+            <a-tab-pane key="1" :title="$t('route.card.downstreamHostAndPorts.title')">
               <a-row style="margin-bottom: 16px">
                 <a-col :span="16">
                   <a-space>
@@ -191,7 +186,7 @@
                       <template #icon>
                         <icon-plus />
                       </template>
-                      {{ $t('add.operations.table') }}
+                      {{ $t('table.operations.add') }}
                     </a-button>
                   </a-space>
                 </a-col>
@@ -200,14 +195,14 @@
                 <template #columns>
                   <a-table-column :title="$t('route.downstreamHostAndPorts.host.table')" data-index="host" />
                   <a-table-column :title="$t('route.downstreamHostAndPorts.port.table')" data-index="port" />
-                  <a-table-column :title="$t('operations.table')" data-index="operations">
+                  <a-table-column :title="$t('table.operations')" data-index="operations">
                     <template #cell="{ record }">
                       <a-space>
                         <a-button type="outline" size="small" @click="handleEdit(false, record)">
-                          {{ $t('edit.operations.table') }}
+                          {{ $t('table.operations.edit') }}
                         </a-button>
                         <a-button type="primary" size="small" status="danger" @click="handleDelete(record)">
-                          {{ $t('del.operations.table') }}
+                          {{ $t('table.operations.del') }}
                         </a-button>
                       </a-space>
                     </template>
@@ -216,20 +211,20 @@
               </a-table>
             </a-tab-pane>
             <a-tab-pane key="2" :title="$t('route.qos.title')">
-              <a-row :gutter="80" v-if="formData.qoSOptions">
-                <a-col :span="8">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }" v-if="formData.qoSOptions">
+                <a-col :sm="24" :md="12" :lg="8" :xl="6">
                   <a-form-item :label="$t('route.qos.exceptions.allowed.before.breaking.label')">
                     <a-input-number v-model="formData.qoSOptions.exceptionsAllowedBeforeBreaking" :placeholder="$t('route.qos.exceptions.allowed.before.breaking.placeholder')" autocomplete="off"></a-input-number>
                   </a-form-item>
                 </a-col>
-                <a-col :span="8">
+                <a-col :sm="24" :md="12" :lg="8" :xl="6">
                   <a-form-item :label="$t('route.qos.duration.of.break.label')">
                     <a-input-number v-model="formData.qoSOptions.durationOfBreak" :placeholder="$t('route.qos.duration.of.break.placeholder')" autocomplete="off">
                       <template #append>{{ $t('unit.ms') }}</template>
                     </a-input-number>
                   </a-form-item>
                 </a-col>
-                <a-col :span="8">
+                <a-col :sm="24" :md="12" :lg="8" :xl="6">
                   <a-form-item :label="$t('route.qos.timeout.value.label')">
                     <a-input-number v-model="formData.qoSOptions.timeoutValue" :placeholder="$t('route.qos.timeout.value.placeholder')" autocomplete="off">
                       <template #append>{{ $t('unit.ms') }}</template>
@@ -239,7 +234,7 @@
               </a-row>
             </a-tab-pane>
             <a-tab-pane key="3" :title="$t('route.rate.limit.title')">
-              <a-row :gutter="80" v-if="formData.rateLimitOptions">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }" v-if="formData.rateLimitOptions">
                 <a-col :span="6">
                   <a-form-item :label="$t('route.rate.limit.enableRateLimiting.label')" field="enableRateLimiting">
                     <a-radio-group v-model="formData.rateLimitOptions.enableRateLimiting">
@@ -264,7 +259,7 @@
                   </a-form-item>
                 </a-col>
               </a-row>
-              <a-row :gutter="80">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
                 <a-col :span="24">
                   <a-form-item :label="$t('route.rate.limit.clientWhitelist.label')">
                     <a-space wrap>
@@ -295,8 +290,8 @@
               </a-row>
             </a-tab-pane>
             <a-tab-pane key="4" :title="$t('route.authentication.title')">
-              <a-row :gutter="80" v-if="formData.authenticationOptions">
-                <a-col :span="8">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }" v-if="formData.authenticationOptions">
+                <a-col :sm="24" :md="12" :lg="8" :xl="6">
                   <a-form-item :label="$t('route.authentication.provider.key.label')">
                     <a-input v-model="formData.authenticationOptions.authenticationProviderKey" :placeholder="$t('route.authentication.provider.key.placeholder')" autocomplete="off"></a-input>
                   </a-form-item>
@@ -331,7 +326,7 @@
               </a-row>
             </a-tab-pane>
             <a-tab-pane key="5" :title="$t('route.http.handler.title')">
-              <a-row :gutter="80" v-if="formData.httpHandlerOptions">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }" v-if="formData.httpHandlerOptions">
                 <a-col :span="6">
                   <a-form-item :label="$t('route.http.handler.allow.auto.redirect.label')">
                     <a-radio-group v-model="formData.httpHandlerOptions.allowAutoRedirect">
@@ -365,7 +360,7 @@
                   </a-form-item>
                 </a-col>
               </a-row>
-              <a-row :gutter="80" v-if="formData.httpHandlerOptions">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }" v-if="formData.httpHandlerOptions">
                 <a-col :span="6">
                   <a-form-item :label="$t('route.http.handler.max.connections.per.server.label')">
                     <a-input-number v-model="formData.httpHandlerOptions.maxConnectionsPerServer" :placeholder="$t('route.http.handler.max.connections.per.server.placeholder')" :hide-button="true" />
@@ -374,7 +369,7 @@
               </a-row>
             </a-tab-pane>
             <a-tab-pane key="6" :title="$t('route.loadbalancer.title')">
-              <a-row :gutter="80" v-if="formData.loadBalancerOptions">
+              <a-row :gutter="{ md: 8, lg: 24, xl: 32 }" v-if="formData.loadBalancerOptions">
                 <a-col :span="6">
                   <a-form-item :label="$t('route.loadbalancer.type.label')" field="loadbalancerType">
                     <a-select v-model="formData.loadBalancerOptions.type" allow-clear :placeholder="$t('route.loadbalancer.type.placeholder')">
@@ -408,7 +403,7 @@
         </a-space>
       </div>
     </a-form>
-    <a-modal v-model:visible="visible" :title="$t(`${isCreate ? 'route.downstreamHostAndPorts.create.modal' : 'route.downstreamHostAndPorts.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" @ok="handleOk">
+    <a-modal v-model:visible="visible" :title="$t(`${isAdd ? 'route.downstreamHostAndPorts.create.modal' : 'route.downstreamHostAndPorts.update.modal'}`)" :mask-closable="false" @cancel="handleCancel" @ok="handleOk">
       <a-form :model="hostAndPortForm">
         <a-form-item field="host" :label="$t('route.downstreamHostAndPorts.host.table')">
           <a-input v-model="hostAndPortForm.host" />
@@ -422,59 +417,32 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { isEmpty } from 'lodash'
 import { FormInstance } from '@arco-design/web-vue/es/form'
 import useLoading from '@/hooks/loading'
-import { getRoute, addRoute, updateRoute } from '@/api/route'
-import { RouteModel } from '@/models/route'
+import { getList as getProjectList, ProjectResponse } from '@/api/project'
+import { getDetail, addRoute, updateRoute, createRouteModel } from '@/api/route'
+import { AuthenticationOptions, RateLimitOptions, DownstreamHostAndPortOptions } from '@/models/ocelot-options'
 import { StatusEnum } from '@/models/common'
-import { AuthenticationOptions, LoadBalancerOptions, HttpHandlerOptions, QoSOptions, RateLimitOptions, ServiceDiscoveryProviderOptions, DownstreamHostAndPortOptions, FileCacheOptions } from '@/models/ocelot-options'
+
 import { Message } from '@arco-design/web-vue'
-import { useRouteStore } from '@/store'
-
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
+const projectOptions = ref<ProjectResponse[]>([])
 const { t } = useI18n()
-const routeStore = useRouteStore()
 const visible = ref(false)
-const isCreate = ref(true)
-
-const projectId = computed(() => routeStore.getProjectIdCache)
-const routeId = computed(() => routeStore.getRouteIdCache)
+const routeId = ref<string>(route.query.id as string)
+const isAdd = ref<boolean>(isEmpty(routeId.value))
 const hostAndPortForm = ref<DownstreamHostAndPortOptions>({
   host: '',
   port: 0,
-  routeId: 0
+  routeId: undefined
 })
 
-const formData = ref<RouteModel>({
-  id: routeId.value,
-  projectId: projectId.value,
-  downstreamPathTemplate: '/{url}',
-  upstreamPathTemplate: '/undefined/{url}',
-  upstreamHttpMethod: ['Get', 'Post', 'Put', 'Patch', 'Delete', 'Option'],
-  downstreamHttpMethod: undefined,
-  downstreamHttpVersion: '1.1',
-  upstreamHost: undefined,
-  requestIdKey: undefined,
-  routeIsCaseSensitive: false, // 开启上下游路由模板大小写匹配
-  useServiceDiscovery: false, // 是否使用服务发现
-  serviceName: undefined, // 服务名
-  serviceNamespace: undefined, // 如果您的下游服务位于不同的名称空间中，您可以通过指定ServiceNamespace来覆盖Route级别的全局设置
-  downstreamScheme: undefined, //下游请求的协议，如：http,htttps
-  downstreamHostAndPorts: [],
-  qoSOptions: new QoSOptions(),
-  loadBalancerOptions: new LoadBalancerOptions(),
-  rateLimitOptions: new RateLimitOptions(),
-  authenticationOptions: new AuthenticationOptions(),
-  dangerousAcceptAnyServerCertificateValidator: false, // 如果要忽略SSL警告/错误，请设置为true
-  httpHandlerOptions: new HttpHandlerOptions(), // HttpHandler配置
-  delegatingHandlers: [], //委托处理程序
-  fileCacheOptions: new FileCacheOptions(),
-  serviceDiscoveryProviderOptions: new ServiceDiscoveryProviderOptions(),
-  priority: undefined,
-  sort: undefined,
-  status: StatusEnum.Enable
-})
+const formData = ref(createRouteModel())
 
 const formRef = ref<FormInstance>()
 const handleCancel = () => {
@@ -482,7 +450,7 @@ const handleCancel = () => {
 }
 const handleOk = async () => {
   visible.value = false
-  if (isCreate.value) {
+  if (isAdd.value) {
     formData.value.downstreamHostAndPorts?.push(hostAndPortForm.value)
   }
   const msg = t('submit.success')
@@ -496,50 +464,52 @@ const handleDelete = (deleteRouteHostPortParam: DownstreamHostAndPortOptions) =>
 }
 
 // 添加或编辑下游主机端口
-const handleEdit = (isAdd: boolean, editHostPortParams: DownstreamHostAndPortOptions | undefined) => {
-  if (isAdd) {
+const handleEdit = (add: boolean, editHostPortParams: DownstreamHostAndPortOptions | undefined) => {
+  if (add) {
     hostAndPortForm.value = {
       host: '',
       port: 0,
-      routeId: routeId.value
+      routeId: undefined
     }
   } else {
     hostAndPortForm.value = editHostPortParams as DownstreamHostAndPortOptions
   }
   visible.value = true
-  isCreate.value = isAdd
+  isAdd.value = add
 }
 const { loading, setLoading } = useLoading()
 const onSubmitClick = async () => {
-  try {
-    setLoading(true)
-    if (formData.value.id !== undefined && formData.value.id > 0) {
-      const { data } = await updateRoute(formData.value)
-      formData.value.id = data
-      routeStore.toggleRouteId(data)
-    } else {
-      const { data } = await addRoute(formData.value)
-      formData.value.id = data
-      routeStore.toggleRouteId(data)
-    }
-    const msg = t('submit.success')
-    Message.success({
-      content: msg,
-      duration: 5 * 1000
+  formRef.value &&
+    formRef.value.validate(async (r: any) => {
+      if (r === undefined) {
+        try {
+          setLoading(true)
+          if (isAdd.value) {
+            const { data } = await addRoute(formData.value)
+            formData.value.id = data
+          } else {
+            const { data } = await updateRoute(formData.value)
+            formData.value.id = data
+          }
+          Message.success({
+            content: t('submit.success'),
+            duration: 5 * 1000
+          })
+          router.push({ name: 'SearchRoute' })
+        } finally {
+          setLoading(false)
+        }
+      }
     })
-    setLoading(false)
-  } finally {
-    setLoading(false)
-  }
 }
 const fetchData = async () => {
   try {
-    if (routeId.value > 0) {
-      const { data } = await getRoute(routeId.value)
+    if (!isAdd.value) {
+      const { data } = await getDetail(routeId.value)
       formData.value = data
     }
   } catch (err) {
-    // you can report use errorHandler or other
+    console.log(err)
   }
 }
 fetchData()
@@ -645,6 +615,13 @@ const handleAddDelegatingHandlersTag = () => {
 const handleRemoveDelegatingHandlersTag = (key: string) => {
   formData.value.delegatingHandlers = formData.value.delegatingHandlers.filter((tag) => tag !== key)
 }
+
+onMounted(async () => {
+  const { data } = await getProjectList()
+  if (data) {
+    projectOptions.value = data
+  }
+})
 </script>
 
 <style scoped lang="less">
