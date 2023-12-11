@@ -1,6 +1,8 @@
 ﻿using Hx.Gateway.Core;
 using Hx.Gateway.Core.Options;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SqlSugar;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -18,18 +20,26 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddSqlSugar(this IServiceCollection services,Action<DbConnectionConfig> action = default)
         {
-            DbConnectionConfig config = new DbConnectionConfig();
-            SqlSugarConfigProvider.SetDbConfig(config);
-            action?.Invoke(config);
-            SqlSugarScope sqlSugar = new(config.ToConnectionConfig(), db =>
+            DbConnectionConfig dbConnectionConfig = new DbConnectionConfig();
+            SqlSugarConfigProvider.SetDbConfig(dbConnectionConfig);
+            action?.Invoke(dbConnectionConfig);
+       
+            //注册SqlSugar用AddScoped
+            services.AddScoped<ISqlSugarClient>(provider =>
             {
-                var dbProvider = db.GetConnectionScope(config.ConfigId);
-                if(config.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(dbProvider);
+                //Scoped用SqlSugarClient 
+                SqlSugarClient sqlSugar = new SqlSugarClient(dbConnectionConfig.ToConnectionConfig(),
+                db =>
+                {
+                    //每次上下文都会执行
+                    SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig);
+                    SqlSugarConfigProvider.SetDataExecuting(db);
+                    var log = provider.GetService<ILogger<ISqlSugarClient>>();
+                    if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(db, log);
+                });
+                return sqlSugar;
             });
 
-            // 初始化数据库表结构及种子数据
-            SqlSugarConfigProvider.InitDatabase(sqlSugar, config);
-            services.AddSingleton<ISqlSugarClient>(sqlSugar);
             // 注册非泛型仓储
             services.AddScoped<ISqlSugarRepository, SqlSugarRepository>();
             // 注册 SqlSugar 仓储
@@ -45,18 +55,30 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddSqlSugar(this IServiceCollection services, IConfiguration config)
         {
-            var dbConnectionConfig = config.GetSection("DbSettings").Get<DbConnectionConfig>();
-            //DbConnectionConfig config = new DbConnectionConfig();
-            SqlSugarConfigProvider.SetDbConfig(dbConnectionConfig);
-            SqlSugarScope sqlSugar = new(dbConnectionConfig.ToConnectionConfig(), db =>
+            services.Configure<DbConnectionConfig>(config.GetSection("DbSettings"))
+                .PostConfigure<DbConnectionConfig>(options => 
+                {
+                    SqlSugarConfigProvider.SetDbConfig(options);
+                });
+            services.AddHttpContextAccessor();
+            //注册SqlSugar用AddScoped
+            services.AddScoped<ISqlSugarClient>(provider =>
             {
-                var dbProvider = db.GetConnectionScope(dbConnectionConfig.ConfigId);
-                if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(dbProvider);
+                var options = provider.GetService<IOptions<DbConnectionConfig>>();
+                var dbConnectionConfig = options.Value;
+                //Scoped用SqlSugarClient 
+                SqlSugarClient sqlSugar = new SqlSugarClient(dbConnectionConfig.ToConnectionConfig(),
+                db =>
+                {
+                    //每次上下文都会执行
+                    SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig);
+                    SqlSugarConfigProvider.SetDataExecuting(db);
+                    var log = provider.GetService<ILogger<ISqlSugarClient>>();
+                    if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(db, log);
+                });
+                return sqlSugar;
             });
 
-            // 初始化数据库表结构及种子数据
-            SqlSugarConfigProvider.InitDatabase(sqlSugar, dbConnectionConfig);
-            services.AddSingleton<ISqlSugarClient>(sqlSugar);
             // 注册非泛型仓储
             services.AddScoped<ISqlSugarRepository, SqlSugarRepository>();
             // 注册 SqlSugar 仓储

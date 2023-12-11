@@ -30,7 +30,8 @@ namespace Hx.Gateway.Core.Configuration.Repository
         public async Task<Response<FileConfiguration>> Get()
         {
             #region 提取配置信息
-
+            if (string.IsNullOrEmpty(_ocelotSettings.ProjectCode))
+                throw new Exception("Missing project code configuration");
             using (var serviceScope = _provider.CreateScope())
             {
                 var services = serviceScope.ServiceProvider;

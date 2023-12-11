@@ -15,6 +15,8 @@ using Ocelot.Configuration;
 using Ocelot.Configuration.File;
 using Ocelot.Configuration.Repository;
 using Ocelot.DependencyInjection;
+using Ocelot.Values;
+using System.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
 public static class HxOcelotServiceCollectionExtensions
@@ -28,12 +30,25 @@ public static class HxOcelotServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection AddHxOcelot(this IServiceCollection services, IConfiguration configuration, Action<OcelotSettingsOptions> ocelotOptionAction = default)
     {
+        if (services == null) throw new ArgumentNullException(nameof(services));
+        if (configuration == null) throw new ArgumentNullException(nameof(configuration));
         var ocelotSettingsOptions = configuration.GetSection("OcelotSettings").Get<OcelotSettingsOptions>();
         services.AddOcelot(configuration)
             .AddHxOcelotCore(options => 
             {
                 if (ocelotSettingsOptions != null)
-                    options = ocelotSettingsOptions;
+                {
+                    options.ProjectCode = ocelotSettingsOptions.ProjectCode;
+                    options.ClusterEnvironment = ocelotSettingsOptions.ClusterEnvironment;
+                    options.CacheTime = ocelotSettingsOptions.CacheTime;
+                    options.ClientAuthorization = ocelotSettingsOptions.ClientAuthorization;
+                    options.ClientKey = ocelotSettingsOptions.ClientKey;
+                    options.ClientRateLimit = ocelotSettingsOptions.ClientRateLimit;
+                    options.ClusterEnvironment = ocelotSettingsOptions.ClusterEnvironment;
+                    options.DbConnectionConfig = ocelotSettingsOptions.DbConnectionConfig;
+                    options.EnableTimer = ocelotSettingsOptions.EnableTimer;
+                    options.TimerDelay = ocelotSettingsOptions.TimerDelay;
+                }
                 ocelotOptionAction?.Invoke(options);
             });
         return services;
@@ -47,13 +62,20 @@ public static class HxOcelotServiceCollectionExtensions
     /// <returns></returns>
     public static IOcelotBuilder AddHxOcelotCore(this IOcelotBuilder builder, Action<OcelotSettingsOptions> ocelotOptionAction = default)
     {
-        OcelotSettingsOptions ocelotSettingsOptions = new OcelotSettingsOptions();
+        if (builder == null) throw new ArgumentNullException(nameof(builder));
+        var ocelotSettingsOptions = new OcelotSettingsOptions();
+        builder.Configuration.GetSection("OcelotSettings").Bind(ocelotSettingsOptions);
+        builder.Services.Configure<OcelotSettingsOptions>(builder.Configuration.GetSection("OcelotSettings"))
+            .PostConfigure<OcelotSettingsOptions>(options => 
+            {
+                ocelotOptionAction?.Invoke(options);
+            });
         ocelotOptionAction?.Invoke(ocelotSettingsOptions);
         ocelotSettingsOptions.DbConnectionConfig ??= new DbConnectionConfig()
         {
             ConfigId = CommonConst.ConfigId,
             DbType = DbType.Sqlite,
-            ConnectionString = "DataSource=./Hx.Gateway.db",
+            ConnectionString = "DataSource=./Hx-Gateway.db",
             EnableInitDb = false,
             EnableInitSeed = false,
             EnableUnderLine = true,
@@ -64,26 +86,18 @@ public static class HxOcelotServiceCollectionExtensions
             if (ocelotSettingsOptions.DbConnectionConfig != null)
             {
                 config.ConfigId = ocelotSettingsOptions.DbConnectionConfig.ConfigId;
+                config.DbType = ocelotSettingsOptions.DbConnectionConfig.DbType;
+                config.DbLinkName = ocelotSettingsOptions.DbConnectionConfig.DbLinkName;
                 config.SlaveConnectionConfigs = ocelotSettingsOptions.DbConnectionConfig.SlaveConnectionConfigs;
                 config.ConnectionString = ocelotSettingsOptions.DbConnectionConfig.ConnectionString;
                 config.IsAutoCloseConnection = ocelotSettingsOptions.DbConnectionConfig.IsAutoCloseConnection;
+                config.AopEvents = ocelotSettingsOptions.DbConnectionConfig.AopEvents;
                 config.EnableUnderLine = ocelotSettingsOptions.DbConnectionConfig.EnableUnderLine;
+                config.EnableInitDb = ocelotSettingsOptions.DbConnectionConfig.EnableInitDb;
+                config.EnableInitSeed = ocelotSettingsOptions.DbConnectionConfig.EnableInitSeed;
+                config.EnableSqlLog = ocelotSettingsOptions.DbConnectionConfig.EnableSqlLog;
             }
         });
-        ////添加数据库存储
-        //if (ocelotSettingsOptions.DbConnectionConfig != null)
-        //{
-        //    config = ocelotSettingsOptions.DbConnectionConfig;
-        //};
-        //builder.Services.AddSqlSugar(dbOptions => 
-        //{
-        //    dbOptions.ConnectionConfigs = new DbConnectionConfig[] { config };
-        //},db =>
-        //{
-        //    SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
-        //    SqlSugarConfigProvider.SetAopLog(dbProvider);
-        //    SqlSugarConfigProvider.InitDatabase(dbProvider, config);
-        //});
 
         //配置文件仓储注入
         builder.Services.AddSingleton<IFileConfigurationRepository, DbFileConfigurationRepository>();

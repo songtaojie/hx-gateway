@@ -2,10 +2,8 @@
 // Copyright (c) 2021-2022 songtaojie
 // 电话/微信：stj15638116256  Email：stjworkemail@163.com
 
-using Microsoft.Extensions.Options;
-
 namespace Hx.Gateway.Core.Options;
-public class OcelotSettingsOptions : IPostConfigureOptions<OcelotSettingsOptions>
+public class OcelotSettingsOptions
 {
     /// <summary>
     /// 项目编码
@@ -51,8 +49,4 @@ public class OcelotSettingsOptions : IPostConfigureOptions<OcelotSettingsOptions
     /// 数据库连接配置
     /// </summary>
     public DbConnectionConfig DbConnectionConfig { get; set; }
-
-    public void PostConfigure(string name, OcelotSettingsOptions options)
-    {
-    }
 }

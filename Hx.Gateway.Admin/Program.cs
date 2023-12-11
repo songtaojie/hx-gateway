@@ -25,7 +25,10 @@ builder.Services.AddControllers(options =>
 //{
 //    options.SuppressModelStateInvalidFilter = true;
 //});
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.CustomSchemaIds(t => t.FullName);
+});
 builder.Services.AddJWTAuthentication(builder.Configuration);
 builder.Services.AddSqlSugar(builder.Configuration);
 builder.Services.AddGatewayServices();

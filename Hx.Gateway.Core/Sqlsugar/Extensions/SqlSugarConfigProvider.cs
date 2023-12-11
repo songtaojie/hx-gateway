@@ -136,7 +136,8 @@ internal static class SqlSugarConfigProvider
     /// 配置Aop日志
     /// </summary>
     /// <param name="db"></param>
-    public static void SetAopLog(ISqlSugarClient db)
+    /// <param name="logger"></param>
+    public static void SetAopLog(ISqlSugarClient db,ILogger logger = null)
     {
         var config = db.CurrentConnectionConfig;
 
@@ -153,16 +154,42 @@ internal static class SqlSugarConfigProvider
                 Console.ForegroundColor = ConsoleColor.Yellow;
             if (sql.StartsWith("DELETE", StringComparison.OrdinalIgnoreCase))
                 Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"【{DateTime.Now}——执行SQL】\r\n{UtilMethods.GetSqlString(config.DbType, sql, pars)}\r\n");
-            Console.ForegroundColor = originColor;
+            if (logger == null)
+            {
+                Console.WriteLine($"【{DateTime.Now}——执行SQL】\r\n{UtilMethods.GetNativeSql(sql, pars)}\r\n");
+                Console.ForegroundColor = originColor;
+            }
+            else
+            {
+                logger.LogInformation($"【{DateTime.Now}——执行SQL】\r\n{UtilMethods.GetNativeSql(sql, pars)}\r\n");
+                Console.ForegroundColor = originColor;
+            }
+            
         };
         db.Aop.OnError = ex =>
         {
             if (ex.Parametres == null) return;
-            Console.WriteLine($"【{DateTime.Now}——错误SQL】\r\n {UtilMethods.GetSqlString(config.DbType, ex.Sql, (SugarParameter[])ex.Parametres)} \r\n");
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            if (logger == null)
+            {
+                Console.WriteLine($"【{DateTime.Now}——错误SQL】\r\n {UtilMethods.GetNativeSql(ex.Sql, (SugarParameter[])ex.Parametres)} \r\n");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            }
+            else
+            {
+                logger.LogInformation($"【{DateTime.Now}——错误SQL】\r\n {UtilMethods.GetNativeSql(ex.Sql, (SugarParameter[])ex.Parametres)} \r\n");
+            }
+            
         };
 
+        
+    }
+
+    /// <summary>
+    /// 设置数据审计
+    /// </summary>
+    /// <param name="db"></param>
+    public static void SetDataExecuting(ISqlSugarClient db)
+    {
         // 数据审计
         db.Aop.DataExecuting = (oldValue, entityInfo) =>
         {
@@ -187,7 +214,8 @@ internal static class SqlSugarConfigProvider
 
     }
 
-
+    private static bool _initDb = false;
+    private static bool _initSeed = false;
     /// <summary>
     /// 初始化数据库和种子数据
     /// DbConnectionConfig需开启相应的开关
@@ -196,61 +224,65 @@ internal static class SqlSugarConfigProvider
     /// <param name="config"></param>
     public static void InitDatabase(ISqlSugarClient dbProvider, DbConnectionConfig config)
     {
-
-        //SqlSugarScopeProvider dbProvider = db.GetConnectionScope(config.ConfigId);
-
-        // 创建数据库
-        if (config.DbType != DbType.Oracle)
-            dbProvider.DbMaintenance.CreateDatabase();
-
-        // 获取所有实体表-初始化表结构
-        var entityTypes = EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false)).ToList();
-        if (!entityTypes.Any()) return;
-        foreach (var entityType in entityTypes)
+        if (!_initDb)
         {
-            var tAtt = entityType.GetCustomAttribute<TenantAttribute>();
-            if (tAtt != null && tAtt.configId.ToString() != config.ConfigId) continue;
+            // 创建数据库
+            if (config.DbType != DbType.Oracle)
+                dbProvider.DbMaintenance.CreateDatabase();
 
-            var splitTable = entityType.GetCustomAttribute<SplitTableAttribute>();
-            if (splitTable == null)
-                dbProvider.CodeFirst.InitTables(entityType);
-            else
-                dbProvider.CodeFirst.SplitTables().InitTables(entityType);
+            // 获取所有实体表-初始化表结构
+            var entityTypes = EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass && u.IsDefined(typeof(SugarTable), false)).ToList();
+            if (!entityTypes.Any()) return;
+            foreach (var entityType in entityTypes)
+            {
+                var tAtt = entityType.GetCustomAttribute<TenantAttribute>();
+                if (tAtt != null && tAtt.configId.ToString() != config.ConfigId) continue;
+
+                var splitTable = entityType.GetCustomAttribute<SplitTableAttribute>();
+                if (splitTable == null)
+                    dbProvider.CodeFirst.InitTables(entityType);
+                else
+                    dbProvider.CodeFirst.SplitTables().InitTables(entityType);
+            }
+            _initDb = true;
         }
 
-        if (!config.EnableInitSeed) return;
-        // 获取所有种子配置-初始化数据
-        var seedDataTypes = EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
-            && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>)))).ToList();
-        if (!seedDataTypes.Any()) return;
-        foreach (var seedType in seedDataTypes)
+        if (!_initSeed)
         {
-            var instance = Activator.CreateInstance(seedType);
-
-            var hasDataMethod = seedType.GetMethod("HasData");
-            if (hasDataMethod == null) continue;
-            var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
-            if (seedData == null) continue;
-
-            var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
-            var tAtt = entityType.GetCustomAttribute<TenantAttribute>();
-            if (tAtt != null && tAtt.configId.ToString() != config.ConfigId) continue;
-            //if (tAtt == null && config.ConfigId != SqlSugarConst.ConfigId) continue;
-
-            var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
-            if (entityInfo.Columns.Any(u => u.IsPrimarykey))
+            if (!config.EnableInitSeed) return;
+            // 获取所有种子配置-初始化数据
+            var seedDataTypes = EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
+                && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>)))).ToList();
+            if (!seedDataTypes.Any()) return;
+            foreach (var seedType in seedDataTypes)
             {
-                // 按主键进行批量增加和更新
-                var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
-                storage.AsInsertable.ExecuteCommand();
-                var ignoreUpdate = hasDataMethod.GetCustomAttribute<IgnoreSeedUpdateAttribute>();
-                if (ignoreUpdate == null) storage.AsUpdateable.ExecuteCommand();
-            }
-            else
-            {
-                // 无主键则只进行插入
-                if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
-                    dbProvider.InsertableByObject(seedData.ToList()).ExecuteCommand();
+                var instance = Activator.CreateInstance(seedType);
+
+                var hasDataMethod = seedType.GetMethod("HasData");
+                if (hasDataMethod == null) continue;
+                var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
+                if (seedData == null) continue;
+
+                var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();
+                var tAtt = entityType.GetCustomAttribute<TenantAttribute>();
+                if (tAtt != null && tAtt.configId.ToString() != config.ConfigId) continue;
+                //if (tAtt == null && config.ConfigId != SqlSugarConst.ConfigId) continue;
+
+                var entityInfo = dbProvider.EntityMaintenance.GetEntityInfo(entityType);
+                if (entityInfo.Columns.Any(u => u.IsPrimarykey))
+                {
+                    // 按主键进行批量增加和更新
+                    var storage = dbProvider.StorageableByObject(seedData.ToList()).ToStorage();
+                    storage.AsInsertable.ExecuteCommand();
+                    var ignoreUpdate = hasDataMethod.GetCustomAttribute<IgnoreSeedUpdateAttribute>();
+                    if (ignoreUpdate == null) storage.AsUpdateable.ExecuteCommand();
+                }
+                else
+                {
+                    // 无主键则只进行插入
+                    if (!dbProvider.Queryable(entityInfo.DbTableName, entityInfo.DbTableName).Any())
+                        dbProvider.InsertableByObject(seedData.ToList()).ExecuteCommand();
+                }
             }
         }
     }
