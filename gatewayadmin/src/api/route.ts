@@ -99,7 +99,7 @@ export function updateStatus(id: string, status: StatusEnum) {
 
 // 删除路由
 export function deleteRoute(id: string) {
-  return axios.delete(`/api/route/route`, {
+  return axios.delete(`/api/route/delete`, {
     data: { id }
   })
 }

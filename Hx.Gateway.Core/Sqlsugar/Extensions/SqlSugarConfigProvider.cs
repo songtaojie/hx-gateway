@@ -222,10 +222,12 @@ internal static class SqlSugarConfigProvider
     /// </summary>
     /// <param name="dbProvider"></param>
     /// <param name="config"></param>
-    public static void InitDatabase(ISqlSugarClient dbProvider, DbConnectionConfig config)
+    /// <param name="logger"></param>
+    public static void InitDatabase(ISqlSugarClient dbProvider, DbConnectionConfig config,ILogger logger)
     {
         if (!_initDb)
         {
+            _initDb = true;
             // 创建数据库
             if (config.DbType != DbType.Oracle)
                 dbProvider.DbMaintenance.CreateDatabase();
@@ -244,12 +246,11 @@ internal static class SqlSugarConfigProvider
                 else
                     dbProvider.CodeFirst.SplitTables().InitTables(entityType);
             }
-            _initDb = true;
         }
 
-        if (!_initSeed)
+        if (!_initSeed && config.EnableInitSeed)
         {
-            if (!config.EnableInitSeed) return;
+            _initSeed = true;
             // 获取所有种子配置-初始化数据
             var seedDataTypes = EffectiveTypes.Where(u => !u.IsInterface && !u.IsAbstract && u.IsClass
                 && u.GetInterfaces().Any(i => i.HasImplementedRawGeneric(typeof(ISqlSugarEntitySeedData<>)))).ToList();

@@ -153,6 +153,13 @@ namespace Hx.Gateway.Application.Services.Routes
                 throw new UserFriendlyException("当前路由信息不存在");
             return new DetailRouteOutput
             {
+                Id = route.Id,
+                ProjectId = route.ProjectId,
+                DownstreamHttpVersion = route.DownstreamHttpVersion,
+                Priority = route.Priority,
+                RouteProperties = route.RouteProperties,
+                ServiceNamespace = route.ServiceNamespace,
+                UpstreamHost = route.UpstreamHost,
                 AuthenticationOptions = string.IsNullOrEmpty(route.AuthenticationOptions)
                     ? new AuthenticationOptions()
                     : JsonSerializer.Deserialize<AuthenticationOptions>(route.AuthenticationOptions),

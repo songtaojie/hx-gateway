@@ -41,5 +41,5 @@ public class HttpHandlerOptions
     /// <summary>
     /// 这将控制内部HttpClient将打开多少个连接。这可以在Route或全局级别设置。
     /// </summary>
-    public int MaxConnectionsPerServer { get; set; }
+    public int MaxConnectionsPerServer { get; set; } = int.MaxValue;
 }

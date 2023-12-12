@@ -179,7 +179,7 @@ const handleEdit = (useCreate: boolean, editProjectParams: EditProjectModel | un
 const handleDel = (projectId: string) => {
   Modal.warning({
     titleAlign: 'start',
-    title: t('modal.delete.title'),
+    title: t('modal.title', { op: 1 }),
     content: t('modal.delete.content'),
     okText: t('confirm'),
     cancelText: t('cancel'),

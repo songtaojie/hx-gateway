@@ -14,7 +14,7 @@ public class FileCacheOptions
     /// <summary>
     /// 如设置为15，这意味着缓存将在15秒后过期
     /// </summary>
-    public int? TtlSeconds { get; set; }
+    public int TtlSeconds { get; set; }
 
     /// <summary>
     /// 区域

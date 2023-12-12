@@ -32,5 +32,5 @@ public class LoadBalancerOptions
     /// <summary>
     /// 这是您希望会话被卡住的毫秒数
     /// </summary>
-    public long? Expiry { get; set; }
+    public int Expiry { get; set; }
 }

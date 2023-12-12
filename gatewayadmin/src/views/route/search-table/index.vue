@@ -204,22 +204,24 @@ const onEditRoute = (id: string | undefined) => {
     query: { id }
   })
 }
-// 删除路由
+
 const handleDel = (routeId: string) => {
   Modal.warning({
-    title: 'Warning Notification',
-    content: 'This is a warning description which directly indicates a warning that might need attention.',
+    titleAlign: 'start',
+    title: t('modal.title', { op: 1 }),
+    content: t('modal.delete.content'),
     okText: t('confirm'),
     cancelText: t('cancel'),
     hideCancel: false,
     onOk: async () => {
-      await deleteRoute(routeId)
-      const msg = t('detailForm.submitSuccess')
-      fetchData()
-      Message.success({
-        content: msg,
-        duration: 5 * 1000
-      })
+      var res = await deleteRoute(routeId)
+      if (res && res.data) {
+        fetchData()
+        Message.success({
+          content: t('delete.success'),
+          duration: 5 * 1000
+        })
+      }
     }
   })
 }

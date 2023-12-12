@@ -5,11 +5,14 @@
 
 using Hx.Gateway.Core;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging.Console;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+builder.Logging.AddConsole()
+    .AddConsoleFormatter<ConsoleFormatterExtend, ConsoleFormatterOptions>();
 
 builder.Services.AddControllers(options =>
 {

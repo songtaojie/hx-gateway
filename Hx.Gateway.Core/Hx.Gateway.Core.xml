@@ -4,6 +4,105 @@
         <name>Hx.Gateway.Core</name>
     </assembly>
     <members>
+        <member name="T:Hx.Gateway.Core.ConsoleFormatterExtend">
+            <summary>
+            控制台默认格式化程序拓展
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.ConsoleFormatterExtend.EXCEPTION_SEPARATOR">
+            <summary>
+            异常分隔符
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.ConsoleFormatterExtend._formatOptionsReloadToken">
+            <summary>
+            日志格式化选项刷新 Token
+            </summary>
+        </member>
+        <member name="F:Hx.Gateway.Core.ConsoleFormatterExtend._formatterOptions">
+            <summary>
+            日志格式化配置选项
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.#ctor(Microsoft.Extensions.Options.IOptionsMonitor{Microsoft.Extensions.Logging.Console.ConsoleFormatterOptions})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="formatterOptions"></param>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.Write``1(Microsoft.Extensions.Logging.Abstractions.LogEntry{``0}@,Microsoft.Extensions.Logging.IExternalScopeProvider,System.IO.TextWriter)">
+            <summary>
+            写入日志
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="logEntry"></param>
+            <param name="scopeProvider"></param>
+            <param name="textWriter"></param>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.Dispose">
+            <summary>
+            释放非托管资源
+            </summary>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.ReloadFormatterOptions(Microsoft.Extensions.Logging.Console.ConsoleFormatterOptions)">
+            <summary>
+            刷新日志格式化选项
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.OutputStandardMessage``1(Microsoft.Extensions.Logging.Abstractions.LogEntry{``0},System.String)">
+            <summary>
+            输出标准日志消息
+            </summary>
+            <param name="logEntry"></param>
+            <param name="dateFormat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.PadLeftAlign(System.String)">
+            <summary>
+            将日志内容进行对齐
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.GetLogLevelString(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            获取日志级别短名称
+            </summary>
+            <param name="logLevel">日志级别</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.AppendWithColor(System.Text.StringBuilder,System.String,System.Nullable{System.ConsoleColor},System.Nullable{System.ConsoleColor})">
+            <summary>
+            拓展 StringBuilder 增加带颜色写入
+            </summary>
+            <param name="message"></param>
+            <param name="formatString"></param>
+            <param name="background"></param>
+            <param name="foreground"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.GetLogLevelConsoleColors(Microsoft.Extensions.Logging.LogLevel)">
+            <summary>
+            获取控制台日志级别对应的颜色
+            </summary>
+            <param name="logLevel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.GetForegroundColorEscapeCode(System.ConsoleColor)">
+            <summary>
+            输出控制台字体颜色 UniCode 码
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hx.Gateway.Core.ConsoleFormatterExtend.GetBackgroundColorEscapeCode(System.ConsoleColor)">
+            <summary>
+            输出控制台背景颜色 UniCode 码
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
         <member name="T:Hx.Gateway.Core.DateTimeConverter">
             <summary>
             时间格式化
@@ -1687,19 +1786,27 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.SetAopLog(SqlSugar.ISqlSugarClient)">
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.SetAopLog(SqlSugar.ISqlSugarClient,Microsoft.Extensions.Logging.ILogger)">
             <summary>
             配置Aop日志
             </summary>
             <param name="db"></param>
+            <param name="logger"></param>
         </member>
-        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.InitDatabase(SqlSugar.ISqlSugarClient,Hx.Gateway.Core.Options.DbConnectionConfig)">
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.SetDataExecuting(SqlSugar.ISqlSugarClient)">
+            <summary>
+            设置数据审计
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:Hx.Gateway.Core.SqlSugarConfigProvider.InitDatabase(SqlSugar.ISqlSugarClient,Hx.Gateway.Core.Options.DbConnectionConfig,Microsoft.Extensions.Logging.ILogger)">
             <summary>
             初始化数据库和种子数据
             DbConnectionConfig需开启相应的开关
             </summary>
             <param name="dbProvider"></param>
             <param name="config"></param>
+            <param name="logger"></param>
         </member>
         <member name="T:Hx.Gateway.Core.SqlSugarPagedExtensions">
             <summary>

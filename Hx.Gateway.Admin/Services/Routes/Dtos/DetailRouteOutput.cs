@@ -123,8 +123,4 @@ public class DetailRouteOutput
     /// 路由属性
     /// </summary>
     public IEnumerable<TgRouteProperty> RouteProperties { get; set; }
-    /// <summary>
-    ///  状态
-    ///</summary>
-    public StatusEnum? Status { get; set; }
 }

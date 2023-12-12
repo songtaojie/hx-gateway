@@ -77,6 +77,10 @@ public static class UnifyResultContext
             // 设置为400状态码
             statusCode = StatusCodes.Status400BadRequest;
         }
+        else
+        {
+            errorMessage = exception?.InnerException?.Message ?? exception?.Message;
+        }
 
         return new ExceptionMetadata
         {

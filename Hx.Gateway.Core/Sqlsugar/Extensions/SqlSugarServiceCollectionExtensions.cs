@@ -31,15 +31,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 SqlSugarClient sqlSugar = new SqlSugarClient(dbConnectionConfig.ToConnectionConfig(),
                 db =>
                 {
+                    var logger = provider.GetService<ILogger<ISqlSugarClient>>();
+                    if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(db, logger);
                     //每次上下文都会执行
-                    SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig);
+                    SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig, logger);
                     SqlSugarConfigProvider.SetDataExecuting(db);
-                    var log = provider.GetService<ILogger<ISqlSugarClient>>();
-                    if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(db, log);
                 });
                 return sqlSugar;
             });
-
             // 注册非泛型仓储
             services.AddScoped<ISqlSugarRepository, SqlSugarRepository>();
             // 注册 SqlSugar 仓储
@@ -70,15 +69,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 SqlSugarClient sqlSugar = new SqlSugarClient(dbConnectionConfig.ToConnectionConfig(),
                 db =>
                 {
+                    var logger = provider.GetService<ILogger<ISqlSugarClient>>();
+                    if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(db, logger);
                     //每次上下文都会执行
-                    SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig);
+                    SqlSugarConfigProvider.InitDatabase(db, dbConnectionConfig, logger);
                     SqlSugarConfigProvider.SetDataExecuting(db);
-                    var log = provider.GetService<ILogger<ISqlSugarClient>>();
-                    if (dbConnectionConfig.EnableSqlLog) SqlSugarConfigProvider.SetAopLog(db, log);
                 });
                 return sqlSugar;
             });
-
             // 注册非泛型仓储
             services.AddScoped<ISqlSugarRepository, SqlSugarRepository>();
             // 注册 SqlSugar 仓储
