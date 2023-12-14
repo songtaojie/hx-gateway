@@ -1,27 +1,16 @@
 <template>
   <div class="container">
     <Breadcrumb :items="['menu.globalconfiguration', 'menu.globalconfiguration.search']" />
-    <a-card class="general-card" :title="$t('menu.globalconfiguration.search')">
-      <a-row>
-        <a-col :flex="1">
-          <a-form :model="queryModel" :label-col-props="{ span: 6 }" :wrapper-col-props="{ span: 18 }" label-align="left">
-            <a-row :gutter="16">
-              <a-col :span="8">
-                <a-form-item field="projectId" :label="$t('project.label.name')">
-                  <a-select v-model="queryModel.projectId" allow-clear :options="projectOptions" :field-names="{ value: 'id', label: 'name' }" :placeholder="$t('select.options.default')" />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="status" :label="$t('label.status')">
-                  <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
-                </a-form-item>
-              </a-col>
-            </a-row>
-          </a-form>
-        </a-col>
-        <a-divider style="height: 84px" direction="vertical" />
-        <a-col :flex="'86px'" style="text-align: right">
-          <a-space direction="vertical" :size="18">
+    <a-card hoverable size="medium">
+      <a-form :model="queryModel" layout="inline">
+        <a-form-item field="projectId" :label="$t('project.label.name')">
+          <a-select v-model="queryModel.projectId" allow-clear :options="projectOptions" :field-names="{ value: 'id', label: 'name' }" :placeholder="$t('select.options.default')" />
+        </a-form-item>
+        <a-form-item field="status" :label="$t('label.status')">
+          <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
+        </a-form-item>
+        <a-form-item>
+          <a-space size="small">
             <a-button type="primary" @click="search">
               <template #icon>
                 <icon-search />
@@ -34,32 +23,18 @@
               </template>
               {{ $t('search.reset') }}
             </a-button>
-          </a-space>
-        </a-col>
-      </a-row>
-      <a-divider style="margin-top: 0" />
-      <a-row style="margin-bottom: 16px" :gutter="16">
-        <a-col>
-          <a-space>
             <a-button type="primary" @click="handleEdit('')">
               <template #icon>
                 <icon-plus />
               </template>
               {{ $t('project.name.table.operation') }}
             </a-button>
-            <!-- <a-button type="outline" @click="syncProjects">
-              <template #icon>
-                <icon-sync />
-              </template>
-              {{ $t('consul.form.sync') }}
-            </a-button> -->
           </a-space>
-        </a-col>
-        <a-col :span="6"></a-col>
-      </a-row>
+        </a-form-item>
+      </a-form>
     </a-card>
 
-    <a-card class="general-card">
+    <a-card style="margin-top: 8px" size="medium">
       <a-table row-key="id" :loading="loading" :pagination="pagination" :data="renderData" :bordered="false" @page-change="onPageChange">
         <template #columns>
           <a-table-column :title="$t('project.name.table')" data-index="projectName" align="center" />
