@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hx.Gateway.Admin.Controllers;
 
-[Route("api/[controller]/[action]")]
+[Route("[controller]/[action]")]
 [ApiController]
 public class BaseControllerBase: ControllerBase
 {

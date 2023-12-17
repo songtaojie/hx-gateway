@@ -1,5 +1,6 @@
 import axios from 'axios'
-
+const sysConfig = window['sysConfig'] || {}
+const apiPrefix = sysConfig.apiPrefix || 'api'
 export interface LoginData {
   account: string
   password: string
@@ -12,5 +13,5 @@ export interface LoginRes {
   account: string
 }
 export function login(data: LoginData) {
-  return axios.post<LoginRes>('/api/system/login', data)
+  return axios.post<LoginRes>(`/${apiPrefix}/system/login`, data)
 }

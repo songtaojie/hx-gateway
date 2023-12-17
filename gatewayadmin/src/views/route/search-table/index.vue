@@ -1,66 +1,58 @@
 <template>
   <div class="container">
     <Breadcrumb :items="['menu.route', 'menu.route.search']" />
-    <a-card class="general-card" :title="$t('menu.route.search')">
-      <a-row>
-        <a-col :flex="1">
-          <a-form :model="queryModel" :label-col-props="{ span: 6 }" :wrapper-col-props="{ span: 18 }" label-align="left">
-            <a-row :gutter="16">
-              <a-col :span="8">
-                <a-form-item field="downstreamPathTemplate" :label="$t('route.downstream.path.template')">
-                  <a-input v-model="queryModel.downstreamPathTemplate" :placeholder="$t('routeTable.placeholder.downstream.path.template')" />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="upstreamPathTemplate" :label="$t('route.upstream.path.template')">
-                  <a-input v-model="queryModel.upstreamPathTemplate" :placeholder="$t('routeTable.placeholder.upstream.path.template')" />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="RequestIdKey" :label="$t('route.requestIdKey')">
-                  <a-input v-model="queryModel.requestIdKey" :placeholder="$t('routeTable.placeholder.route.requestIdKey')" />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="status" :label="$t('label.status')">
-                  <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
-                </a-form-item>
-              </a-col>
-            </a-row>
-          </a-form>
-        </a-col>
-        <a-divider style="height: 84px" direction="vertical" />
-        <a-col :flex="'86px'" style="text-align: right">
-          <a-space direction="vertical" :size="18">
-            <a-button type="primary" @click="search">
-              <template #icon>
-                <icon-search />
-              </template>
-              {{ $t('routeTable.form.search') }}
-            </a-button>
-            <a-button @click="reset">
-              <template #icon>
-                <icon-refresh />
-              </template>
-              {{ $t('routeTable.form.reset') }}
-            </a-button>
-          </a-space>
-        </a-col>
-      </a-row>
-      <a-divider style="margin-top: 0" />
-      <a-row style="margin-bottom: 16px">
-        <a-col :span="16">
-          <a-space>
-            <a-button type="primary" @click="onEditRoute(undefined)">
-              <template #icon>
-                <icon-plus />
-              </template>
-              {{ $t('table.operations.add') }}
-            </a-button>
-          </a-space>
-        </a-col>
-      </a-row>
-      <a-table row-key="id" :loading="loading" :pagination="pagination" :data="renderData" :bordered="false" @page-change="onPageChange">
+    <a-card hoverable>
+      <a-form :model="queryModel" layout="horizontal" auto-label-width>
+        <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+          <a-col :sm="24" :md="12" :lg="8" :xl="8" :xxl="6">
+            <a-form-item field="downstreamPathTemplate" :label="$t('route.downstream.path.template')">
+              <a-input v-model="queryModel.downstreamPathTemplate" :placeholder="$t('routeTable.placeholder.downstream.path.template')" />
+            </a-form-item>
+          </a-col>
+          <a-col :sm="24" :md="12" :lg="8" :xl="8" :xxl="6">
+            <a-form-item field="upstreamPathTemplate" :label="$t('route.upstream.path.template')">
+              <a-input v-model="queryModel.upstreamPathTemplate" :placeholder="$t('routeTable.placeholder.upstream.path.template')" />
+            </a-form-item>
+          </a-col>
+          <a-col :sm="24" :md="12" :lg="8" :xl="8" :xxl="6">
+            <a-form-item field="RequestIdKey" :label="$t('route.requestIdKey')">
+              <a-input v-model="queryModel.requestIdKey" :placeholder="$t('routeTable.placeholder.route.requestIdKey')" />
+            </a-form-item>
+          </a-col>
+          <a-col :sm="24" :md="12" :lg="8" :xl="8" :xxl="6">
+            <a-form-item field="status" :label="$t('label.status')">
+              <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
+            </a-form-item>
+          </a-col>
+        </a-row>
+        <a-row :gutter="{ md: 8, lg: 24, xl: 32 }">
+          <a-col :sm="24" :md="12" :lg="8" :xl="8" :xxl="6">
+            <a-space size="medium">
+              <a-button type="primary" @click="search">
+                <template #icon>
+                  <icon-search />
+                </template>
+                {{ $t('routeTable.form.search') }}
+              </a-button>
+              <a-button @click="reset">
+                <template #icon>
+                  <icon-refresh />
+                </template>
+                {{ $t('routeTable.form.reset') }}
+              </a-button>
+              <a-button type="primary" @click="onEditRoute(undefined)">
+                <template #icon>
+                  <icon-plus />
+                </template>
+                {{ $t('table.operations.add') }}
+              </a-button>
+            </a-space>
+          </a-col>
+        </a-row>
+      </a-form>
+    </a-card>
+    <a-card style="margin-top: 8px" size="medium">
+      <a-table row-key="id" size="small" :loading="loading" :pagination="pagination" :data="renderData" column-resizable class="arco-table-border-cell" @page-change="onPageChange">
         <template #columns>
           <a-table-column :title="$t('route.downstream.path.template')" data-index="downstreamPathTemplate" />
           <a-table-column :title="$t('route.downstream.http.version')" data-index="downstreamHttpVersion" />
@@ -73,10 +65,6 @@
           <a-table-column :title="$t('routeTable.columns.status')" data-index="status">
             <template #cell="{ record }">
               <a-tag :color="record.status === 1 ? 'blue' : 'orange'">
-                <template #icon>
-                  <icon-check v-if="record.status === 1" />
-                  <icon-close v-else />
-                </template>
                 {{ $t(`${record.status === 1 ? 'radio.enabled.label' : 'radio.disabled.label'}`) }}
               </a-tag>
             </template>
@@ -84,13 +72,19 @@
           <a-table-column :title="$t('table.operations')" data-index="operations">
             <template #cell="{ record }">
               <a-space>
-                <a-button type="primary" :status="record.status === 1 ? 'warning' : 'success'" size="small" @click="onupdateStatus(record.id, record.status)">
+                <a-button type="text" size="mini" :status="record.status === 1 ? 'warning' : 'success'" @click="onupdateStatus(record.id, record.status)">
+                  <template #icon>
+                    <icon-close v-if="record.status === 1" />
+                    <icon-check v-else />
+                  </template>
                   {{ $t(`${record.status === 1 ? 'radio.disabled.label' : 'radio.enabled.label'}`) }}
                 </a-button>
-                <a-button type="outline" size="small" @click="onEditRoute(record.id)">
+                <a-button type="text" size="mini" @click="onEditRoute(record.id)">
+                  <template #icon><icon-edit /></template>
                   {{ $t('table.operations.edit') }}
                 </a-button>
-                <a-button type="primary" size="small" status="danger" @click="handleDel(record.id)">
+                <a-button type="text" size="mini" status="danger" @click="handleDel(record.id)">
+                  <template #icon><icon-delete /></template>
                   {{ $t('table.operations.del') }}
                 </a-button>
               </a-space>

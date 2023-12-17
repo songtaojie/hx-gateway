@@ -1,0 +1,3 @@
+window.sysConfig = {
+   apiPrefix:'api'
+};

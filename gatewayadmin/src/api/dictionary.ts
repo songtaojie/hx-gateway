@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BaseSelectModel } from '@/types/common'
+import { BaseSelectModel } from '@/models/common'
 
 export interface AllSelectResponse {
   consulSettingKey: BaseSelectModel<string>[]

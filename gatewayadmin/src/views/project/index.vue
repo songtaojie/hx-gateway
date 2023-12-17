@@ -1,27 +1,16 @@
 <template>
   <div class="container">
     <Breadcrumb :items="['menu.project', 'menu.project.search']" />
-    <a-card class="general-card" :title="$t('menu.project.search')">
-      <a-row>
-        <a-col :flex="1">
-          <a-form :model="queryModel" :label-col-props="{ span: 6 }" :wrapper-col-props="{ span: 18 }" label-align="left">
-            <a-row :gutter="16">
-              <a-col :span="8">
-                <a-form-item field="number" :label="$t('project.label.name')">
-                  <a-input v-model="queryModel.searchKey" :placeholder="$t('project.name.placeholder')" />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="status" :label="$t('label.status')">
-                  <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
-                </a-form-item>
-              </a-col>
-            </a-row>
-          </a-form>
-        </a-col>
-        <a-divider style="height: 84px" direction="vertical" />
-        <a-col :flex="'86px'" style="text-align: right">
-          <a-space direction="vertical" :size="18">
+    <a-card hoverable size="medium">
+      <a-form :model="queryModel" layout="inline">
+        <a-form-item field="number" :label="$t('project.label.name')">
+          <a-input v-model="queryModel.searchKey" :placeholder="$t('project.name.placeholder')" />
+        </a-form-item>
+        <a-form-item field="status" :label="$t('label.status')">
+          <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
+        </a-form-item>
+        <a-form-item>
+          <a-space size="medium">
             <a-button type="primary" @click="search">
               <template #icon>
                 <icon-search />
@@ -34,40 +23,25 @@
               </template>
               {{ $t('search.reset') }}
             </a-button>
-          </a-space>
-        </a-col>
-      </a-row>
-      <a-divider style="margin-top: 0" />
-      <a-row style="margin-bottom: 16px" :gutter="16">
-        <a-col>
-          <a-space>
             <a-button type="primary" @click="handleEdit(true, undefined)">
               <template #icon>
                 <icon-plus />
               </template>
               {{ $t('project.name.table.operation') }}
             </a-button>
-            <!-- <a-button type="outline" @click="syncProjects">
-              <template #icon>
-                <icon-sync />
-              </template>
-              {{ $t('consul.form.sync') }}
-            </a-button> -->
           </a-space>
-        </a-col>
-        <a-col :span="6"></a-col>
-      </a-row>
+        </a-form-item>
+      </a-form>
     </a-card>
-
-    <a-card class="general-card">
-      <a-table row-key="id" :loading="loading" :pagination="pagination" :data="renderData" :bordered="false" @page-change="onPageChange">
+    <a-card style="margin-top: 8px" size="medium">
+      <a-table row-key="id" size="small" :loading="loading" :pagination="pagination" :data="renderData" class="arco-table-border-cell" column-resizable @page-change="onPageChange">
         <template #columns>
-          <a-table-column :title="$t('project.code.table')" data-index="code" align="center" />
+          <a-table-column :title="$t('project.code.table')" data-index="code" align="center" :width="200" />
           <a-table-column :title="$t('project.name.table')" data-index="name" align="center" />
-          <a-table-column :title="$t('table.column.sort.index')" data-index="sortIndex" align="center" />
-          <a-table-column :title="$t('table.column.createtime')" data-index="createTime" align="center" />
+          <a-table-column :title="$t('table.column.sort.index')" data-index="sortIndex" align="center" :width="120" />
+          <a-table-column :title="$t('table.column.createtime')" data-index="createTime" align="center" :width="260" />
 
-          <a-table-column :title="$t('table.column.status')" data-index="status" align="center">
+          <a-table-column :title="$t('table.column.status')" data-index="status" align="center" :width="120">
             <template #cell="{ record }">
               <a-tag :color="record.status === 1 ? 'blue' : 'orange'">
                 <template #icon>
@@ -78,25 +52,15 @@
               </a-tag>
             </template>
           </a-table-column>
-          <a-table-column :title="$t('table.operations')" data-index="operations" align="center">
+          <a-table-column :title="$t('table.operations')" data-index="operations" align="center" :width="180">
             <template #cell="{ record }">
               <a-space>
-                <a-button
-                  type="outline"
-                  size="small"
-                  @click="
-                    handleEdit(false, {
-                      code: record.code,
-                      name: record.name,
-                      id: record.id,
-                      status: record.status,
-                      sortIndex: record.sortIndex
-                    })
-                  "
-                >
+                <a-button type="text" size="mini" @click="handleEdit(false, { code: record.code, name: record.name, id: record.id, status: record.status, sortIndex: record.sortIndex })">
+                  <template #icon><icon-edit /></template>
                   {{ $t('table.operations.edit') }}
                 </a-button>
-                <a-button type="primary" size="small" status="danger" @click="handleDel(record.id)">
+                <a-button type="text" size="mini" status="danger" @click="handleDel(record.id)">
+                  <template #icon><icon-delete /></template>
                   {{ $t('table.operations.del') }}
                 </a-button>
               </a-space>

@@ -1,4 +1,7 @@
 
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +13,7 @@ builder.Services.AddControllers();
 builder.ConfigureHxWebApp();
 builder.Services.AddHxHttpClient();
 builder.Services.AddHxOcelot(builder.Configuration);
+//builder.Services.AddOcelot(builder.Configuration);
 builder.Services.AddCache();
 var app = builder.Build();
 
@@ -20,6 +24,7 @@ var app = builder.Build();
 //    app.UseSwaggerUI();
 //}
 app.UseHxOcelot().Wait();
+//app.UseOcelot().Wait();
 app.UseAuthorization();
 
 app.MapControllers();

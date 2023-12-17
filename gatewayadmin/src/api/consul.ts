@@ -1,4 +1,4 @@
-import { BasePageRequest, PageResponseModel } from '@/types/common'
+import { BasePageRequest, PageResponseModel } from '@/models/common'
 import qs from 'query-string'
 import axios from 'axios'
 

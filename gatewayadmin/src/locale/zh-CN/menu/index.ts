@@ -11,7 +11,6 @@ const globalconfiguration = {
 }
 const route = {
   'menu.route': '路由配置',
-  'menu.project.search': '路由查询',
   'menu.route.edit': '路由编辑'
 }
 export default {

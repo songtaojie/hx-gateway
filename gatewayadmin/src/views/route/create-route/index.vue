@@ -14,12 +14,12 @@
               </a-form-item>
             </a-col>
             <a-col :sm="24" :md="12" :lg="8" :xl="6">
-              <a-form-item :label="$t('route.label.requestIdKey')" :rules="[{ required: true, message: 'requestIdKey is required' }]" :validate-trigger="['change', 'blur']" field="requestIdKey">
+              <a-form-item :label="$t('route.requestIdKey.label')" :rules="[{ required: true, message: $t('route.requestIdKey.required') }]" :validate-trigger="['change', 'blur']" field="requestIdKey">
                 <a-input v-model="formData.requestIdKey" :placeholder="$t('route.requestIdKey.placeholder')"></a-input>
               </a-form-item>
             </a-col>
             <a-col :sm="24" :md="12" :lg="8" :xl="6">
-              <a-form-item :label="$t('route.label.upstream.host')" :rules="[{ required: true, message: 'upstreamHost is required' }]" :validate-trigger="['change', 'blur']" field="upstreamHost">
+              <a-form-item :label="$t('route.label.upstream.host')" field="upstreamHost">
                 <a-input v-model="formData.upstreamHost" :placeholder="$t('route.upstream.host.placeholder')"></a-input>
               </a-form-item>
             </a-col>

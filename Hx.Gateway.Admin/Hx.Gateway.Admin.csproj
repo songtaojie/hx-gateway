@@ -4,10 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.25" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
@@ -18,6 +20,62 @@
   <ItemGroup>
     <Folder Include="Authorization\" />
     <Folder Include="Result\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\arco.1db1f704.js" />
+    <None Include="wwwroot\assets\arco.1db1f704.js.gz" />
+    <None Include="wwwroot\assets\chart.520624f6.js" />
+    <None Include="wwwroot\assets\chart.520624f6.js.gz" />
+    <None Include="wwwroot\assets\common.37ab13c6.css.gz" />
+    <None Include="wwwroot\assets\common.546a3b76.js" />
+    <None Include="wwwroot\assets\common.546a3b76.js.gz" />
+    <None Include="wwwroot\assets\default-layout.8627b192.css.gz" />
+    <None Include="wwwroot\assets\default-layout.f3a6d78d.js" />
+    <None Include="wwwroot\assets\default-layout.f3a6d78d.js.gz" />
+    <None Include="wwwroot\assets\global-configuration.4248e053.js" />
+    <None Include="wwwroot\assets\global-configuration.4248e053.js.gz" />
+    <None Include="wwwroot\assets\index.01d9f77f.css.gz" />
+    <None Include="wwwroot\assets\index.0681e571.js" />
+    <None Include="wwwroot\assets\index.0b1d86ca.css.gz" />
+    <None Include="wwwroot\assets\index.26cb0fcc.js" />
+    <None Include="wwwroot\assets\index.26cb0fcc.js.gz" />
+    <None Include="wwwroot\assets\index.2bc543ca.js" />
+    <None Include="wwwroot\assets\index.300258b7.css.gz" />
+    <None Include="wwwroot\assets\index.302bffc7.css.gz" />
+    <None Include="wwwroot\assets\index.3a759b4e.js" />
+    <None Include="wwwroot\assets\index.3a759b4e.js.gz" />
+    <None Include="wwwroot\assets\index.46b41cc1.css.gz" />
+    <None Include="wwwroot\assets\index.539f615d.js" />
+    <None Include="wwwroot\assets\index.539f615d.js.gz" />
+    <None Include="wwwroot\assets\index.724ee30c.css.gz" />
+    <None Include="wwwroot\assets\index.7c1cc2a6.js" />
+    <None Include="wwwroot\assets\index.7c1cc2a6.js.gz" />
+    <None Include="wwwroot\assets\index.8be03a93.css.gz" />
+    <None Include="wwwroot\assets\index.a1a1d0d0.js" />
+    <None Include="wwwroot\assets\index.a1a1d0d0.js.gz" />
+    <None Include="wwwroot\assets\index.b12ff2ff.js" />
+    <None Include="wwwroot\assets\index.b12ff2ff.js.gz" />
+    <None Include="wwwroot\assets\index.b3c1e581.css.gz" />
+    <None Include="wwwroot\assets\index.bb0f67a3.js" />
+    <None Include="wwwroot\assets\index.d52299d8.css.gz" />
+    <None Include="wwwroot\assets\index.d9c71d50.css.gz" />
+    <None Include="wwwroot\assets\index.de36ec9f.css.gz" />
+    <None Include="wwwroot\assets\index.e08e5160.css.gz" />
+    <None Include="wwwroot\assets\index.e3875a04.css.gz" />
+    <None Include="wwwroot\assets\index.ed1369b5.js" />
+    <None Include="wwwroot\assets\index.ed1369b5.js.gz" />
+    <None Include="wwwroot\assets\index.fdac25ee.css.gz" />
+    <None Include="wwwroot\assets\index.feda1b5a.js" />
+    <None Include="wwwroot\assets\index.feda1b5a.js.gz" />
+    <None Include="wwwroot\assets\loading.0f67452a.css.gz" />
+    <None Include="wwwroot\assets\loading.3f202aeb.js" />
+    <None Include="wwwroot\assets\ocelot-options.514ee915.js" />
+    <None Include="wwwroot\assets\project.255163e8.js" />
+    <None Include="wwwroot\assets\route.38f2fbdb.js" />
+    <None Include="wwwroot\assets\route.38f2fbdb.js.gz" />
+    <None Include="wwwroot\assets\vue.bbd05113.js" />
+    <None Include="wwwroot\assets\vue.bbd05113.js.gz" />
   </ItemGroup>
 
 </Project>

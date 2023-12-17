@@ -21,28 +21,6 @@ const PROJECT: AppRouteRecordRaw = {
         requiresAuth: true,
         roles: ['*']
       }
-    },
-    {
-      path: 'search-route',
-      name: 'SearchRoute',
-      component: () => import('@/views/route/search-table/index.vue'),
-      meta: {
-        locale: 'menu.route.search',
-        requiresAuth: false,
-        roles: ['*'],
-        hideInMenu: true
-      }
-    },
-    {
-      path: 'edit-route',
-      name: 'EditRoute',
-      component: () => import('@/views/route/create-route/index.vue'),
-      meta: {
-        locale: 'menu.route.edit',
-        requiresAuth: false,
-        roles: ['*'],
-        hideInMenu: true
-      }
     }
   ]
 }

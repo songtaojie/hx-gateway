@@ -1,7 +1,8 @@
 import axios from 'axios'
 import qs from 'query-string'
 import { PageResponseModel, BasePageRequest, StatusEnum } from '../models/common'
-
+const sysConfig = window['sysConfig'] || {}
+const apiPrefix = sysConfig.apiPrefix || 'api'
 export interface ProjectResponse {
   id: string | undefined
   code: string | undefined
@@ -35,7 +36,7 @@ export function CreateEditProjectModel(): EditProjectModel {
 }
 
 export function getPage(params: PageProjectRequest) {
-  return axios.get<PageResponseModel<ProjectResponse>>('/api/project/getPage', {
+  return axios.get<PageResponseModel<ProjectResponse>>(`/${apiPrefix}/project/getPage`, {
     params,
     paramsSerializer: (obj) => {
       return qs.stringify(obj)
@@ -44,23 +45,23 @@ export function getPage(params: PageProjectRequest) {
 }
 
 export function getList() {
-  return axios.get<Array<ProjectResponse>>('/api/project/getList')
+  return axios.get<Array<ProjectResponse>>(`/${apiPrefix}/project/getList`)
 }
 
 export function addProject(data: EditProjectModel) {
-  return axios.post('/api/project/add', data)
+  return axios.post(`/${apiPrefix}/project/add`, data)
 }
 
 export function updateProject(data: EditProjectModel) {
-  return axios.put('/api/project/Update', data)
+  return axios.put(`/${apiPrefix}/project/Update`, data)
 }
 
 // 启用或禁用项目
 export function patchProject(projectId: number, status: number) {
-  return axios.patch(`/api/project/PatchProject/${projectId}/${status}`)
+  return axios.patch(`/${apiPrefix}/project/PatchProject/${projectId}/${status}`)
 }
 
 // 删除项目
 export function deleteProject(projectId: string) {
-  return axios.delete(`/api/project/delete`, { data: { id: projectId } })
+  return axios.delete(`/${apiPrefix}/project/delete`, { data: { id: projectId } })
 }

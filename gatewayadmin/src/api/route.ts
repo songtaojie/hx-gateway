@@ -3,7 +3,8 @@ import qs from 'query-string'
 import { PageResponseModel, BasePageRequest, StatusEnum } from '@/models/common'
 import { RouteModel, PageRouteModel } from '../models/route'
 import { AuthenticationOptions, LoadBalancerOptions, HttpHandlerOptions, QoSOptions, RateLimitOptions, ServiceDiscoveryProviderOptions, DownstreamHostAndPortOptions, FileCacheOptions } from '../models/ocelot-options'
-
+const sysConfig = window['sysConfig'] || {}
+const apiPrefix = sysConfig.apiPrefix || 'api'
 export interface PageRouteInput extends BasePageRequest {
   status: StatusEnum | undefined
   projectId: string | undefined
@@ -60,7 +61,7 @@ export function createRouteModel(config: Partial<RouteModel> = {}): RouteModel {
 }
 
 export function getPage(params: PageRouteInput) {
-  return axios.get<PageResponseModel<PageRouteModel>>('/api/route/getPage', {
+  return axios.get<PageResponseModel<PageRouteModel>>(`/${apiPrefix}/route/getPage`, {
     params,
     paramsSerializer: (obj) => {
       return qs.stringify(obj)
@@ -78,20 +79,20 @@ export interface RoutePropertieModel {
 
 // 查询路由具体信息
 export function getDetail(routeId: string) {
-  return axios.get<RouteModel>(`/api/route/getDetail/${routeId}`)
+  return axios.get<RouteModel>(`/${apiPrefix}/route/getDetail/${routeId}`)
 }
 
 export function addRoute(data: RouteModel) {
-  return axios.post('/api/route/add', data)
+  return axios.post(`/${apiPrefix}/route/add`, data)
 }
 
 export function updateRoute(data: RouteModel) {
-  return axios.put('/api/route/update', data)
+  return axios.put(`/${apiPrefix}/route/update`, data)
 }
 
 // 启用或禁用路由
 export function updateStatus(id: string, status: StatusEnum) {
-  return axios.patch(`/api/route/updateStatus`, {
+  return axios.patch(`/${apiPrefix}/route/updateStatus`, {
     id,
     status
   })
@@ -99,12 +100,12 @@ export function updateStatus(id: string, status: StatusEnum) {
 
 // 删除路由
 export function deleteRoute(id: string) {
-  return axios.delete(`/api/route/delete`, {
+  return axios.delete(`/${apiPrefix}/route/delete`, {
     data: { id }
   })
 }
 
 // 获取预览
 export function getRoutePreview() {
-  return axios.get<string>('/api/route/GetRoutePreview')
+  return axios.get<string>(`/${apiPrefix}/route/GetRoutePreview`)
 }

@@ -10,7 +10,7 @@
           <a-select v-model="queryModel.status" allow-clear :options="statusOptions" :placeholder="$t('select.options.default')" />
         </a-form-item>
         <a-form-item>
-          <a-space size="small">
+          <a-space size="medium">
             <a-button type="primary" @click="search">
               <template #icon>
                 <icon-search />
@@ -35,17 +35,13 @@
     </a-card>
 
     <a-card style="margin-top: 8px" size="medium">
-      <a-table row-key="id" :loading="loading" :pagination="pagination" :data="renderData" :bordered="false" @page-change="onPageChange">
+      <a-table row-key="id" size="small" :loading="loading" :pagination="pagination" :data="renderData" column-resizable class="arco-table-border-cell" @page-change="onPageChange">
         <template #columns>
           <a-table-column :title="$t('project.name.table')" data-index="projectName" align="center" />
           <a-table-column :title="$t('gc.name.table')" data-index="name" align="center" />
           <a-table-column :title="$t('table.column.status')" data-index="status" align="center">
             <template #cell="{ record }">
               <a-tag :color="record.status === 1 ? 'blue' : 'orange'">
-                <template #icon>
-                  <icon-check v-if="record.status === 1" />
-                  <icon-close v-else />
-                </template>
                 {{ $t(`${record.status === 1 ? 'radio.enabled.label' : 'radio.disabled.label'}`) }}
               </a-tag>
             </template>
@@ -55,13 +51,19 @@
           <a-table-column :title="$t('table.operations')" data-index="operations" align="center">
             <template #cell="{ record }">
               <a-space>
-                <a-button type="outline" size="small" @click="handleEdit(record.id)">
-                  {{ $t('table.operations.edit') }}
-                </a-button>
-                <a-button type="primary" :status="record.status === 1 ? 'warning' : 'success'" size="small" @click="onupdateStatus(record.id, record.status)">
+                <a-button type="text" size="mini" :status="record.status === 1 ? 'warning' : 'success'" @click="onupdateStatus(record.id, record.status)">
+                  <template #icon>
+                    <icon-close v-if="record.status === 1" />
+                    <icon-check v-else />
+                  </template>
                   {{ $t(`${record.status === 1 ? 'radio.disabled.label' : 'radio.enabled.label'}`) }}
                 </a-button>
-                <a-button type="primary" size="small" status="danger" @click="handleDel(record.id)">
+                <a-button type="text" size="mini" @click="handleEdit(record.id)">
+                  <template #icon><icon-edit /></template>
+                  {{ $t('table.operations.edit') }}
+                </a-button>
+                <a-button type="text" size="mini" status="danger" @click="handleDel(record.id)">
+                  <template #icon><icon-delete /></template>
                   {{ $t('table.operations.del') }}
                 </a-button>
               </a-space>

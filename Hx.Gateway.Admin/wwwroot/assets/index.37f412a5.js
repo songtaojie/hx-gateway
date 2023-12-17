@@ -1,0 +1,1 @@
+import{_ as o}from"./index.48b299d9.js";import{A as t,aC as _,aF as a,b8 as r,aJ as c}from"./arco.1db1f704.js";const s={},n=c("Ocelot Admin");function d(f,i){const e=r;return t(),_(e,{class:"footer"},{default:a(()=>[n]),_:1})}var u=o(s,[["render",d],["__scopeId","data-v-52ddf708"]]);export{u as F};

@@ -77,7 +77,7 @@
 import { ref, reactive } from 'vue'
 import useLoading from '@/hooks/loading'
 import { getPageSettingBak, PageSettingBakModel, rollback, SettingBakModel } from '@/api/consul'
-import { Pagination } from '@/types/global'
+import { Pagination } from '@/models/global'
 import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface'
 import { getAllSelect } from '@/api/dictionary'
 import { Message } from '@arco-design/web-vue'
@@ -102,7 +102,7 @@ const formModel = ref({
 const { loading, setLoading } = useLoading(true)
 const renderData = ref<SettingBakModel[]>([])
 const basePagination: Pagination = {
-  current: 1,
+  page: 1,
   pageSize: 10
 }
 const pagination = reactive({
@@ -111,9 +111,10 @@ const pagination = reactive({
 
 const fetchData = async (
   params: PageSettingBakModel = {
-    current: 1,
+    page: 1,
     pageSize: 10,
-    searchKey: '',
+    field: undefined,
+    order: undefined,
     consulDc: undefined,
     consulKey: undefined,
     bakTime: undefined
@@ -123,8 +124,8 @@ const fetchData = async (
   try {
     const { data } = await getPageSettingBak(params)
     renderData.value = data.items
-    pagination.current = params.current
-    pagination.total = data.totalCount
+    pagination.page = params.page
+    pagination.total = data.total
   } catch (err) {
     // you can report use errorHandler or other
   } finally {
@@ -133,14 +134,14 @@ const fetchData = async (
 }
 
 const search = () => {
-  basePagination.current = 1
+  basePagination.page = 1
   fetchData({
     ...basePagination,
     ...formModel.value
   } as unknown as PageSettingBakModel)
 }
-const onPageChange = (current: number) => {
-  basePagination.current = current
+const onPageChange = (currentPage: number) => {
+  basePagination.page = currentPage
   fetchData({
     ...basePagination,
     ...formModel.value

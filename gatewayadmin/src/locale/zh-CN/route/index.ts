@@ -7,7 +7,7 @@ const create = {
   'route.label.upstream.host': '上游站点',
   'route.label.upstream.http.method': '上游Http方法',
   'route.label.downstream.http.method': '下游Http方法',
-  'route.label.requestIdKey': '请求Key',
+  'route.requestIdKey.label': '请求Key',
   'route.label.filecache.ttlseconds': '请求缓存过期时间',
   'route.label.filecache.region': '缓存区域',
   'route.label.useServiceDiscovery': '是否使用服务发现',
@@ -99,6 +99,10 @@ const table = {
   'authentication.allowed.scopes': '允许的作用域',
   'authentication.add.scope': '新增'
 }
+const formrule = {
+  'route.label.upstream.host.required': '上游站点不能为空',
+  'route.requestIdKey.required': '请求Key不能为空'
+}
 export default {
   'menu.route.search': '查询路由',
 
@@ -118,5 +122,6 @@ export default {
   'routeTable.operation.update.route': '编辑路由',
   'routeTable.columns.sort': '排序',
   ...create,
-  ...table
+  ...table,
+  ...formrule
 }

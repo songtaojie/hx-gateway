@@ -1,4 +1,4 @@
-import { NamedValue } from 'vue-i18n'
+// import { NamedValue } from 'vue-i18n'
 // 基础参数语言配置
 const basic = {
   'gc.basic.title': '基础参数',

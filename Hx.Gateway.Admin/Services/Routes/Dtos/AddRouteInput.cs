@@ -26,7 +26,6 @@ public class AddRouteInput
     /// <summary>
     /// 上游主机
     /// </summary>
-    [Required(ErrorMessage = "上游主机不能为空")]
     public string UpstreamHost { get; set; }
 
     /// <summary>

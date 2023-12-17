@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { PageResponseModel, StatusEnum, BasePageRequest } from '../models/common'
 import { LoadBalancerOptions, HttpHandlerOptions, QoSOptions, RateLimitOptions, ServiceDiscoveryProviderOptions } from '../models/ocelot-options'
-
+const sysConfig = window['sysConfig'] || {}
+const apiPrefix = sysConfig.apiPrefix || 'api'
 export interface PageGlobalConfigurationRequest extends BasePageRequest {
   projectId: string | undefined
   status: StatusEnum | undefined
@@ -70,7 +71,7 @@ const defaultGlobalConfigurationModel: GlobalConfigurationModel = {
 }
 
 export function getPage(params: PageGlobalConfigurationRequest) {
-  return axios.get<PageResponseModel<PageGlobalConfigurationResponse>>('/api/globalconfiguration/getPage', {
+  return axios.get<PageResponseModel<PageGlobalConfigurationResponse>>(`/${apiPrefix}/globalconfiguration/getPage`, {
     params
   })
 }
@@ -85,17 +86,17 @@ export function createGlobalConfigurationModel(config: Partial<GlobalConfigurati
 
 // 新增全局配置
 export function add(data: GlobalConfigurationModel) {
-  return axios.post<boolean>('/api/globalconfiguration/add', data)
+  return axios.post<boolean>(`/${apiPrefix}/globalconfiguration/add`, data)
 }
 
 // 编辑全局配置
 export function update(data: GlobalConfigurationModel) {
-  return axios.put<boolean>('/api/globalconfiguration/update', data)
+  return axios.put<boolean>(`/${apiPrefix}/globalconfiguration/update`, data)
 }
 
 // 启用或禁用项目
 export function updateStatus(id: string, status: StatusEnum) {
-  return axios.patch(`/api/globalconfiguration/UpdateStatus`, {
+  return axios.patch(`/${apiPrefix}/globalconfiguration/UpdateStatus`, {
     id,
     status
   })
@@ -103,10 +104,10 @@ export function updateStatus(id: string, status: StatusEnum) {
 
 // 查询全局配置信息
 export function getDetail(id: string | undefined | null) {
-  return axios.get<GlobalConfigurationModel>('/api/globalconfiguration/getDetail/' + id)
+  return axios.get<GlobalConfigurationModel>(`/${apiPrefix}/globalconfiguration/getDetail/` + id)
 }
 
 // 删除项目
 export function del(id: string) {
-  return axios.delete(`/api/project/delete`, { data: { id: id } })
+  return axios.delete(`/${apiPrefix}/project/delete`, { data: { id: id } })
 }
