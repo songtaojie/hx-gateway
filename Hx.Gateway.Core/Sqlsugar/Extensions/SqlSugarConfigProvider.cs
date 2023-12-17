@@ -5,14 +5,11 @@
 
 using Hx.Gateway.Core.Options;
 using Hx.Sdk.Sqlsugar;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using SqlSugar;
-using System.Runtime.Loader;
-using FreeRedis;
 
 namespace Hx.Gateway.Core;
 

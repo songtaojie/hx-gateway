@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hx.Sdk.Cache" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Hx.Gateway.Core\Hx.Gateway.Core.csproj" />
   </ItemGroup>
 

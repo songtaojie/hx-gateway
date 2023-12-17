@@ -271,7 +271,7 @@ public class JWTEncryption
     /// <param name="headerKey"></param>
     /// <param name="tokenPrefix"></param>
     /// <returns></returns>
-    public static bool ValidateJwtBearerToken(DefaultHttpContext httpContext, out JsonWebToken token, string headerKey = "Authorization", string tokenPrefix = "Bearer ")
+    public static bool ValidateJwtBearerToken(DefaultHttpContext httpContext, out JsonWebToken? token, string headerKey = "Authorization", string tokenPrefix = "Bearer ")
     {
         // 获取 token
         var accessToken = GetJwtBearerToken(httpContext, headerKey, tokenPrefix);
@@ -360,21 +360,21 @@ public class JWTEncryption
         return new TokenValidationParameters
         {
             // 验证签发方密钥
-            ValidateIssuerSigningKey = jwtSettings.ValidateIssuerSigningKey.Value,
+            ValidateIssuerSigningKey = jwtSettings!.ValidateIssuerSigningKey!.Value,
             // 签发方密钥
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.IssuerSigningKey)),
             // 验证签发方
-            ValidateIssuer = jwtSettings.ValidateIssuer.Value,
+            ValidateIssuer = jwtSettings!.ValidateIssuer!.Value,
             // 设置签发方
             ValidIssuer = jwtSettings.ValidIssuer,
             // 验证签收方
-            ValidateAudience = jwtSettings.ValidateAudience.Value,
+            ValidateAudience = jwtSettings!.ValidateAudience!.Value,
             // 设置接收方
             ValidAudience = jwtSettings.ValidAudience,
             // 验证生存期
-            ValidateLifetime = jwtSettings.ValidateLifetime.Value,
+            ValidateLifetime = jwtSettings!.ValidateLifetime!.Value,
             // 过期时间容错值
-            ClockSkew = TimeSpan.FromSeconds(jwtSettings.ClockSkew.Value),
+            ClockSkew = TimeSpan.FromSeconds(jwtSettings!.ClockSkew!.Value),
         };
     }
 

@@ -70,7 +70,7 @@ public sealed class CorsAccessorSettingsOptions : IPostConfigureOptions<CorsAcce
     /// <param name="options"></param>
     public void PostConfigure(string name, CorsAccessorSettingsOptions options)
     {
-        PolicyName ??= "HxCorsAccessor";
+        PolicyName ??= "HxGatewayCorsAccessor";
         WithOrigins ??= Array.Empty<string>();
         AllowCredentials ??= true;
         FixedToken ??= true;

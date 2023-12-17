@@ -75,9 +75,9 @@ public class RouteConvention : IApplicationModelConvention
                     {
                         JsonTextReader reader = new JsonTextReader(new StringReader(configArr[1]));
                         JObject jObject = (JObject)JToken.ReadFrom(reader);
-                        if (jObject.ContainsKey(CommonConst.API_Prefix_Key))
+                        if (jObject.ContainsKey(CommonConst.Web_Config_ApiPrefix_Key))
                         {
-                            jObject[CommonConst.API_Prefix_Key] = _routePrefix.Template;
+                            jObject[CommonConst.Web_Config_ApiPrefix_Key] = _routePrefix.Template;
                         }
                         configJs = $"{configArr[0]} = {jObject.ToString()}";
                         File.WriteAllText(configPath, configJs);

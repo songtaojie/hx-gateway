@@ -37,13 +37,13 @@ public class ErrorHandlingMiddleware
         {
             context.Request.EnableBuffering();
             HandleException(context.Response, 499, ex.Message);
-            LogRequestInfo(context.Request, ex.Message).ConfigureAwait(continueOnCapturedContext: false);
+            await LogRequestInfo(context.Request, ex.Message).ConfigureAwait(continueOnCapturedContext: false);
         }
         catch (UserFriendlyException ex2)
         {
             context.Request.EnableBuffering();
             HandleException(context.Response, 200, ex2.Message);
-            LogRequestInfo(context.Request, ex2.Message).ConfigureAwait(continueOnCapturedContext: false);
+            await LogRequestInfo(context.Request, ex2.Message).ConfigureAwait(continueOnCapturedContext: false);
         }
         catch (Exception ex3)
         {
@@ -55,7 +55,7 @@ public class ErrorHandlingMiddleware
             }
 
             HandleException(context.Response, statusCode, ex3.Message);
-            LogRequestInfo(context.Request, ex3.Message, ex3).ConfigureAwait(continueOnCapturedContext: false);
+            await LogRequestInfo(context.Request, ex3.Message, ex3).ConfigureAwait(continueOnCapturedContext: false);
         }
         finally
         {

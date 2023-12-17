@@ -7,5 +7,7 @@ namespace Hx.Gateway.Admin;
 
 public class CommonConst
 {
-    public const string API_Prefix_Key = "apiPrefix";
+    public const string API_RoutePrefix_Key = "ApiSettings:RoutePrefix";
+
+    public const string Web_Config_ApiPrefix_Key = "apiPrefix";
 }

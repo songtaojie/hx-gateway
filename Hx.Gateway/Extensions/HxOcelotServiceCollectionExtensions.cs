@@ -28,7 +28,7 @@ public static class HxOcelotServiceCollectionExtensions
     /// <param name="configuration">配置</param>
     /// <param name="ocelotOptionAction">配置信息</param>
     /// <returns></returns>
-    public static IServiceCollection AddHxOcelot(this IServiceCollection services, IConfiguration configuration, Action<OcelotSettingsOptions> ocelotOptionAction = default)
+    public static IServiceCollection AddHxOcelot(this IServiceCollection services, IConfiguration configuration, Action<OcelotSettingsOptions>? ocelotOptionAction = default)
     {
         if (services == null) throw new ArgumentNullException(nameof(services));
         if (configuration == null) throw new ArgumentNullException(nameof(configuration));
@@ -60,7 +60,7 @@ public static class HxOcelotServiceCollectionExtensions
     /// <param name="builder"></param>
     /// <param name="ocelotOptionAction">配置信息</param>
     /// <returns></returns>
-    public static IOcelotBuilder AddHxOcelotCore(this IOcelotBuilder builder, Action<OcelotSettingsOptions> ocelotOptionAction = default)
+    public static IOcelotBuilder AddHxOcelotCore(this IOcelotBuilder builder, Action<OcelotSettingsOptions>? ocelotOptionAction = default)
     {
         if (builder == null) throw new ArgumentNullException(nameof(builder));
         var ocelotSettingsOptions = new OcelotSettingsOptions();
